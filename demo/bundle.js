@@ -17,7 +17,7 @@
 
 /***/ }),
 
-/***/ 872:
+/***/ 692:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3810,7 +3810,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       }
     }(a.prototype, e), a;
   }(),
-      Ye = __webpack_require__(500),
+      Ye = __webpack_require__(876),
       We = {
     npm_name: Ye.name,
     version: Ye.version,
@@ -8329,14 +8329,6 @@ return Promise$1;
 
 /***/ }),
 
-/***/ 500:
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version":"1.4.6","description":"A plugin for creating graphs using MotorCortex","main":"dist/bundle.cjs.js","module":"dist/bundle.esm.js","browser":"dist/bundle.umd.js","author":"KissMyButton PC (kissmybutton.gr) <opensource@kissmybutton.gr>","repository":{"type":"git","url":"https://github.com/kissmybutton/motorcortex-graphs"},"license":"MIT","engines":{"node":">=10"},"scripts":{"concurrently":"concurrently -c \\"cyan.bold,magenta.bold\\" --names \\"JS,Styles\\"","lint:styles":"stylelint  --allow-empty-input \\"src/**.css\\" \\"src/**/*.scss\\" --config .stylelintrc.json","lint:js":"eslint -c .eslintrc src/**/*.js","lint":"npm run concurrently \\"npm:lint:js\\" \\"npm:lint:styles\\"","lint:fix":"npm run concurrently  \\"npm:lint:js -- --fix\\" \\"npm:lint:styles -- --fix\\"","build":"npm run build:lib && npm run build:demo","build:lib":"rollup -c","start":"npm run build:lib && concurrently -c \\"cyan.bold,magenta.bold\\" \\"npm:build:lib -- -w\\"  \\"npm:start:demo\\" ","start:demo":"webpack serve --mode=development --config ./demo/webpack.config.js","build:demo":"webpack --mode=production --config ./demo/webpack.config.js","test":"HERE GOES YOUR TEST TASK","test:prod":"npm run lint"},"keywords":["motorcortex","animation"],"config":{"commitizen":{"path":"cz-conventional-changelog"}},"dependencies":{"@kissmybutton/motorcortex-2dcam":"^0.0.16","@kissmybutton/motorcortex-anime":"^2.1.13","@kissmybutton/motorcortex-counter":"^1.0.1","@kissmybutton/motorcortex-svgdraw":"^0.0.8","jss":"^10.5.1"},"peerDependencies":{"@kissmybutton/motorcortex":"^6.3.1"},"release":{"verifyConditions":["@semantic-release/changelog","@semantic-release/npm","@semantic-release/github","@semantic-release/git"],"prepare":["@semantic-release/changelog","@semantic-release/npm","@semantic-release/git"]},"devDependencies":{"@babel/cli":"7.14.8","@babel/core":"7.14.8","@babel/plugin-syntax-jsx":"7.14.5","@babel/plugin-transform-react-jsx":"7.14.9","@babel/preset-env":"7.14.9","@kissmybutton/motorcortex":"6.4.3","@kissmybutton/motorcortex-player":"1.9.4","@rollup/plugin-babel":"5.3.0","@rollup/plugin-commonjs":"18.1.0","@rollup/plugin-json":"4.1.0","@rollup/plugin-node-resolve":"11.2.1","@semantic-release/changelog":"5.0.1","@semantic-release/git":"9.0.0","@semantic-release/github":"7.2.3","@semantic-release/npm":"7.1.3","babel-eslint":"10.1.0","babel-loader":"8.2.2","concurrently":"6.2.0","css-loader":"5.2.7","es6-promise":"4.2.8","eslint":"7.32.0","eslint-config-prettier":"8.3.0","eslint-config-standard":"16.0.3","eslint-plugin-babel":"5.3.1","eslint-plugin-import":"2.23.4","eslint-plugin-node":"11.1.0","eslint-plugin-prettier":"3.4.0","eslint-plugin-promise":"4.3.1","eslint-plugin-standard":"5.0.0","exports-loader":"1.1.1","imports-loader":"1.2.0","npx":"10.2.2","prettier":"2.3.2","rimraf":"3.0.2","rollup":"2.55.1","rollup-plugin-terser":"7.0.2","semantic-release":"17.4.4","shelljs":"0.8.4","stylelint":"13.13.1","stylelint-config-prettier":"8.0.2","stylelint-config-recommended":"4.0.0","stylelint-config-recommended-scss":"4.3.0","stylelint-config-sass-guidelines":"8.0.0","stylelint-config-standard":"21.0.0","stylelint-scss":"3.20.1","webpack":"5.47.1","webpack-cli":"4.7.2","webpack-dev-server":"3.11.2","whatwg-fetch":"3.6.2"}}');
-
-/***/ }),
-
 /***/ 705:
 /***/ (() => {
 
@@ -8348,6 +8340,14 @@ module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version
 /***/ (() => {
 
 /* (ignored) */
+
+/***/ }),
+
+/***/ 876:
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version":"1.4.6","description":"A plugin for creating graphs using MotorCortex","main":"dist/bundle.cjs.js","module":"dist/bundle.esm.js","browser":"dist/bundle.umd.js","author":"KissMyButton PC (kissmybutton.gr) <opensource@kissmybutton.gr>","repository":{"type":"git","url":"https://github.com/kissmybutton/motorcortex-graphs"},"license":"MIT","engines":{"node":">=10"},"scripts":{"concurrently":"concurrently -c \\"cyan.bold,magenta.bold\\" --names \\"JS,Styles\\"","lint:styles":"stylelint  --allow-empty-input \\"src/**.css\\" \\"src/**/*.scss\\" --config .stylelintrc.json","lint:js":"eslint -c .eslintrc src/**/*.js","lint":"npm run concurrently \\"npm:lint:js\\" \\"npm:lint:styles\\"","lint:fix":"npm run concurrently  \\"npm:lint:js -- --fix\\" \\"npm:lint:styles -- --fix\\"","build":"npm run build:lib && npm run build:demo","build:lib":"rollup -c","start":"npm run build:lib && concurrently -c \\"cyan.bold,magenta.bold\\" \\"npm:build:lib -- -w\\"  \\"npm:start:demo\\" ","start:demo":"webpack serve --mode=development --config ./demo/webpack.config.js","build:demo":"webpack --mode=production --config ./demo/webpack.config.js","test":"HERE GOES YOUR TEST TASK","test:prod":"npm run lint"},"keywords":["motorcortex","animation"],"config":{"commitizen":{"path":"cz-conventional-changelog"}},"dependencies":{"@kissmybutton/motorcortex-2dcam":"^0.0.16","@kissmybutton/motorcortex-anime":"^2.1.13","@kissmybutton/motorcortex-counter":"^1.0.1","@kissmybutton/motorcortex-svgdraw":"^0.0.8","jss":"^10.5.1"},"peerDependencies":{"@kissmybutton/motorcortex":"^6.3.1"},"release":{"verifyConditions":["@semantic-release/changelog","@semantic-release/npm","@semantic-release/github","@semantic-release/git"],"prepare":["@semantic-release/changelog","@semantic-release/npm","@semantic-release/git"]},"devDependencies":{"@babel/cli":"7.14.8","@babel/core":"7.14.8","@babel/plugin-syntax-jsx":"7.14.5","@babel/plugin-transform-react-jsx":"7.14.9","@babel/preset-env":"7.14.9","@kissmybutton/motorcortex":"6.4.3","@kissmybutton/motorcortex-player":"1.9.4","@rollup/plugin-babel":"5.3.0","@rollup/plugin-commonjs":"18.1.0","@rollup/plugin-json":"4.1.0","@rollup/plugin-node-resolve":"11.2.1","@semantic-release/changelog":"5.0.1","@semantic-release/git":"9.0.0","@semantic-release/github":"7.2.3","@semantic-release/npm":"7.1.3","babel-eslint":"10.1.0","babel-loader":"8.2.2","concurrently":"6.2.0","css-loader":"5.2.7","es6-promise":"4.2.8","eslint":"7.32.0","eslint-config-prettier":"8.3.0","eslint-config-standard":"16.0.3","eslint-plugin-babel":"5.3.1","eslint-plugin-import":"2.23.4","eslint-plugin-node":"11.1.0","eslint-plugin-prettier":"3.4.0","eslint-plugin-promise":"4.3.1","eslint-plugin-standard":"5.0.0","exports-loader":"1.1.1","imports-loader":"1.2.0","npx":"10.2.2","prettier":"2.3.2","rimraf":"3.0.2","rollup":"2.55.1","rollup-plugin-terser":"7.0.2","semantic-release":"17.4.4","shelljs":"0.8.4","stylelint":"13.13.1","stylelint-config-prettier":"8.0.2","stylelint-config-recommended":"4.0.0","stylelint-config-recommended-scss":"4.3.0","stylelint-config-sass-guidelines":"8.0.0","stylelint-config-standard":"21.0.0","stylelint-scss":"3.20.1","webpack":"5.48.0","webpack-cli":"4.7.2","webpack-dev-server":"3.11.2","whatwg-fetch":"3.6.2"}}');
 
 /***/ })
 
@@ -8436,7 +8436,7 @@ module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("6200389e34f0868831b9")
+/******/ 		__webpack_require__.h = () => ("0b2ee57fe49d64c1dec9")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -9415,7 +9415,7 @@ module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version
 /******/ 	// module cache are used so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	var __webpack_exports__ = __webpack_require__(872);
+/******/ 	var __webpack_exports__ = __webpack_require__(692);
 /******/ 	
 /******/ })()
 ;
