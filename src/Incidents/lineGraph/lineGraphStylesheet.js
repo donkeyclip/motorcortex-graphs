@@ -60,8 +60,7 @@ export default function buildCSS(lineGraph) {
             1)
       }%`,
       left: `${68 + (lineGraph.dataSetsNum === 1 ? 12 : 0)}%`,
-      background: lineGraph.primaryC,
-      background: "rgb(132, 130, 128)",
+      background: lineGraph.quinaryC,
       "font-size": lineGraph.fontSizeInner,
       display: "flex",
       "flex-wrap": "wrap",
@@ -134,16 +133,31 @@ export default function buildCSS(lineGraph) {
     },
     "data-stele": {
       height: "100%",
-      width: "1%",
       display: "flex",
       "flex-direction": "column-reverse",
       "justify-content": "space-between",
     },
-    "stele-block": {
+    "line-grid": {
+      width: "100%",
+      height: "100%",
+    },
+    "stele-grid": {
+      width: "1%",
+      height: "100%",
+    },
+    "line-grid-block": {
       width: "100%",
       height: `${Math.trunc(
-        lineGraph.linesHeight * (0.26 / lineGraph.steleBlockNum)
+        lineGraph.linesHeight * (0.13 * lineGraph.gridH / lineGraph.steleBlockNum)
       )}px`,
+    },
+    "stele-grid-block": {
+      width: "100%",
+      height: `${Math.trunc(
+        lineGraph.linesHeight * (0.26 * lineGraph.gridH / lineGraph.steleBlockNum)
+      )}px`,
+    },
+    "stele-block": {
       "max-height": "5px",
       opacity: "0.8",
       background: lineGraph.primaryC,

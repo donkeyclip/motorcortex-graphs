@@ -52,20 +52,36 @@ export default class LineGraph extends MotorCortex.HTMLClip {
 
     // Data stele html generation
     const dataSteles = [];
-    for (const i in this.data) {
+    if (this.grid === "steles") {
+      for (const i in this.data) {
+        const stele = [];
+        for (let z = 0; z < this.steleBlockNum; z++) {
+          stele.push(
+            <div class={"stele-block-" + i + " stele-block stele-grid-block"}></div>
+          );
+        }
+  
+        dataSteles.push(
+          <div id={"stele-" + i} class="data-stele stele-grid">
+            {stele}
+          </div>
+        );
+      }
+    } else if (this.grid === "lines") {
       const stele = [];
       for (let z = 0; z < this.steleBlockNum; z++) {
-        const cssClasses = stele.push(
-          <div class={"stele-block-" + i + " stele-block"}></div>
+        stele.push(
+          <div class={"stele-block-" + 0 + " stele-block line-grid-block"}></div>
         );
       }
 
       dataSteles.push(
-        <div id={"stele-" + i} class="data-stele">
+        <div id={"stele-" + 0} class="data-stele line-grid">
           {stele}
         </div>
       );
     }
+    
 
     // Graph Lines SVG hmtl generation
     const lineGroups = [];
@@ -102,8 +118,8 @@ export default class LineGraph extends MotorCortex.HTMLClip {
             cx={`${xPoint1}`}
             cy={`${yPoint1}`}
             r={`${this.r}%`}
-            fill={this.accentC}
-            stroke={this.accentC}
+            fill={this.senaryC}
+            stroke={this.senaryC}
           />
         );
         linePaths.push(<g>{lineSegment}</g>);
@@ -337,6 +353,12 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.quaternaryC = this.attrs.palette.quaternary
       ? this.attrs.palette.quaternary
       : this.colorPalette.whiteBack;
+    this.quinaryC = this.attrs.palette.quinary 
+      ? this.attrs.palette.quinary
+      : this.colorPalette.gray
+    this.senaryC = this.attrs.palette.senary 
+      ? this.attrs.palette.senary
+      : this.colorPalette.accent
     this.fontC = this.attrs.palette.font
       ? this.attrs.palette.font
       : this.colorPalette.font;
@@ -384,6 +406,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       : this.maxPoint;
     this.hover = this.attrs.data.hover ? this.attrs.data.hover : false;
     this.hover = this.dataSetsNum !== 1 ? true : this.hover;
+    this.grid = this.attrs.grid ? this.attrs.grid : "lines";
+    this.grid = (this.grid !== "lines" && this.grid !== "steles") ? "lines" : this.grid;
+    this.gridH = this.attrs.gridH ? this.attrs.gridH : 1;    
     this.attrs.trace = this.attrs.trace ? this.attrs.trace : {};
     this.trace = this.attrs.trace.toggle ? this.attrs.trace.toggle : false;
     this.trace = this.dataSetsNum === 1 ? this.trace : false;
@@ -409,7 +434,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.spaceAround =
       (this.linesWidth - this.steleWidth * this.data.length) /
       (this.data.length * 2);
-    this.r = 0.65;
+    this.r = this.attrs.dataPointR 
+    ? this.attrs.dataPointR
+    : 0.65;
 
     // Global access data process functions
     this.findPointX = (datapoint) => {

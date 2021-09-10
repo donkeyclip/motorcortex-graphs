@@ -425,9 +425,46 @@ export default class AnimationConstructor {
     const steleDelay = steleDur / steleOverlapIndex;
     const blockDur =
       (steleDur * blockOverlapIndex) / (this.instance.steleBlockNum + 1);
-    for (const i in this.instance.data) {
+
+    if (this.instance.grid === "steles") {
+      for (const i in this.instance.data) {
+        const steleGroup = new MotorCortex.Group({
+          selector: `#stele-${i}`,
+        });
+        const blockCombo = new MotorCortex.Combo(
+          {
+            incidents: [
+              {
+                incidentClass: Anime.Anime,
+                attrs: {
+                  animatedAttrs: {
+                    opacity: 1,
+                  },
+                  initialValues: {
+                    opacity: 0,
+                  },
+                },
+                props: {
+                  duration: Math.trunc(blockDur),
+                },
+                position: 0,
+              },
+            ],
+          },
+          {
+            selector: `.stele-block-${i}`,
+            delay: `@stagger(0, ${Math.trunc(
+              steleDur - blockDur
+            )}, 0, easeOutQuad)`,
+          }
+        );
+  
+        steleGroup.addIncident(blockCombo, 0);
+        stelesIntro.addIncident(steleGroup, Math.trunc(i * steleDelay));
+      }
+    } else if (this.instance.grid === "lines") {
       const steleGroup = new MotorCortex.Group({
-        selector: `#stele-${i}`,
+        selector: `#stele-${0}`,
       });
       const blockCombo = new MotorCortex.Combo(
         {
@@ -436,30 +473,33 @@ export default class AnimationConstructor {
               incidentClass: Anime.Anime,
               attrs: {
                 animatedAttrs: {
-                  opacity: 1,
+                  width: "100%",
                 },
                 initialValues: {
-                  opacity: 0,
+                  width: "0%",
                 },
               },
               props: {
-                duration: Math.trunc(blockDur),
+                duration: Math.trunc(steleDur),
+                easing: "easeInOutQuad",
               },
               position: 0,
             },
           ],
         },
         {
-          selector: `.stele-block-${i}`,
+          selector: `.stele-block-${0}`,
           delay: `@stagger(0, ${Math.trunc(
             steleDur - blockDur
-          )}, 0, easeOutQuad)`,
+          )}, 0)`,
         }
       );
 
       steleGroup.addIncident(blockCombo, 0);
-      stelesIntro.addIncident(steleGroup, Math.trunc(i * steleDelay));
+      stelesIntro.addIncident(steleGroup, Math.trunc(steleDelay));
     }
+
+    
 
     return stelesIntro;
   }
@@ -474,9 +514,49 @@ export default class AnimationConstructor {
     const steleDelay = steleDur / steleOverlapIndex;
     const blockDur =
       (steleDur * blockOverlapIndex) / (this.instance.steleBlockNum + 1);
-    for (const i in this.instance.data) {
+
+    if (this.instance.grid === "steles") { 
+      for (const i in this.instance.data) {
+        const steleGroup = new MotorCortex.Group({
+          selector: `#stele-${i}`,
+        });
+        const blockCombo = new MotorCortex.Combo(
+          {
+            incidents: [
+              {
+                incidentClass: Anime.Anime,
+                attrs: {
+                  animatedAttrs: {
+                    opacity: 0,
+                  },
+                  initialValues: {
+                    opacity: 1,
+                  },
+                },
+                props: {
+                  duration: Math.trunc(blockDur),
+                },
+                position: 0,
+              },
+            ],
+          },
+          {
+            selector: `.stele-block-${i}`,
+            delay: `@stagger(0, ${Math.trunc(
+              steleDur - blockDur
+            )}, 0, easeOutQuad, omni, true)`,
+          }
+        );
+  
+        steleGroup.addIncident(blockCombo, 0);
+        stelesOutro.addIncident(
+          steleGroup,
+          (this.instance.data.length - 1 - i) * steleDelay
+        );
+      }
+    } else if (this.instance.grid === "lines") {
       const steleGroup = new MotorCortex.Group({
-        selector: `#stele-${i}`,
+        selector: `#stele-${0}`,
       });
       const blockCombo = new MotorCortex.Combo(
         {
@@ -485,33 +565,35 @@ export default class AnimationConstructor {
               incidentClass: Anime.Anime,
               attrs: {
                 animatedAttrs: {
-                  opacity: 0,
+                  width: "0%",
                 },
                 initialValues: {
-                  opacity: 1,
+                  width: "100%",
                 },
               },
               props: {
-                duration: Math.trunc(blockDur),
+                duration: Math.trunc(steleDur),
+                easing: "easeInOutQuad",
               },
               position: 0,
             },
           ],
         },
         {
-          selector: `.stele-block-${i}`,
+          selector: `.stele-block-${0}`,
           delay: `@stagger(0, ${Math.trunc(
             steleDur - blockDur
-          )}, 0, easeOutQuad, omni, true)`,
+          )}, 0, linear, omni, true)`,
         }
       );
 
       steleGroup.addIncident(blockCombo, 0);
       stelesOutro.addIncident(
         steleGroup,
-        (this.instance.data.length - 1 - i) * steleDelay
+        (this.instance.data.length - 1) * steleDelay
       );
     }
+    
     return stelesOutro;
   }
 
