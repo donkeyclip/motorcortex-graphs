@@ -407,7 +407,8 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.hover = this.attrs.data.hover ? this.attrs.data.hover : false;
     this.hover = this.dataSetsNum !== 1 ? true : this.hover;
     this.grid = this.attrs.grid ? this.attrs.grid : "lines";
-    this.grid = (this.grid !== "lines" && this.grid !== "steles") ? "lines" : this.grid;
+    this.grid =
+      this.grid !== "lines" && this.grid !== "steles" ? "lines" : this.grid;
     this.gridH = this.attrs.gridH ? this.attrs.gridH : 1;    
     this.attrs.trace = this.attrs.trace ? this.attrs.trace : {};
     this.trace = this.attrs.trace.toggle ? this.attrs.trace.toggle : false;
