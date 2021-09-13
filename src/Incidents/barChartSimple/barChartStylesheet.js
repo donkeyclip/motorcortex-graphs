@@ -81,7 +81,7 @@ export default function buildCSS(barChart) {
     },
     "x-labels-back-wrapper": {
       width: "70%",
-      height: "7%",
+      height: "5%",
       top: "87%",
       left: "16%",
       position: "absolute",
@@ -92,7 +92,7 @@ export default function buildCSS(barChart) {
       "font-family": barChart.fontFamily,
       background: "transparent",
       width: "70%",
-      height: "7`%",
+      height: "5%",
       top: "87%",
       left: "16%",
       position: "absolute",
