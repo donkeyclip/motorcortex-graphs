@@ -151,6 +151,8 @@ export default function buildCSS(barChart) {
       "justify-content": "flex-end",
     },
     "label-container": {
+      position: "relative",
+      top: "1px",
       display: "flex",
       "flex-direction": "row",
       overflow: "hidden",
