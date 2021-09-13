@@ -437,9 +437,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.spaceAround =
       (this.linesWidth - this.steleWidth * this.data.length) /
       (this.data.length * 2);
-    this.r = this.attrs.dataPointR 
-    ? this.attrs.dataPointR
-    : 0.65;
+    this.r = this.attrs.dataPointR ? this.attrs.dataPointR : 0.65;
 
     // Global access data process functions
     this.findPointX = (datapoint) => {
