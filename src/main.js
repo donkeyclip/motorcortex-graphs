@@ -24,10 +24,6 @@ export default {
       exportable: BarChartSimple,
       name: "BarChartSimple",
       attributesValidationRules: validationRules.BarChartSimple,
-      originalDims: {
-        width: "1200px",
-        height: "900px",
-      },
     },
     {
       exportable: LineGraph,
@@ -47,10 +43,7 @@ export default {
       exportable: ProgressMeter,
       name: "ProgressMeter",
       attributesValidationRules: validationRules.ProgressMeter,
-      originalDims: {
-        width: `${config.progressMeter.originalDims.width}px`,
-        height: `${config.progressMeter.originalDims.height}px`,
-      },
+
     },
   ],
 };

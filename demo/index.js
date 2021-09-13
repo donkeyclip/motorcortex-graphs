@@ -154,16 +154,17 @@ const progressMeter = new MCGraphs.ProgressMeter(
     selector: "#htmlclip",
     containerParams: {
       width: "1024px",
-      height: "768px",
+      height: "400px",
     },
   }
 );
 
-clip.addIncident(barChart, 0);
-clip.addIncident(lineGraph, 5500);
-clip.addIncident(pieChart, 20500);
-clip.addIncident(progressBar, 26000);
-clip.addIncident(progressMeter, 31500);
+// clip.addIncident(barChart, 0);
+// clip.addIncident(lineGraph, 5500);
+// clip.addIncident(pieChart, 20500);
+// clip.addIncident(progressBar, 26000);
+// clip.addIncident(progressMeter, 31500);
+clip.addIncident(progressMeter, 0);
 
 const player = new Player({
   clip,
