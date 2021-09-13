@@ -544,7 +544,6 @@ export default class AnimationConstructor {
             )}, 0, easeOutQuad, omni, true)`,
           }
         );
-  
         steleGroup.addIncident(blockCombo, 0);
         stelesOutro.addIncident(
           steleGroup,
