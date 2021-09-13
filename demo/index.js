@@ -69,12 +69,13 @@ const lineGraph = new MCGraphs.LineGraph(
       scale: 1.45,
     },
     legend: true,
-    grid: false,
+    grid: "lines",
     timings: {
       intro: 7000,
       static: 1000,
       outro: 7000,
     },
+    palette: {},
     font: {
       size: "1.7rem",
     },
@@ -93,7 +94,6 @@ const pieChart = new MCGraphs.PieChart(
     data: pieChartData,
     timings: {
       intro: 2000,
-      static: 1500,
       static: 1000,
       outro: 2000,
     },
@@ -168,5 +168,6 @@ clip.addIncident(progressMeter, 31500);
 const player = new Player({
   clip,
   scaleToFit: true,
+  autoplay: true,
   pointerEvents: false,
 });

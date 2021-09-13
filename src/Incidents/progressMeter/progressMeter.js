@@ -6,6 +6,7 @@ const Counter = MotorCortex.loadPlugin(CounterPlugin);
 
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
+import helpers from "../../shared/helpers";
 import buildCSS from "./progressMeterStyleSheet";
 import config from "../../incident_config";
 import { svgPresets } from "../../shared/presetsExports";
@@ -531,10 +532,12 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
           rotate: false,
         };
     this.originalDims = config.progressMeter.originalDims;
+    this.heightDimension = helpers.extractUnitsNums(this.props.containerParams.height).number
+    this.widthDimension = helpers.extractUnitsNums(this.props.containerParams.width).number
     this.boxSize =
-      this.originalDims.width < this.originalDims.height
-        ? this.originalDims.width * 0.65
-        : this.originalDims.height * 0.65;
+      this.widthDimension < this.heightDimension
+        ? this.widthDimension * 0.65
+        : this.heightDimension * 0.65;
     this.pathLength = 10000;
 
     this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};

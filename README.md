@@ -471,37 +471,30 @@ To create a Line Graph, the necessary attribute parameter is the data object. Th
 
 ```javascript
 const newGraph = new MCGraphs.BarChartSimple({
-  data: data,  
-  palette: {
-    primary: "#75706E",
-    secondary: "#B2B1AE", 
-    tertiary: "#434243",
-    quaternary: "#EEEEEE",
-    font: "#100300", 
-    accent: "#FFD800", 
-    background: "#D3CDCD"
+    data: lineGraphData,
+    trace: {
+      toggle: false,
+      scale: 1.45,
+    },
+    legend: true,
+    grid: "lines",
+    timings: {
+      intro: 7000,
+      static: 1000,
+      outro: 7000,
+    },
+    font: {
+      size: "1.7rem",
+    },
   },
-  font: {
-    url: "https://fonts.googleapis.com/css2?family=Staatliches&display=swap",
-    size: "1.7rem",
-  },
-  trace: { 
-    toggle: true,
-    scale: 1.45,
-  },
-  grid: true,
-  timings: {
-    intro: 7000,
-    outro: 7000, 
-    static: 1000, 
-  },
-}, {
-  selector: '#htmlclip',
-  containerParams: {
-    width: '1244px',
-    height: '768px'
+  {
+    selector: "#html-hoverclip",
+    containerParams: {
+      width: "1024px",
+      height: "768px",
+    },
   }
-});
+);
 
 clip.addIncident(newGraph, 0);
 ```
@@ -512,6 +505,9 @@ The Line Graph Incident can take the following attributes:
 
 * `data`
 * `timings`
+* `grid`
+* `gridH`
+* `dataPointR`
 * `hover`
 * `grid`
 * `legend`
@@ -635,7 +631,16 @@ The trace configuration object controls the zoom effect of the introduction. The
 The hover option (`true`/`false`) allows the user to control if the labels of the points will be permenantly visible (and animated during intro/outtro durations), or will be hidden and shown only on hover. Note: When there are multiple datasets this option is automatically set to `true`. 
 
 #### Legend
-The grid option (`true`/`false`) allows the user to control if the legend of the graph will be permenantly visible (and animated during intro/outtro durations), or will be hidden. Note: When there are multiple datasets this option is automatically set to `true`. 
+The legend option (`true`/`false`) allows the user to control if the legend of the graph will be permenantly visible (and animated during intro/outtro durations), or will be hidden. Note: When there are multiple datasets this option is automatically set to `true`. 
+
+#### DataPointR
+The dataPointR option allows the user to control the size of the line-graph's datapoints. The size is measured with percentages. Default value is 0.65
+
+#### Grid
+The grid option can take either the `steles` or `lines` values. If grid is set to steles, the grid will be raised as vertical dotted lines from each label on the x-axis. If grid is set to lines, a matrix of lines will occupy the grid spanning the entire length of the graph. Default option is lines.
+
+#### GridH
+The gridH option can take percentage values (0 - 1) and affects the height of the gridlines/gridsteles (based on the grid option). Default is set to 1.
 
 #### Timings:
 The `timings` object is an *optional* attribute that contains three (3) parameters for setting the duration of the event. These parameters are: 
@@ -655,6 +660,8 @@ The `palette` object is an optional parameter used to customize the colors used 
 | secondary | The graph's background shade | #B2B1AE | hex or css color |
 | tertiary | The lines' color | #434243 | hex or css color |
 | quaternary | The graph labels' color | #EEEEEE | hex or css color |
+| quinary | The graph's legend background color | #75706E | hex or css color |
+| senary | The graph's points' color | #100300 | hex or css color |
 | accent | The font color | #100300 | hex or css color |
 | font | The titles & labels background | #FFD800 | hex or css color |
 | background | The background color | transparent | hex or css color |

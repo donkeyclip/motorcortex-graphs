@@ -24,19 +24,11 @@ export default {
       exportable: BarChartSimple,
       name: "BarChartSimple",
       attributesValidationRules: validationRules.BarChartSimple,
-      originalDims: {
-        width: "1200px",
-        height: "900px",
-      },
     },
     {
       exportable: LineGraph,
       name: "LineGraph",
       attributesValidationRules: validationRules.LineGraph,
-      originalDims: {
-        width: `${config.lineGraph.originalDims.width}px`,
-        height: `${config.lineGraph.originalDims.height}px`,
-      },
     },
     {
       exportable: PieChart,
@@ -51,10 +43,7 @@ export default {
       exportable: ProgressMeter,
       name: "ProgressMeter",
       attributesValidationRules: validationRules.ProgressMeter,
-      originalDims: {
-        width: `${config.progressMeter.originalDims.width}px`,
-        height: `${config.progressMeter.originalDims.height}px`,
-      },
+
     },
   ],
 };
