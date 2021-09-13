@@ -154,7 +154,8 @@ export default function buildCSS(lineGraph) {
     "stele-grid-block": {
       width: "100%",
       height: `${Math.trunc(
-        lineGraph.linesHeight * (0.26 * lineGraph.gridH / lineGraph.steleBlockNum)
+        lineGraph.linesHeight *
+          ((0.26 * lineGraph.gridH) / lineGraph.steleBlockNum)
       )}px`,
     },
     "stele-block": {
