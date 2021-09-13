@@ -589,7 +589,6 @@ export default class AnimationConstructor {
         (this.instance.data.length - 1) * steleDelay
       );
     }
-    
     return stelesOutro;
   }
 
