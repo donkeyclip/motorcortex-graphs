@@ -459,7 +459,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       ? this.attrs.font.fontFamily
       : "'Staatliches', cursive";
     this.fontSizeLabel = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-    this.fontSizeTitle = 1.5 * helpers.extractUnitsNums(this.fontSizeLabel).number + helpers.extractUnitsNums(this.fontSizeLabel).unit; 
+    this.fontSizeTitle =
+      1.5 * helpers.extractUnitsNums(this.fontSizeLabel).number +
+      helpers.extractUnitsNums(this.fontSizeLabel).unit;
     this.fontSizeInner = 1 * helpers.extractUnitsNums(this.fontSizeLabel).number + helpers.extractUnitsNums(this.fontSizeLabel).unit;
     this.url = this.attrs.font.url
       ? this.attrs.font.url
