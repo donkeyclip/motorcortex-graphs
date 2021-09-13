@@ -512,7 +512,7 @@ export default class AnimationConstructor {
     const blockDur =
       (steleDur * blockOverlapIndex) / (this.instance.steleBlockNum + 1);
 
-    if (this.instance.grid === "steles") { 
+    if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
         const steleGroup = new MotorCortex.Group({
           selector: `#stele-${i}`,
