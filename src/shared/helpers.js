@@ -16,7 +16,7 @@ export default {
         unit: widthUnitPart,
       };
     }
-  }
+  },
 };
 
 function isNumber(value) {
