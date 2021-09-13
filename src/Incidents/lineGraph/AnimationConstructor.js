@@ -498,8 +498,6 @@ export default class AnimationConstructor {
       stelesIntro.addIncident(steleGroup, Math.trunc(steleDelay));
     }
 
-    
-
     return stelesIntro;
   }
 
