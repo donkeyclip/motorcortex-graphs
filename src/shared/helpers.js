@@ -6,7 +6,6 @@ export default {
     );
     const widthNumberPart = givenString.match(numberPartRegexp)[0];
     const widthUnitPart = givenString.substring(widthNumberPart.length);
-  
     if (
       isNumber(Number(widthNumberPart)) &&
       (widthUnitPart !== "%" || widthUnitPart !== "px")
