@@ -6152,7 +6152,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
               height: "".concat(Math.trunc(t.linesHeight * (.26 * t.gridH / t.steleBlockNum)), "px")
             },
             "stele-block": {
-              "max-height": "5px",
+              "max-height": "".concat(5 * t.gridH, "px"),
               opacity: "0.8",
               background: t.primaryC
             },
@@ -8513,7 +8513,7 @@ module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("be07f49de16d5187fbb4")
+/******/ 		__webpack_require__.h = () => ("8c2bbfb6c9bfe9c46b58")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

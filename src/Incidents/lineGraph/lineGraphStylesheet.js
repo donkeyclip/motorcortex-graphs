@@ -161,7 +161,7 @@ export default function buildCSS(lineGraph) {
       )}px`,
     },
     "stele-block": {
-      "max-height": "5px",
+      "max-height": `${5 * lineGraph.gridH}px`,
       opacity: "0.8",
       background: lineGraph.primaryC,
     },
