@@ -433,7 +433,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.linesWidth =
       helpers.extractUnitsNums(this.props.containerParams.width).number *
       this.graphScale.width;
-    this.linesHeight = helpers.extractUnitsNums(this.props.containerParams.height).number * this.graphScale.height;
+    this.linesHeight =
+      helpers.extractUnitsNums(this.props.containerParams.height).number *
+      this.graphScale.height;
     this.steleWidth = this.linesWidth * 0.01;
     this.spaceAround =
       (this.linesWidth - this.steleWidth * this.data.length) /
