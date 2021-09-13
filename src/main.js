@@ -33,10 +33,6 @@ export default {
       exportable: LineGraph,
       name: "LineGraph",
       attributesValidationRules: validationRules.LineGraph,
-      originalDims: {
-        width: `${config.lineGraph.originalDims.width}px`,
-        height: `${config.lineGraph.originalDims.height}px`,
-      },
     },
     {
       exportable: PieChart,

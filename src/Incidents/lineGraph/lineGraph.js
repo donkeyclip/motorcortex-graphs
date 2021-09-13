@@ -429,10 +429,8 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.legendHeightFactor = this.dataSetsNum === 1 ? 1 : this.dataSetsNum / 2;
     this.legendHeight =
       4 * (this.legendHeightFactor + (this.legendHeightFactor % 1 ? 1 : 0));
-    this.linesWidth =
-      config.lineGraph.originalDims.width * this.graphScale.width;
-    this.linesHeight =
-      config.lineGraph.originalDims.height * this.graphScale.height;
+    this.linesWidth = this.extractUnitsNums(this.props.containerParams.width).number * this.graphScale.width
+    this.linesHeight = this.extractUnitsNums(this.props.containerParams.height).number * this.graphScale.height
     this.steleWidth = this.linesWidth * 0.01;
     this.spaceAround =
       (this.linesWidth - this.steleWidth * this.data.length) /
@@ -460,8 +458,8 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       ? this.attrs.font.fontFamily
       : "'Staatliches', cursive";
     this.fontSizeLabel = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-    this.fontSizeTitle = "200%";
-    this.fontSizeInner = "80%";
+    this.fontSizeTitle = 1.5 * this.extractUnitsNums(this.fontSizeLabel).number + this.extractUnitsNums(this.fontSizeLabel).unit; 
+    this.fontSizeInner = 0.8 * this.extractUnitsNums(this.fontSizeLabel).number + this.extractUnitsNums(this.fontSizeLabel).unit;
     this.url = this.attrs.font.url
       ? this.attrs.font.url
       : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
@@ -477,5 +475,28 @@ export default class LineGraph extends MotorCortex.HTMLClip {
         ? this.attrs.timings.static
         : 1000;
     }
+  }
+
+  extractUnitsNums(fontSize) {
+    const numberPartRegexp = new RegExp(
+      "^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)",
+      "gi"
+    );
+    const widthNumberPart = fontSize.match(numberPartRegexp)[0];
+    const widthUnitPart = fontSize.substring(widthNumberPart.length);
+  
+    if (
+      this.isNumber(Number(widthNumberPart)) &&
+      (widthUnitPart !== "%" || widthUnitPart !== "px")
+    ) {
+      return {
+        number: Number(widthNumberPart),
+        unit: widthUnitPart,
+      };
+    }
+  }
+
+  isNumber(value) {
+    return typeof value === "number" && isFinite(value);
   }
 }

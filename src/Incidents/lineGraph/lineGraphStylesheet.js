@@ -93,6 +93,7 @@ export default function buildCSS(lineGraph) {
       display: "flex",
       "align-items": "flex-start",
       "justify-content": "flex-start",
+      "font-size": lineGraph.fontSizeInner,
       width: "75%",
       height: "100%",
     },
