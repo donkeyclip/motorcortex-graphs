@@ -75,8 +75,7 @@ const lineGraph = new MCGraphs.LineGraph(
       static: 1000,
       outro: 7000,
     },
-    palette: {
-    },
+    palette: {},
     font: {
       size: "1.7rem",
     },
