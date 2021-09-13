@@ -57,7 +57,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
         const stele = [];
         for (let z = 0; z < this.steleBlockNum; z++) {
           stele.push(
-            <div class={"stele-block-" + i + " stele-block stele-grid-block"}></div>
+            <div
+              class={"stele-block-" + i + " stele-block stele-grid-block"}
+            ></div>
           );
         }
   
