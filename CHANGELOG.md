@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.5.1](https://www.github.com/kissmybutton/motorcortex-graphs/compare/v1.5.0...v1.5.1) (2021-09-13)
+
+
+### Bug Fixes
+
+* gridH now properly connects to dataStele height ([9c0d04a](https://www.github.com/kissmybutton/motorcortex-graphs/commit/9c0d04a1916551199d30c16018a8b4096b46ba49))
+
 ## [1.5.0](https://www.github.com/kissmybutton/motorcortex-graphs/compare/v1.4.4...v1.5.0) (2021-09-13)
 
 
