@@ -662,8 +662,8 @@ The `palette` object is an optional parameter used to customize the colors used 
 | quaternary | The graph labels' color | #EEEEEE | hex or css color |
 | quinary | The graph's legend background color | #75706E | hex or css color |
 | senary | The graph's points' color | #100300 | hex or css color |
-| accent | The font color | #100300 | hex or css color |
-| font | The titles & labels background | #FFD800 | hex or css color |
+| font | The font color | #100300 | hex or css color |
+| accent | The titles & labels background | #FFD800 | hex or css color |
 | background | The background color | transparent | hex or css color |
 
 #### Font:
