@@ -458,7 +458,6 @@ export default class AnimationConstructor {
             )}, 0, easeOutQuad)`,
           }
         );
-  
         steleGroup.addIncident(blockCombo, 0);
         stelesIntro.addIncident(steleGroup, Math.trunc(i * steleDelay));
       }
