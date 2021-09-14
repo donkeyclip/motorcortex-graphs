@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.5.2](https://www.github.com/kissmybutton/motorcortex-graphs/compare/v1.5.1...v1.5.2) (2021-09-14)
+
+
+### Bug Fixes
+
+* fix bar chart incident to support color for each bar ([2e1572f](https://www.github.com/kissmybutton/motorcortex-graphs/commit/2e1572f471762c1592cca04f6f90b237ed583be5))
+* readme lineGraph pallete correction ([4e1b277](https://www.github.com/kissmybutton/motorcortex-graphs/commit/4e1b277f1a166961d182e0259da0c84eff9542b8))
+
 ### [1.5.1](https://www.github.com/kissmybutton/motorcortex-graphs/compare/v1.5.0...v1.5.1) (2021-09-13)
 
 
