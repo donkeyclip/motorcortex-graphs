@@ -4,8 +4,8 @@ import MotorCortexGraph from "../dist/bundle.umd";
 import barChartData from "./data/barChartData.json";
 import lineGraphData from "./data/lineGraphData.json";
 import pieChartData from "./data/pieChartData.json";
-import progressMeterData from "./data/progressMeterData.json";
 import progressBarData from "./data/progressBarData.json";
+import progressMeterData from "./data/progressMeterData.json";
 
 const MCGraphs = MotorCortex.loadPlugin(MotorCortexGraph);
 

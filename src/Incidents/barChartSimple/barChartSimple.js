@@ -1,8 +1,8 @@
+import MotorCortex from "@kissmybutton/motorcortex";
+import AnimePlugin from "@kissmybutton/motorcortex-anime";
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
 import buildCSS from "./barChartStylesheet";
-import MotorCortex from "@kissmybutton/motorcortex";
-import AnimePlugin from "@kissmybutton/motorcortex-anime";
 const Anime = MotorCortex.loadPlugin(AnimePlugin);
 
 /**
@@ -86,7 +86,11 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
 
       return (
         <div class={datum.name + `-bar-${i}`}>
-          <div class="bar-fill" id={datum.name + "-bar-fill"}></div>
+          <div
+            class="bar-fill"
+            style={` background: ${datum.color ? datum.color : this.primaryC} `}
+            id={datum.name + "-bar-fill"}
+          ></div>
         </div>
       );
     });

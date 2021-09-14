@@ -37,10 +37,10 @@ const barChartData_namespaceObject = JSON.parse('{"title":"Test Graph","subtitle
 const lineGraphData_namespaceObject = JSON.parse('{"title":"EXAMPLE LINE GRAPH","maxValue":100,"interval":4,"unit":"%","hover":false,"dataSets":[{"title":"Set 1","color":"red"},{"title":"Set 2","color":"blue"},{"title":"Set 3","color":""}],"data":[{"name":"2016","values":[56,45,12]},{"name":"2017","values":[43,24,67]},{"name":"2018","values":[61,11,98]},{"name":"2019","values":[10,35,69]},{"name":"2020","values":[3,81,78]},{"name":"2021","values":[74,92,59]}]}');
 ;// CONCATENATED MODULE: ./data/pieChartData.json
 const pieChartData_namespaceObject = JSON.parse('{"title":"My Pie Chart","data":[{"name":"Percentage 1","value":50,"color":""},{"name":"Percentage 2","value":15,"color":""},{"name":"Percentage 3","value":10,"color":""},{"name":"Percentage 4","value":5,"color":"rgb(163, 255, 200)"},{"name":"Percentage 5","value":20,"color":""}]}');
-;// CONCATENATED MODULE: ./data/progressMeterData.json
-const progressMeterData_namespaceObject = JSON.parse('{"value":60,"unit":"%","innerFill":{"revert":false,"rotate":false}}');
 ;// CONCATENATED MODULE: ./data/progressBarData.json
 const progressBarData_namespaceObject = JSON.parse('[{"name":"Percentage 1","value":5},{"name":"Percentage 2","value":34},{"name":"Percentage 3","value":12.298374},{"name":"Percentage 4","value":100},{"name":"Percentage 5","value":45}]');
+;// CONCATENATED MODULE: ./data/progressMeterData.json
+const progressMeterData_namespaceObject = JSON.parse('{"value":60,"unit":"%","innerFill":{"revert":false,"rotate":false}}');
 ;// CONCATENATED MODULE: ./index.js
 
 
@@ -305,18 +305,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return i;
   }
 
-  var g = {
-    gray: "#75706E",
-    lightGray: "#B2B1AE",
-    darkGray: "#434243",
-    whiteBack: "#EEEEEE",
-    font: "#100300",
-    accent: "#FFD800",
-    background: "transparent",
-    dataColors: ["rgb(117,112,110)", "rgb(255,216,0)", "rgb(87,86,87)", "rgb(163, 255, 200)", "rgb(255,255,255)", "rgb(206, 36, 132)", "rgb(68, 214, 37)", "rgb(228, 31, 31)", "rgb(68, 36, 157)", "rgb(45, 109, 121)"]
-  };
-
-  function m(t, e) {
+  function g(t, e) {
     var n = Object.keys(t);
 
     if (Object.getOwnPropertySymbols) {
@@ -329,12 +318,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return n;
   }
 
-  function y(t) {
+  function m(t) {
     for (var e = 1; e < arguments.length; e++) {
       var n = null != arguments[e] ? arguments[e] : {};
-      e % 2 ? m(Object(n), !0).forEach(function (e) {
-        x(t, e, n[e]);
-      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(n)) : m(Object(n)).forEach(function (e) {
+      e % 2 ? g(Object(n), !0).forEach(function (e) {
+        w(t, e, n[e]);
+      }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(n)) : g(Object(n)).forEach(function (e) {
         Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(n, e));
       });
     }
@@ -342,22 +331,22 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return t;
   }
 
-  function v(t, e) {
+  function y(t, e) {
     if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
   }
 
-  function b(t, e) {
+  function v(t, e) {
     for (var n = 0; n < e.length; n++) {
       var i = e[n];
       i.enumerable = i.enumerable || !1, i.configurable = !0, "value" in i && (i.writable = !0), Object.defineProperty(t, i.key, i);
     }
   }
 
-  function w(t, e, n) {
-    return e && b(t.prototype, e), n && b(t, n), t;
+  function b(t, e, n) {
+    return e && v(t.prototype, e), n && v(t, n), t;
   }
 
-  function x(t, e, n) {
+  function w(t, e, n) {
     return e in t ? Object.defineProperty(t, e, {
       value: n,
       enumerable: !0,
@@ -366,7 +355,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }) : t[e] = n, t;
   }
 
-  function k(t, e) {
+  function x(t, e) {
     if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
     t.prototype = Object.create(e && e.prototype, {
       constructor: {
@@ -374,29 +363,29 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         writable: !0,
         configurable: !0
       }
-    }), e && O(t, e);
+    }), e && M(t, e);
   }
 
-  function M(t) {
-    return (M = Object.setPrototypeOf ? Object.getPrototypeOf : function (t) {
+  function k(t) {
+    return (k = Object.setPrototypeOf ? Object.getPrototypeOf : function (t) {
       return t.__proto__ || Object.getPrototypeOf(t);
     })(t);
   }
 
-  function O(t, e) {
-    return (O = Object.setPrototypeOf || function (t, e) {
+  function M(t, e) {
+    return (M = Object.setPrototypeOf || function (t, e) {
       return t.__proto__ = e, t;
     })(t, e);
   }
 
-  function D(t, e) {
+  function O(t, e) {
     return !e || "object" != _typeof(e) && "function" != typeof e ? function (t) {
       if (void 0 === t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
       return t;
     }(t) : e;
   }
 
-  function C(t) {
+  function D(t) {
     var e = function () {
       if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
       if (Reflect.construct.sham) return !1;
@@ -411,44 +400,44 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
     return function () {
       var n,
-          i = M(t);
+          i = k(t);
 
       if (e) {
-        var a = M(this).constructor;
+        var a = k(this).constructor;
         n = Reflect.construct(i, arguments, a);
       } else n = i.apply(this, arguments);
 
-      return D(this, n);
+      return O(this, n);
     };
   }
 
-  var S = {},
-      P = {
+  var C = {},
+      S = {
     duration: 1e3,
     round: 0
   },
-      I = ["translateX", "translateY", "translateZ", "rotate", "rotateX", "rotateY", "rotateZ", "scale", "scaleX", "scaleY", "scaleZ", "skew", "skewX", "skewY", "perspective"],
-      A = {
+      P = ["translateX", "translateY", "translateZ", "rotate", "rotateX", "rotateY", "rotateZ", "scale", "scaleX", "scaleY", "scaleZ", "skew", "skewX", "skewY", "perspective"],
+      I = {
     CSS: {}
   };
 
-  function E(t, e, n) {
+  function A(t, e, n) {
     return Math.min(Math.max(t, e), n);
   }
 
-  function V(t, e) {
+  function E(t, e) {
     return t.indexOf(e) > -1;
   }
 
-  var R = {
+  var V = {
     arr: function arr(t) {
       return Array.isArray(t);
     },
     obj: function obj(t) {
-      return V(Object.prototype.toString.call(t), "Object");
+      return E(Object.prototype.toString.call(t), "Object");
     },
     pth: function pth(t) {
-      return R.obj(t) && t.hasOwnProperty("totalLength");
+      return V.obj(t) && t.hasOwnProperty("totalLength");
     },
     svg: function svg(t) {
       return t instanceof SVGElement;
@@ -457,7 +446,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       return t instanceof HTMLInputElement;
     },
     dom: function dom(t) {
-      return t.nodeType || R.svg(t);
+      return t.nodeType || V.svg(t);
     },
     str: function str(t) {
       return "string" == typeof t;
@@ -478,13 +467,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       return /^hsl/.test(t);
     },
     col: function col(t) {
-      return R.hex(t) || R.rgb(t) || R.hsl(t);
+      return V.hex(t) || V.rgb(t) || V.hsl(t);
     },
     key: function key(t) {
-      return !S.hasOwnProperty(t) && !P.hasOwnProperty(t) && "targets" !== t && "keyframes" !== t;
+      return !C.hasOwnProperty(t) && !S.hasOwnProperty(t) && "targets" !== t && "keyframes" !== t;
     }
   },
-      j = {
+      R = {
     linear: function linear() {
       return function (t) {
         return t;
@@ -492,7 +481,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }
   };
 
-  function z(t, e) {
+  function j(t, e) {
     for (var n = t.length, i = arguments.length >= 2 ? arguments[1] : void 0, a = [], r = 0; r < n; r++) {
       if (r in t) {
         var o = t[r];
@@ -503,14 +492,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return a;
   }
 
-  function G(t) {
+  function z(t) {
     return t.reduce(function (t, e) {
-      return t.concat(R.arr(e) ? G(e) : e);
+      return t.concat(V.arr(e) ? z(e) : e);
     }, []);
   }
 
-  function L(t) {
-    return R.arr(t) ? t : (R.str(t) && (t = function (t) {
+  function G(t) {
+    return V.arr(t) ? t : (V.str(t) && (t = function (t) {
       try {
         return document.querySelectorAll(t);
       } catch (t) {
@@ -519,13 +508,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }(t) || t), t instanceof NodeList || t instanceof HTMLCollection ? [].slice.call(t) : [t]);
   }
 
-  function T(t, e) {
+  function L(t, e) {
     return t.some(function (t) {
       return t === e;
     });
   }
 
-  function N(t) {
+  function T(t) {
     var e = {};
 
     for (var n in t) {
@@ -535,8 +524,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return e;
   }
 
-  function F(t, e) {
-    var n = N(t);
+  function N(t, e) {
+    var n = T(t);
 
     for (var i in t) {
       n[i] = e.hasOwnProperty(i) ? e[i] : t[i];
@@ -545,24 +534,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return n;
   }
 
-  function B(t, e) {
-    var n = N(t);
+  function F(t, e) {
+    var n = T(t);
 
     for (var i in e) {
-      n[i] = R.und(t[i]) ? e[i] : t[i];
+      n[i] = V.und(t[i]) ? e[i] : t[i];
     }
 
     return n;
   }
 
-  function _(t) {
-    return R.rgb(t) ? (n = /rgb\((\d+,\s*[\d]+,\s*[\d]+)\)/g.exec(e = t)) ? "rgba(" + n[1] + ",1)" : e : R.hex(t) ? function (t) {
+  function B(t) {
+    return V.rgb(t) ? (n = /rgb\((\d+,\s*[\d]+,\s*[\d]+)\)/g.exec(e = t)) ? "rgba(" + n[1] + ",1)" : e : V.hex(t) ? function (t) {
       var e = t.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, function (t, e, n, i) {
         return e + e + n + n + i + i;
       }),
           n = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);
       return "rgba(" + parseInt(n[1], 16) + "," + parseInt(n[2], 16) + "," + parseInt(n[3], 16) + ",1)";
-    }(t) : R.hsl(t) ? function (t) {
+    }(t) : V.hsl(t) ? function (t) {
       var e,
           n,
           i,
@@ -586,46 +575,46 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     var e, n;
   }
 
-  function Q(t) {
+  function _(t) {
     var e = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(t);
     if (e) return e[1];
   }
 
-  function H(t, e) {
-    return R.fnc(t) ? t(e.target, e.id, e.total) : t;
+  function Q(t, e) {
+    return V.fnc(t) ? t(e.target, e.id, e.total) : t;
   }
 
-  function X(t, e) {
+  function H(t, e) {
     return t.getAttribute(e);
   }
 
-  function Y(t, e, n) {
-    if (T([n, "deg", "rad", "turn"], Q(e))) return e;
-    var i = A.CSS[e + n];
-    if (!R.und(i)) return i;
+  function X(t, e, n) {
+    if (L([n, "deg", "rad", "turn"], _(e))) return e;
+    var i = I.CSS[e + n];
+    if (!V.und(i)) return i;
     var a = document.createElement(t.tagName),
         r = t.parentNode && t.parentNode !== document ? t.parentNode : document.body;
     r.appendChild(a), a.style.position = "absolute", a.style.width = 100 + n;
     var o = 100 / a.offsetWidth;
     r.removeChild(a);
     var s = o * parseFloat(e);
-    return A.CSS[e + n] = s, s;
+    return I.CSS[e + n] = s, s;
   }
 
-  function q(t, e, n) {
+  function Y(t, e, n) {
     if (e in t.style) {
       var i = e.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase(),
           a = t.style[e] || getComputedStyle(t).getPropertyValue(i) || "0";
-      return n ? Y(t, a, n) : a;
+      return n ? X(t, a, n) : a;
     }
   }
 
-  function W(t, e) {
-    return R.dom(t) && !R.inp(t) && (X(t, e) || R.svg(t) && t[e]) ? "attribute" : R.dom(t) && T(I, e) ? "transform" : R.dom(t) && "transform" !== e && q(t, e) ? "css" : null != t[e] ? "object" : void 0;
+  function q(t, e) {
+    return V.dom(t) && !V.inp(t) && (H(t, e) || V.svg(t) && t[e]) ? "attribute" : V.dom(t) && L(P, e) ? "transform" : V.dom(t) && "transform" !== e && Y(t, e) ? "css" : null != t[e] ? "object" : void 0;
   }
 
-  function Z(t) {
-    if (R.dom(t)) {
+  function W(t) {
+    if (V.dom(t)) {
       for (var e, n = t.style.transform || "", i = /(\w+)\(([^)]*)\)/g, a = new Map(); e = i.exec(n);) {
         a.set(e[1], e[2]);
       }
@@ -634,34 +623,34 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }
   }
 
-  function J(t, e, n, i) {
-    var a = V(e, "scale") ? 1 : 0 + function (t) {
-      return V(t, "translate") || "perspective" === t ? "px" : V(t, "rotate") || V(t, "skew") ? "deg" : void 0;
+  function Z(t, e, n, i) {
+    var a = E(e, "scale") ? 1 : 0 + function (t) {
+      return E(t, "translate") || "perspective" === t ? "px" : E(t, "rotate") || E(t, "skew") ? "deg" : void 0;
     }(e),
-        r = Z(t).get(e) || a;
-    return n && (n.transforms.list.set(e, r), n.transforms.last = e), i ? Y(t, r, i) : r;
+        r = W(t).get(e) || a;
+    return n && (n.transforms.list.set(e, r), n.transforms.last = e), i ? X(t, r, i) : r;
   }
 
-  function $(t, e, n, i) {
-    switch (W(t, e)) {
+  function J(t, e, n, i) {
+    switch (q(t, e)) {
       case "transform":
-        return J(t, e, i, n);
+        return Z(t, e, i, n);
 
       case "css":
-        return q(t, e, n);
+        return Y(t, e, n);
 
       case "attribute":
-        return X(t, e);
+        return H(t, e);
 
       default:
         return t[e] || 0;
     }
   }
 
-  function U(t, e) {
+  function $(t, e) {
     var n = /^(\*=|\+=|-=)/.exec(t);
     if (!n) return t;
-    var i = Q(t) || 0,
+    var i = _(t) || 0,
         a = parseFloat(e),
         r = parseFloat(t.replace(n[0], ""));
 
@@ -677,27 +666,29 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }
   }
 
-  function K(t, e) {
-    if (R.col(t)) return _(t);
+  function U(t, e) {
+    if (V.col(t)) return B(t);
     if (/\s/g.test(t)) return t;
-    var n = Q(t),
+
+    var n = _(t),
         i = n ? t.substr(0, t.length - n.length) : t;
+
     return e ? i + e : i;
   }
 
-  function tt(t, e) {
+  function K(t, e) {
     var n = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g,
-        i = K(R.pth(t) ? t.totalLength : t, e) + "";
+        i = U(V.pth(t) ? t.totalLength : t, e) + "";
     return {
       original: i,
       numbers: i.match(n) ? i.match(n).map(Number) : [0],
-      strings: R.str(t) || e ? i.split(n) : []
+      strings: V.str(t) || e ? i.split(n) : []
     };
   }
 
-  function et(t) {
+  function tt(t) {
     var e = function (t) {
-      return z(t ? G(R.arr(t) ? t.map(L) : L(t)) : [], function (t, e, n) {
+      return j(t ? z(V.arr(t) ? t.map(G) : G(t)) : [], function (t, e, n) {
         return n.indexOf(t) === e;
       });
     }(t);
@@ -708,60 +699,60 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         id: n,
         total: e.length,
         transforms: {
-          list: Z(t)
+          list: W(t)
         }
       };
     });
   }
 
-  function nt(t, e) {
-    var n = N(e);
+  function et(t, e) {
+    var n = T(e);
 
-    if (R.arr(t)) {
+    if (V.arr(t)) {
       var i = t.length;
-      2 === i && !R.obj(t[0]) ? t = {
+      2 === i && !V.obj(t[0]) ? t = {
         value: t
-      } : R.fnc(e.duration) || (n.duration = e.duration / i);
+      } : V.fnc(e.duration) || (n.duration = e.duration / i);
     }
 
-    return (R.arr(t) ? t : [t]).map(function (t, e) {
-      return R.obj(t) && !R.pth(t) ? t : {
+    return (V.arr(t) ? t : [t]).map(function (t, e) {
+      return V.obj(t) && !V.pth(t) ? t : {
         value: t
       };
     }).map(function (t) {
-      return B(t, n);
+      return F(t, n);
     });
   }
 
-  function it(t, e) {
+  function nt(t, e) {
     var n;
     return t.tweens.map(function (i) {
       var a = function (t, e) {
         var n = {};
 
         for (var i in t) {
-          var a = H(t[i], e);
-          R.arr(a) && 1 === (a = a.map(function (t) {
-            return H(t, e);
+          var a = Q(t[i], e);
+          V.arr(a) && 1 === (a = a.map(function (t) {
+            return Q(t, e);
           })).length && (a = a[0]), n[i] = a;
         }
 
         return n.duration = parseFloat(n.duration), n;
       }(i, e),
           r = a.value,
-          o = R.arr(r) ? r[1] : r,
-          s = Q(o),
-          l = $(e.target, t.name, s, e),
+          o = V.arr(r) ? r[1] : r,
+          s = _(o),
+          l = J(e.target, t.name, s, e),
           u = n ? n.to.original : l,
-          c = R.arr(r) ? r[0] : u,
-          h = Q(c) || Q(l),
+          c = V.arr(r) ? r[0] : u,
+          h = _(c) || _(l),
           d = s || h;
 
-      return R.und(o) && (o = u), a.from = tt(c, d), a.to = tt(U(o, c), d), a.start = n ? n.end : 0, a.end = a.start + a.duration, a.isPath = !1, a.isColor = R.col(a.from.original), a.isColor && (a.round = 1), n = a, a;
+      return V.und(o) && (o = u), a.from = K(c, d), a.to = K($(o, c), d), a.start = n ? n.end : 0, a.end = a.start + a.duration, a.isPath = !1, a.isColor = V.col(a.from.original), a.isColor && (a.round = 1), n = a, a;
     });
   }
 
-  var at = {
+  var it = {
     css: function css(t, e, n) {
       return t.style[e] = n;
     },
@@ -781,28 +772,29 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }
   };
 
-  function rt(t, e) {
-    et(t).forEach(function (t) {
+  function at(t, e) {
+    tt(t).forEach(function (t) {
       for (var n in e) {
-        var i = H(e[n], t),
+        var i = Q(e[n], t),
             a = t.target,
-            r = Q(i),
-            o = $(a, n, r, t),
-            s = U(K(i, r || Q(o)), o),
-            l = W(a, n);
-        at[l](a, n, s, t.transforms, !0);
+            r = _(i),
+            o = J(a, n, r, t),
+            s = $(U(i, r || _(o)), o),
+            l = q(a, n);
+
+        it[l](a, n, s, t.transforms, !0);
       }
     });
   }
 
-  function ot(t, e) {
-    return z(G(t.map(function (t) {
+  function rt(t, e) {
+    return j(z(t.map(function (t) {
       return e.map(function (e) {
         return function (t, e) {
-          var n = W(t.target, e.name);
+          var n = q(t.target, e.name);
 
           if (n) {
-            var i = it(e, t),
+            var i = nt(e, t),
                 a = i[i.length - 1];
             return {
               type: n,
@@ -815,29 +807,29 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         }(t, e);
       });
     })), function (t) {
-      return !R.und(t);
+      return !V.und(t);
     });
   }
 
-  var st = 0;
+  var ot = 0;
 
-  function lt(t) {
-    var e = F(S, t),
-        n = F(P, t),
+  function st(t) {
+    var e = N(C, t),
+        n = N(S, t),
         i = function (t, e) {
       var n = [];
 
       for (var i in e) {
-        R.key(i) && n.push({
+        V.key(i) && n.push({
           name: i,
-          tweens: nt(e[i], t)
+          tweens: et(e[i], t)
         });
       }
 
       return n;
     }(n, t),
-        a = et(t.targets),
-        r = ot(a, i),
+        a = tt(t.targets),
+        r = rt(a, i),
         o = function (t, e) {
       var n = t.length,
           i = {};
@@ -845,9 +837,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         return t.duration;
       })) : e.duration, i;
     }(r, n),
-        s = st;
+        s = ot;
 
-    return st++, B(e, {
+    return ot++, F(e, {
       id: s,
       children: [],
       animatables: a,
@@ -856,7 +848,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     });
   }
 
-  function ut(t) {
+  function lt(t) {
     void 0 === t && (t = {});
     var e,
         n = 0,
@@ -869,7 +861,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       return t.finished = e, e;
     }
 
-    var r = lt(t);
+    var r = st(t);
 
     function o(t, e) {
       e && e.seek(t);
@@ -878,7 +870,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     function s(t) {
       var s = r.duration,
           l = t;
-      r.progress = E(l / s * 100, 0, 100), r.reversePlayback = l < r.currentTime, e && function (t) {
+      r.progress = A(l / s * 100, 0, 100), r.reversePlayback = l < r.currentTime, e && function (t) {
         if (r.reversePlayback) for (var i = n; i--;) {
           o(t, e[i]);
         } else for (var a = 0; a < n; a++) {
@@ -891,11 +883,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
               s = a.tweens,
               l = s.length - 1,
               u = s[l];
-          l && (u = z(s, function (e) {
+          l && (u = j(s, function (e) {
             return t < e.end;
           })[0] || u);
 
-          for (var c = E(t - u.start, 0, u.duration) / u.duration, h = u.to.strings, d = u.round, p = [], f = u.to.numbers.length, g = void 0, m = 0; m < f; m++) {
+          for (var c = A(t - u.start, 0, u.duration) / u.duration, h = u.to.strings, d = u.round, p = [], f = u.to.numbers.length, g = void 0, m = 0; m < f; m++) {
             var y = void 0,
                 v = u.to.numbers[m],
                 b = u.from.numbers[m] || 0;
@@ -915,9 +907,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             }
           } else g = p[0];
 
-          at[a.type](o.target, a.property, g, o.transforms), a.currentValue = g, e++;
+          it[a.type](o.target, a.property, g, o.transforms), a.currentValue = g, e++;
         }
-      }(l), r.currentTime = E(l, 0, s), t >= s && (r.paused = !0, r.completed || (r.completed = !0, !r.passThrough && "Promise" in window && (i(), a(r))));
+      }(l), r.currentTime = A(l, 0, s), t >= s && (r.paused = !0, r.completed || (r.completed = !0, !r.passThrough && "Promise" in window && (i(), a(r))));
     }
 
     return a(r), r.reset = function () {
@@ -927,72 +919,72 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         r.children[t].reset();
       }
     }, r.set = function (t, e) {
-      return rt(t, e), r;
+      return at(t, e), r;
     }, r.seek = function (t) {
       s(t);
     }, r.reset(), r;
   }
 
-  function ct(t, e) {
+  function ut(t, e) {
     return Math.sqrt(Math.pow(e.x - t.x, 2) + Math.pow(e.y - t.y, 2));
   }
 
-  function ht(t) {
+  function ct(t) {
     for (var e, n = t.points, i = 0, a = 0; a < n.numberOfItems; a++) {
       var r = n.getItem(a);
-      a > 0 && (i += ct(e, r)), e = r;
+      a > 0 && (i += ut(e, r)), e = r;
     }
 
     return i;
   }
 
-  function dt(t) {
+  function ht(t) {
     if (t.getTotalLength) return t.getTotalLength();
 
     switch (t.tagName.toLowerCase()) {
       case "circle":
         return function (t) {
-          return 2 * Math.PI * X(t, "r");
+          return 2 * Math.PI * H(t, "r");
         }(t);
 
       case "rect":
         return function (t) {
-          return 2 * X(t, "width") + 2 * X(t, "height");
+          return 2 * H(t, "width") + 2 * H(t, "height");
         }(t);
 
       case "line":
         return function (t) {
-          return ct({
-            x: X(t, "x1"),
-            y: X(t, "y1")
+          return ut({
+            x: H(t, "x1"),
+            y: H(t, "y1")
           }, {
-            x: X(t, "x2"),
-            y: X(t, "y2")
+            x: H(t, "x2"),
+            y: H(t, "y2")
           });
         }(t);
 
       case "polyline":
-        return ht(t);
+        return ct(t);
 
       case "polygon":
         return function (t) {
           var e = t.points;
-          return ht(t) + ct(e.getItem(e.numberOfItems - 1), e.getItem(0));
+          return ct(t) + ut(e.getItem(e.numberOfItems - 1), e.getItem(0));
         }(t);
     }
   }
 
-  function pt(t, e) {
+  function dt(t, e) {
     var n = e || {},
         i = n.el || function (t) {
-      for (var e = t.parentNode; R.svg(e) && R.svg(e.parentNode);) {
+      for (var e = t.parentNode; V.svg(e) && V.svg(e.parentNode);) {
         e = e.parentNode;
       }
 
       return e;
     }(t),
         a = i.getBoundingClientRect(),
-        r = X(i, "viewBox"),
+        r = H(i, "viewBox"),
         o = a.width,
         s = a.height,
         l = n.viewBox || (r ? r.split(" ") : [0, 0, o, s]);
@@ -1009,17 +1001,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  ut.version = "3.1.0", ut.get = $, ut.set = rt, ut.convertPx = Y, ut.penner = j, ut.path = function (t) {
+  lt.version = "3.1.0", lt.get = J, lt.set = at, lt.convertPx = X, lt.penner = R, lt.path = function (t) {
     return {
       el: t,
-      svg: pt(t),
-      totalLength: dt(t),
+      svg: dt(t),
+      totalLength: ht(t),
       deltaCorrections: {
         x: 4,
         y: 5
       }
     };
-  }, ut.getPathProgress = function (t, e, n) {
+  }, lt.getPathProgress = function (t, e, n) {
     function i(n) {
       void 0 === n && (n = 0);
       var i = e * t.totalLength,
@@ -1027,7 +1019,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       return t.el.getPointAtLength(a);
     }
 
-    var a = pt(t.el, t.svg),
+    var a = dt(t.el, t.svg),
         r = i(),
         o = i(-1),
         s = i(1);
@@ -1037,34 +1029,34 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       angle: 180 * Math.atan2(s.y - o.y, s.x - o.x) / Math.PI
     };
   };
-  var ft = ut,
-      gt = {
+  var pt = lt,
+      ft = {
     transform: ["translateX", "translateY", "translateZ", "rotate", "rotateX", "rotateY", "rotateZ", "scale", "scaleX", "scaleY", "scaleZ", "skewX", "skewY", "perspective"]
   };
-  var mt = ["cm", "mm", "in", "px", "pt", "pc", "em", "ex", "ch", "rem", "vw", "vh", "vmin", "vmax", "%"],
-      yt = ["deg", "rad", "grad", "turn"],
-      vt = "measurement",
-      bt = "color",
-      wt = {
+  var gt = ["cm", "mm", "in", "px", "pt", "pc", "em", "ex", "ch", "rem", "vw", "vh", "vmin", "vmax", "%"],
+      mt = ["deg", "rad", "grad", "turn"],
+      yt = "measurement",
+      vt = "color",
+      bt = {
     npm_name: "@kissmybutton/motorcortex-anime",
     version: "2.1.16",
     incidents: [{
       exportable: function (t) {
-        k(n, t);
-        var e = C(n);
+        x(n, t);
+        var e = D(n);
 
         function n() {
-          return v(this, n), e.apply(this, arguments);
+          return y(this, n), e.apply(this, arguments);
         }
 
-        return w(n, [{
+        return b(n, [{
           key: "onGetContext",
           value: function value() {
             var t = {};
-            if (Object.prototype.hasOwnProperty.call(gt, this.attributeKey)) for (var e = gt[this.attributeKey], n = 0; n < e.length; n++) {
+            if (Object.prototype.hasOwnProperty.call(ft, this.attributeKey)) for (var e = ft[this.attributeKey], n = 0; n < e.length; n++) {
               Object.prototype.hasOwnProperty.call(this.targetValue, e[n]) && (t[e[n]] = [this.initialValue[e[n]], this.targetValue[e[n]]]);
             } else t[this.attributeKey] = [this.initialValue, this.targetValue];
-            this.target = ft(y(y({
+            this.target = pt(m(m({
               autoplay: !1,
               duration: this.props.duration,
               easing: "linear",
@@ -1074,9 +1066,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         }, {
           key: "getScratchValue",
           value: function value() {
-            if ("transform" !== this.attributeKey) return ft.get(this.element, this.attributeKey);
+            if ("transform" !== this.attributeKey) return pt.get(this.element, this.attributeKey);
 
-            for (var t = {}, e = gt[this.attributeKey], n = function (t, e) {
+            for (var t = {}, e = ft[this.attributeKey], n = function (t, e) {
               var n = t.getComputedStyle(e).transform;
               return "" === n || "none" === n ? {} : function (t) {
                 var e = Math.atan2(t[1], t[0]),
@@ -1097,7 +1089,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 };
               }(n.split("(")[1].split(")")[0].split(","));
             }(this.context.window, this.element), i = 0; i < e.length; i++) {
-              t[e[i]] = Object.prototype.hasOwnProperty.call(n, e[i]) ? n[e[i]] : ft.get(this.element, e[i]);
+              t[e[i]] = Object.prototype.hasOwnProperty.call(n, e[i]) ? n[e[i]] : pt.get(this.element, e[i]);
             }
 
             return t;
@@ -1116,11 +1108,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
           props: {
             background: {
               optional: !0,
-              type: bt
+              type: vt
             },
             backgroundColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             backgroundPosition: {
               optional: !0,
@@ -1140,53 +1132,53 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             borderBottomColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             borderBottomLeftRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderBottomRightRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderBottomWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             borderEndEndRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderEndStartRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderImageOutset: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             borderImageSlice: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             borderImageWidth: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             borderLeft: {
@@ -1195,17 +1187,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             borderLeftColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             borderLeftWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderRight: {
               optional: !0,
@@ -1213,22 +1205,22 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             borderRightColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             borderRightWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderStartEndRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderStartStartRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderTop: {
               optional: !0,
@@ -1236,32 +1228,32 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             borderTopColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             borderTopLeftRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderTopRightRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderTopWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             borderWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             bottom: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             boxShadow: {
               optional: !0,
@@ -1269,11 +1261,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             caretColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             color: {
               optional: !0,
-              type: bt
+              type: vt
             },
             columnCount: {
               optional: !0,
@@ -1283,8 +1275,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             columnGap: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             columnRule: {
               optional: !0,
@@ -1292,12 +1284,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             columnRuleColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             columnRuleWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             columns: {
               optional: !0,
@@ -1307,8 +1299,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             columnWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             flex: {
               optional: !0,
@@ -1318,8 +1310,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             flexBasis: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             flexGrow: {
               optional: !0,
@@ -1339,18 +1331,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             fontSize: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             fontSizeAdjust: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             fontStretch: {
               optional: !0,
-              type: vt,
+              type: yt,
               units: ["%"]
             },
             fontWeight: {
@@ -1359,85 +1351,85 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             gap: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             gridColumnGap: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             gridGap: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             gridRowGap: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             gridTemplateColumns: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             gridTemplateRows: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             height: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             inset: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             insetBlock: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             insetBlockEnd: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             insetBlockStart: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             insetInline: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             insetInlineEnd: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             insetInlineStart: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             left: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             letterSpacing: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             lineClamp: {
               optional: !0,
@@ -1447,8 +1439,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             lineHeight: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             margin: {
@@ -1457,28 +1449,28 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             marginBottom: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             marginLeft: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             marginRight: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             marginTop: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             maskBorder: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             maskPosition: {
@@ -1491,14 +1483,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             maxHeight: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             maxWidth: {
               optional: !0,
-              type: vt,
-              units: mt,
+              type: yt,
+              units: gt,
               min: 0
             },
             objectPosition: {
@@ -1507,8 +1499,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             offset: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             offsetAnchor: {
               optional: !0,
@@ -1516,8 +1508,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             offsetDistance: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             offsetPath: {
               optional: !0,
@@ -1529,8 +1521,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             offsetRotate: {
               optional: !0,
-              type: vt,
-              units: yt
+              type: yt,
+              units: mt
             },
             opacity: {
               optional: !0,
@@ -1549,72 +1541,72 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             outlineColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             outlineOffset: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             outlineRadius: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             outlineRadiusBottomleft: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             outlineRadiusBottomright: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             outlineRadiusTopleft: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             outlineRadiusTopright: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             outlineWidth: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             padding: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             paddingBottom: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             paddingLeft: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             paddingRight: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             paddingTop: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             perspective: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             perspectiveOrigin: {
               optional: !0,
@@ -1622,18 +1614,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             right: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             rotate: {
               optional: !0,
-              type: vt,
-              units: yt
+              type: yt,
+              units: mt
             },
             rowGap: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scale: {
               optional: !0,
@@ -1642,117 +1634,117 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             scrollbarColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             scrollMargin: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginBlock: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginBlockEnd: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginBlockStart: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginBottom: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginInline: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginInlineEnd: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginInlineStart: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginLeft: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginRight: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollMarginTop: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPadding: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingBlock: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingBlockEnd: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingBlockStart: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingBottom: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingInline: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingInlineEnd: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingInlineStart: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingLeft: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingRight: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollPaddingTop: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             scrollSnapCoordinate: {
               optional: !0,
@@ -1760,8 +1752,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             scrollSnapDestination: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             shapeImageThreshold: {
               optional: !0,
@@ -1769,8 +1761,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             shapeMargin: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             shapeOutside: {
               optional: !0,
@@ -1786,12 +1778,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             textDecorationColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             textDecorationThickness: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             textEmphasis: {
               optional: !0,
@@ -1799,16 +1791,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             textEmphasisColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             textFillColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             textIndent: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             textShadow: {
               optional: !0,
@@ -1820,55 +1812,55 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             textStrokeColor: {
               optional: !0,
-              type: bt
+              type: vt
             },
             textUnderlineOffset: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             top: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             transform: {
               optional: !0,
               type: "object",
               props: {
                 translateX: {
-                  type: vt,
-                  units: mt,
+                  type: yt,
+                  units: gt,
                   optional: !0
                 },
                 translateY: {
-                  type: vt,
-                  units: mt,
+                  type: yt,
+                  units: gt,
                   optional: !0
                 },
                 translateZ: {
-                  type: vt,
-                  units: mt,
+                  type: yt,
+                  units: gt,
                   optional: !0
                 },
                 rotate: {
-                  type: vt,
-                  units: yt,
+                  type: yt,
+                  units: mt,
                   optional: !0
                 },
                 rotateX: {
-                  type: vt,
-                  units: yt,
+                  type: yt,
+                  units: mt,
                   optional: !0
                 },
                 rotateY: {
-                  type: vt,
-                  units: yt,
+                  type: yt,
+                  units: mt,
                   optional: !0
                 },
                 rotateZ: {
-                  type: vt,
-                  units: yt,
+                  type: yt,
+                  units: mt,
                   optional: !0
                 },
                 scale: {
@@ -1892,18 +1884,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                   optional: !0
                 },
                 skewX: {
-                  type: vt,
-                  units: yt,
+                  type: yt,
+                  units: mt,
                   optional: !0
                 },
                 skewY: {
-                  type: vt,
-                  units: yt,
+                  type: yt,
+                  units: mt,
                   optional: !0
                 },
                 perspective: {
-                  type: vt,
-                  units: mt,
+                  type: yt,
+                  units: gt,
                   optional: !0
                 }
               }
@@ -1922,13 +1914,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             width: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             wordSpacing: {
               optional: !0,
-              type: vt,
-              units: mt
+              type: yt,
+              units: gt
             },
             zIndex: {
               optional: !0,
@@ -1937,7 +1929,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             zoom: {
               optional: !0,
-              type: vt,
+              type: yt,
               units: ["%"],
               min: 0
             }
@@ -1952,19 +1944,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             type: "string"
           },
           width: {
-            type: vt,
-            units: mt
+            type: yt,
+            units: gt
           },
           wordSpacing: {
-            type: vt,
-            units: mt
+            type: yt,
+            units: gt
           },
           zIndex: {
             type: "number",
             integer: !0
           },
           zoom: {
-            type: vt,
+            type: yt,
             units: ["%"],
             min: 0
           }
@@ -1972,19 +1964,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       }
     }, {
       exportable: function (t) {
-        k(n, t);
-        var e = C(n);
+        x(n, t);
+        var e = D(n);
 
         function n() {
-          return v(this, n), e.apply(this, arguments);
+          return y(this, n), e.apply(this, arguments);
         }
 
-        return w(n, [{
+        return b(n, [{
           key: "onGetContext",
           value: function value() {
             this.pixelsAccuracy = this.attrs.pixelsAccuracy || 4, this.calculatedPoints = [];
             var t = this.context.getElements(this.targetValue.pathElement)[0];
-            this.path = ft.path(t), this.isPathTargetInsideSVG = this.element instanceof SVGElement;
+            this.path = pt.path(t), this.isPathTargetInsideSVG = this.element instanceof SVGElement;
           }
         }, {
           key: "onProgress",
@@ -1992,7 +1984,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             var e,
                 n = Math.round(this.path.totalLength / this.pixelsAccuracy * t) * this.pixelsAccuracy;
             if (null !== this.calculatedPoints[n] && void 0 !== this.calculatedPoints[n]) e = this.calculatedPoints[n];else {
-              var i = ft.getPathProgress(this.path, n / this.path.totalLength, this.isPathTargetInsideSVG);
+              var i = pt.getPathProgress(this.path, n / this.path.totalLength, this.isPathTargetInsideSVG);
               e = "\n            translateX(".concat(i.x, "px)\n            translateY(").concat(i.y, "px)\n            rotate(").concat(i.angle, "deg)\n        "), this.calculatedPoints[n] = e;
             }
             this.element.style.transform = e;
@@ -2016,9 +2008,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         }
       }
     }],
-    compositeAttributes: gt
+    compositeAttributes: ft
   },
-      xt = n.default.loadPlugin(wt);
+      wt = {
+    gray: "#75706E",
+    lightGray: "#B2B1AE",
+    darkGray: "#434243",
+    whiteBack: "#EEEEEE",
+    font: "#100300",
+    accent: "#FFD800",
+    background: "transparent",
+    dataColors: ["rgb(117,112,110)", "rgb(255,216,0)", "rgb(87,86,87)", "rgb(163, 255, 200)", "rgb(255,255,255)", "rgb(206, 36, 132)", "rgb(68, 214, 37)", "rgb(228, 31, 31)", "rgb(68, 36, 157)", "rgb(45, 109, 121)"]
+  },
+      xt = n.default.loadPlugin(bt);
 
   function kt(t, e) {
     t.addIncident(new xt.Anime({
@@ -2978,7 +2980,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }, t;
   }())(Ve);
 
-  var Ne = n.default.loadPlugin(wt),
+  var Ne = n.default.loadPlugin(bt),
       Fe = function (t) {
     s(a, t);
     var e = h(a);
@@ -3052,6 +3054,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             class: e.name + "-bar-".concat(i)
           }, n.default.utils.createDOMElement("div", {
             class: "bar-fill",
+            style: " background: ".concat(e.color ? e.color : t.primaryC, " "),
             id: e.name + "-bar-fill"
           }));
         });
@@ -3718,7 +3721,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }, {
       key: "buildVars",
       value: function value() {
-        this.data = this.attrs.data.data, this.title = this.attrs.data.title, this.subtitle = this.attrs.data.subtitle, this.maxPoint = 0, this.gridLinesNum = this.attrs.data.showGrid ? 11 : 0, this.attrs.palette = this.attrs.palette ? this.attrs.palette : {}, this.primaryC = this.attrs.palette.primary ? this.attrs.palette.primary : g.gray, this.secondaryC = this.attrs.palette.secondary ? this.attrs.palette.secondary : g.lightGray, this.tertiaryC = this.attrs.palette.tertiary ? this.attrs.palette.tertiary : g.darkGray, this.fontC = this.attrs.palette.font ? this.attrs.palette.font : g.font, this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : g.accent, this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : g.background, this.attrs.font = this.attrs.font ? this.attrs.font : {}, this.fontFamily = this.attrs.font.fontFamily ? this.attrs.font.fontFamily : "'Staatliches', cursive", this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem", this.url = this.attrs.font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap", this.attrs.timings = this.attrs.timings ? this.attrs.timings : {}, this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0, this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0, 0 === this.attrs.timings.static ? this.staticDur = 0 : this.staticDur = this.attrs.timings.static ? this.attrs.timings.static : 1e3;
+        this.data = this.attrs.data.data, this.title = this.attrs.data.title, this.subtitle = this.attrs.data.subtitle, this.maxPoint = 0, this.gridLinesNum = this.attrs.data.showGrid ? 11 : 0, this.attrs.palette = this.attrs.palette ? this.attrs.palette : {}, this.primaryC = this.attrs.palette.primary ? this.attrs.palette.primary : wt.gray, this.secondaryC = this.attrs.palette.secondary ? this.attrs.palette.secondary : wt.lightGray, this.tertiaryC = this.attrs.palette.tertiary ? this.attrs.palette.tertiary : wt.darkGray, this.fontC = this.attrs.palette.font ? this.attrs.palette.font : wt.font, this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : wt.accent, this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : wt.background, this.attrs.font = this.attrs.font ? this.attrs.font : {}, this.fontFamily = this.attrs.font.fontFamily ? this.attrs.font.fontFamily : "'Staatliches', cursive", this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem", this.url = this.attrs.font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap", this.attrs.timings = this.attrs.timings ? this.attrs.timings : {}, this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0, this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0, 0 === this.attrs.timings.static ? this.staticDur = 0 : this.staticDur = this.attrs.timings.static ? this.attrs.timings.static : 1e3;
       }
     }]), a;
   }(n.default.HTMLClip);
@@ -3841,7 +3844,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   };
 
   var We = n.default.loadPlugin(qe),
-      Ze = n.default.loadPlugin(wt),
+      Ze = n.default.loadPlugin(bt),
       Je = function (t) {
     s(a, t);
     var e = h(a);
@@ -3888,9 +3891,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
           var e = {
             "container-progressBar": {
               height: "100%",
-              background: t.palette.background ? t.palette.background : g.background,
+              background: t.palette.background ? t.palette.background : wt.background,
               display: "flex",
-              color: t.palette.font ? t.palette.font : g.font,
+              color: t.palette.font ? t.palette.font : wt.font,
               "font-family": t.font.fontFamily ? t.font.fontFamily : "'Staatliches', cursive"
             },
             row: {
@@ -3905,17 +3908,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             "container-bar": {
               position: "absolute",
               height: "100%",
-              background: t.palette.secondary ? t.palette.secondary : g.darkGray,
+              background: t.palette.secondary ? t.palette.secondary : wt.darkGray,
               "border-radius": "4rem",
               width: "60%",
               "box-shadow": "2px 2px 5px gray",
-              border: "0.2rem solid ".concat(t.palette.accent ? t.palette.accent : g.accent),
+              border: "0.2rem solid ".concat(t.palette.accent ? t.palette.accent : wt.accent),
               "z-index": "1",
               overflow: "hidden"
             },
             "inner-bar": {
               position: "relative",
-              background: t.palette.primary ? t.palette.primary : g.lightGray,
+              background: t.palette.primary ? t.palette.primary : wt.lightGray,
               height: "102%",
               "border-radius": "4rem",
               bottom: "-1px",
@@ -4185,7 +4188,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     synch: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>',
     folder: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>'
   },
-      tn = n.default.loadPlugin(wt),
+      tn = n.default.loadPlugin(bt),
       en = n.default.loadPlugin(qe),
       nn = function (t) {
     s(a, t);
@@ -4657,7 +4660,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         this.data = this.attrs.data, this.innerSVG = this.attrs.innerImage ? this.attrs.innerImage : null, this.innerFill = this.data.innerFill ? this.data.innerFill : {
           revert: !1,
           rotate: !1
-        }, this.originalDims = Ue.progressMeter.originalDims, this.heightDimension = $e(this.props.containerParams.height).number, this.widthDimension = $e(this.props.containerParams.width).number, this.boxSize = this.widthDimension < this.heightDimension ? .65 * this.widthDimension : .65 * this.heightDimension, this.pathLength = 1e4, this.attrs.palette = this.attrs.palette ? this.attrs.palette : {}, this.fontC = this.attrs.palette.font ? this.attrs.palette.font : g.font, this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : g.accent, this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : g.background, this.attrs.font = this.attrs.font ? this.attrs.font : {}, this.fontFamily = this.attrs.font.fontFamily ? this.attrs.font.fontFamily : "'Staatliches', cursive", this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem", this.url = this.attrs.font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap", this.attrs.timings = this.attrs.timings ? this.attrs.timings : {}, this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0, this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0, 0 === this.attrs.timings.static ? this.staticDur = 0 : this.staticDur = this.attrs.timings.static ? this.attrs.timings.static : 1e3;
+        }, this.originalDims = Ue.progressMeter.originalDims, this.heightDimension = $e(this.props.containerParams.height).number, this.widthDimension = $e(this.props.containerParams.width).number, this.boxSize = this.widthDimension < this.heightDimension ? .65 * this.widthDimension : .65 * this.heightDimension, this.pathLength = 1e4, this.attrs.palette = this.attrs.palette ? this.attrs.palette : {}, this.fontC = this.attrs.palette.font ? this.attrs.palette.font : wt.font, this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : wt.accent, this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : wt.background, this.attrs.font = this.attrs.font ? this.attrs.font : {}, this.fontFamily = this.attrs.font.fontFamily ? this.attrs.font.fontFamily : "'Staatliches', cursive", this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem", this.url = this.attrs.font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap", this.attrs.timings = this.attrs.timings ? this.attrs.timings : {}, this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0, this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0, 0 === this.attrs.timings.static ? this.staticDur = 0 : this.staticDur = this.attrs.timings.static ? this.attrs.timings.static : 1e3;
       }
     }]), a;
   }(n.default.HTMLClip);
@@ -5164,7 +5167,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       position: ["x", "y", "zoom", "path"]
     }
   },
-      Mn = n.default.loadPlugin(wt),
+      Mn = n.default.loadPlugin(bt),
       On = n.default.loadPlugin(ln),
       Dn = n.default.loadPlugin(kn),
       Cn = function () {
@@ -6314,7 +6317,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       key: "buildVars",
       value: function value() {
         var t = this;
-        this.animConstructor = new Cn(this), this.data = this.attrs.data.data, this.colorPalette = g, this.attrs.palette = this.attrs.palette ? this.attrs.palette : {}, this.primaryC = this.attrs.palette.primary ? this.attrs.palette.primary : this.colorPalette.gray, this.secondaryC = this.attrs.palette.secondary ? this.attrs.palette.secondary : this.colorPalette.lightGray, this.tertiaryC = this.attrs.palette.tertiary ? this.attrs.palette.tertiary : this.colorPalette.darkGray, this.quaternaryC = this.attrs.palette.quaternary ? this.attrs.palette.quaternary : this.colorPalette.whiteBack, this.quinaryC = this.attrs.palette.quinary ? this.attrs.palette.quinary : this.colorPalette.gray, this.senaryC = this.attrs.palette.senary ? this.attrs.palette.senary : this.colorPalette.accent, this.fontC = this.attrs.palette.font ? this.attrs.palette.font : this.colorPalette.font, this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : this.colorPalette.accent, this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : this.colorPalette.background, this.title = this.attrs.data.title, this.words = this.title.split(" "), this.dataSets = this.attrs.data.dataSets ? this.attrs.data.dataSets : [{
+        this.animConstructor = new Cn(this), this.data = this.attrs.data.data, this.colorPalette = wt, this.attrs.palette = this.attrs.palette ? this.attrs.palette : {}, this.primaryC = this.attrs.palette.primary ? this.attrs.palette.primary : this.colorPalette.gray, this.secondaryC = this.attrs.palette.secondary ? this.attrs.palette.secondary : this.colorPalette.lightGray, this.tertiaryC = this.attrs.palette.tertiary ? this.attrs.palette.tertiary : this.colorPalette.darkGray, this.quaternaryC = this.attrs.palette.quaternary ? this.attrs.palette.quaternary : this.colorPalette.whiteBack, this.quinaryC = this.attrs.palette.quinary ? this.attrs.palette.quinary : this.colorPalette.gray, this.senaryC = this.attrs.palette.senary ? this.attrs.palette.senary : this.colorPalette.accent, this.fontC = this.attrs.palette.font ? this.attrs.palette.font : this.colorPalette.font, this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : this.colorPalette.accent, this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : this.colorPalette.background, this.title = this.attrs.data.title, this.words = this.title.split(" "), this.dataSets = this.attrs.data.dataSets ? this.attrs.data.dataSets : [{
           title: "",
           color: this.accentC
         }], this.dataSetsNum = this.dataSets.length;
@@ -6403,10 +6406,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   }(n.default.HTMLClip);
 
   function Pn(t) {
-    return t > g.dataColors.length - 1 ? g.dataColors[Math.floor(Math.random() * Math.floor(g.dataColors.length))] : g.dataColors[t];
+    return t > wt.dataColors.length - 1 ? wt.dataColors[Math.floor(Math.random() * Math.floor(wt.dataColors.length))] : wt.dataColors[t];
   }
 
-  var In = n.default.loadPlugin(wt),
+  var In = n.default.loadPlugin(bt),
       An = function (t) {
     s(a, t);
     var e = h(a);
@@ -6457,7 +6460,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
               "flex-direction": "column",
               "font-family": "".concat(null !== (e = t.font) && void 0 !== e && e.fontFamily ? t.font.fontFamily : "Staatliches, cursive"),
               "font-size": "".concat(null !== (n = t.font) && void 0 !== n && n.size ? t.font.size : "1.6rem"),
-              color: t.palette.font ? t.palette.font : g.font
+              color: t.palette.font ? t.palette.font : wt.font
             },
             title: {
               top: "-1rem",
@@ -6683,7 +6686,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }, {
       key: "generateColor",
       value: function value(t) {
-        return t > g.dataColors.length - 1 ? g.dataColors[Math.floor(Math.random() * Math.floor(g.dataColors.length))] : g.dataColors[t];
+        return t > wt.dataColors.length - 1 ? wt.dataColors[Math.floor(Math.random() * Math.floor(wt.dataColors.length))] : wt.dataColors[t];
       }
     }, {
       key: "buildTitle",
@@ -8513,7 +8516,7 @@ module.exports = JSON.parse('{"name":"@kissmybutton/motorcortex-graphs","version
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("e39d9270087d4d60db91")
+/******/ 		__webpack_require__.h = () => ("6fa052b26f62ccacecda")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
