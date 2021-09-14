@@ -86,7 +86,11 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
 
       return (
         <div class={datum.name + `-bar-${i}`}>
-          <div class="bar-fill" style={` background: ${datum.color ? datum.color : this.primaryC} `} id={datum.name + "-bar-fill"}></div>
+          <div
+            class="bar-fill"
+            style={` background: ${datum.color ? datum.color : this.primaryC} `}
+            id={datum.name + "-bar-fill"}
+          ></div>
         </div>
       );
     });
