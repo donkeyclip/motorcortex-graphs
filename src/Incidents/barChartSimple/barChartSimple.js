@@ -1,5 +1,5 @@
-import MotorCortex from "@kissmybutton/motorcortex";
-import AnimePlugin from "@kissmybutton/motorcortex-anime";
+import MotorCortex from "@donkeyclip/motorcortex";
+import AnimePlugin from "@donkeyclip/motorcortex-anime";
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
 import buildCSS from "./barChartStylesheet";
@@ -64,13 +64,6 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
 
       if (this.data[i].name.length > 4) {
         this.data[i].name = this.data[i].name.slice(0, 4);
-      }
-      for (const z in this.data[i].name) {
-        const cssClasses = label.push(
-          <div id={"letter-" + i + "-" + z} class="letter-container">
-            <div class="letter-wrapper fontColorOn">{this.data[i].name[z]}</div>
-          </div>
-        );
       }
 
       xLabels.push(
@@ -638,8 +631,6 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       outroGroup.addIncident(xLabelsoutro, Math.trunc(this.outroDur * 0.05));
 
       // Bar outro Control
-      const barOutroDur = this.outroDur * 0.7;
-      const barDur = (barOutroDur * 2) / (this.data.length + 1);
       const barIncidents = [];
       for (const i in this.data) {
         barIncidents.push({

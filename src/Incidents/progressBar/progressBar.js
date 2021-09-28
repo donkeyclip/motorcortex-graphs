@@ -1,6 +1,6 @@
-import MotorCortex from "@kissmybutton/motorcortex";
-import MCAnimeDefinition from "@kissmybutton/motorcortex-anime";
-import CounterPlugin from "@kissmybutton/motorcortex-counter";
+import MotorCortex from "@donkeyclip/motorcortex";
+import MCAnimeDefinition from "@donkeyclip/motorcortex-anime";
+import CounterPlugin from "@donkeyclip/motorcortex-counter";
 import buildCSS from "./progressBarStyleSheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
 
@@ -87,7 +87,6 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
       const slideInDuration = Math.floor(this.intro * 0.33);
       const expandBaseDuration = Math.floor(this.intro * 0.25);
       const expandBarDuration = Math.floor(this.intro * 0.33);
-      const showTextDuration = Math.floor(this.intro * 0.09);
 
       for (let i = 0; i < this.barCount; i++) {
         const slideIn = new MCAnime.Anime(
@@ -201,7 +200,6 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
       const slideInDuration = Math.floor(this.outro * 0.33);
       const expandBaseDuration = Math.floor(this.outro * 0.25);
       const expandBarDuration = Math.floor(this.outro * 0.33);
-      const showTextDuration = Math.floor(this.outro * 0.09);
 
       for (let i = 0; i < this.barCount; i++) {
         const slideIn = new MCAnime.Anime(

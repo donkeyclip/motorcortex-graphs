@@ -1,7 +1,7 @@
-import MotorCortex from "@kissmybutton/motorcortex";
-import AnimePlugin from "@kissmybutton/motorcortex-anime";
-import SVGDDef from "@kissmybutton/motorcortex-svgdraw";
-import TDCAMDef from "@kissmybutton/motorcortex-2dcam";
+import MotorCortex from "@donkeyclip/motorcortex";
+import AnimePlugin from "@donkeyclip/motorcortex-anime";
+import SVGDDef from "@donkeyclip/motorcortex-svgdraw";
+import TDCAMDef from "@donkeyclip/motorcortex-2dcam";
 const Anime = MotorCortex.loadPlugin(AnimePlugin);
 const SVGD = MotorCortex.loadPlugin(SVGDDef);
 const TDCAM = MotorCortex.loadPlugin(TDCAMDef);
@@ -59,7 +59,6 @@ export default class AnimationConstructor {
   }
 
   buildTitleIntroCombo() {
-    const titlesAnim = new MotorCortex.Group();
     const titleDur = this.instance.introDur * 0.13;
     const titleIncidents = [];
     for (const i in this.instance.words) {
@@ -95,7 +94,6 @@ export default class AnimationConstructor {
   }
 
   buildTitleOutroCombo() {
-    const titlesAnim = new MotorCortex.Group();
     const titleDur = this.instance.outroDur * 0.13;
     const titleIncidents = [];
     for (const i in this.instance.words) {
@@ -488,9 +486,7 @@ export default class AnimationConstructor {
         },
         {
           selector: `.stele-block-${0}`,
-          delay: `@stagger(0, ${Math.trunc(
-            steleDur - blockDur
-          )}, 0)`,
+          delay: `@stagger(0, ${Math.trunc(steleDur - blockDur)}, 0)`,
         }
       );
 

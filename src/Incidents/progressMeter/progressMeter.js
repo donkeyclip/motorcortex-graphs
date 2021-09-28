@@ -1,7 +1,7 @@
-import MotorCortex from "@kissmybutton/motorcortex";
-import AnimePlugin from "@kissmybutton/motorcortex-anime";
+import MotorCortex from "@donkeyclip/motorcortex";
+import AnimePlugin from "@donkeyclip/motorcortex-anime";
 const Anime = MotorCortex.loadPlugin(AnimePlugin);
-import CounterPlugin from "@kissmybutton/motorcortex-counter";
+import CounterPlugin from "@donkeyclip/motorcortex-counter";
 const Counter = MotorCortex.loadPlugin(CounterPlugin);
 
 import { colorPalette } from "../../shared/colorPalette";
@@ -532,8 +532,12 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
           rotate: false,
         };
     this.originalDims = config.progressMeter.originalDims;
-    this.heightDimension = helpers.extractUnitsNums(this.props.containerParams.height).number
-    this.widthDimension = helpers.extractUnitsNums(this.props.containerParams.width).number
+    this.heightDimension = helpers.extractUnitsNums(
+      this.props.containerParams.height
+    ).number;
+    this.widthDimension = helpers.extractUnitsNums(
+      this.props.containerParams.width
+    ).number;
     this.boxSize =
       this.widthDimension < this.heightDimension
         ? this.widthDimension * 0.65
