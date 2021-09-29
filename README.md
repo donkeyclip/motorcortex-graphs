@@ -1,18 +1,18 @@
 # MotorCortex Graphs
 
 ## Demo
-https://kissmybutton.github.io/motorcortex-graphs/demo
+https://donkeyclip.github.io/motorcortex-graphs/demo
 
 ## Installation
 
 ```bash
-$ npm install @kissmybutton/motorcortex-graphs
+$ npm install @donkeyclip/motorcortex-graphs
 # OR
-$ yarn add @kissmybutton/motorcortex-graphs
+$ yarn add @donkeyclip/motorcortex-graphs
 ```
 
 ```javascript
-import MotorCortexGraph from "@kissmybutton/motorcortex-graphs";
+import MotorCortexGraph from "@donkeyclip/motorcortex-graphs";
 ```
 
 ## Key Concepts / Features
@@ -30,8 +30,8 @@ Using MotorCortex Graphs, one can create fully configurable animations of graphs
 ### Import and load the plugin to MotorCortex
 
 ```javascript
-import MotorCortex from '@kissmybutton/motorcortex';
-import MotorCortexGraph from "@kissmybutton/motorcortex-graphs";
+import MotorCortex from '@donkeyclip/motorcortex';
+import MotorCortexGraph from "@donkeyclip/motorcortex-graphs";
 
 const MCGraphs = MotorCortex.loadPlugin(MotorCortexGraph);
 ```
