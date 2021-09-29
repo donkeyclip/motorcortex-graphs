@@ -4,7 +4,7 @@ import helpers from "../../shared/helpers";
 import buildCSS from "./lineGraphStylesheet";
 import config from "../../incident_config";
 import AnimationConstructor from "./AnimationConstructor";
-import MotorCortex from "@kissmybutton/motorcortex";
+import MotorCortex from "@donkeyclip/motorcortex";
 
 /**
  * LINE GRAPH: MotorCortex Implementation
@@ -63,7 +63,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
             ></div>
           );
         }
-  
+
         dataSteles.push(
           <div id={"stele-" + i} class="data-stele stele-grid">
             {stele}
@@ -74,7 +74,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       const stele = [];
       for (let z = 0; z < this.steleBlockNum; z++) {
         stele.push(
-          <div class={"stele-block-" + 0 + " stele-block line-grid-block"}></div>
+          <div
+            class={"stele-block-" + 0 + " stele-block line-grid-block"}
+          ></div>
         );
       }
 
@@ -84,7 +86,6 @@ export default class LineGraph extends MotorCortex.HTMLClip {
         </div>
       );
     }
-    
 
     // Graph Lines SVG hmtl generation
     const lineGroups = [];
@@ -356,12 +357,12 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.quaternaryC = this.attrs.palette.quaternary
       ? this.attrs.palette.quaternary
       : this.colorPalette.whiteBack;
-    this.quinaryC = this.attrs.palette.quinary 
+    this.quinaryC = this.attrs.palette.quinary
       ? this.attrs.palette.quinary
-      : this.colorPalette.gray
-    this.senaryC = this.attrs.palette.senary 
+      : this.colorPalette.gray;
+    this.senaryC = this.attrs.palette.senary
       ? this.attrs.palette.senary
-      : this.colorPalette.accent
+      : this.colorPalette.accent;
     this.fontC = this.attrs.palette.font
       ? this.attrs.palette.font
       : this.colorPalette.font;
@@ -466,7 +467,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.fontSizeTitle =
       1.5 * helpers.extractUnitsNums(this.fontSizeLabel).number +
       helpers.extractUnitsNums(this.fontSizeLabel).unit;
-    this.fontSizeInner = 1 * helpers.extractUnitsNums(this.fontSizeLabel).number + helpers.extractUnitsNums(this.fontSizeLabel).unit;
+    this.fontSizeInner =
+      1 * helpers.extractUnitsNums(this.fontSizeLabel).number +
+      helpers.extractUnitsNums(this.fontSizeLabel).unit;
     this.url = this.attrs.font.url
       ? this.attrs.font.url
       : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";

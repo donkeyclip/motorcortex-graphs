@@ -1,6 +1,6 @@
-import MotorCortex from "@kissmybutton/motorcortex";
-import Player from "@kissmybutton/motorcortex-player";
-import MotorCortexGraph from "../dist/bundle.umd";
+import MotorCortex from "@donkeyclip/motorcortex";
+import Player from "@donkeyclip/motorcortex-player";
+import MotorCortexGraph from "../dist/motorcortex-graphs.umd";
 import barChartData from "./data/barChartData.json";
 import lineGraphData from "./data/lineGraphData.json";
 import pieChartData from "./data/pieChartData.json";
@@ -165,7 +165,7 @@ clip.addIncident(pieChart, 20500);
 clip.addIncident(progressBar, 26000);
 clip.addIncident(progressMeter, 31500);
 
-const player = new Player({
+new Player({
   clip,
   scaleToFit: true,
   autoplay: true,

@@ -1,5 +1,5 @@
-import MotorCortex from "@kissmybutton/motorcortex";
-import MCAnimeDefinition from "@kissmybutton/motorcortex-anime";
+import MotorCortex from "@donkeyclip/motorcortex";
+import MCAnimeDefinition from "@donkeyclip/motorcortex-anime";
 import * as DefaultStyle from "../../shared/colorPalette";
 import buildCSS from "./pieChartStylesheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
@@ -247,7 +247,6 @@ export default class PieChart extends MotorCortex.HTMLClip {
 
   createNullRadiusString() {
     let gradientString = "";
-    let turnCount = 0;
     for (const datum in this.data) {
       if (datum === "0") {
         gradientString += `
@@ -274,7 +273,6 @@ export default class PieChart extends MotorCortex.HTMLClip {
                     ${0}turn,
                 `;
       }
-      turnCount += this.data[datum].value / 100;
     }
     gradientString = gradientString + "rgba(0,0,0,0) 0 360deg";
 

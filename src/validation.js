@@ -2,6 +2,7 @@ export default {
   ProgressBar: {
     data: {
       type: "array",
+      items: { type: "any" },
     },
     timings: {
       type: "object",
@@ -73,7 +74,7 @@ export default {
         subtitle: { type: "string", optional: true },
         showGrid: { type: "boolean", optional: true },
         maxValue: { type: "number", min: 0, optional: true },
-        data: { type: "array" },
+        data: { type: "array", items: { type: "any" } },
       },
     },
     timings: {
@@ -139,8 +140,8 @@ export default {
         maxValue: { type: "number", min: 0, optional: true },
         unit: { type: "string", optional: true },
         hover: { type: "boolean", optional: true },
-        data: { type: "array" },
-        dataSets: { type: "array" },
+        data: { type: "array", items: { type: "any" } },
+        dataSets: { type: "array", items: { type: "any" } },
       },
     },
     timings: {
@@ -218,7 +219,7 @@ export default {
       type: "object",
       props: {
         title: { type: "string", optional: true },
-        data: { type: "array" },
+        data: { type: "array", items: { type: "any" } },
       },
     },
     timings: {
