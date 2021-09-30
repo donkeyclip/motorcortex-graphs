@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.5.3](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.5.2...v1.5.3) (2021-09-30)
+
+
+### Bug Fixes
+
+* update npm name ([ae08510](https://www.github.com/donkeyclip/motorcortex-graphs/commit/ae085106baff5955f11744ab6458c19989e2062e))
+
 ### [1.5.2](https://www.github.com/kissmybutton/motorcortex-graphs/compare/v1.5.1...v1.5.2) (2021-09-14)
 
 
