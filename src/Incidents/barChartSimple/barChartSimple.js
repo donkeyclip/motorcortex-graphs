@@ -26,9 +26,9 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       }
 
       title.push(
-        <div id={"letter-" + i} class="letter-container">
+        `<div id={"letter-" + i} class="letter-container">
           {letter}
-        </div>
+        </div>`
       );
     }
 
@@ -45,9 +45,9 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       }
 
       subtitle.push(
-        <div id={"letter-" + i} class="letter-container">
+        `<div id={"letter-" + i} class="letter-container">
           {letter}
-        </div>
+        </div>`
       );
     }
 
