@@ -1,6 +1,6 @@
 import MotorCortex from "@donkeyclip/motorcortex";
 import Player from "@donkeyclip/motorcortex-player";
-import MotorCortexGraph from "../dist/motorcortex-graphs.umd";
+import MotorCortexGraph from "../dist/motorcortex-graphs.esm";
 import barChartData from "./data/barChartData.json";
 import lineGraphData from "./data/lineGraphData.json";
 import pieChartData from "./data/pieChartData.json";
@@ -28,7 +28,7 @@ const clip = new MotorCortex.HTMLClip({
     }
     #htmlclip {
         z-index: 0;
-    }   
+    }
     #html-hoverclip {
         z-index: 1;
     }

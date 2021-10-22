@@ -7,16 +7,16 @@ import pkg from "./package.json";
 
 export default [
   {
-    input: "src/main.js",
+    input: "src/index.js",
     external: ["@donkeyclip/motorcortex"],
     output: [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" },
     ],
-    plugins: [resolve(), babel(), commonjs(), json(), terser()],
+    plugins: [babel(), resolve(), commonjs(), json()],
   },
   {
-    input: "src/main.js",
+    input: "src/index.js",
     external: ["@donkeyclip/motorcortex"],
     output: [
       {
@@ -29,9 +29,9 @@ export default [
       },
     ],
     plugins: [
-      resolve({ mainFields: ["module", "main", "browser"] }),
-      json(),
       babel(),
+      json(),
+      resolve({ mainFields: ["module", "main", "browser"] }),
       commonjs(),
       terser(),
     ],

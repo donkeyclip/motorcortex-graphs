@@ -18,17 +18,17 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     for (const i in this.title) {
       const letter = [];
       if (this.title[i] === " ") {
-        letter.push(<div class="space-char letter-wrapper">-</div>);
+        letter.push('<div class="space-char letter-wrapper">-</div>');
       } else {
         letter.push(
-          <div class="fontColorOn letter-wrapper">{this.title[i]}</div>
+          `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`
         );
       }
 
       title.push(
-        <div id={"letter-" + i} class="letter-container">
-          {letter}
-        </div>
+        `<div id={"letter-" + i} class="letter-container">
+          ${letter}
+        </div>`
       );
     }
 
@@ -37,7 +37,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     for (const i in this.subtitle) {
       const letter = [];
       if (this.subtitle[i] === " ") {
-        letter.push(<div class="space-char letter-wrapper">-</div>);
+        letter.push('<div class="space-char letter-wrapper">-</div>');
       } else {
         letter.push(
           <div class="fontColorOn letter-wrapper">{this.subtitle[i]}</div>
@@ -45,9 +45,9 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       }
 
       subtitle.push(
-        <div id={"letter-" + i} class="letter-container">
-          {letter}
-        </div>
+        `<div id={"letter-" + i} class="letter-container">
+          ${letter}
+        </div>`
       );
     }
 
