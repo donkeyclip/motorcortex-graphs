@@ -21,13 +21,13 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         letter.push('<div class="space-char letter-wrapper">-</div>');
       } else {
         letter.push(
-          '<div class="fontColorOn letter-wrapper">{this.title[i]}</div>'
+          `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`
         );
       }
 
       title.push(
         `<div id={"letter-" + i} class="letter-container">
-          {letter}
+          ${letter}
         </div>`
       );
     }
@@ -46,7 +46,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
 
       subtitle.push(
         `<div id={"letter-" + i} class="letter-container">
-          {letter}
+          ${letter}
         </div>`
       );
     }

@@ -13,7 +13,7 @@ export default [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" },
     ],
-    plugins: [resolve(), commonjs(), babel(), json()],
+    plugins: [babel(), resolve(), commonjs(), json()],
   },
   {
     input: "src/index.js",
@@ -29,10 +29,10 @@ export default [
       },
     ],
     plugins: [
+      babel(),
       json(),
       resolve({ mainFields: ["module", "main", "browser"] }),
       commonjs(),
-      babel(),
       terser(),
     ],
   },
