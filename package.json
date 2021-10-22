@@ -5,10 +5,10 @@
   "main": "dist/motorcortex-graphs.cjs.js",
   "module": "dist/motorcortex-graphs.esm.js",
   "browser": "dist/motorcortex-graphs.umd.js",
-  "author": "KissMyButton PC (kissmybutton.gr) <opensource@kissmybutton.gr>",
+  "author": "Donkeyclip (donkeyclip.com) <opensource@donkeyclip.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kissmybutton/motorcortex-graphs"
+    "url": "https://github.com/donkeyclip/motorcortex-graphs"
   },
   "license": "MIT",
   "engines": {
