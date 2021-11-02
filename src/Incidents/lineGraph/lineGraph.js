@@ -429,8 +429,9 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       height: 0.58,
     };
     this.legendHeightFactor = this.dataSetsNum === 1 ? 1 : this.dataSetsNum / 2;
-    this.legendHeight =
-      4 * (this.legendHeightFactor + (this.legendHeightFactor % 1 ? 1 : 0));
+    this.legendHeight = this.attrs.legendHeight
+      ? this.attrs.legendHeight
+      : 4 * (this.legendHeightFactor + (this.legendHeightFactor % 1 ? 1 : 0));
     this.linesWidth =
       helpers.extractUnitsNums(this.props.containerParams.width).number *
       this.graphScale.width;
@@ -442,7 +443,6 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       (this.linesWidth - this.steleWidth * this.data.length) /
       (this.data.length * 2);
     this.r = this.attrs.dataPointR ? this.attrs.dataPointR : 0.65;
-
     // Global access data process functions
     this.findPointX = (datapoint) => {
       return (
