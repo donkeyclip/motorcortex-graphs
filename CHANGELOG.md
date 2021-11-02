@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.6.0](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.5.3...v1.6.0) (2021-11-02)
+
+
+### Features
+
+* add legend wrrap and height to lineGraph ([517a19f](https://www.github.com/donkeyclip/motorcortex-graphs/commit/517a19f2e468ea830b86901c98642c10bfca178e))
+
+
+### Bug Fixes
+
+* drop code from demo config ([5a3a650](https://www.github.com/donkeyclip/motorcortex-graphs/commit/5a3a650f72fc1ea6e766bac2e422389a1ea4ca11))
+* fix broken config ([1ac05ff](https://www.github.com/donkeyclip/motorcortex-graphs/commit/1ac05fff627c51a32d79d84d55cafc80cdf28637))
+* fix broken webpack config ([2cdc830](https://www.github.com/donkeyclip/motorcortex-graphs/commit/2cdc830aacf3b855676dc5ce4ea85f8a71a4c370))
+* fix build and barChartSimple ([abded96](https://www.github.com/donkeyclip/motorcortex-graphs/commit/abded966a5bbc8f39802719433feb6e5d867d03e))
+* update build and demo files drop old babel config ([7974858](https://www.github.com/donkeyclip/motorcortex-graphs/commit/7974858ca06c7dbd9f07613d41fa104e130dace9))
+* update build and demo files drop old babel config ([ae38d36](https://www.github.com/donkeyclip/motorcortex-graphs/commit/ae38d3663e97e0a0454fcc69ead5732736e6d496))
+* update build and demo files drop old babel config ([109a612](https://www.github.com/donkeyclip/motorcortex-graphs/commit/109a61220fb4621bd77b88729795b0e83dd4bb6f))
+* update build and demo files drop old babel config ([a32dd97](https://www.github.com/donkeyclip/motorcortex-graphs/commit/a32dd9773b4fe0d524e04fc77d5849a99066dc86))
+* update build and demo files drop old babel config ([f2d2fee](https://www.github.com/donkeyclip/motorcortex-graphs/commit/f2d2fee2d85c11de924835cc15c48fc5927c1b9d))
+* update rollup deps to latest packages ([7cb4d86](https://www.github.com/donkeyclip/motorcortex-graphs/commit/7cb4d86b35cf8f9def2038a420ad071d2f705bb0))
+
 ### [1.5.3](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.5.2...v1.5.3) (2021-09-30)
 
 
