@@ -10368,7 +10368,7 @@ function buildCSS$1(lineGraph) {
       background: lineGraph.quinaryC,
       "font-size": lineGraph.fontSizeInner,
       display: "flex",
-      "flex-wrap": "wrap",
+      "flex-wrap": lineGraph.attrs.legendWrrap ? "flex" : "nowrap",
       "align-items": "center",
       "z-index": "1"
     },
@@ -12228,7 +12228,7 @@ var LineGraph = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         height: 0.58
       };
       this.legendHeightFactor = this.dataSetsNum === 1 ? 1 : this.dataSetsNum / 2;
-      this.legendHeight = 4 * (this.legendHeightFactor + (this.legendHeightFactor % 1 ? 1 : 0));
+      this.legendHeight = this.attrs.legendHeight ? this.attrs.legendHeight : 4 * (this.legendHeightFactor + (this.legendHeightFactor % 1 ? 1 : 0));
       this.linesWidth = helpers.extractUnitsNums(this.props.containerParams.width).number * this.graphScale.width;
       this.linesHeight = helpers.extractUnitsNums(this.props.containerParams.height).number * this.graphScale.height;
       this.steleWidth = this.linesWidth * 0.01;

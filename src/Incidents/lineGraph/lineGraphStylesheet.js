@@ -1,4 +1,4 @@
-import jss, { createGenerateId } from "jss";
+import jss from "jss";
 import config from "../../incident_config";
 
 export default function buildCSS(lineGraph) {
@@ -63,7 +63,7 @@ export default function buildCSS(lineGraph) {
       background: lineGraph.quinaryC,
       "font-size": lineGraph.fontSizeInner,
       display: "flex",
-      "flex-wrap": "wrap",
+      "flex-wrap": lineGraph.attrs.legendWrrap ? "flex" : "nowrap",
       "align-items": "center",
       "z-index": "1",
     },
@@ -248,7 +248,6 @@ export default function buildCSS(lineGraph) {
     },
   };
 
-  const colorCounter = 2;
   for (let l = 0; l < lineGraph.dataSetsNum; l++) {
     let dynamicColor;
     if (lineGraph.dataSetsNum > 1) {
