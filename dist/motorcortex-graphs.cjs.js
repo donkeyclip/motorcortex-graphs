@@ -13147,7 +13147,7 @@ var validationRules = {
 };
 
 var name = "@donkeyclip/motorcortex-graphs";
-var version = "1.5.3";
+var version = "1.6.0";
 
 var index = {
   npm_name: name,
