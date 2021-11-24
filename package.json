@@ -49,9 +49,8 @@
     "jss": "^10.8.0"
   },
   "peerDependencies": {
-    "@donkeyclip/motorcortex": "^7",
+    "@donkeyclip/motorcortex": ">= 7.6.2 < 8",
     "@donkeyclip/motorcortex-2dcam": ">= 0.0.15 < 1",
-    "@donkeyclip/motorcortex-anime": ">= 2.1.16 < 3",
     "@donkeyclip/motorcortex-counter": ">= 1.1.0 < 2",
     "@donkeyclip/motorcortex-svgdraw": ">= 0.0.9 < 1"
   },
@@ -77,7 +76,6 @@
     "@babel/preset-env": "7.16.4",
     "@donkeyclip/motorcortex": "7.6.2",
     "@donkeyclip/motorcortex-2dcam": "0.0.16",
-    "@donkeyclip/motorcortex-anime": "2.1.16",
     "@donkeyclip/motorcortex-counter": "1.1.1",
     "@donkeyclip/motorcortex-player": "2.4.3",
     "@donkeyclip/motorcortex-svgdraw": "0.0.10",

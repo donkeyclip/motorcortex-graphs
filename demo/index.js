@@ -5,7 +5,6 @@ import barChartData from "./data/barChartData.json";
 import lineGraphData from "./data/lineGraphData.json";
 import pieChartData from "./data/pieChartData.json";
 import progressBarData from "./data/progressBarData.json";
-import progressMeterData from "./data/progressMeterData.json";
 
 const MCGraphs = MotorCortex.loadPlugin(MotorCortexGraph);
 
@@ -134,36 +133,10 @@ const progressBar = new MCGraphs.ProgressBar(
   }
 );
 
-const progressMeter = new MCGraphs.ProgressMeter(
-  {
-    data: progressMeterData,
-    innerImage: "battery",
-    timings: {
-      intro: 3000,
-      static: 1000,
-      outro: 3000,
-    },
-    palette: {
-      background: "#D3CDCD",
-    },
-    font: {
-      size: "8rem",
-    },
-  },
-  {
-    selector: "#htmlclip",
-    containerParams: {
-      width: "1024px",
-      height: "768px",
-    },
-  }
-);
-
 clip.addIncident(barChart, 0);
 clip.addIncident(lineGraph, 5500);
 clip.addIncident(pieChart, 20500);
 clip.addIncident(progressBar, 26000);
-clip.addIncident(progressMeter, 31500);
 
 new Player({
   clip,
