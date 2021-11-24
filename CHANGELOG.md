@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.6.0...v1.7.0) (2021-11-24)
+
+
+### Features
+
+* use CSSEffect and remove anime ([d1ea132](https://www.github.com/donkeyclip/motorcortex-graphs/commit/d1ea132b606828c980bb195464f31d0126c50a66))
+
 ## [1.6.0](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.5.3...v1.6.0) (2021-11-02)
 
 
