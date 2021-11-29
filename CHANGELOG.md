@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.1](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.0...v1.7.1) (2021-11-29)
+
+
+### Bug Fixes
+
+* Change the plugin to use anime ([1249c81](https://www.github.com/donkeyclip/motorcortex-graphs/commit/1249c8176878410384901332ba95a95f9202b42c))
+
 ## [1.7.0](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.6.0...v1.7.0) (2021-11-24)
 
 
