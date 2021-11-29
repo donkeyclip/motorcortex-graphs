@@ -1,9 +1,11 @@
-import MotorCortex, { CSSEffect } from "@donkeyclip/motorcortex";
+import MotorCortex from "@donkeyclip/motorcortex";
+import MCAnimeDefinition from "@donkeyclip/motorcortex-anime";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
 import buildCSS from "./progressBarStyleSheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
 
 const Counter = MotorCortex.loadPlugin(CounterPlugin);
+const MCAnime = MotorCortex.loadPlugin(MCAnimeDefinition);
 
 /**
  * The purpose of extending the HTMLClip is to full, parametric
@@ -87,7 +89,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
       const expandBarDuration = Math.floor(this.intro * 0.33);
 
       for (let i = 0; i < this.barCount; i++) {
-        const slideIn = new CSSEffect(
+        const slideIn = new MCAnime.Anime(
           {
             animatedAttrs: {
               bottom: `${
@@ -109,7 +111,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
           }
         );
 
-        const expand_base = new CSSEffect(
+        const expand_base = new MCAnime.Anime(
           {
             animatedAttrs: {
               width: "60%",
@@ -125,7 +127,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
           }
         );
 
-        const expand_bar = new CSSEffect(
+        const expand_bar = new MCAnime.Anime(
           {
             animatedAttrs: {
               width: `${this.attrs.data[i].value.toFixed(2)}%`,
@@ -166,7 +168,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
         );
       }
 
-      const expand_text = new CSSEffect(
+      const expand_text = new MCAnime.Anime(
         {
           animatedAttrs: {
             left: "62%",
@@ -187,7 +189,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
       this.addIncident(expand_text, slideInDuration);
     }
 
-    const staticGraph = new CSSEffect(
+    const staticGraph = new MCAnime.Anime(
       { animatedAttrs: {} },
       { duration: this.static, selector: ".container-progressBar" }
     );
@@ -200,7 +202,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
       const expandBarDuration = Math.floor(this.outro * 0.33);
 
       for (let i = 0; i < this.barCount; i++) {
-        const slideIn = new CSSEffect(
+        const slideIn = new MCAnime.Anime(
           {
             animatedAttrs: {
               bottom: `-${65 / this.barCount}%`,
@@ -222,7 +224,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
           }
         );
 
-        const expand_base = new CSSEffect(
+        const expand_base = new MCAnime.Anime(
           {
             animatedAttrs: {
               width: "0.2%",
@@ -238,7 +240,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
           }
         );
 
-        const expand_bar = new CSSEffect(
+        const expand_bar = new MCAnime.Anime(
           {
             animatedAttrs: {
               width: "0%",
@@ -284,7 +286,7 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
         );
       }
 
-      const expand_text = new CSSEffect(
+      const expand_text = new MCAnime.Anime(
         {
           animatedAttrs: {
             left: "0%",

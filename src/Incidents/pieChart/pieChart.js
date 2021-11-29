@@ -1,8 +1,10 @@
-import MotorCortex, { CSSEffect } from "@donkeyclip/motorcortex";
-
+import MotorCortex from "@donkeyclip/motorcortex";
+import MCAnimeDefinition from "@donkeyclip/motorcortex-anime";
 import * as DefaultStyle from "../../shared/colorPalette";
 import buildCSS from "./pieChartStylesheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
+
+const MCAnime = MotorCortex.loadPlugin(MCAnimeDefinition);
 
 /**
  * The purpose of extending the HTMLClip is to full, parametric
@@ -73,7 +75,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
 
       if (this.attrs.data.title) {
         [...this.attrs.data.title].forEach((char, index) => {
-          const titleIn = new CSSEffect(
+          const titleIn = new MCAnime.Anime(
             {
               animatedAttrs: {
                 right: "0%",
@@ -100,7 +102,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
         });
       }
 
-      const rotateIn = new CSSEffect(
+      const rotateIn = new MCAnime.Anime(
         {
           animatedAttrs: {
             "background-image": `conic-gradient(${this.createRadiusString()})`,
@@ -117,7 +119,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
       );
       this.addIncident(rotateIn, titleInDuration - this.intro * 0.2);
 
-      const legendIn = new CSSEffect(
+      const legendIn = new MCAnime.Anime(
         {
           animatedAttrs: {
             width: "75%",
@@ -140,7 +142,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
       this.addIncident(legendIn, titleInDuration - this.intro * 0.2);
     }
 
-    const staticPie = new CSSEffect(
+    const staticPie = new MCAnime.Anime(
       {
         animatedAttrs: {},
       },
@@ -155,7 +157,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
     if (this.attrs.timings?.outro) {
       const outroDuration = Math.round(this.attrs.timings?.outro);
 
-      const titleOut = new CSSEffect(
+      const titleOut = new MCAnime.Anime(
         {
           animatedAttrs: {
             top: "-10%",
@@ -172,7 +174,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
       );
       this.addIncident(titleOut, this.intro + this.static + this.outro * 0.2);
 
-      const legendOut = new CSSEffect(
+      const legendOut = new MCAnime.Anime(
         {
           animatedAttrs: {
             width: "0%",
@@ -188,7 +190,7 @@ export default class PieChart extends MotorCortex.HTMLClip {
       );
       this.addIncident(legendOut, this.intro + this.static);
 
-      const pieOut = new CSSEffect(
+      const pieOut = new MCAnime.Anime(
         {
           animatedAttrs: {
             "background-image": `conic-gradient(${this.createNullRadiusString()})`,

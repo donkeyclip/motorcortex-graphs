@@ -1,6 +1,8 @@
-import MotorCortex, { CSSEffect } from "@donkeyclip/motorcortex";
+import MotorCortex from "@donkeyclip/motorcortex";
+import AnimePlugin from "@donkeyclip/motorcortex-anime";
 import SVGDDef from "@donkeyclip/motorcortex-svgdraw";
 import TDCAMDef from "@donkeyclip/motorcortex-2dcam";
+const Anime = MotorCortex.loadPlugin(AnimePlugin);
 const SVGD = MotorCortex.loadPlugin(SVGDDef);
 const TDCAM = MotorCortex.loadPlugin(TDCAMDef);
 import config from "../../incident_config";
@@ -11,7 +13,7 @@ export default class AnimationConstructor {
   }
 
   buildStaticControl() {
-    return new CSSEffect(
+    return new Anime.Anime(
       { animatedAttrs: {} },
       {
         selector: ".container-lineGraph",
@@ -21,7 +23,7 @@ export default class AnimationConstructor {
   }
 
   buildBackgroundIntro() {
-    return new CSSEffect(
+    return new Anime.Anime(
       {
         animatedAttrs: {
           height: "70%",
@@ -39,7 +41,7 @@ export default class AnimationConstructor {
   }
 
   buildBackgroundOutro() {
-    return new CSSEffect(
+    return new Anime.Anime(
       {
         animatedAttrs: {
           height: "0%",
@@ -61,7 +63,7 @@ export default class AnimationConstructor {
     const titleIncidents = [];
     for (const i in this.instance.words) {
       titleIncidents.push({
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             top: "0px",
@@ -96,7 +98,7 @@ export default class AnimationConstructor {
     const titleIncidents = [];
     for (const i in this.instance.words) {
       titleIncidents.push({
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             top: "-50px",
@@ -137,7 +139,7 @@ export default class AnimationConstructor {
         : `@stagger(0, ${colorsDur - colorDur})`;
     const legendIncidents = [
       {
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             height: `${this.instance.legendHeight}%`,
@@ -153,7 +155,7 @@ export default class AnimationConstructor {
         position: 0,
       },
       {
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             opacity: "1",
@@ -171,7 +173,7 @@ export default class AnimationConstructor {
         position: Math.trunc(this.instance.introDur * 0.15),
       },
       {
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             opacity: "1",
@@ -209,7 +211,7 @@ export default class AnimationConstructor {
         : `@stagger(0, ${colorsDur - colorDur}, 0, linear, linear, true)`;
     const legendIncidents = [
       {
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             height: "0%",
@@ -225,7 +227,7 @@ export default class AnimationConstructor {
         position: colorsDur,
       },
       {
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             opacity: "0",
@@ -243,7 +245,7 @@ export default class AnimationConstructor {
         position: Math.trunc(colorsDur - this.instance.introDur * 0.15),
       },
       {
-        incidentClass: CSSEffect,
+        incidentClass: Anime.Anime,
         attrs: {
           animatedAttrs: {
             opacity: "0",
@@ -277,7 +279,7 @@ export default class AnimationConstructor {
 
     // Label Background intro animation
     xLabelsAnim.addIncident(
-      new CSSEffect(
+      new Anime.Anime(
         {
           animatedAttrs: {
             width: "100%",
@@ -303,7 +305,7 @@ export default class AnimationConstructor {
       const incidents = [];
       for (const z in this.instance.data[i].name) {
         incidents.push({
-          incidentClass: CSSEffect,
+          incidentClass: Anime.Anime,
           attrs: {
             animatedAttrs: {
               opacity: 1,
@@ -349,7 +351,7 @@ export default class AnimationConstructor {
 
     // Label Background outro animation
     xLabelsAnim.addIncident(
-      new CSSEffect(
+      new Anime.Anime(
         {
           animatedAttrs: {
             width: "0%",
@@ -375,7 +377,7 @@ export default class AnimationConstructor {
       const incidents = [];
       for (const z in this.instance.data[i].name) {
         incidents.push({
-          incidentClass: CSSEffect,
+          incidentClass: Anime.Anime,
           attrs: {
             animatedAttrs: {
               opacity: 0,
@@ -431,7 +433,7 @@ export default class AnimationConstructor {
           {
             incidents: [
               {
-                incidentClass: CSSEffect,
+                incidentClass: Anime.Anime,
                 attrs: {
                   animatedAttrs: {
                     opacity: 1,
@@ -465,7 +467,7 @@ export default class AnimationConstructor {
         {
           incidents: [
             {
-              incidentClass: CSSEffect,
+              incidentClass: Anime.Anime,
               attrs: {
                 animatedAttrs: {
                   width: "100%",
@@ -515,7 +517,7 @@ export default class AnimationConstructor {
           {
             incidents: [
               {
-                incidentClass: CSSEffect,
+                incidentClass: Anime.Anime,
                 attrs: {
                   animatedAttrs: {
                     opacity: 0,
@@ -552,7 +554,7 @@ export default class AnimationConstructor {
         {
           incidents: [
             {
-              incidentClass: CSSEffect,
+              incidentClass: Anime.Anime,
               attrs: {
                 animatedAttrs: {
                   width: "0%",
@@ -619,7 +621,7 @@ export default class AnimationConstructor {
         }
 
         // Points Intro Animation
-        const pointAnimation = new CSSEffect(
+        const pointAnimation = new Anime.Anime(
           {
             animatedAttrs: {
               opacity: 1,
@@ -655,7 +657,7 @@ export default class AnimationConstructor {
         const leftOffset =
           targetLeft + (this.instance.linesWidth * (targetWidth / 100)) / 2;
 
-        const gLabelAnimation = new CSSEffect(
+        const gLabelAnimation = new Anime.Anime(
           {
             animatedAttrs: {
               opacity: 0.6,
@@ -829,7 +831,7 @@ export default class AnimationConstructor {
         }
 
         // Points outro Animation
-        const pointAnimation = new CSSEffect(
+        const pointAnimation = new Anime.Anime(
           {
             animatedAttrs: {
               opacity: 0,
@@ -870,7 +872,7 @@ export default class AnimationConstructor {
         const leftOffset =
           targetLeft + (this.instance.linesWidth * (targetWidth / 100)) / 2;
 
-        const gLabelAnimation = new CSSEffect(
+        const gLabelAnimation = new Anime.Anime(
           {
             animatedAttrs: {
               opacity: 0,
