@@ -63,12 +63,13 @@ export default function buildCSS(lineGraph) {
       background: lineGraph.quinaryC,
       "font-size": lineGraph.fontSizeInner,
       display: "flex",
-      "flex-wrap": lineGraph.attrs.legendWrrap ? "flex" : "nowrap",
+      "flex-wrap": lineGraph.attrs.legendWrrap ? "wrap" : "nowrap",
       "align-items": "center",
       "z-index": "1",
+      padding: "0 10px",
     },
     "line-wrapper": {
-      width: `${lineGraph.dataSetsNum === 1 ? 100 : 50}%`,
+      // width: `${lineGraph.dataSetsNum === 1 ? 100 : 50}%`,
       height: `${
         (1 /
           (lineGraph.legendHeightFactor +
@@ -77,12 +78,13 @@ export default function buildCSS(lineGraph) {
       }%`,
       display: "flex",
       overflow: "hidden",
+      "flex-grow": 1,
     },
     "color-wrapper": {
       display: "flex",
       "align-items": "center",
       "justify-content": "center",
-      width: "25%",
+      width: "100%",
       height: "100%",
     },
     "line-color": {

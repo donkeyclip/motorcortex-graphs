@@ -1,20 +1,20 @@
-{ 
-  "title": "EXAMPLE LINE GRAPH", 
+{
+  "title": "EXAMPLE LINE GRAPH",
   "maxValue": 100,
   "interval": 4,
   "unit": "%",
   "hover": false,
   "dataSets": [
     {
-      "title": "Set 1",
+      "title": "Javascript",
       "color": "red"
     },
     {
-      "title": "Set 2",
+      "title": "c#",
       "color": "blue"
     },
     {
-      "title": "Set 3",
+      "title": "Python",
       "color": ""
     }
   ],
@@ -33,7 +33,7 @@
     },
     {
       "name": "2019",
-      "values": [10 , 35, 69]
+      "values": [10, 35, 69]
     },
     {
       "name": "2020",
@@ -44,4 +44,4 @@
       "values": [74, 92, 59]
     }
   ]
-}   
+}
