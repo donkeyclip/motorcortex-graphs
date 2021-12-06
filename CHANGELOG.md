@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.2](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.1...v1.7.2) (2021-12-06)
+
+
+### Bug Fixes
+
+* LineGraph legend text size ([a4b22e4](https://www.github.com/donkeyclip/motorcortex-graphs/commit/a4b22e44ff6225f671d9f1a11e1e67e6776ae753))
+
 ### [1.7.1](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.0...v1.7.1) (2021-11-29)
 
 
