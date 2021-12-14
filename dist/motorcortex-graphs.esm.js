@@ -19,6 +19,9 @@ function _defineProperties$3(target, props) {
 function _createClass$3(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties$3(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties$3(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
   return Constructor;
 }
 
@@ -42,12 +45,15 @@ function _inherits$2(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function");
   }
 
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
+  Object.defineProperty(subClass, "prototype", {
+    value: Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        writable: true,
+        configurable: true
+      }
+    }),
+    writable: false
   });
   if (superClass) _setPrototypeOf$3(subClass, superClass);
 }
