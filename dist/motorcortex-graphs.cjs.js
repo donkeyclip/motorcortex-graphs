@@ -298,20 +298,20 @@ var hasOwnProperty_1 = Object.hasOwn || function hasOwn(it, key) {
   return hasOwnProperty(toObject$3(it), key);
 };
 
-var DESCRIPTORS$b = descriptors;
+var DESCRIPTORS$c = descriptors;
 
 var hasOwn$a = hasOwnProperty_1;
 
 var FunctionPrototype$2 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
-var getDescriptor = DESCRIPTORS$b && Object.getOwnPropertyDescriptor;
+var getDescriptor = DESCRIPTORS$c && Object.getOwnPropertyDescriptor;
 var EXISTS$1 = hasOwn$a(FunctionPrototype$2, 'name'); // additional protection from minified / mangled / dropped function names
 
 var PROPER = EXISTS$1 && function something() {
   /* empty */
 }.name === 'something';
 
-var CONFIGURABLE = EXISTS$1 && (!DESCRIPTORS$b || DESCRIPTORS$b && getDescriptor(FunctionPrototype$2, 'name').configurable);
+var CONFIGURABLE = EXISTS$1 && (!DESCRIPTORS$c || DESCRIPTORS$c && getDescriptor(FunctionPrototype$2, 'name').configurable);
 var functionName = {
   EXISTS: EXISTS$1,
   PROPER: PROPER,
@@ -344,14 +344,14 @@ var documentCreateElement$2 = function (it) {
   return EXISTS ? document$1.createElement(it) : {};
 };
 
-var DESCRIPTORS$a = descriptors;
+var DESCRIPTORS$b = descriptors;
 
 var fails$i = fails$k;
 
 var createElement = documentCreateElement$2; // Thank's IE8 for his funny defineProperty
 
 
-var ie8DomDefine = !DESCRIPTORS$a && !fails$i(function () {
+var ie8DomDefine = !DESCRIPTORS$b && !fails$i(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- requied for testing
   return Object.defineProperty(createElement('div'), 'a', {
     get: function () {
@@ -524,11 +524,11 @@ var shared$4 = {exports: {}};
 var global$v = global$G; // eslint-disable-next-line es/no-object-defineproperty -- safe
 
 
-var defineProperty$6 = Object.defineProperty;
+var defineProperty$7 = Object.defineProperty;
 
 var setGlobal$3 = function (key, value) {
   try {
-    defineProperty$6(global$v, key, {
+    defineProperty$7(global$v, key, {
       value: value,
       configurable: true,
       writable: true
@@ -553,7 +553,7 @@ var store$2 = sharedStore;
 (shared$4.exports = function (key, value) {
   return store$2[key] || (store$2[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.19.3',
+  version: '3.20.0',
   mode: 'global',
   copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 });
@@ -648,7 +648,7 @@ var toPropertyKey$3 = function (argument) {
 
 var global$r = global$G;
 
-var DESCRIPTORS$9 = descriptors;
+var DESCRIPTORS$a = descriptors;
 
 var IE8_DOM_DEFINE$1 = ie8DomDefine;
 
@@ -661,7 +661,7 @@ var TypeError$9 = global$r.TypeError; // eslint-disable-next-line es/no-object-d
 var $defineProperty = Object.defineProperty; // `Object.defineProperty` method
 // https://tc39.es/ecma262/#sec-object.defineproperty
 
-objectDefineProperty.f = DESCRIPTORS$9 ? $defineProperty : function defineProperty(O, P, Attributes) {
+objectDefineProperty.f = DESCRIPTORS$a ? $defineProperty : function defineProperty(O, P, Attributes) {
   anObject$a(O);
   P = toPropertyKey$2(P);
   anObject$a(Attributes);
@@ -675,13 +675,13 @@ objectDefineProperty.f = DESCRIPTORS$9 ? $defineProperty : function defineProper
   return O;
 };
 
-var DESCRIPTORS$8 = descriptors;
+var DESCRIPTORS$9 = descriptors;
 
 var FUNCTION_NAME_EXISTS = functionName.EXISTS;
 
 var uncurryThis$m = functionUncurryThis;
 
-var defineProperty$5 = objectDefineProperty.f;
+var defineProperty$6 = objectDefineProperty.f;
 
 var FunctionPrototype$1 = Function.prototype;
 var functionToString$1 = uncurryThis$m(FunctionPrototype$1.toString);
@@ -690,8 +690,8 @@ var regExpExec$1 = uncurryThis$m(nameRE.exec);
 var NAME = 'name'; // Function instances `.name` property
 // https://tc39.es/ecma262/#sec-function-instances-name
 
-if (DESCRIPTORS$8 && !FUNCTION_NAME_EXISTS) {
-  defineProperty$5(FunctionPrototype$1, NAME, {
+if (DESCRIPTORS$9 && !FUNCTION_NAME_EXISTS) {
+  defineProperty$6(FunctionPrototype$1, NAME, {
     configurable: true,
     get: function () {
       try {
@@ -767,7 +767,7 @@ var toIndexedObject$7 = function (it) {
   return IndexedObject$2(requireObjectCoercible$5(it));
 };
 
-var DESCRIPTORS$7 = descriptors;
+var DESCRIPTORS$8 = descriptors;
 
 var call$6 = functionCall;
 
@@ -787,7 +787,7 @@ var IE8_DOM_DEFINE = ie8DomDefine; // eslint-disable-next-line es/no-object-geto
 var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
 // https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
 
-objectGetOwnPropertyDescriptor.f = DESCRIPTORS$7 ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
+objectGetOwnPropertyDescriptor.f = DESCRIPTORS$8 ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
   O = toIndexedObject$6(O);
   P = toPropertyKey$1(P);
   if (IE8_DOM_DEFINE) try {
@@ -798,13 +798,13 @@ objectGetOwnPropertyDescriptor.f = DESCRIPTORS$7 ? $getOwnPropertyDescriptor : f
   if (hasOwn$8(O, P)) return createPropertyDescriptor$3(!call$6(propertyIsEnumerableModule.f, O, P), O[P]);
 };
 
-var DESCRIPTORS$6 = descriptors;
+var DESCRIPTORS$7 = descriptors;
 
 var definePropertyModule$5 = objectDefineProperty;
 
 var createPropertyDescriptor$2 = createPropertyDescriptor$4;
 
-var createNonEnumerableProperty$8 = DESCRIPTORS$6 ? function (object, key, value) {
+var createNonEnumerableProperty$8 = DESCRIPTORS$7 ? function (object, key, value) {
   return definePropertyModule$5.f(object, key, createPropertyDescriptor$2(1, value));
 } : function (object, key, value) {
   object[key] = value;
@@ -1143,14 +1143,17 @@ var getOwnPropertyDescriptorModule = objectGetOwnPropertyDescriptor;
 
 var definePropertyModule$4 = objectDefineProperty;
 
-var copyConstructorProperties$1 = function (target, source) {
+var copyConstructorProperties$1 = function (target, source, exceptions) {
   var keys = ownKeys$1(source);
   var defineProperty = definePropertyModule$4.f;
   var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
 
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
-    if (!hasOwn$4(target, key)) defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+
+    if (!hasOwn$4(target, key) && !(exceptions && hasOwn$4(exceptions, key))) {
+      defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+    }
   }
 };
 
@@ -1315,7 +1318,7 @@ var constructorRegExp = /^\s*(?:class|function)\b/;
 var exec$3 = uncurryThis$f(constructorRegExp.exec);
 var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
 
-var isConstructorModern = function (argument) {
+var isConstructorModern = function isConstructor(argument) {
   if (!isCallable$6(argument)) return false;
 
   try {
@@ -1326,7 +1329,7 @@ var isConstructorModern = function (argument) {
   }
 };
 
-var isConstructorLegacy = function (argument) {
+var isConstructorLegacy = function isConstructor(argument) {
   if (!isCallable$6(argument)) return false;
 
   switch (classof$6(argument)) {
@@ -1334,13 +1337,20 @@ var isConstructorLegacy = function (argument) {
     case 'GeneratorFunction':
     case 'AsyncGeneratorFunction':
       return false;
-    // we can't check .prototype since constructors produced by .bind haven't it
   }
 
-  return INCORRECT_TO_STRING || !!exec$3(constructorRegExp, inspectSource(argument));
-}; // `IsConstructor` abstract operation
-// https://tc39.es/ecma262/#sec-isconstructor
+  try {
+    // we can't check .prototype since constructors produced by .bind haven't it
+    // `Function#toString` throws on some built-it function in some legacy engines
+    // (for example, `DOMQuad` and similar in FF41-)
+    return INCORRECT_TO_STRING || !!exec$3(constructorRegExp, inspectSource(argument));
+  } catch (error) {
+    return true;
+  }
+};
 
+isConstructorLegacy.sham = true; // `IsConstructor` abstract operation
+// https://tc39.es/ecma262/#sec-isconstructor
 
 var isConstructor$3 = !construct || fails$e(function () {
   var called;
@@ -4125,7 +4135,8 @@ $$3({
     var data = [0, 0, 0, 0, 0, 0];
     var sign = '';
     var result = '0';
-    var e, z, j, k;
+    var e, z, j, k; // TODO: ES2018 increased the maximum number of fraction digits to 100, need to improve the implementation
+
     if (fractDigits < 0 || fractDigits > 20) throw RangeError('Incorrect fraction digits'); // eslint-disable-next-line no-self-compare -- NaN check
 
     if (number != number) return 'NaN';
@@ -8129,7 +8140,7 @@ var definePropertyModule$2 = objectDefineProperty;
 
 var wellKnownSymbol$8 = wellKnownSymbol$h;
 
-var DESCRIPTORS$5 = descriptors;
+var DESCRIPTORS$6 = descriptors;
 
 var SPECIES$2 = wellKnownSymbol$8('species');
 
@@ -8137,7 +8148,7 @@ var setSpecies$1 = function (CONSTRUCTOR_NAME) {
   var Constructor = getBuiltIn$1(CONSTRUCTOR_NAME);
   var defineProperty = definePropertyModule$2.f;
 
-  if (DESCRIPTORS$5 && Constructor && !Constructor[SPECIES$2]) {
+  if (DESCRIPTORS$6 && Constructor && !Constructor[SPECIES$2]) {
     defineProperty(Constructor, SPECIES$2, {
       configurable: true,
       get: function () {
@@ -8169,7 +8180,7 @@ var regexpUnsupportedNcg = fails$6(function () {
   return re.exec('b').groups.a !== 'b' || 'b'.replace(re, '$<a>c') !== 'bc';
 });
 
-var DESCRIPTORS$4 = descriptors;
+var DESCRIPTORS$5 = descriptors;
 
 var global$9 = global$G;
 
@@ -8181,7 +8192,7 @@ var inheritIfRequired$1 = inheritIfRequired$2;
 
 var createNonEnumerableProperty$3 = createNonEnumerableProperty$8;
 
-var defineProperty$4 = objectDefineProperty.f;
+var defineProperty$5 = objectDefineProperty.f;
 
 var getOwnPropertyNames$1 = objectGetOwnPropertyNames.f;
 
@@ -8229,7 +8240,7 @@ var re2 = /a/g; // "new" should create a new object, old webkit bug
 var CORRECT_NEW = new NativeRegExp(re1) !== re1;
 var MISSED_STICKY$1 = stickyHelpers$2.MISSED_STICKY;
 var UNSUPPORTED_Y$2 = stickyHelpers$2.UNSUPPORTED_Y;
-var BASE_FORCED = DESCRIPTORS$4 && (!CORRECT_NEW || MISSED_STICKY$1 || UNSUPPORTED_DOT_ALL$2 || UNSUPPORTED_NCG$1 || fails$5(function () {
+var BASE_FORCED = DESCRIPTORS$5 && (!CORRECT_NEW || MISSED_STICKY$1 || UNSUPPORTED_DOT_ALL$2 || UNSUPPORTED_NCG$1 || fails$5(function () {
   re2[MATCH] = false; // RegExp constructor can alter flags and IsRegExp works correct with @@match
 
   return NativeRegExp(re1) != re1 || NativeRegExp(re2) == re2 || NativeRegExp(re1, 'i') != '/a/i';
@@ -8384,7 +8395,7 @@ if (isForced$1('RegExp', BASE_FORCED)) {
   };
 
   var proxy = function (key) {
-    key in RegExpWrapper || defineProperty$4(RegExpWrapper, key, {
+    key in RegExpWrapper || defineProperty$5(RegExpWrapper, key, {
       configurable: true,
       get: function () {
         return NativeRegExp[key];
@@ -8409,13 +8420,13 @@ setSpecies('RegExp');
 
 var global$8 = global$G;
 
-var DESCRIPTORS$3 = descriptors;
+var DESCRIPTORS$4 = descriptors;
 
 var UNSUPPORTED_DOT_ALL$1 = regexpUnsupportedDotAll;
 
 var classof$2 = classofRaw$1;
 
-var defineProperty$3 = objectDefineProperty.f;
+var defineProperty$4 = objectDefineProperty.f;
 
 var getInternalState$3 = internalState.get;
 
@@ -8423,8 +8434,8 @@ var RegExpPrototype$2 = RegExp.prototype;
 var TypeError$5 = global$8.TypeError; // `RegExp.prototype.dotAll` getter
 // https://tc39.es/ecma262/#sec-get-regexp.prototype.dotall
 
-if (DESCRIPTORS$3 && UNSUPPORTED_DOT_ALL$1) {
-  defineProperty$3(RegExpPrototype$2, 'dotAll', {
+if (DESCRIPTORS$4 && UNSUPPORTED_DOT_ALL$1) {
+  defineProperty$4(RegExpPrototype$2, 'dotAll', {
     configurable: true,
     get: function () {
       if (this === RegExpPrototype$2) return undefined; // We can't use InternalStateModule.getterFor because
@@ -8450,7 +8461,7 @@ var objectKeys$1 = Object.keys || function keys(O) {
   return internalObjectKeys(O, enumBugKeys$1);
 };
 
-var DESCRIPTORS$2 = descriptors;
+var DESCRIPTORS$3 = descriptors;
 
 var definePropertyModule$1 = objectDefineProperty;
 
@@ -8463,7 +8474,7 @@ var objectKeys = objectKeys$1; // `Object.defineProperties` method
 // eslint-disable-next-line es/no-object-defineproperties -- safe
 
 
-var objectDefineProperties = DESCRIPTORS$2 ? Object.defineProperties : function defineProperties(O, Properties) {
+var objectDefineProperties = DESCRIPTORS$3 ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject$5(O);
   var props = toIndexedObject$1(Properties);
   var keys = objectKeys(Properties);
@@ -8724,13 +8735,13 @@ $$1({
 
 var global$7 = global$G;
 
-var DESCRIPTORS$1 = descriptors;
+var DESCRIPTORS$2 = descriptors;
 
 var MISSED_STICKY = regexpStickyHelpers.MISSED_STICKY;
 
 var classof$1 = classofRaw$1;
 
-var defineProperty$2 = objectDefineProperty.f;
+var defineProperty$3 = objectDefineProperty.f;
 
 var getInternalState$1 = internalState.get;
 
@@ -8738,8 +8749,8 @@ var RegExpPrototype$1 = RegExp.prototype;
 var TypeError$4 = global$7.TypeError; // `RegExp.prototype.sticky` getter
 // https://tc39.es/ecma262/#sec-get-regexp.prototype.sticky
 
-if (DESCRIPTORS$1 && MISSED_STICKY) {
-  defineProperty$2(RegExpPrototype$1, 'sticky', {
+if (DESCRIPTORS$2 && MISSED_STICKY) {
+  defineProperty$3(RegExpPrototype$1, 'sticky', {
     configurable: true,
     get: function () {
       if (this === RegExpPrototype$1) return undefined; // We can't use InternalStateModule.getterFor because
@@ -9003,7 +9014,7 @@ var stringTrim = {
   trim: createMethod(3)
 };
 
-var DESCRIPTORS = descriptors;
+var DESCRIPTORS$1 = descriptors;
 
 var global$5 = global$G;
 
@@ -9029,7 +9040,7 @@ var getOwnPropertyNames = objectGetOwnPropertyNames.f;
 
 var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
 
-var defineProperty$1 = objectDefineProperty.f;
+var defineProperty$2 = objectDefineProperty.f;
 
 var thisNumberValue = thisNumberValue$2;
 
@@ -9111,12 +9122,12 @@ if (isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumb
     }) ? inheritIfRequired(Object(n), dummy, NumberWrapper) : n;
   };
 
-  for (var keys = DESCRIPTORS ? getOwnPropertyNames(NativeNumber) : ( // ES3:
+  for (var keys = DESCRIPTORS$1 ? getOwnPropertyNames(NativeNumber) : ( // ES3:
   'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' + // ES2015 (in case, if modules with ES2015 Number statics required before):
   'EPSILON,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,isFinite,isInteger,isNaN,isSafeInteger,parseFloat,parseInt,' + // ESNext
   'fromString,range').split(','), j = 0, key; keys.length > j; j++) {
     if (hasOwn$2(NativeNumber, key = keys[j]) && !hasOwn$2(NumberWrapper, key)) {
-      defineProperty$1(NumberWrapper, key, getOwnPropertyDescriptor(NativeNumber, key));
+      defineProperty$2(NumberWrapper, key, getOwnPropertyDescriptor(NativeNumber, key));
     }
   }
 
@@ -9838,7 +9849,7 @@ var iteratorsCore = {
   BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS$1
 };
 
-var defineProperty = objectDefineProperty.f;
+var defineProperty$1 = objectDefineProperty.f;
 
 var hasOwn = hasOwnProperty_1;
 
@@ -9846,9 +9857,11 @@ var wellKnownSymbol$3 = wellKnownSymbol$h;
 
 var TO_STRING_TAG$1 = wellKnownSymbol$3('toStringTag');
 
-var setToStringTag$2 = function (it, TAG, STATIC) {
-  if (it && !hasOwn(it = STATIC ? it : it.prototype, TO_STRING_TAG$1)) {
-    defineProperty(it, TO_STRING_TAG$1, {
+var setToStringTag$2 = function (target, TAG, STATIC) {
+  if (target && !STATIC) target = target.prototype;
+
+  if (target && !hasOwn(target, TO_STRING_TAG$1)) {
+    defineProperty$1(target, TO_STRING_TAG$1, {
       configurable: true,
       value: TAG
     });
@@ -10022,7 +10035,11 @@ var Iterators = iterators;
 
 var InternalStateModule = internalState;
 
+var defineProperty = objectDefineProperty.f;
+
 var defineIterator = defineIterator$1;
+
+var DESCRIPTORS = descriptors;
 
 var ARRAY_ITERATOR = 'Array Iterator';
 var setInternalState = InternalStateModule.set;
@@ -10078,11 +10095,19 @@ var es_array_iterator = defineIterator(Array, 'Array', function (iterated, kind)
 // https://tc39.es/ecma262/#sec-createunmappedargumentsobject
 // https://tc39.es/ecma262/#sec-createmappedargumentsobject
 
-Iterators.Arguments = Iterators.Array; // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+var values = Iterators.Arguments = Iterators.Array; // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
 
 addToUnscopables('keys');
 addToUnscopables('values');
-addToUnscopables('entries');
+addToUnscopables('entries'); // V8 ~ Chrome 45- bug
+
+if (DESCRIPTORS && values.name !== 'values') try {
+  defineProperty(values, 'name', {
+    value: 'values'
+  });
+} catch (error) {
+  /* empty */
+}
 
 var global$3 = global$G;
 
