@@ -27,7 +27,7 @@
 
 Using MotorCortex Graphs, one can create fully configurable animations of graphs using real data. It allows for control over animation timing, coloring, sizing and font stylizing. The library currently exposes incidents of a Progress-Bar, and a Bar-Chart animations.
 
-This Plugin exposes two Incidents:
+This Plugin exposes five Incidents:
 - BarChartSimple
 - LineGraph
 - PieChart
