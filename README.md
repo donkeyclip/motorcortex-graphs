@@ -2,7 +2,7 @@
 
 **Table of Contents**
 
-- [MotorMortex-Graphs](#motorcortex-graphs)
+- [MotorCortex-Graphs](#motorcortex-graphs)
   - [Demo](#demo)
 - [Intro / Features](#intro--features)
 - [Getting Started](#getting-started)
