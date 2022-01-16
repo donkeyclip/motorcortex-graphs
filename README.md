@@ -105,7 +105,7 @@ const newGraph = new MCGraphs.BarChartSimple(
 
 #### Data:
 
-An object that contains the parameters with which is going to display the data in the graph. The dataPoint array is a required entry, but all the rest are optional.
+An object that contains the parameters with which the data are being displayed in the graph. The dataPoint array is a required entry, but all the rest are optional.
 
 | Name     | Description                                       |        Type      |
 | -------- | :------------------------------------------------ | :--------------: |
@@ -230,7 +230,7 @@ const newGraph = new MCGraphs.BarChartSimple(
 
 #### Data:
 
-An object that contains the parameters with which to display the data in the graph. The dataPoint array is a required entry, but all the rest are optional.
+An object that contains the parameters with which the data are being displayed in the graph. The dataPoint array is a required entry, but all the rest are optional.
 
 | Name     | Description                                              |        Type        |
 | -------- | :------------------------------------------------------- | :----------------: |
@@ -635,7 +635,7 @@ const progressMeter = new MCGraphs.ProgressMeter({
 
 #### Data:
 
-An object that contains the parameters with which to display the meter. The "value" parameter is required, but all the rest are optional.
+An object that contains the parameters with which the meter is being displayed. The "value" parameter is required, but all the rest are optional.
 
 | Name      | Description                                                   |   Type   |
 | --------- | :------------------------------------------------------------ | :------: |
