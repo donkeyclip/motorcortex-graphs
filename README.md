@@ -105,7 +105,7 @@ const newGraph = new MCGraphs.BarChartSimple(
 
 #### Data:
 
-An object that contains the parameters with which to display the data in the graph. The dataPoint array is a required entry, but all the rest are optional.
+An object that contains the parameters with which is going to display the data in the graph. The dataPoint array is a required entry, but all the rest are optional.
 
 | Name     | Description                                       |        Type      |
 | -------- | :------------------------------------------------ | :--------------: |
