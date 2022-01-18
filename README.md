@@ -62,7 +62,7 @@ const MCGraphs = loadPlugin(MotorCortexGraph);
 
 ## BarChartSimple
 
-To create a bar chart, the necessary attribute parameter is the data object. The remaining parameters implement customization of the graph and are all optional.
+To create a bar chart, the necessary attribute parameter is the data object. The remaining parameters implement a customization of the graph and are all optional.
 
 ```javascript
 const newGraph = new MCGraphs.BarChartSimple(
@@ -142,7 +142,7 @@ Example data:
 
 #### Datapoints:
 
-The data array of the graph contains `datapoint` objects. These Objects contain two (2) key-value pairs. These key value pairs are:
+The data array of the graph contains `datapoint` objects. These Objects contain two (2) key-value pairs:
 
 | Key   | Description                                         | Value Type |
 | ----- | :-------------------------------------------------- | :--------: |
@@ -287,7 +287,7 @@ Example data:
 
 #### Datapoints:
 
-The data array of the graph contains `datapoint` objects. These Objects contain two (2) key-value pairs. These key value pairs are:
+The data array of the graph contains `datapoint` objects. These Objects contain two (2) key-value pairs:
 
 | Key   | Description                                             |   Value Type    |
 | ----- | :------------------------------------------------------ | :-------------: |
@@ -313,7 +313,7 @@ The length of the array should be equal to the number of lines in the graph. Eac
 
 #### DataSet:
 
-The dataSet array of contains `dataSet` objects. These Objects contain two (2) key-value pairs. These key value pairs are:
+The dataSet array of contains `dataSet` objects. These Objects contain two (2) key-value pairs:
 
 | Key   | Description                                  |     Value Type     |
 | ----- | :------------------------------------------- | :----------------: |
