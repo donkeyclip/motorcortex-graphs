@@ -74,7 +74,7 @@
     "@babel/eslint-parser": "7.16.5",
     "@babel/plugin-syntax-jsx": "7.16.7",
     "@babel/plugin-transform-react-jsx": "7.16.7",
-    "@babel/preset-env": "7.16.10",
+    "@babel/preset-env": "7.16.11",
     "@donkeyclip/motorcortex": "7.7.0",
     "@donkeyclip/motorcortex-2dcam": "0.0.16",
     "@donkeyclip/motorcortex-counter": "1.1.1",
