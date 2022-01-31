@@ -1,9 +1,7 @@
-import MotorCortex from "@donkeyclip/motorcortex";
-import AnimePlugin from "@donkeyclip/motorcortex-anime";
+import MotorCortex,{CSSEffect } from "@donkeyclip/motorcortex";
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
 import buildCSS from "./barChartStylesheet";
-const Anime = MotorCortex.loadPlugin(AnimePlugin);
 
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
@@ -150,7 +148,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         {
           incidents: [
             {
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   height: "70%",
@@ -167,7 +165,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
               position: Math.trunc(this.introDur * 0),
             },
             {
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   width: "74%",
@@ -192,7 +190,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(axisCombo, this.introDur * 0);
 
       // GridLines Intro Control
-      const gridLinesAnim = new Anime.Anime(
+      const gridLinesAnim = new CSSEffect(
         {
           animatedAttrs: {
             width: "100%",
@@ -212,7 +210,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       // Title Bar Intro Control
       const titlesAnim = new MotorCortex.Group();
       titlesAnim.addIncident(
-        new Anime.Anime(
+        new CSSEffect(
           {
             animatedAttrs: {
               width: "100%",
@@ -237,7 +235,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       const titleIncidents = [];
       for (const i in this.title) {
         titleIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               left: "0px",
@@ -273,7 +271,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       const subIncidents = [];
       for (const i in this.subtitle) {
         subIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               left: "0px",
@@ -307,7 +305,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       // Labels (xAxis) Intro Control
       const xLabelsAnim = new MotorCortex.Group();
       xLabelsAnim.addIncident(
-        new Anime.Anime(
+        new CSSEffect(
           {
             animatedAttrs: {
               width: "70%",
@@ -334,7 +332,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         const incidents = [];
         for (const z in this.data[i].name) {
           incidents.push({
-            incidentClass: Anime.Anime,
+            incidentClass: CSSEffect,
             attrs: {
               animatedAttrs: {
                 top: "0px",
@@ -374,7 +372,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         {
           incidents: [
             {
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   height: "100%",
@@ -411,7 +409,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         {
           incidents: [
             {
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   width: "0%",
@@ -428,7 +426,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
               position: this.outroDur * 0,
             },
             {
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   height: "0%",
@@ -453,7 +451,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       outroGroup.addIncident(axisCombooutro, Math.trunc(this.outroDur * 0.5));
 
       // GridLines Outro Control
-      const gridLinesoutro = new Anime.Anime(
+      const gridLinesoutro = new CSSEffect(
         {
           animatedAttrs: {
             width: "0%",
@@ -473,7 +471,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       // Title Bar Outro Control
       const titlesoutro = new MotorCortex.Group();
       titlesoutro.addIncident(
-        new Anime.Anime(
+        new CSSEffect(
           {
             animatedAttrs: {
               width: "0%",
@@ -497,7 +495,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       const titleIncidents = [];
       for (const i in this.title) {
         titleIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               left: "20px",
@@ -532,7 +530,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       const subIncidents = [];
       for (const i in this.subtitle) {
         subIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               left: "20px",
@@ -568,7 +566,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       // Labels (xAxis) Outro Control
       const xLabelsoutro = new MotorCortex.Group();
       xLabelsoutro.addIncident(
-        new Anime.Anime(
+        new CSSEffect(
           {
             animatedAttrs: {
               width: "0%",
@@ -595,7 +593,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         const incidents = [];
         for (const z in this.data[i].name) {
           incidents.push({
-            incidentClass: Anime.Anime,
+            incidentClass: CSSEffect,
             attrs: {
               animatedAttrs: {
                 opacity: 0,
@@ -634,7 +632,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       const barIncidents = [];
       for (const i in this.data) {
         barIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               height: "0%",
@@ -665,7 +663,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     }
 
     // STATIC DURATION CONTROL
-    const staticIncident = new Anime.Anime(
+    const staticIncident = new CSSEffect(
       { animatedAttrs: {} },
       {
         selector: ".container-barChart",

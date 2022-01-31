@@ -45,7 +45,7 @@
     ]
   },
   "dependencies": {
-    "@donkeyclip/motorcortex-anime": "^2.1.16",
+    "@donkeyclip/motorcortex-anime": "^2.1.17",
     "browserify": "^17.0.0",
     "jss": "^10.8.0"
   },

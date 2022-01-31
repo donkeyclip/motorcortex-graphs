@@ -1,13 +1,12 @@
-import MotorCortex from "@donkeyclip/motorcortex";
-import AnimePlugin from "@donkeyclip/motorcortex-anime";
-const Anime = MotorCortex.loadPlugin(AnimePlugin);
+import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
+
 
 // Static control
 // Making the contents of this animation invisible before timestamp:0
 // and after timestamp: {totalDuration}
 export function opacityControl(clip, selector) {
   clip.addIncident(
-    new Anime.Anime(
+    new CSSEffect(
       {
         animatedAttrs: {
           opacity: 1,
@@ -24,7 +23,7 @@ export function opacityControl(clip, selector) {
     0
   );
   clip.addIncident(
-    new Anime.Anime(
+    new CSSEffect(
       {
         animatedAttrs: {
           opacity: 0,
@@ -44,7 +43,7 @@ export function opacityControl(clip, selector) {
 // and after timestamp: {totalDuration}
 export function fadeOutOpacityControl(clip, selector) {
   clip.addIncident(
-    new Anime.Anime(
+    new CSSEffect(
       {
         animatedAttrs: {
           opacity: 1,
@@ -62,7 +61,7 @@ export function fadeOutOpacityControl(clip, selector) {
   );
   if (!clip.attrs.timings.outro) {
     clip.addIncident(
-      new Anime.Anime(
+      new CSSEffect(
         {
           animatedAttrs: {
             opacity: 0,

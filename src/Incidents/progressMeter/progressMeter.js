@@ -1,8 +1,9 @@
-import MotorCortex from "@donkeyclip/motorcortex";
-import AnimePlugin from "@donkeyclip/motorcortex-anime";
-const Anime = MotorCortex.loadPlugin(AnimePlugin);
+import MotorCortex,{CSSEffect,setCSSCore} from "@donkeyclip/motorcortex";
+import AnimeDefinition from "@donkeyclip/motorcortex-anime";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
 const Counter = MotorCortex.loadPlugin(CounterPlugin);
+const AnimeEffect = AnimeDefinition.CSSEffect;
+setCSSCore(AnimeEffect);
 
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
@@ -169,7 +170,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       const trackAnimsDur = this.introDur * 0.7;
 
       // Circle Track Intro Animation
-      const circleTrackAnim = new Anime.Anime(
+      const circleTrackAnim = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-dashoffset": 0,
@@ -187,7 +188,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       introGroup.addIncident(circleTrackAnim, 0);
 
       // Circle Path Intro Animation
-      const circlePathAnim = new Anime.Anime(
+      const circlePathAnim = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-dashoffset":
@@ -206,7 +207,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       introGroup.addIncident(circlePathAnim, Math.trunc(this.introDur * 0.3));
 
       // Circle Track Animation Fade In Effect
-      const circleTrackFadeIn = new Anime.Anime(
+      const circleTrackFadeIn = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-width": this.boxSize * 0.05,
@@ -224,7 +225,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       introGroup.addIncident(circleTrackFadeIn, 0);
 
       // Circle Path Animation Fade In Effect
-      const circlePathFadeIn = new Anime.Anime(
+      const circlePathFadeIn = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-width": this.boxSize * 0.05,
@@ -242,7 +243,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       introGroup.addIncident(circlePathFadeIn, Math.trunc(this.introDur * 0.3));
 
       // Indicator Fade In Animation
-      const indicatorFade = new Anime.Anime(
+      const indicatorFade = new CSSEffect(
         {
           animatedAttrs: {
             opacity: 1,
@@ -276,7 +277,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
       if (this.innerSVG) {
         // Gradient Background Fill-Up Intro Animation
-        const gradientBackFillBottom = new Anime.Anime(
+        const gradientBackFillBottom = new CSSEffect(
           {
             animatedAttrs: {
               offset: `100%`,
@@ -294,7 +295,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         introGroup.addIncident(gradientBackFillBottom, 0);
 
         // Gradient Background Fill-Up Intro Animation
-        const gradientFill = new Anime.Anime(
+        const gradientFill = new CSSEffect(
           {
             animatedAttrs: {
               offset: `${this.data.value}%`,
@@ -311,7 +312,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         );
         introGroup.addIncident(gradientFill, Math.trunc(this.introDur * 0.3));
 
-        const svgOpacity = new Anime.Anime(
+        const svgOpacity = new CSSEffect(
           {
             animatedAttrs: {
               opacity: 1,
@@ -339,7 +340,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       const trackAnimsDur = this.outroDur * 0.7;
 
       // Circle Track OUtro Animation
-      const circleTrackAnim = new Anime.Anime(
+      const circleTrackAnim = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-dashoffset": this.pathLength,
@@ -357,7 +358,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       outroGroup.addIncident(circleTrackAnim, Math.trunc(this.outroDur * 0.3));
 
       // Circle Path Outro Animation
-      const circlePathAnim = new Anime.Anime(
+      const circlePathAnim = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-dashoffset": this.pathLength,
@@ -376,7 +377,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       outroGroup.addIncident(circlePathAnim, 0);
 
       // Circle Track Animation Fade Out Effect
-      const circleTrackFadeIn = new Anime.Anime(
+      const circleTrackFadeIn = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-width": 0,
@@ -397,7 +398,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       );
 
       // Circle Path Animation Fade Out Effect
-      const circlePathFadeIn = new Anime.Anime(
+      const circlePathFadeIn = new CSSEffect(
         {
           animatedAttrs: {
             "stroke-width": 0,
@@ -418,7 +419,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       );
 
       // Indicator Fade Out Animation
-      const indicatorFade = new Anime.Anime(
+      const indicatorFade = new CSSEffect(
         {
           animatedAttrs: {
             opacity: 0,
@@ -452,7 +453,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
       if (this.innerSVG) {
         // Gradient Background Empty-Out Intro Animation4
-        const gradientBackFillBottom = new Anime.Anime(
+        const gradientBackFillBottom = new CSSEffect(
           {
             animatedAttrs: {
               offset: `${0}%`,
@@ -473,7 +474,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         );
 
         // Gradient Background Fill-Up Intro Animation
-        const gradientFill = new Anime.Anime(
+        const gradientFill = new CSSEffect(
           {
             animatedAttrs: {
               offset: `0%`,
@@ -490,7 +491,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         );
         outroGroup.addIncident(gradientFill, 0);
 
-        const svgOpacity = new Anime.Anime(
+        const svgOpacity = new CSSEffect(
           {
             animatedAttrs: {
               opacity: 0,
@@ -512,7 +513,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
     }
 
     // STATIC DURATION CONTROL
-    const staticIncident = new Anime.Anime(
+    const staticIncident = new CSSEffect(
       { animatedAttrs: {} },
       {
         selector: ".container-progressMeter",
