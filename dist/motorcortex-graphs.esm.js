@@ -1,4 +1,4 @@
-import MotorCortex from '@donkeyclip/motorcortex';
+import MotorCortex, { CSSEffect, Effect, setCSSCore } from '@donkeyclip/motorcortex';
 
 function _classCallCheck$2(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -214,9 +214,9 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   };
 }
 
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+var commonjsGlobal$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-var fails$n = function (exec) {
+var fails$p = function (exec) {
   try {
     return !!exec();
   } catch (error) {
@@ -224,10 +224,10 @@ var fails$n = function (exec) {
   }
 };
 
-var fails$m = fails$n; // Detect IE8's incomplete defineProperty implementation
+var fails$o = fails$p; // Detect IE8's incomplete defineProperty implementation
 
 
-var descriptors = !fails$m(function () {
+var descriptors$1 = !fails$o(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty({}, 1, {
     get: function () {
@@ -236,9 +236,9 @@ var descriptors = !fails$m(function () {
   })[1] != 7;
 });
 
-var fails$l = fails$n;
+var fails$n = fails$p;
 
-var functionBindNative = !fails$l(function () {
+var functionBindNative$1 = !fails$n(function () {
   var test = function () {
     /* empty */
   }.bind(); // eslint-disable-next-line no-prototype-builtins -- safe
@@ -247,133 +247,133 @@ var functionBindNative = !fails$l(function () {
   return typeof test != 'function' || test.hasOwnProperty('prototype');
 });
 
-var NATIVE_BIND$3 = functionBindNative;
+var NATIVE_BIND$5 = functionBindNative$1;
 
-var FunctionPrototype$3 = Function.prototype;
-var bind$2 = FunctionPrototype$3.bind;
-var call$a = FunctionPrototype$3.call;
-var uncurryThis$s = NATIVE_BIND$3 && bind$2.bind(call$a, call$a);
-var functionUncurryThis = NATIVE_BIND$3 ? function (fn) {
-  return fn && uncurryThis$s(fn);
+var FunctionPrototype$5 = Function.prototype;
+var bind$3 = FunctionPrototype$5.bind;
+var call$b = FunctionPrototype$5.call;
+var uncurryThis$v = NATIVE_BIND$5 && bind$3.bind(call$b, call$b);
+var functionUncurryThis$1 = NATIVE_BIND$5 ? function (fn) {
+  return fn && uncurryThis$v(fn);
 } : function (fn) {
   return fn && function () {
-    return call$a.apply(fn, arguments);
+    return call$b.apply(fn, arguments);
   };
 };
 
-var check = function (it) {
+var check$1 = function (it) {
   return it && it.Math == Math && it;
 }; // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 
 
-var global$H = // eslint-disable-next-line es/no-global-this -- safe
-check(typeof globalThis == 'object' && globalThis) || check(typeof window == 'object' && window) || // eslint-disable-next-line no-restricted-globals -- safe
-check(typeof self == 'object' && self) || check(typeof commonjsGlobal == 'object' && commonjsGlobal) || // eslint-disable-next-line no-new-func -- fallback
+var global$R = // eslint-disable-next-line es/no-global-this -- safe
+check$1(typeof globalThis == 'object' && globalThis) || check$1(typeof window == 'object' && window) || // eslint-disable-next-line no-restricted-globals -- safe
+check$1(typeof self == 'object' && self) || check$1(typeof commonjsGlobal$1 == 'object' && commonjsGlobal$1) || // eslint-disable-next-line no-new-func -- fallback
 function () {
   return this;
 }() || Function('return this')();
 
-var global$G = global$H;
+var global$Q = global$R;
 
-var TypeError$e = global$G.TypeError; // `RequireObjectCoercible` abstract operation
+var TypeError$g = global$Q.TypeError; // `RequireObjectCoercible` abstract operation
 // https://tc39.es/ecma262/#sec-requireobjectcoercible
 
-var requireObjectCoercible$7 = function (it) {
-  if (it == undefined) throw TypeError$e("Can't call method on " + it);
+var requireObjectCoercible$8 = function (it) {
+  if (it == undefined) throw TypeError$g("Can't call method on " + it);
   return it;
 };
 
-var global$F = global$H;
+var global$P = global$R;
 
-var requireObjectCoercible$6 = requireObjectCoercible$7;
+var requireObjectCoercible$7 = requireObjectCoercible$8;
 
-var Object$5 = global$F.Object; // `ToObject` abstract operation
+var Object$8 = global$P.Object; // `ToObject` abstract operation
 // https://tc39.es/ecma262/#sec-toobject
 
-var toObject$4 = function (argument) {
-  return Object$5(requireObjectCoercible$6(argument));
+var toObject$7 = function (argument) {
+  return Object$8(requireObjectCoercible$7(argument));
 };
 
-var uncurryThis$r = functionUncurryThis;
+var uncurryThis$u = functionUncurryThis$1;
 
-var toObject$3 = toObject$4;
+var toObject$6 = toObject$7;
 
-var hasOwnProperty = uncurryThis$r({}.hasOwnProperty); // `HasOwnProperty` abstract operation
+var hasOwnProperty$1 = uncurryThis$u({}.hasOwnProperty); // `HasOwnProperty` abstract operation
 // https://tc39.es/ecma262/#sec-hasownproperty
 
-var hasOwnProperty_1 = Object.hasOwn || function hasOwn(it, key) {
-  return hasOwnProperty(toObject$3(it), key);
+var hasOwnProperty_1$1 = Object.hasOwn || function hasOwn(it, key) {
+  return hasOwnProperty$1(toObject$6(it), key);
 };
 
-var DESCRIPTORS$d = descriptors;
+var DESCRIPTORS$e = descriptors$1;
 
-var hasOwn$a = hasOwnProperty_1;
+var hasOwn$e = hasOwnProperty_1$1;
 
-var FunctionPrototype$2 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var FunctionPrototype$4 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
-var getDescriptor = DESCRIPTORS$d && Object.getOwnPropertyDescriptor;
-var EXISTS$1 = hasOwn$a(FunctionPrototype$2, 'name'); // additional protection from minified / mangled / dropped function names
+var getDescriptor$1 = DESCRIPTORS$e && Object.getOwnPropertyDescriptor;
+var EXISTS$3 = hasOwn$e(FunctionPrototype$4, 'name'); // additional protection from minified / mangled / dropped function names
 
-var PROPER = EXISTS$1 && function something() {
+var PROPER$1 = EXISTS$3 && function something() {
   /* empty */
 }.name === 'something';
 
-var CONFIGURABLE$1 = EXISTS$1 && (!DESCRIPTORS$d || DESCRIPTORS$d && getDescriptor(FunctionPrototype$2, 'name').configurable);
-var functionName = {
-  EXISTS: EXISTS$1,
-  PROPER: PROPER,
-  CONFIGURABLE: CONFIGURABLE$1
+var CONFIGURABLE$3 = EXISTS$3 && (!DESCRIPTORS$e || DESCRIPTORS$e && getDescriptor$1(FunctionPrototype$4, 'name').configurable);
+var functionName$1 = {
+  EXISTS: EXISTS$3,
+  PROPER: PROPER$1,
+  CONFIGURABLE: CONFIGURABLE$3
 };
 
-var objectDefineProperty = {};
+var objectDefineProperty$1 = {};
 
 // `IsCallable` abstract operation
 // https://tc39.es/ecma262/#sec-iscallable
-var isCallable$h = function (argument) {
+var isCallable$o = function (argument) {
   return typeof argument == 'function';
 };
 
-var isCallable$g = isCallable$h;
+var isCallable$n = isCallable$o;
 
-var isObject$a = function (it) {
-  return typeof it == 'object' ? it !== null : isCallable$g(it);
+var isObject$h = function (it) {
+  return typeof it == 'object' ? it !== null : isCallable$n(it);
 };
 
-var global$E = global$H;
+var global$O = global$R;
 
-var isObject$9 = isObject$a;
+var isObject$g = isObject$h;
 
-var document$1 = global$E.document; // typeof document.createElement is 'object' in old IE
+var document$2 = global$O.document; // typeof document.createElement is 'object' in old IE
 
-var EXISTS = isObject$9(document$1) && isObject$9(document$1.createElement);
+var EXISTS$2 = isObject$g(document$2) && isObject$g(document$2.createElement);
 
-var documentCreateElement$2 = function (it) {
-  return EXISTS ? document$1.createElement(it) : {};
+var documentCreateElement$3 = function (it) {
+  return EXISTS$2 ? document$2.createElement(it) : {};
 };
 
-var DESCRIPTORS$c = descriptors;
+var DESCRIPTORS$d = descriptors$1;
 
-var fails$k = fails$n;
+var fails$m = fails$p;
 
-var createElement = documentCreateElement$2; // Thanks to IE8 for its funny defineProperty
+var createElement$1 = documentCreateElement$3; // Thanks to IE8 for its funny defineProperty
 
 
-var ie8DomDefine = !DESCRIPTORS$c && !fails$k(function () {
+var ie8DomDefine$1 = !DESCRIPTORS$d && !fails$m(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
-  return Object.defineProperty(createElement('div'), 'a', {
+  return Object.defineProperty(createElement$1('div'), 'a', {
     get: function () {
       return 7;
     }
   }).a != 7;
 });
 
-var DESCRIPTORS$b = descriptors;
+var DESCRIPTORS$c = descriptors$1;
 
-var fails$j = fails$n; // V8 ~ Chrome 36-
+var fails$l = fails$p; // V8 ~ Chrome 36-
 // https://bugs.chromium.org/p/v8/issues/detail?id=3334
 
 
-var v8PrototypeDefineBug = DESCRIPTORS$b && fails$j(function () {
+var v8PrototypeDefineBug$1 = DESCRIPTORS$c && fails$l(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty(function () {
     /* empty */
@@ -383,200 +383,200 @@ var v8PrototypeDefineBug = DESCRIPTORS$b && fails$j(function () {
   }).prototype != 42;
 });
 
-var global$D = global$H;
+var global$N = global$R;
 
-var isObject$8 = isObject$a;
+var isObject$f = isObject$h;
 
-var String$5 = global$D.String;
-var TypeError$d = global$D.TypeError; // `Assert: Type(argument) is Object`
+var String$6 = global$N.String;
+var TypeError$f = global$N.TypeError; // `Assert: Type(argument) is Object`
 
-var anObject$b = function (argument) {
-  if (isObject$8(argument)) return argument;
-  throw TypeError$d(String$5(argument) + ' is not an object');
+var anObject$c = function (argument) {
+  if (isObject$f(argument)) return argument;
+  throw TypeError$f(String$6(argument) + ' is not an object');
 };
 
-var NATIVE_BIND$2 = functionBindNative;
+var NATIVE_BIND$4 = functionBindNative$1;
 
-var call$9 = Function.prototype.call;
-var functionCall = NATIVE_BIND$2 ? call$9.bind(call$9) : function () {
-  return call$9.apply(call$9, arguments);
+var call$a = Function.prototype.call;
+var functionCall$1 = NATIVE_BIND$4 ? call$a.bind(call$a) : function () {
+  return call$a.apply(call$a, arguments);
 };
 
-var global$C = global$H;
+var global$M = global$R;
 
-var isCallable$f = isCallable$h;
+var isCallable$m = isCallable$o;
 
-var aFunction = function (argument) {
-  return isCallable$f(argument) ? argument : undefined;
+var aFunction$1 = function (argument) {
+  return isCallable$m(argument) ? argument : undefined;
 };
 
-var getBuiltIn$6 = function (namespace, method) {
-  return arguments.length < 2 ? aFunction(global$C[namespace]) : global$C[namespace] && global$C[namespace][method];
+var getBuiltIn$a = function (namespace, method) {
+  return arguments.length < 2 ? aFunction$1(global$M[namespace]) : global$M[namespace] && global$M[namespace][method];
 };
 
-var uncurryThis$q = functionUncurryThis;
+var uncurryThis$t = functionUncurryThis$1;
 
-var objectIsPrototypeOf = uncurryThis$q({}.isPrototypeOf);
+var objectIsPrototypeOf$1 = uncurryThis$t({}.isPrototypeOf);
 
-var getBuiltIn$5 = getBuiltIn$6;
+var getBuiltIn$9 = getBuiltIn$a;
 
-var engineUserAgent = getBuiltIn$5('navigator', 'userAgent') || '';
+var engineUserAgent$1 = getBuiltIn$9('navigator', 'userAgent') || '';
 
-var global$B = global$H;
+var global$L = global$R;
 
-var userAgent = engineUserAgent;
+var userAgent$1 = engineUserAgent$1;
 
-var process$1 = global$B.process;
-var Deno = global$B.Deno;
-var versions = process$1 && process$1.versions || Deno && Deno.version;
-var v8 = versions && versions.v8;
-var match, version$3;
+var process$2 = global$L.process;
+var Deno$1 = global$L.Deno;
+var versions$1 = process$2 && process$2.versions || Deno$1 && Deno$1.version;
+var v8$1 = versions$1 && versions$1.v8;
+var match$1, version$4;
 
-if (v8) {
-  match = v8.split('.'); // in old Chrome, versions of V8 isn't V8 = Chrome / 10
+if (v8$1) {
+  match$1 = v8$1.split('.'); // in old Chrome, versions of V8 isn't V8 = Chrome / 10
   // but their correct versions are not interesting for us
 
-  version$3 = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
+  version$4 = match$1[0] > 0 && match$1[0] < 4 ? 1 : +(match$1[0] + match$1[1]);
 } // BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
 // so check `userAgent` even if `.v8` exists, but 0
 
 
-if (!version$3 && userAgent) {
-  match = userAgent.match(/Edge\/(\d+)/);
+if (!version$4 && userAgent$1) {
+  match$1 = userAgent$1.match(/Edge\/(\d+)/);
 
-  if (!match || match[1] >= 74) {
-    match = userAgent.match(/Chrome\/(\d+)/);
-    if (match) version$3 = +match[1];
+  if (!match$1 || match$1[1] >= 74) {
+    match$1 = userAgent$1.match(/Chrome\/(\d+)/);
+    if (match$1) version$4 = +match$1[1];
   }
 }
 
-var engineV8Version = version$3;
+var engineV8Version$1 = version$4;
 
 /* eslint-disable es/no-symbol -- required for testing */
 
-var V8_VERSION$2 = engineV8Version;
+var V8_VERSION$5 = engineV8Version$1;
 
-var fails$i = fails$n; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
+var fails$k = fails$p; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 
 
-var nativeSymbol = !!Object.getOwnPropertySymbols && !fails$i(function () {
+var nativeSymbol$1 = !!Object.getOwnPropertySymbols && !fails$k(function () {
   var symbol = Symbol(); // Chrome 38 Symbol has incorrect toString conversion
   // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
 
   return !String(symbol) || !(Object(symbol) instanceof Symbol) || // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
-  !Symbol.sham && V8_VERSION$2 && V8_VERSION$2 < 41;
+  !Symbol.sham && V8_VERSION$5 && V8_VERSION$5 < 41;
 });
 
 /* eslint-disable es/no-symbol -- required for testing */
 
-var NATIVE_SYMBOL$1 = nativeSymbol;
+var NATIVE_SYMBOL$3 = nativeSymbol$1;
 
-var useSymbolAsUid = NATIVE_SYMBOL$1 && !Symbol.sham && typeof Symbol.iterator == 'symbol';
+var useSymbolAsUid$1 = NATIVE_SYMBOL$3 && !Symbol.sham && typeof Symbol.iterator == 'symbol';
 
-var global$A = global$H;
+var global$K = global$R;
 
-var getBuiltIn$4 = getBuiltIn$6;
+var getBuiltIn$8 = getBuiltIn$a;
 
-var isCallable$e = isCallable$h;
+var isCallable$l = isCallable$o;
 
-var isPrototypeOf$3 = objectIsPrototypeOf;
+var isPrototypeOf$4 = objectIsPrototypeOf$1;
 
-var USE_SYMBOL_AS_UID$1 = useSymbolAsUid;
+var USE_SYMBOL_AS_UID$3 = useSymbolAsUid$1;
 
-var Object$4 = global$A.Object;
-var isSymbol$3 = USE_SYMBOL_AS_UID$1 ? function (it) {
+var Object$7 = global$K.Object;
+var isSymbol$6 = USE_SYMBOL_AS_UID$3 ? function (it) {
   return typeof it == 'symbol';
 } : function (it) {
-  var $Symbol = getBuiltIn$4('Symbol');
-  return isCallable$e($Symbol) && isPrototypeOf$3($Symbol.prototype, Object$4(it));
+  var $Symbol = getBuiltIn$8('Symbol');
+  return isCallable$l($Symbol) && isPrototypeOf$4($Symbol.prototype, Object$7(it));
 };
 
-var global$z = global$H;
+var global$J = global$R;
 
-var String$4 = global$z.String;
+var String$5 = global$J.String;
 
-var tryToString$2 = function (argument) {
+var tryToString$4 = function (argument) {
   try {
-    return String$4(argument);
+    return String$5(argument);
   } catch (error) {
     return 'Object';
   }
 };
 
-var global$y = global$H;
+var global$I = global$R;
 
-var isCallable$d = isCallable$h;
+var isCallable$k = isCallable$o;
 
-var tryToString$1 = tryToString$2;
+var tryToString$3 = tryToString$4;
 
-var TypeError$c = global$y.TypeError; // `Assert: IsCallable(argument) is true`
+var TypeError$e = global$I.TypeError; // `Assert: IsCallable(argument) is true`
 
-var aCallable$2 = function (argument) {
-  if (isCallable$d(argument)) return argument;
-  throw TypeError$c(tryToString$1(argument) + ' is not a function');
+var aCallable$4 = function (argument) {
+  if (isCallable$k(argument)) return argument;
+  throw TypeError$e(tryToString$3(argument) + ' is not a function');
 };
 
-var aCallable$1 = aCallable$2; // `GetMethod` abstract operation
+var aCallable$3 = aCallable$4; // `GetMethod` abstract operation
 // https://tc39.es/ecma262/#sec-getmethod
 
 
-var getMethod$3 = function (V, P) {
+var getMethod$4 = function (V, P) {
   var func = V[P];
-  return func == null ? undefined : aCallable$1(func);
+  return func == null ? undefined : aCallable$3(func);
 };
 
-var global$x = global$H;
+var global$H = global$R;
 
-var call$8 = functionCall;
+var call$9 = functionCall$1;
 
-var isCallable$c = isCallable$h;
+var isCallable$j = isCallable$o;
 
-var isObject$7 = isObject$a;
+var isObject$e = isObject$h;
 
-var TypeError$b = global$x.TypeError; // `OrdinaryToPrimitive` abstract operation
+var TypeError$d = global$H.TypeError; // `OrdinaryToPrimitive` abstract operation
 // https://tc39.es/ecma262/#sec-ordinarytoprimitive
 
-var ordinaryToPrimitive$1 = function (input, pref) {
+var ordinaryToPrimitive$3 = function (input, pref) {
   var fn, val;
-  if (pref === 'string' && isCallable$c(fn = input.toString) && !isObject$7(val = call$8(fn, input))) return val;
-  if (isCallable$c(fn = input.valueOf) && !isObject$7(val = call$8(fn, input))) return val;
-  if (pref !== 'string' && isCallable$c(fn = input.toString) && !isObject$7(val = call$8(fn, input))) return val;
-  throw TypeError$b("Can't convert object to primitive value");
+  if (pref === 'string' && isCallable$j(fn = input.toString) && !isObject$e(val = call$9(fn, input))) return val;
+  if (isCallable$j(fn = input.valueOf) && !isObject$e(val = call$9(fn, input))) return val;
+  if (pref !== 'string' && isCallable$j(fn = input.toString) && !isObject$e(val = call$9(fn, input))) return val;
+  throw TypeError$d("Can't convert object to primitive value");
 };
 
-var shared$4 = {exports: {}};
+var shared$8 = {exports: {}};
 
-var global$w = global$H; // eslint-disable-next-line es/no-object-defineproperty -- safe
+var global$G = global$R; // eslint-disable-next-line es/no-object-defineproperty -- safe
 
 
-var defineProperty$7 = Object.defineProperty;
+var defineProperty$8 = Object.defineProperty;
 
-var setGlobal$3 = function (key, value) {
+var setGlobal$7 = function (key, value) {
   try {
-    defineProperty$7(global$w, key, {
+    defineProperty$8(global$G, key, {
       value: value,
       configurable: true,
       writable: true
     });
   } catch (error) {
-    global$w[key] = value;
+    global$G[key] = value;
   }
 
   return value;
 };
 
-var global$v = global$H;
+var global$F = global$R;
 
-var setGlobal$2 = setGlobal$3;
+var setGlobal$6 = setGlobal$7;
 
-var SHARED = '__core-js_shared__';
-var store$3 = global$v[SHARED] || setGlobal$2(SHARED, {});
-var sharedStore = store$3;
+var SHARED$1 = '__core-js_shared__';
+var store$7 = global$F[SHARED$1] || setGlobal$6(SHARED$1, {});
+var sharedStore$1 = store$7;
 
-var store$2 = sharedStore;
+var store$6 = sharedStore$1;
 
-(shared$4.exports = function (key, value) {
-  return store$2[key] || (store$2[key] = value !== undefined ? value : {});
+(shared$8.exports = function (key, value) {
+  return store$6[key] || (store$6[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: '3.20.3',
   mode: 'global',
@@ -585,170 +585,170 @@ var store$2 = sharedStore;
   source: 'https://github.com/zloirock/core-js'
 });
 
-var uncurryThis$p = functionUncurryThis;
+var uncurryThis$s = functionUncurryThis$1;
 
-var id = 0;
-var postfix = Math.random();
-var toString$b = uncurryThis$p(1.0.toString);
+var id$1 = 0;
+var postfix$1 = Math.random();
+var toString$c = uncurryThis$s(1.0.toString);
 
-var uid$2 = function (key) {
-  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString$b(++id + postfix, 36);
+var uid$5 = function (key) {
+  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString$c(++id$1 + postfix$1, 36);
 };
 
-var global$u = global$H;
+var global$E = global$R;
 
-var shared$3 = shared$4.exports;
+var shared$7 = shared$8.exports;
 
-var hasOwn$9 = hasOwnProperty_1;
+var hasOwn$d = hasOwnProperty_1$1;
 
-var uid$1 = uid$2;
+var uid$4 = uid$5;
 
-var NATIVE_SYMBOL = nativeSymbol;
+var NATIVE_SYMBOL$2 = nativeSymbol$1;
 
-var USE_SYMBOL_AS_UID = useSymbolAsUid;
+var USE_SYMBOL_AS_UID$2 = useSymbolAsUid$1;
 
-var WellKnownSymbolsStore = shared$3('wks');
-var Symbol$2 = global$u.Symbol;
-var symbolFor = Symbol$2 && Symbol$2['for'];
-var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol$2 : Symbol$2 && Symbol$2.withoutSetter || uid$1;
+var WellKnownSymbolsStore$1 = shared$7('wks');
+var Symbol$2 = global$E.Symbol;
+var symbolFor$1 = Symbol$2 && Symbol$2['for'];
+var createWellKnownSymbol$1 = USE_SYMBOL_AS_UID$2 ? Symbol$2 : Symbol$2 && Symbol$2.withoutSetter || uid$4;
 
-var wellKnownSymbol$h = function (name) {
-  if (!hasOwn$9(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] == 'string')) {
+var wellKnownSymbol$i = function (name) {
+  if (!hasOwn$d(WellKnownSymbolsStore$1, name) || !(NATIVE_SYMBOL$2 || typeof WellKnownSymbolsStore$1[name] == 'string')) {
     var description = 'Symbol.' + name;
 
-    if (NATIVE_SYMBOL && hasOwn$9(Symbol$2, name)) {
-      WellKnownSymbolsStore[name] = Symbol$2[name];
-    } else if (USE_SYMBOL_AS_UID && symbolFor) {
-      WellKnownSymbolsStore[name] = symbolFor(description);
+    if (NATIVE_SYMBOL$2 && hasOwn$d(Symbol$2, name)) {
+      WellKnownSymbolsStore$1[name] = Symbol$2[name];
+    } else if (USE_SYMBOL_AS_UID$2 && symbolFor$1) {
+      WellKnownSymbolsStore$1[name] = symbolFor$1(description);
     } else {
-      WellKnownSymbolsStore[name] = createWellKnownSymbol(description);
+      WellKnownSymbolsStore$1[name] = createWellKnownSymbol$1(description);
     }
   }
 
-  return WellKnownSymbolsStore[name];
+  return WellKnownSymbolsStore$1[name];
 };
 
-var global$t = global$H;
+var global$D = global$R;
 
-var call$7 = functionCall;
+var call$8 = functionCall$1;
 
-var isObject$6 = isObject$a;
+var isObject$d = isObject$h;
 
-var isSymbol$2 = isSymbol$3;
+var isSymbol$5 = isSymbol$6;
 
-var getMethod$2 = getMethod$3;
+var getMethod$3 = getMethod$4;
 
-var ordinaryToPrimitive = ordinaryToPrimitive$1;
+var ordinaryToPrimitive$2 = ordinaryToPrimitive$3;
 
-var wellKnownSymbol$g = wellKnownSymbol$h;
+var wellKnownSymbol$h = wellKnownSymbol$i;
 
-var TypeError$a = global$t.TypeError;
-var TO_PRIMITIVE = wellKnownSymbol$g('toPrimitive'); // `ToPrimitive` abstract operation
+var TypeError$c = global$D.TypeError;
+var TO_PRIMITIVE$1 = wellKnownSymbol$h('toPrimitive'); // `ToPrimitive` abstract operation
 // https://tc39.es/ecma262/#sec-toprimitive
 
-var toPrimitive$2 = function (input, pref) {
-  if (!isObject$6(input) || isSymbol$2(input)) return input;
-  var exoticToPrim = getMethod$2(input, TO_PRIMITIVE);
+var toPrimitive$4 = function (input, pref) {
+  if (!isObject$d(input) || isSymbol$5(input)) return input;
+  var exoticToPrim = getMethod$3(input, TO_PRIMITIVE$1);
   var result;
 
   if (exoticToPrim) {
     if (pref === undefined) pref = 'default';
-    result = call$7(exoticToPrim, input, pref);
-    if (!isObject$6(result) || isSymbol$2(result)) return result;
-    throw TypeError$a("Can't convert object to primitive value");
+    result = call$8(exoticToPrim, input, pref);
+    if (!isObject$d(result) || isSymbol$5(result)) return result;
+    throw TypeError$c("Can't convert object to primitive value");
   }
 
   if (pref === undefined) pref = 'number';
-  return ordinaryToPrimitive(input, pref);
+  return ordinaryToPrimitive$2(input, pref);
 };
 
-var toPrimitive$1 = toPrimitive$2;
+var toPrimitive$3 = toPrimitive$4;
 
-var isSymbol$1 = isSymbol$3; // `ToPropertyKey` abstract operation
+var isSymbol$4 = isSymbol$6; // `ToPropertyKey` abstract operation
 // https://tc39.es/ecma262/#sec-topropertykey
 
 
-var toPropertyKey$3 = function (argument) {
-  var key = toPrimitive$1(argument, 'string');
-  return isSymbol$1(key) ? key : key + '';
+var toPropertyKey$7 = function (argument) {
+  var key = toPrimitive$3(argument, 'string');
+  return isSymbol$4(key) ? key : key + '';
 };
 
-var global$s = global$H;
+var global$C = global$R;
 
-var DESCRIPTORS$a = descriptors;
+var DESCRIPTORS$b = descriptors$1;
 
-var IE8_DOM_DEFINE$1 = ie8DomDefine;
+var IE8_DOM_DEFINE$3 = ie8DomDefine$1;
 
-var V8_PROTOTYPE_DEFINE_BUG$1 = v8PrototypeDefineBug;
+var V8_PROTOTYPE_DEFINE_BUG$2 = v8PrototypeDefineBug$1;
 
-var anObject$a = anObject$b;
+var anObject$b = anObject$c;
 
-var toPropertyKey$2 = toPropertyKey$3;
+var toPropertyKey$6 = toPropertyKey$7;
 
-var TypeError$9 = global$s.TypeError; // eslint-disable-next-line es/no-object-defineproperty -- safe
+var TypeError$b = global$C.TypeError; // eslint-disable-next-line es/no-object-defineproperty -- safe
 
-var $defineProperty = Object.defineProperty; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var $defineProperty$1 = Object.defineProperty; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
-var $getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor;
-var ENUMERABLE = 'enumerable';
-var CONFIGURABLE = 'configurable';
-var WRITABLE = 'writable'; // `Object.defineProperty` method
+var $getOwnPropertyDescriptor$3 = Object.getOwnPropertyDescriptor;
+var ENUMERABLE$1 = 'enumerable';
+var CONFIGURABLE$2 = 'configurable';
+var WRITABLE$1 = 'writable'; // `Object.defineProperty` method
 // https://tc39.es/ecma262/#sec-object.defineproperty
 
-objectDefineProperty.f = DESCRIPTORS$a ? V8_PROTOTYPE_DEFINE_BUG$1 ? function defineProperty(O, P, Attributes) {
-  anObject$a(O);
-  P = toPropertyKey$2(P);
-  anObject$a(Attributes);
+objectDefineProperty$1.f = DESCRIPTORS$b ? V8_PROTOTYPE_DEFINE_BUG$2 ? function defineProperty(O, P, Attributes) {
+  anObject$b(O);
+  P = toPropertyKey$6(P);
+  anObject$b(Attributes);
 
-  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
-    var current = $getOwnPropertyDescriptor$1(O, P);
+  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE$1 in Attributes && !Attributes[WRITABLE$1]) {
+    var current = $getOwnPropertyDescriptor$3(O, P);
 
-    if (current && current[WRITABLE]) {
+    if (current && current[WRITABLE$1]) {
       O[P] = Attributes.value;
       Attributes = {
-        configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
-        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
+        configurable: CONFIGURABLE$2 in Attributes ? Attributes[CONFIGURABLE$2] : current[CONFIGURABLE$2],
+        enumerable: ENUMERABLE$1 in Attributes ? Attributes[ENUMERABLE$1] : current[ENUMERABLE$1],
         writable: false
       };
     }
   }
 
-  return $defineProperty(O, P, Attributes);
-} : $defineProperty : function defineProperty(O, P, Attributes) {
-  anObject$a(O);
-  P = toPropertyKey$2(P);
-  anObject$a(Attributes);
-  if (IE8_DOM_DEFINE$1) try {
-    return $defineProperty(O, P, Attributes);
+  return $defineProperty$1(O, P, Attributes);
+} : $defineProperty$1 : function defineProperty(O, P, Attributes) {
+  anObject$b(O);
+  P = toPropertyKey$6(P);
+  anObject$b(Attributes);
+  if (IE8_DOM_DEFINE$3) try {
+    return $defineProperty$1(O, P, Attributes);
   } catch (error) {
     /* empty */
   }
-  if ('get' in Attributes || 'set' in Attributes) throw TypeError$9('Accessors not supported');
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError$b('Accessors not supported');
   if ('value' in Attributes) O[P] = Attributes.value;
   return O;
 };
 
-var DESCRIPTORS$9 = descriptors;
+var DESCRIPTORS$a = descriptors$1;
 
-var FUNCTION_NAME_EXISTS = functionName.EXISTS;
+var FUNCTION_NAME_EXISTS = functionName$1.EXISTS;
 
-var uncurryThis$o = functionUncurryThis;
+var uncurryThis$r = functionUncurryThis$1;
 
-var defineProperty$6 = objectDefineProperty.f;
+var defineProperty$7 = objectDefineProperty$1.f;
 
-var FunctionPrototype$1 = Function.prototype;
-var functionToString$1 = uncurryThis$o(FunctionPrototype$1.toString);
+var FunctionPrototype$3 = Function.prototype;
+var functionToString$2 = uncurryThis$r(FunctionPrototype$3.toString);
 var nameRE = /function\b(?:\s|\/\*[\S\s]*?\*\/|\/\/[^\n\r]*[\n\r]+)*([^\s(/]*)/;
-var regExpExec$1 = uncurryThis$o(nameRE.exec);
+var regExpExec$1 = uncurryThis$r(nameRE.exec);
 var NAME = 'name'; // Function instances `.name` property
 // https://tc39.es/ecma262/#sec-function-instances-name
 
-if (DESCRIPTORS$9 && !FUNCTION_NAME_EXISTS) {
-  defineProperty$6(FunctionPrototype$1, NAME, {
+if (DESCRIPTORS$a && !FUNCTION_NAME_EXISTS) {
+  defineProperty$7(FunctionPrototype$3, NAME, {
     configurable: true,
     get: function () {
       try {
-        return regExpExec$1(nameRE, functionToString$1(this))[1];
+        return regExpExec$1(nameRE, functionToString$2(this))[1];
       } catch (error) {
         return '';
       }
@@ -756,25 +756,25 @@ if (DESCRIPTORS$9 && !FUNCTION_NAME_EXISTS) {
   });
 }
 
-var objectGetOwnPropertyDescriptor = {};
+var objectGetOwnPropertyDescriptor$1 = {};
 
-var objectPropertyIsEnumerable = {};
+var objectPropertyIsEnumerable$1 = {};
 
-var $propertyIsEnumerable = {}.propertyIsEnumerable; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var $propertyIsEnumerable$1 = {}.propertyIsEnumerable; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
-var getOwnPropertyDescriptor$2 = Object.getOwnPropertyDescriptor; // Nashorn ~ JDK8 bug
+var getOwnPropertyDescriptor$4 = Object.getOwnPropertyDescriptor; // Nashorn ~ JDK8 bug
 
-var NASHORN_BUG = getOwnPropertyDescriptor$2 && !$propertyIsEnumerable.call({
+var NASHORN_BUG$1 = getOwnPropertyDescriptor$4 && !$propertyIsEnumerable$1.call({
   1: 2
 }, 1); // `Object.prototype.propertyIsEnumerable` method implementation
 // https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
 
-objectPropertyIsEnumerable.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
-  var descriptor = getOwnPropertyDescriptor$2(this, V);
+objectPropertyIsEnumerable$1.f = NASHORN_BUG$1 ? function propertyIsEnumerable(V) {
+  var descriptor = getOwnPropertyDescriptor$4(this, V);
   return !!descriptor && descriptor.enumerable;
-} : $propertyIsEnumerable;
+} : $propertyIsEnumerable$1;
 
-var createPropertyDescriptor$4 = function (bitmap, value) {
+var createPropertyDescriptor$8 = function (bitmap, value) {
   return {
     enumerable: !(bitmap & 1),
     configurable: !(bitmap & 2),
@@ -783,257 +783,257 @@ var createPropertyDescriptor$4 = function (bitmap, value) {
   };
 };
 
-var uncurryThis$n = functionUncurryThis;
+var uncurryThis$q = functionUncurryThis$1;
 
-var toString$a = uncurryThis$n({}.toString);
-var stringSlice$5 = uncurryThis$n(''.slice);
+var toString$b = uncurryThis$q({}.toString);
+var stringSlice$6 = uncurryThis$q(''.slice);
 
-var classofRaw$1 = function (it) {
-  return stringSlice$5(toString$a(it), 8, -1);
+var classofRaw$3 = function (it) {
+  return stringSlice$6(toString$b(it), 8, -1);
 };
 
-var global$r = global$H;
+var global$B = global$R;
 
-var uncurryThis$m = functionUncurryThis;
+var uncurryThis$p = functionUncurryThis$1;
 
-var fails$h = fails$n;
+var fails$j = fails$p;
 
-var classof$9 = classofRaw$1;
+var classof$a = classofRaw$3;
 
-var Object$3 = global$r.Object;
-var split = uncurryThis$m(''.split); // fallback for non-array-like ES3 and non-enumerable old V8 strings
+var Object$6 = global$B.Object;
+var split$1 = uncurryThis$p(''.split); // fallback for non-array-like ES3 and non-enumerable old V8 strings
 
-var indexedObject = fails$h(function () {
+var indexedObject$1 = fails$j(function () {
   // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
   // eslint-disable-next-line no-prototype-builtins -- safe
-  return !Object$3('z').propertyIsEnumerable(0);
+  return !Object$6('z').propertyIsEnumerable(0);
 }) ? function (it) {
-  return classof$9(it) == 'String' ? split(it, '') : Object$3(it);
-} : Object$3;
+  return classof$a(it) == 'String' ? split$1(it, '') : Object$6(it);
+} : Object$6;
 
 // toObject with fallback for non-array-like ES3 strings
-var IndexedObject$2 = indexedObject;
+var IndexedObject$3 = indexedObject$1;
 
-var requireObjectCoercible$5 = requireObjectCoercible$7;
+var requireObjectCoercible$6 = requireObjectCoercible$8;
 
-var toIndexedObject$7 = function (it) {
-  return IndexedObject$2(requireObjectCoercible$5(it));
+var toIndexedObject$a = function (it) {
+  return IndexedObject$3(requireObjectCoercible$6(it));
 };
 
-var DESCRIPTORS$8 = descriptors;
+var DESCRIPTORS$9 = descriptors$1;
 
-var call$6 = functionCall;
+var call$7 = functionCall$1;
 
-var propertyIsEnumerableModule = objectPropertyIsEnumerable;
+var propertyIsEnumerableModule$1 = objectPropertyIsEnumerable$1;
 
-var createPropertyDescriptor$3 = createPropertyDescriptor$4;
+var createPropertyDescriptor$7 = createPropertyDescriptor$8;
 
-var toIndexedObject$6 = toIndexedObject$7;
+var toIndexedObject$9 = toIndexedObject$a;
 
-var toPropertyKey$1 = toPropertyKey$3;
+var toPropertyKey$5 = toPropertyKey$7;
 
-var hasOwn$8 = hasOwnProperty_1;
+var hasOwn$c = hasOwnProperty_1$1;
 
-var IE8_DOM_DEFINE = ie8DomDefine; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var IE8_DOM_DEFINE$2 = ie8DomDefine$1; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
 
-var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
+var $getOwnPropertyDescriptor$2 = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
 // https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
 
-objectGetOwnPropertyDescriptor.f = DESCRIPTORS$8 ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
-  O = toIndexedObject$6(O);
-  P = toPropertyKey$1(P);
-  if (IE8_DOM_DEFINE) try {
-    return $getOwnPropertyDescriptor(O, P);
+objectGetOwnPropertyDescriptor$1.f = DESCRIPTORS$9 ? $getOwnPropertyDescriptor$2 : function getOwnPropertyDescriptor(O, P) {
+  O = toIndexedObject$9(O);
+  P = toPropertyKey$5(P);
+  if (IE8_DOM_DEFINE$2) try {
+    return $getOwnPropertyDescriptor$2(O, P);
   } catch (error) {
     /* empty */
   }
-  if (hasOwn$8(O, P)) return createPropertyDescriptor$3(!call$6(propertyIsEnumerableModule.f, O, P), O[P]);
+  if (hasOwn$c(O, P)) return createPropertyDescriptor$7(!call$7(propertyIsEnumerableModule$1.f, O, P), O[P]);
 };
 
-var DESCRIPTORS$7 = descriptors;
+var DESCRIPTORS$8 = descriptors$1;
 
-var definePropertyModule$5 = objectDefineProperty;
+var definePropertyModule$6 = objectDefineProperty$1;
 
-var createPropertyDescriptor$2 = createPropertyDescriptor$4;
+var createPropertyDescriptor$6 = createPropertyDescriptor$8;
 
-var createNonEnumerableProperty$8 = DESCRIPTORS$7 ? function (object, key, value) {
-  return definePropertyModule$5.f(object, key, createPropertyDescriptor$2(1, value));
+var createNonEnumerableProperty$9 = DESCRIPTORS$8 ? function (object, key, value) {
+  return definePropertyModule$6.f(object, key, createPropertyDescriptor$6(1, value));
 } : function (object, key, value) {
   object[key] = value;
   return object;
 };
 
-var redefine$8 = {exports: {}};
+var redefine$9 = {exports: {}};
 
-var uncurryThis$l = functionUncurryThis;
+var uncurryThis$o = functionUncurryThis$1;
 
-var isCallable$b = isCallable$h;
+var isCallable$i = isCallable$o;
 
-var store$1 = sharedStore;
+var store$5 = sharedStore$1;
 
-var functionToString = uncurryThis$l(Function.toString); // this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
+var functionToString$1 = uncurryThis$o(Function.toString); // this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
 
-if (!isCallable$b(store$1.inspectSource)) {
-  store$1.inspectSource = function (it) {
-    return functionToString(it);
+if (!isCallable$i(store$5.inspectSource)) {
+  store$5.inspectSource = function (it) {
+    return functionToString$1(it);
   };
 }
 
-var inspectSource$3 = store$1.inspectSource;
+var inspectSource$7 = store$5.inspectSource;
 
-var global$q = global$H;
+var global$A = global$R;
 
-var isCallable$a = isCallable$h;
+var isCallable$h = isCallable$o;
 
-var inspectSource$2 = inspectSource$3;
+var inspectSource$6 = inspectSource$7;
 
-var WeakMap$1 = global$q.WeakMap;
-var nativeWeakMap = isCallable$a(WeakMap$1) && /native code/.test(inspectSource$2(WeakMap$1));
+var WeakMap$3 = global$A.WeakMap;
+var nativeWeakMap$1 = isCallable$h(WeakMap$3) && /native code/.test(inspectSource$6(WeakMap$3));
 
-var shared$2 = shared$4.exports;
+var shared$6 = shared$8.exports;
 
-var uid = uid$2;
+var uid$3 = uid$5;
 
-var keys$2 = shared$2('keys');
+var keys$3 = shared$6('keys');
 
-var sharedKey$3 = function (key) {
-  return keys$2[key] || (keys$2[key] = uid(key));
+var sharedKey$4 = function (key) {
+  return keys$3[key] || (keys$3[key] = uid$3(key));
 };
 
-var hiddenKeys$4 = {};
+var hiddenKeys$8 = {};
 
-var NATIVE_WEAK_MAP = nativeWeakMap;
+var NATIVE_WEAK_MAP$1 = nativeWeakMap$1;
 
-var global$p = global$H;
+var global$z = global$R;
 
-var uncurryThis$k = functionUncurryThis;
+var uncurryThis$n = functionUncurryThis$1;
 
-var isObject$5 = isObject$a;
+var isObject$c = isObject$h;
 
-var createNonEnumerableProperty$7 = createNonEnumerableProperty$8;
+var createNonEnumerableProperty$8 = createNonEnumerableProperty$9;
 
-var hasOwn$7 = hasOwnProperty_1;
+var hasOwn$b = hasOwnProperty_1$1;
 
-var shared$1 = sharedStore;
+var shared$5 = sharedStore$1;
 
-var sharedKey$2 = sharedKey$3;
+var sharedKey$3 = sharedKey$4;
 
-var hiddenKeys$3 = hiddenKeys$4;
+var hiddenKeys$7 = hiddenKeys$8;
 
-var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
-var TypeError$8 = global$p.TypeError;
-var WeakMap = global$p.WeakMap;
-var set, get, has;
+var OBJECT_ALREADY_INITIALIZED$1 = 'Object already initialized';
+var TypeError$a = global$z.TypeError;
+var WeakMap$2 = global$z.WeakMap;
+var set$1, get$1, has$1;
 
-var enforce = function (it) {
-  return has(it) ? get(it) : set(it, {});
+var enforce$1 = function (it) {
+  return has$1(it) ? get$1(it) : set$1(it, {});
 };
 
-var getterFor = function (TYPE) {
+var getterFor$1 = function (TYPE) {
   return function (it) {
     var state;
 
-    if (!isObject$5(it) || (state = get(it)).type !== TYPE) {
-      throw TypeError$8('Incompatible receiver, ' + TYPE + ' required');
+    if (!isObject$c(it) || (state = get$1(it)).type !== TYPE) {
+      throw TypeError$a('Incompatible receiver, ' + TYPE + ' required');
     }
 
     return state;
   };
 };
 
-if (NATIVE_WEAK_MAP || shared$1.state) {
-  var store = shared$1.state || (shared$1.state = new WeakMap());
-  var wmget = uncurryThis$k(store.get);
-  var wmhas = uncurryThis$k(store.has);
-  var wmset = uncurryThis$k(store.set);
+if (NATIVE_WEAK_MAP$1 || shared$5.state) {
+  var store$4 = shared$5.state || (shared$5.state = new WeakMap$2());
+  var wmget$1 = uncurryThis$n(store$4.get);
+  var wmhas$1 = uncurryThis$n(store$4.has);
+  var wmset$1 = uncurryThis$n(store$4.set);
 
-  set = function (it, metadata) {
-    if (wmhas(store, it)) throw new TypeError$8(OBJECT_ALREADY_INITIALIZED);
+  set$1 = function (it, metadata) {
+    if (wmhas$1(store$4, it)) throw new TypeError$a(OBJECT_ALREADY_INITIALIZED$1);
     metadata.facade = it;
-    wmset(store, it, metadata);
+    wmset$1(store$4, it, metadata);
     return metadata;
   };
 
-  get = function (it) {
-    return wmget(store, it) || {};
+  get$1 = function (it) {
+    return wmget$1(store$4, it) || {};
   };
 
-  has = function (it) {
-    return wmhas(store, it);
+  has$1 = function (it) {
+    return wmhas$1(store$4, it);
   };
 } else {
-  var STATE = sharedKey$2('state');
-  hiddenKeys$3[STATE] = true;
+  var STATE$1 = sharedKey$3('state');
+  hiddenKeys$7[STATE$1] = true;
 
-  set = function (it, metadata) {
-    if (hasOwn$7(it, STATE)) throw new TypeError$8(OBJECT_ALREADY_INITIALIZED);
+  set$1 = function (it, metadata) {
+    if (hasOwn$b(it, STATE$1)) throw new TypeError$a(OBJECT_ALREADY_INITIALIZED$1);
     metadata.facade = it;
-    createNonEnumerableProperty$7(it, STATE, metadata);
+    createNonEnumerableProperty$8(it, STATE$1, metadata);
     return metadata;
   };
 
-  get = function (it) {
-    return hasOwn$7(it, STATE) ? it[STATE] : {};
+  get$1 = function (it) {
+    return hasOwn$b(it, STATE$1) ? it[STATE$1] : {};
   };
 
-  has = function (it) {
-    return hasOwn$7(it, STATE);
+  has$1 = function (it) {
+    return hasOwn$b(it, STATE$1);
   };
 }
 
-var internalState = {
-  set: set,
-  get: get,
-  has: has,
-  enforce: enforce,
-  getterFor: getterFor
+var internalState$1 = {
+  set: set$1,
+  get: get$1,
+  has: has$1,
+  enforce: enforce$1,
+  getterFor: getterFor$1
 };
 
-var global$o = global$H;
+var global$y = global$R;
 
-var isCallable$9 = isCallable$h;
+var isCallable$g = isCallable$o;
 
-var hasOwn$6 = hasOwnProperty_1;
+var hasOwn$a = hasOwnProperty_1$1;
 
-var createNonEnumerableProperty$6 = createNonEnumerableProperty$8;
+var createNonEnumerableProperty$7 = createNonEnumerableProperty$9;
 
-var setGlobal$1 = setGlobal$3;
+var setGlobal$5 = setGlobal$7;
 
-var inspectSource$1 = inspectSource$3;
+var inspectSource$5 = inspectSource$7;
 
-var InternalStateModule$1 = internalState;
+var InternalStateModule$2 = internalState$1;
 
-var CONFIGURABLE_FUNCTION_NAME$1 = functionName.CONFIGURABLE;
+var CONFIGURABLE_FUNCTION_NAME$2 = functionName$1.CONFIGURABLE;
 
-var getInternalState$4 = InternalStateModule$1.get;
-var enforceInternalState$1 = InternalStateModule$1.enforce;
-var TEMPLATE = String(String).split('String');
-(redefine$8.exports = function (O, key, value, options) {
+var getInternalState$5 = InternalStateModule$2.get;
+var enforceInternalState$2 = InternalStateModule$2.enforce;
+var TEMPLATE$1 = String(String).split('String');
+(redefine$9.exports = function (O, key, value, options) {
   var unsafe = options ? !!options.unsafe : false;
   var simple = options ? !!options.enumerable : false;
   var noTargetGet = options ? !!options.noTargetGet : false;
   var name = options && options.name !== undefined ? options.name : key;
   var state;
 
-  if (isCallable$9(value)) {
+  if (isCallable$g(value)) {
     if (String(name).slice(0, 7) === 'Symbol(') {
       name = '[' + String(name).replace(/^Symbol\(([^)]*)\)/, '$1') + ']';
     }
 
-    if (!hasOwn$6(value, 'name') || CONFIGURABLE_FUNCTION_NAME$1 && value.name !== name) {
-      createNonEnumerableProperty$6(value, 'name', name);
+    if (!hasOwn$a(value, 'name') || CONFIGURABLE_FUNCTION_NAME$2 && value.name !== name) {
+      createNonEnumerableProperty$7(value, 'name', name);
     }
 
-    state = enforceInternalState$1(value);
+    state = enforceInternalState$2(value);
 
     if (!state.source) {
-      state.source = TEMPLATE.join(typeof name == 'string' ? name : '');
+      state.source = TEMPLATE$1.join(typeof name == 'string' ? name : '');
     }
   }
 
-  if (O === global$o) {
-    if (simple) O[key] = value;else setGlobal$1(key, value);
+  if (O === global$y) {
+    if (simple) O[key] = value;else setGlobal$5(key, value);
     return;
   } else if (!unsafe) {
     delete O[key];
@@ -1041,64 +1041,64 @@ var TEMPLATE = String(String).split('String');
     simple = true;
   }
 
-  if (simple) O[key] = value;else createNonEnumerableProperty$6(O, key, value); // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+  if (simple) O[key] = value;else createNonEnumerableProperty$7(O, key, value); // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
 })(Function.prototype, 'toString', function toString() {
-  return isCallable$9(this) && getInternalState$4(this).source || inspectSource$1(this);
+  return isCallable$g(this) && getInternalState$5(this).source || inspectSource$5(this);
 });
 
-var objectGetOwnPropertyNames = {};
+var objectGetOwnPropertyNames$1 = {};
 
-var ceil$1 = Math.ceil;
-var floor$2 = Math.floor; // `ToIntegerOrInfinity` abstract operation
+var ceil$2 = Math.ceil;
+var floor$3 = Math.floor; // `ToIntegerOrInfinity` abstract operation
 // https://tc39.es/ecma262/#sec-tointegerorinfinity
 
-var toIntegerOrInfinity$5 = function (argument) {
+var toIntegerOrInfinity$8 = function (argument) {
   var number = +argument; // eslint-disable-next-line no-self-compare -- safe
 
-  return number !== number || number === 0 ? 0 : (number > 0 ? floor$2 : ceil$1)(number);
+  return number !== number || number === 0 ? 0 : (number > 0 ? floor$3 : ceil$2)(number);
 };
 
-var toIntegerOrInfinity$4 = toIntegerOrInfinity$5;
+var toIntegerOrInfinity$7 = toIntegerOrInfinity$8;
 
-var max$2 = Math.max;
-var min$2 = Math.min; // Helper for a popular repeating case of the spec:
+var max$3 = Math.max;
+var min$4 = Math.min; // Helper for a popular repeating case of the spec:
 // Let integer be ? ToInteger(index).
 // If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
 
-var toAbsoluteIndex$3 = function (index, length) {
-  var integer = toIntegerOrInfinity$4(index);
-  return integer < 0 ? max$2(integer + length, 0) : min$2(integer, length);
+var toAbsoluteIndex$5 = function (index, length) {
+  var integer = toIntegerOrInfinity$7(index);
+  return integer < 0 ? max$3(integer + length, 0) : min$4(integer, length);
 };
 
-var toIntegerOrInfinity$3 = toIntegerOrInfinity$5;
+var toIntegerOrInfinity$6 = toIntegerOrInfinity$8;
 
-var min$1 = Math.min; // `ToLength` abstract operation
+var min$3 = Math.min; // `ToLength` abstract operation
 // https://tc39.es/ecma262/#sec-tolength
 
-var toLength$3 = function (argument) {
-  return argument > 0 ? min$1(toIntegerOrInfinity$3(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
+var toLength$4 = function (argument) {
+  return argument > 0 ? min$3(toIntegerOrInfinity$6(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
 };
 
-var toLength$2 = toLength$3; // `LengthOfArrayLike` abstract operation
+var toLength$3 = toLength$4; // `LengthOfArrayLike` abstract operation
 // https://tc39.es/ecma262/#sec-lengthofarraylike
 
 
-var lengthOfArrayLike$5 = function (obj) {
-  return toLength$2(obj.length);
+var lengthOfArrayLike$8 = function (obj) {
+  return toLength$3(obj.length);
 };
 
-var toIndexedObject$5 = toIndexedObject$7;
+var toIndexedObject$8 = toIndexedObject$a;
 
-var toAbsoluteIndex$2 = toAbsoluteIndex$3;
+var toAbsoluteIndex$4 = toAbsoluteIndex$5;
 
-var lengthOfArrayLike$4 = lengthOfArrayLike$5; // `Array.prototype.{ indexOf, includes }` methods implementation
+var lengthOfArrayLike$7 = lengthOfArrayLike$8; // `Array.prototype.{ indexOf, includes }` methods implementation
 
 
-var createMethod$3 = function (IS_INCLUDES) {
+var createMethod$4 = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
-    var O = toIndexedObject$5($this);
-    var length = lengthOfArrayLike$4(O);
-    var index = toAbsoluteIndex$2(fromIndex, length);
+    var O = toIndexedObject$8($this);
+    var length = lengthOfArrayLike$7(O);
+    var index = toAbsoluteIndex$4(fromIndex, length);
     var value; // Array#includes uses SameValueZero equality algorithm
     // eslint-disable-next-line no-self-compare -- NaN check
 
@@ -1113,136 +1113,136 @@ var createMethod$3 = function (IS_INCLUDES) {
   };
 };
 
-var arrayIncludes = {
+var arrayIncludes$1 = {
   // `Array.prototype.includes` method
   // https://tc39.es/ecma262/#sec-array.prototype.includes
-  includes: createMethod$3(true),
+  includes: createMethod$4(true),
   // `Array.prototype.indexOf` method
   // https://tc39.es/ecma262/#sec-array.prototype.indexof
-  indexOf: createMethod$3(false)
+  indexOf: createMethod$4(false)
 };
 
-var uncurryThis$j = functionUncurryThis;
+var uncurryThis$m = functionUncurryThis$1;
 
-var hasOwn$5 = hasOwnProperty_1;
+var hasOwn$9 = hasOwnProperty_1$1;
 
-var toIndexedObject$4 = toIndexedObject$7;
+var toIndexedObject$7 = toIndexedObject$a;
 
-var indexOf$1 = arrayIncludes.indexOf;
+var indexOf$2 = arrayIncludes$1.indexOf;
 
-var hiddenKeys$2 = hiddenKeys$4;
+var hiddenKeys$6 = hiddenKeys$8;
 
-var push$2 = uncurryThis$j([].push);
+var push$3 = uncurryThis$m([].push);
 
-var objectKeysInternal = function (object, names) {
-  var O = toIndexedObject$4(object);
+var objectKeysInternal$1 = function (object, names) {
+  var O = toIndexedObject$7(object);
   var i = 0;
   var result = [];
   var key;
 
-  for (key in O) !hasOwn$5(hiddenKeys$2, key) && hasOwn$5(O, key) && push$2(result, key); // Don't enum bug & hidden keys
+  for (key in O) !hasOwn$9(hiddenKeys$6, key) && hasOwn$9(O, key) && push$3(result, key); // Don't enum bug & hidden keys
 
 
-  while (names.length > i) if (hasOwn$5(O, key = names[i++])) {
-    ~indexOf$1(result, key) || push$2(result, key);
+  while (names.length > i) if (hasOwn$9(O, key = names[i++])) {
+    ~indexOf$2(result, key) || push$3(result, key);
   }
 
   return result;
 };
 
 // IE8- don't enum bug keys
-var enumBugKeys$3 = ['constructor', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'valueOf'];
+var enumBugKeys$4 = ['constructor', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'valueOf'];
 
-var internalObjectKeys$1 = objectKeysInternal;
+var internalObjectKeys$2 = objectKeysInternal$1;
 
-var enumBugKeys$2 = enumBugKeys$3;
+var enumBugKeys$3 = enumBugKeys$4;
 
-var hiddenKeys$1 = enumBugKeys$2.concat('length', 'prototype'); // `Object.getOwnPropertyNames` method
+var hiddenKeys$5 = enumBugKeys$3.concat('length', 'prototype'); // `Object.getOwnPropertyNames` method
 // https://tc39.es/ecma262/#sec-object.getownpropertynames
 // eslint-disable-next-line es/no-object-getownpropertynames -- safe
 
-objectGetOwnPropertyNames.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
-  return internalObjectKeys$1(O, hiddenKeys$1);
+objectGetOwnPropertyNames$1.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return internalObjectKeys$2(O, hiddenKeys$5);
 };
 
-var objectGetOwnPropertySymbols = {};
+var objectGetOwnPropertySymbols$1 = {};
 
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
-objectGetOwnPropertySymbols.f = Object.getOwnPropertySymbols;
+objectGetOwnPropertySymbols$1.f = Object.getOwnPropertySymbols;
 
-var getBuiltIn$3 = getBuiltIn$6;
+var getBuiltIn$7 = getBuiltIn$a;
 
-var uncurryThis$i = functionUncurryThis;
+var uncurryThis$l = functionUncurryThis$1;
 
-var getOwnPropertyNamesModule = objectGetOwnPropertyNames;
+var getOwnPropertyNamesModule$1 = objectGetOwnPropertyNames$1;
 
-var getOwnPropertySymbolsModule = objectGetOwnPropertySymbols;
+var getOwnPropertySymbolsModule$1 = objectGetOwnPropertySymbols$1;
 
-var anObject$9 = anObject$b;
+var anObject$a = anObject$c;
 
-var concat = uncurryThis$i([].concat); // all object keys, includes non-enumerable and symbols
+var concat$1 = uncurryThis$l([].concat); // all object keys, includes non-enumerable and symbols
 
-var ownKeys$2 = getBuiltIn$3('Reflect', 'ownKeys') || function ownKeys(it) {
-  var keys = getOwnPropertyNamesModule.f(anObject$9(it));
-  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
+var ownKeys$4 = getBuiltIn$7('Reflect', 'ownKeys') || function ownKeys(it) {
+  var keys = getOwnPropertyNamesModule$1.f(anObject$a(it));
+  var getOwnPropertySymbols = getOwnPropertySymbolsModule$1.f;
+  return getOwnPropertySymbols ? concat$1(keys, getOwnPropertySymbols(it)) : keys;
 };
 
-var hasOwn$4 = hasOwnProperty_1;
+var hasOwn$8 = hasOwnProperty_1$1;
 
-var ownKeys$1 = ownKeys$2;
+var ownKeys$3 = ownKeys$4;
 
-var getOwnPropertyDescriptorModule = objectGetOwnPropertyDescriptor;
+var getOwnPropertyDescriptorModule$1 = objectGetOwnPropertyDescriptor$1;
 
-var definePropertyModule$4 = objectDefineProperty;
+var definePropertyModule$5 = objectDefineProperty$1;
 
-var copyConstructorProperties$1 = function (target, source, exceptions) {
-  var keys = ownKeys$1(source);
-  var defineProperty = definePropertyModule$4.f;
-  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+var copyConstructorProperties$3 = function (target, source, exceptions) {
+  var keys = ownKeys$3(source);
+  var defineProperty = definePropertyModule$5.f;
+  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule$1.f;
 
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i];
 
-    if (!hasOwn$4(target, key) && !(exceptions && hasOwn$4(exceptions, key))) {
+    if (!hasOwn$8(target, key) && !(exceptions && hasOwn$8(exceptions, key))) {
       defineProperty(target, key, getOwnPropertyDescriptor(source, key));
     }
   }
 };
 
-var fails$g = fails$n;
+var fails$i = fails$p;
 
-var isCallable$8 = isCallable$h;
+var isCallable$f = isCallable$o;
 
-var replacement = /#|\.prototype\./;
+var replacement$1 = /#|\.prototype\./;
 
-var isForced$3 = function (feature, detection) {
-  var value = data[normalize(feature)];
-  return value == POLYFILL ? true : value == NATIVE ? false : isCallable$8(detection) ? fails$g(detection) : !!detection;
+var isForced$4 = function (feature, detection) {
+  var value = data$1[normalize$1(feature)];
+  return value == POLYFILL$1 ? true : value == NATIVE$1 ? false : isCallable$f(detection) ? fails$i(detection) : !!detection;
 };
 
-var normalize = isForced$3.normalize = function (string) {
-  return String(string).replace(replacement, '.').toLowerCase();
+var normalize$1 = isForced$4.normalize = function (string) {
+  return String(string).replace(replacement$1, '.').toLowerCase();
 };
 
-var data = isForced$3.data = {};
-var NATIVE = isForced$3.NATIVE = 'N';
-var POLYFILL = isForced$3.POLYFILL = 'P';
-var isForced_1 = isForced$3;
+var data$1 = isForced$4.data = {};
+var NATIVE$1 = isForced$4.NATIVE = 'N';
+var POLYFILL$1 = isForced$4.POLYFILL = 'P';
+var isForced_1$1 = isForced$4;
 
-var global$n = global$H;
+var global$x = global$R;
 
-var getOwnPropertyDescriptor$1 = objectGetOwnPropertyDescriptor.f;
+var getOwnPropertyDescriptor$3 = objectGetOwnPropertyDescriptor$1.f;
 
-var createNonEnumerableProperty$5 = createNonEnumerableProperty$8;
+var createNonEnumerableProperty$6 = createNonEnumerableProperty$9;
 
-var redefine$7 = redefine$8.exports;
+var redefine$8 = redefine$9.exports;
 
-var setGlobal = setGlobal$3;
+var setGlobal$4 = setGlobal$7;
 
-var copyConstructorProperties = copyConstructorProperties$1;
+var copyConstructorProperties$2 = copyConstructorProperties$3;
 
-var isForced$2 = isForced_1;
+var isForced$3 = isForced_1$1;
 /*
   options.target      - name of the target object
   options.global      - target is the global object
@@ -1260,79 +1260,79 @@ var isForced$2 = isForced_1;
 */
 
 
-var _export = function (options, source) {
+var _export$1 = function (options, source) {
   var TARGET = options.target;
   var GLOBAL = options.global;
   var STATIC = options.stat;
   var FORCED, target, key, targetProperty, sourceProperty, descriptor;
 
   if (GLOBAL) {
-    target = global$n;
+    target = global$x;
   } else if (STATIC) {
-    target = global$n[TARGET] || setGlobal(TARGET, {});
+    target = global$x[TARGET] || setGlobal$4(TARGET, {});
   } else {
-    target = (global$n[TARGET] || {}).prototype;
+    target = (global$x[TARGET] || {}).prototype;
   }
 
   if (target) for (key in source) {
     sourceProperty = source[key];
 
     if (options.noTargetGet) {
-      descriptor = getOwnPropertyDescriptor$1(target, key);
+      descriptor = getOwnPropertyDescriptor$3(target, key);
       targetProperty = descriptor && descriptor.value;
     } else targetProperty = target[key];
 
-    FORCED = isForced$2(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contained in target
+    FORCED = isForced$3(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contained in target
 
     if (!FORCED && targetProperty !== undefined) {
       if (typeof sourceProperty == typeof targetProperty) continue;
-      copyConstructorProperties(sourceProperty, targetProperty);
+      copyConstructorProperties$2(sourceProperty, targetProperty);
     } // add a flag to not completely full polyfills
 
 
     if (options.sham || targetProperty && targetProperty.sham) {
-      createNonEnumerableProperty$5(sourceProperty, 'sham', true);
+      createNonEnumerableProperty$6(sourceProperty, 'sham', true);
     } // extend global
 
 
-    redefine$7(target, key, sourceProperty, options);
+    redefine$8(target, key, sourceProperty, options);
   }
 };
 
-var classof$8 = classofRaw$1; // `IsArray` abstract operation
+var classof$9 = classofRaw$3; // `IsArray` abstract operation
 // https://tc39.es/ecma262/#sec-isarray
 // eslint-disable-next-line es/no-array-isarray -- safe
 
 
-var isArray$3 = Array.isArray || function isArray(argument) {
-  return classof$8(argument) == 'Array';
+var isArray$6 = Array.isArray || function isArray(argument) {
+  return classof$9(argument) == 'Array';
 };
 
-var wellKnownSymbol$f = wellKnownSymbol$h;
+var wellKnownSymbol$g = wellKnownSymbol$i;
+
+var TO_STRING_TAG$4 = wellKnownSymbol$g('toStringTag');
+var test$1 = {};
+test$1[TO_STRING_TAG$4] = 'z';
+var toStringTagSupport$1 = String(test$1) === '[object z]';
+
+var global$w = global$R;
+
+var TO_STRING_TAG_SUPPORT$3 = toStringTagSupport$1;
+
+var isCallable$e = isCallable$o;
+
+var classofRaw$2 = classofRaw$3;
+
+var wellKnownSymbol$f = wellKnownSymbol$i;
 
 var TO_STRING_TAG$3 = wellKnownSymbol$f('toStringTag');
-var test = {};
-test[TO_STRING_TAG$3] = 'z';
-var toStringTagSupport = String(test) === '[object z]';
+var Object$5 = global$w.Object; // ES3 wrong here
 
-var global$m = global$H;
-
-var TO_STRING_TAG_SUPPORT$2 = toStringTagSupport;
-
-var isCallable$7 = isCallable$h;
-
-var classofRaw = classofRaw$1;
-
-var wellKnownSymbol$e = wellKnownSymbol$h;
-
-var TO_STRING_TAG$2 = wellKnownSymbol$e('toStringTag');
-var Object$2 = global$m.Object; // ES3 wrong here
-
-var CORRECT_ARGUMENTS = classofRaw(function () {
+var CORRECT_ARGUMENTS$1 = classofRaw$2(function () {
   return arguments;
 }()) == 'Arguments'; // fallback for IE11 Script Access Denied error
 
-var tryGet = function (it, key) {
+var tryGet$1 = function (it, key) {
   try {
     return it[key];
   } catch (error) {
@@ -1341,51 +1341,51 @@ var tryGet = function (it, key) {
 }; // getting tag from ES6+ `Object.prototype.toString`
 
 
-var classof$7 = TO_STRING_TAG_SUPPORT$2 ? classofRaw : function (it) {
+var classof$8 = TO_STRING_TAG_SUPPORT$3 ? classofRaw$2 : function (it) {
   var O, tag, result;
   return it === undefined ? 'Undefined' : it === null ? 'Null' // @@toStringTag case
-  : typeof (tag = tryGet(O = Object$2(it), TO_STRING_TAG$2)) == 'string' ? tag // builtinTag case
-  : CORRECT_ARGUMENTS ? classofRaw(O) // ES3 arguments fallback
-  : (result = classofRaw(O)) == 'Object' && isCallable$7(O.callee) ? 'Arguments' : result;
+  : typeof (tag = tryGet$1(O = Object$5(it), TO_STRING_TAG$3)) == 'string' ? tag // builtinTag case
+  : CORRECT_ARGUMENTS$1 ? classofRaw$2(O) // ES3 arguments fallback
+  : (result = classofRaw$2(O)) == 'Object' && isCallable$e(O.callee) ? 'Arguments' : result;
 };
 
-var uncurryThis$h = functionUncurryThis;
+var uncurryThis$k = functionUncurryThis$1;
 
-var fails$f = fails$n;
+var fails$h = fails$p;
 
-var isCallable$6 = isCallable$h;
+var isCallable$d = isCallable$o;
 
-var classof$6 = classof$7;
+var classof$7 = classof$8;
 
-var getBuiltIn$2 = getBuiltIn$6;
+var getBuiltIn$6 = getBuiltIn$a;
 
-var inspectSource = inspectSource$3;
+var inspectSource$4 = inspectSource$7;
 
-var noop = function () {
+var noop$1 = function () {
   /* empty */
 };
 
-var empty = [];
-var construct = getBuiltIn$2('Reflect', 'construct');
-var constructorRegExp = /^\s*(?:class|function)\b/;
-var exec$3 = uncurryThis$h(constructorRegExp.exec);
-var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
+var empty$1 = [];
+var construct$1 = getBuiltIn$6('Reflect', 'construct');
+var constructorRegExp$1 = /^\s*(?:class|function)\b/;
+var exec$4 = uncurryThis$k(constructorRegExp$1.exec);
+var INCORRECT_TO_STRING$1 = !constructorRegExp$1.exec(noop$1);
 
-var isConstructorModern = function isConstructor(argument) {
-  if (!isCallable$6(argument)) return false;
+var isConstructorModern$1 = function isConstructor(argument) {
+  if (!isCallable$d(argument)) return false;
 
   try {
-    construct(noop, empty, argument);
+    construct$1(noop$1, empty$1, argument);
     return true;
   } catch (error) {
     return false;
   }
 };
 
-var isConstructorLegacy = function isConstructor(argument) {
-  if (!isCallable$6(argument)) return false;
+var isConstructorLegacy$1 = function isConstructor(argument) {
+  if (!isCallable$d(argument)) return false;
 
-  switch (classof$6(argument)) {
+  switch (classof$7(argument)) {
     case 'AsyncFunction':
     case 'GeneratorFunction':
     case 'AsyncGeneratorFunction':
@@ -1396,50 +1396,50 @@ var isConstructorLegacy = function isConstructor(argument) {
     // we can't check .prototype since constructors produced by .bind haven't it
     // `Function#toString` throws on some built-it function in some legacy engines
     // (for example, `DOMQuad` and similar in FF41-)
-    return INCORRECT_TO_STRING || !!exec$3(constructorRegExp, inspectSource(argument));
+    return INCORRECT_TO_STRING$1 || !!exec$4(constructorRegExp$1, inspectSource$4(argument));
   } catch (error) {
     return true;
   }
 };
 
-isConstructorLegacy.sham = true; // `IsConstructor` abstract operation
+isConstructorLegacy$1.sham = true; // `IsConstructor` abstract operation
 // https://tc39.es/ecma262/#sec-isconstructor
 
-var isConstructor$3 = !construct || fails$f(function () {
+var isConstructor$5 = !construct$1 || fails$h(function () {
   var called;
-  return isConstructorModern(isConstructorModern.call) || !isConstructorModern(Object) || !isConstructorModern(function () {
+  return isConstructorModern$1(isConstructorModern$1.call) || !isConstructorModern$1(Object) || !isConstructorModern$1(function () {
     called = true;
   }) || called;
-}) ? isConstructorLegacy : isConstructorModern;
+}) ? isConstructorLegacy$1 : isConstructorModern$1;
 
-var toPropertyKey = toPropertyKey$3;
+var toPropertyKey$4 = toPropertyKey$7;
 
-var definePropertyModule$3 = objectDefineProperty;
+var definePropertyModule$4 = objectDefineProperty$1;
 
-var createPropertyDescriptor$1 = createPropertyDescriptor$4;
+var createPropertyDescriptor$5 = createPropertyDescriptor$8;
 
-var createProperty$3 = function (object, key, value) {
-  var propertyKey = toPropertyKey(key);
-  if (propertyKey in object) definePropertyModule$3.f(object, propertyKey, createPropertyDescriptor$1(0, value));else object[propertyKey] = value;
+var createProperty$5 = function (object, key, value) {
+  var propertyKey = toPropertyKey$4(key);
+  if (propertyKey in object) definePropertyModule$4.f(object, propertyKey, createPropertyDescriptor$5(0, value));else object[propertyKey] = value;
 };
 
-var fails$e = fails$n;
+var fails$g = fails$p;
 
-var wellKnownSymbol$d = wellKnownSymbol$h;
+var wellKnownSymbol$e = wellKnownSymbol$i;
 
-var V8_VERSION$1 = engineV8Version;
+var V8_VERSION$4 = engineV8Version$1;
 
-var SPECIES$5 = wellKnownSymbol$d('species');
+var SPECIES$6 = wellKnownSymbol$e('species');
 
-var arrayMethodHasSpeciesSupport$3 = function (METHOD_NAME) {
+var arrayMethodHasSpeciesSupport$5 = function (METHOD_NAME) {
   // We can't use this feature detection in V8 since it causes
   // deoptimization and serious performance degradation
   // https://github.com/zloirock/core-js/issues/677
-  return V8_VERSION$1 >= 51 || !fails$e(function () {
+  return V8_VERSION$4 >= 51 || !fails$g(function () {
     var array = [];
     var constructor = array.constructor = {};
 
-    constructor[SPECIES$5] = function () {
+    constructor[SPECIES$6] = function () {
       return {
         foo: 1
       };
@@ -1449,61 +1449,61 @@ var arrayMethodHasSpeciesSupport$3 = function (METHOD_NAME) {
   });
 };
 
-var uncurryThis$g = functionUncurryThis;
+var uncurryThis$j = functionUncurryThis$1;
 
-var arraySlice$2 = uncurryThis$g([].slice);
+var arraySlice$2 = uncurryThis$j([].slice);
 
-var $$9 = _export;
+var $$a = _export$1;
 
-var global$l = global$H;
+var global$v = global$R;
 
-var isArray$2 = isArray$3;
+var isArray$5 = isArray$6;
 
-var isConstructor$2 = isConstructor$3;
+var isConstructor$4 = isConstructor$5;
 
-var isObject$4 = isObject$a;
+var isObject$b = isObject$h;
 
-var toAbsoluteIndex$1 = toAbsoluteIndex$3;
+var toAbsoluteIndex$3 = toAbsoluteIndex$5;
 
-var lengthOfArrayLike$3 = lengthOfArrayLike$5;
+var lengthOfArrayLike$6 = lengthOfArrayLike$8;
 
-var toIndexedObject$3 = toIndexedObject$7;
+var toIndexedObject$6 = toIndexedObject$a;
 
-var createProperty$2 = createProperty$3;
+var createProperty$4 = createProperty$5;
 
-var wellKnownSymbol$c = wellKnownSymbol$h;
+var wellKnownSymbol$d = wellKnownSymbol$i;
 
-var arrayMethodHasSpeciesSupport$2 = arrayMethodHasSpeciesSupport$3;
+var arrayMethodHasSpeciesSupport$4 = arrayMethodHasSpeciesSupport$5;
 
 var un$Slice = arraySlice$2;
 
-var HAS_SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport$2('slice');
-var SPECIES$4 = wellKnownSymbol$c('species');
-var Array$3 = global$l.Array;
-var max$1 = Math.max; // `Array.prototype.slice` method
+var HAS_SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport$4('slice');
+var SPECIES$5 = wellKnownSymbol$d('species');
+var Array$3 = global$v.Array;
+var max$2 = Math.max; // `Array.prototype.slice` method
 // https://tc39.es/ecma262/#sec-array.prototype.slice
 // fallback for not array-like ES3 strings and DOM objects
 
-$$9({
+$$a({
   target: 'Array',
   proto: true,
   forced: !HAS_SPECIES_SUPPORT$1
 }, {
   slice: function slice(start, end) {
-    var O = toIndexedObject$3(this);
-    var length = lengthOfArrayLike$3(O);
-    var k = toAbsoluteIndex$1(start, length);
-    var fin = toAbsoluteIndex$1(end === undefined ? length : end, length); // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+    var O = toIndexedObject$6(this);
+    var length = lengthOfArrayLike$6(O);
+    var k = toAbsoluteIndex$3(start, length);
+    var fin = toAbsoluteIndex$3(end === undefined ? length : end, length); // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
 
     var Constructor, result, n;
 
-    if (isArray$2(O)) {
+    if (isArray$5(O)) {
       Constructor = O.constructor; // cross-realm fallback
 
-      if (isConstructor$2(Constructor) && (Constructor === Array$3 || isArray$2(Constructor.prototype))) {
+      if (isConstructor$4(Constructor) && (Constructor === Array$3 || isArray$5(Constructor.prototype))) {
         Constructor = undefined;
-      } else if (isObject$4(Constructor)) {
-        Constructor = Constructor[SPECIES$4];
+      } else if (isObject$b(Constructor)) {
+        Constructor = Constructor[SPECIES$5];
         if (Constructor === null) Constructor = undefined;
       }
 
@@ -1512,54 +1512,54 @@ $$9({
       }
     }
 
-    result = new (Constructor === undefined ? Array$3 : Constructor)(max$1(fin - k, 0));
+    result = new (Constructor === undefined ? Array$3 : Constructor)(max$2(fin - k, 0));
 
-    for (n = 0; k < fin; k++, n++) if (k in O) createProperty$2(result, n, O[k]);
+    for (n = 0; k < fin; k++, n++) if (k in O) createProperty$4(result, n, O[k]);
 
     result.length = n;
     return result;
   }
 });
 
-var uncurryThis$f = functionUncurryThis;
+var uncurryThis$i = functionUncurryThis$1;
 
-var aCallable = aCallable$2;
+var aCallable$2 = aCallable$4;
 
-var NATIVE_BIND$1 = functionBindNative;
+var NATIVE_BIND$3 = functionBindNative$1;
 
-var bind$1 = uncurryThis$f(uncurryThis$f.bind); // optional / simple context binding
+var bind$2 = uncurryThis$i(uncurryThis$i.bind); // optional / simple context binding
 
 var functionBindContext = function (fn, that) {
-  aCallable(fn);
-  return that === undefined ? fn : NATIVE_BIND$1 ? bind$1(fn, that) : function
+  aCallable$2(fn);
+  return that === undefined ? fn : NATIVE_BIND$3 ? bind$2(fn, that) : function
     /* ...args */
   () {
     return fn.apply(that, arguments);
   };
 };
 
-var global$k = global$H;
+var global$u = global$R;
 
-var isArray$1 = isArray$3;
+var isArray$4 = isArray$6;
 
-var isConstructor$1 = isConstructor$3;
+var isConstructor$3 = isConstructor$5;
 
-var isObject$3 = isObject$a;
+var isObject$a = isObject$h;
 
-var wellKnownSymbol$b = wellKnownSymbol$h;
+var wellKnownSymbol$c = wellKnownSymbol$i;
 
-var SPECIES$3 = wellKnownSymbol$b('species');
-var Array$2 = global$k.Array; // a part of `ArraySpeciesCreate` abstract operation
+var SPECIES$4 = wellKnownSymbol$c('species');
+var Array$2 = global$u.Array; // a part of `ArraySpeciesCreate` abstract operation
 // https://tc39.es/ecma262/#sec-arrayspeciescreate
 
-var arraySpeciesConstructor$1 = function (originalArray) {
+var arraySpeciesConstructor$3 = function (originalArray) {
   var C;
 
-  if (isArray$1(originalArray)) {
+  if (isArray$4(originalArray)) {
     C = originalArray.constructor; // cross-realm fallback
 
-    if (isConstructor$1(C) && (C === Array$2 || isArray$1(C.prototype))) C = undefined;else if (isObject$3(C)) {
-      C = C[SPECIES$3];
+    if (isConstructor$3(C) && (C === Array$2 || isArray$4(C.prototype))) C = undefined;else if (isObject$a(C)) {
+      C = C[SPECIES$4];
       if (C === null) C = undefined;
     }
   }
@@ -1567,29 +1567,29 @@ var arraySpeciesConstructor$1 = function (originalArray) {
   return C === undefined ? Array$2 : C;
 };
 
-var arraySpeciesConstructor = arraySpeciesConstructor$1; // `ArraySpeciesCreate` abstract operation
+var arraySpeciesConstructor$2 = arraySpeciesConstructor$3; // `ArraySpeciesCreate` abstract operation
 // https://tc39.es/ecma262/#sec-arrayspeciescreate
 
 
-var arraySpeciesCreate$2 = function (originalArray, length) {
-  return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
+var arraySpeciesCreate$4 = function (originalArray, length) {
+  return new (arraySpeciesConstructor$2(originalArray))(length === 0 ? 0 : length);
 };
 
-var bind = functionBindContext;
+var bind$1 = functionBindContext;
 
-var uncurryThis$e = functionUncurryThis;
+var uncurryThis$h = functionUncurryThis$1;
 
-var IndexedObject$1 = indexedObject;
+var IndexedObject$2 = indexedObject$1;
 
-var toObject$2 = toObject$4;
+var toObject$5 = toObject$7;
 
-var lengthOfArrayLike$2 = lengthOfArrayLike$5;
+var lengthOfArrayLike$5 = lengthOfArrayLike$8;
 
-var arraySpeciesCreate$1 = arraySpeciesCreate$2;
+var arraySpeciesCreate$3 = arraySpeciesCreate$4;
 
-var push$1 = uncurryThis$e([].push); // `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterReject }` methods implementation
+var push$2 = uncurryThis$h([].push); // `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterReject }` methods implementation
 
-var createMethod$2 = function (TYPE) {
+var createMethod$3 = function (TYPE) {
   var IS_MAP = TYPE == 1;
   var IS_FILTER = TYPE == 2;
   var IS_SOME = TYPE == 3;
@@ -1598,12 +1598,12 @@ var createMethod$2 = function (TYPE) {
   var IS_FILTER_REJECT = TYPE == 7;
   var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
   return function ($this, callbackfn, that, specificCreate) {
-    var O = toObject$2($this);
-    var self = IndexedObject$1(O);
-    var boundFunction = bind(callbackfn, that);
-    var length = lengthOfArrayLike$2(self);
+    var O = toObject$5($this);
+    var self = IndexedObject$2(O);
+    var boundFunction = bind$1(callbackfn, that);
+    var length = lengthOfArrayLike$5(self);
     var index = 0;
-    var create = specificCreate || arraySpeciesCreate$1;
+    var create = specificCreate || arraySpeciesCreate$3;
     var target = IS_MAP ? create($this, length) : IS_FILTER || IS_FILTER_REJECT ? create($this, 0) : undefined;
     var value, result;
 
@@ -1627,7 +1627,7 @@ var createMethod$2 = function (TYPE) {
           // findIndex
 
           case 2:
-            push$1(target, value);
+            push$2(target, value);
           // filter
         } else switch (TYPE) {
           case 4:
@@ -1635,7 +1635,7 @@ var createMethod$2 = function (TYPE) {
           // every
 
           case 7:
-            push$1(target, value);
+            push$2(target, value);
           // filterReject
         }
       }
@@ -1648,41 +1648,41 @@ var createMethod$2 = function (TYPE) {
 var arrayIteration = {
   // `Array.prototype.forEach` method
   // https://tc39.es/ecma262/#sec-array.prototype.foreach
-  forEach: createMethod$2(0),
+  forEach: createMethod$3(0),
   // `Array.prototype.map` method
   // https://tc39.es/ecma262/#sec-array.prototype.map
-  map: createMethod$2(1),
+  map: createMethod$3(1),
   // `Array.prototype.filter` method
   // https://tc39.es/ecma262/#sec-array.prototype.filter
-  filter: createMethod$2(2),
+  filter: createMethod$3(2),
   // `Array.prototype.some` method
   // https://tc39.es/ecma262/#sec-array.prototype.some
-  some: createMethod$2(3),
+  some: createMethod$3(3),
   // `Array.prototype.every` method
   // https://tc39.es/ecma262/#sec-array.prototype.every
-  every: createMethod$2(4),
+  every: createMethod$3(4),
   // `Array.prototype.find` method
   // https://tc39.es/ecma262/#sec-array.prototype.find
-  find: createMethod$2(5),
+  find: createMethod$3(5),
   // `Array.prototype.findIndex` method
   // https://tc39.es/ecma262/#sec-array.prototype.findIndex
-  findIndex: createMethod$2(6),
+  findIndex: createMethod$3(6),
   // `Array.prototype.filterReject` method
   // https://github.com/tc39/proposal-array-filtering
-  filterReject: createMethod$2(7)
+  filterReject: createMethod$3(7)
 };
 
-var $$8 = _export;
+var $$9 = _export$1;
 
 var $map = arrayIteration.map;
 
-var arrayMethodHasSpeciesSupport$1 = arrayMethodHasSpeciesSupport$3;
+var arrayMethodHasSpeciesSupport$3 = arrayMethodHasSpeciesSupport$5;
 
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport$1('map'); // `Array.prototype.map` method
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport$3('map'); // `Array.prototype.map` method
 // https://tc39.es/ecma262/#sec-array.prototype.map
 // with adding support of @@species
 
-$$8({
+$$9({
   target: 'Array',
   proto: true,
   forced: !HAS_SPECIES_SUPPORT
@@ -1694,92 +1694,92 @@ $$8({
   }
 });
 
-var $$7 = _export;
+var $$8 = _export$1;
 
-var ceil = Math.ceil;
-var floor$1 = Math.floor; // `Math.trunc` method
+var ceil$1 = Math.ceil;
+var floor$2 = Math.floor; // `Math.trunc` method
 // https://tc39.es/ecma262/#sec-math.trunc
 
-$$7({
+$$8({
   target: 'Math',
   stat: true
 }, {
   trunc: function trunc(it) {
-    return (it > 0 ? floor$1 : ceil)(it);
+    return (it > 0 ? floor$2 : ceil$1)(it);
   }
 });
 
-var $$6 = _export;
+var $$7 = _export$1;
 
-var global$j = global$H;
+var global$t = global$R;
 
-var fails$d = fails$n;
+var fails$f = fails$p;
 
-var isArray = isArray$3;
+var isArray$3 = isArray$6;
 
-var isObject$2 = isObject$a;
+var isObject$9 = isObject$h;
 
-var toObject$1 = toObject$4;
+var toObject$4 = toObject$7;
 
-var lengthOfArrayLike$1 = lengthOfArrayLike$5;
+var lengthOfArrayLike$4 = lengthOfArrayLike$8;
 
-var createProperty$1 = createProperty$3;
+var createProperty$3 = createProperty$5;
 
-var arraySpeciesCreate = arraySpeciesCreate$2;
+var arraySpeciesCreate$2 = arraySpeciesCreate$4;
 
-var arrayMethodHasSpeciesSupport = arrayMethodHasSpeciesSupport$3;
+var arrayMethodHasSpeciesSupport$2 = arrayMethodHasSpeciesSupport$5;
 
-var wellKnownSymbol$a = wellKnownSymbol$h;
+var wellKnownSymbol$b = wellKnownSymbol$i;
 
-var V8_VERSION = engineV8Version;
+var V8_VERSION$3 = engineV8Version$1;
 
-var IS_CONCAT_SPREADABLE = wellKnownSymbol$a('isConcatSpreadable');
-var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
-var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
-var TypeError$7 = global$j.TypeError; // We can't use this feature detection in V8 since it causes
+var IS_CONCAT_SPREADABLE$1 = wellKnownSymbol$b('isConcatSpreadable');
+var MAX_SAFE_INTEGER$1 = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED$1 = 'Maximum allowed index exceeded';
+var TypeError$9 = global$t.TypeError; // We can't use this feature detection in V8 since it causes
 // deoptimization and serious performance degradation
 // https://github.com/zloirock/core-js/issues/679
 
-var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails$d(function () {
+var IS_CONCAT_SPREADABLE_SUPPORT$1 = V8_VERSION$3 >= 51 || !fails$f(function () {
   var array = [];
-  array[IS_CONCAT_SPREADABLE] = false;
+  array[IS_CONCAT_SPREADABLE$1] = false;
   return array.concat()[0] !== array;
 });
-var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+var SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport$2('concat');
 
-var isConcatSpreadable = function (O) {
-  if (!isObject$2(O)) return false;
-  var spreadable = O[IS_CONCAT_SPREADABLE];
-  return spreadable !== undefined ? !!spreadable : isArray(O);
+var isConcatSpreadable$1 = function (O) {
+  if (!isObject$9(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE$1];
+  return spreadable !== undefined ? !!spreadable : isArray$3(O);
 };
 
-var FORCED$2 = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT; // `Array.prototype.concat` method
+var FORCED$3 = !IS_CONCAT_SPREADABLE_SUPPORT$1 || !SPECIES_SUPPORT$1; // `Array.prototype.concat` method
 // https://tc39.es/ecma262/#sec-array.prototype.concat
 // with adding support of @@isConcatSpreadable and @@species
 
-$$6({
+$$7({
   target: 'Array',
   proto: true,
-  forced: FORCED$2
+  forced: FORCED$3
 }, {
   // eslint-disable-next-line no-unused-vars -- required for `.length`
   concat: function concat(arg) {
-    var O = toObject$1(this);
-    var A = arraySpeciesCreate(O, 0);
+    var O = toObject$4(this);
+    var A = arraySpeciesCreate$2(O, 0);
     var n = 0;
     var i, k, length, len, E;
 
     for (i = -1, length = arguments.length; i < length; i++) {
       E = i === -1 ? O : arguments[i];
 
-      if (isConcatSpreadable(E)) {
-        len = lengthOfArrayLike$1(E);
-        if (n + len > MAX_SAFE_INTEGER) throw TypeError$7(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+      if (isConcatSpreadable$1(E)) {
+        len = lengthOfArrayLike$4(E);
+        if (n + len > MAX_SAFE_INTEGER$1) throw TypeError$9(MAXIMUM_ALLOWED_INDEX_EXCEEDED$1);
 
-        for (k = 0; k < len; k++, n++) if (k in E) createProperty$1(A, n, E[k]);
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty$3(A, n, E[k]);
       } else {
-        if (n >= MAX_SAFE_INTEGER) throw TypeError$7(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
-        createProperty$1(A, n++, E);
+        if (n >= MAX_SAFE_INTEGER$1) throw TypeError$9(MAXIMUM_ALLOWED_INDEX_EXCEEDED$1);
+        createProperty$3(A, n++, E);
       }
     }
 
@@ -1788,47 +1788,387 @@ $$6({
   }
 });
 
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
+var colorPalette = {
+  gray: "#75706E",
+  lightGray: "#B2B1AE",
+  darkGray: "#434243",
+  whiteBack: "#EEEEEE",
+  font: "#100300",
+  accent: "#FFD800",
+  background: "transparent",
+  dataColors: ["rgb(117,112,110)", "rgb(255,216,0)", "rgb(87,86,87)", "rgb(163, 255, 200)", "rgb(255,255,255)", "rgb(206, 36, 132)", "rgb(68, 214, 37)", "rgb(228, 31, 31)", "rgb(68, 36, 157)", "rgb(45, 109, 121)"]
+};
 
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
+// Making the contents of this animation invisible before timestamp:0
+// and after timestamp: {totalDuration}
 
-    if (enumerableOnly) {
-      symbols = symbols.filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-      });
+function opacityControl(clip, selector) {
+  clip.addIncident(new CSSEffect({
+    animatedAttrs: {
+      opacity: 1
+    },
+    initialValues: {
+      opacity: 0
     }
+  }, {
+    selector: selector,
+    duration: 1
+  }), 0);
+  clip.addIncident(new CSSEffect({
+    animatedAttrs: {
+      opacity: 0
+    }
+  }, {
+    selector: selector,
+    duration: 1
+  }), clip.introDur + clip.staticDur + clip.outroDur - 1);
+} // Static control: used for fadeout outro components
+// Making the contents of this animation invisible before timestamp:0
+// and after timestamp: {totalDuration}
 
-    keys.push.apply(keys, symbols);
+function fadeOutOpacityControl(clip, selector) {
+  clip.addIncident(new CSSEffect({
+    animatedAttrs: {
+      opacity: 1
+    },
+    initialValues: {
+      opacity: 0
+    }
+  }, {
+    selector: selector,
+    duration: 1
+  }), 0);
+
+  if (!clip.attrs.timings.outro) {
+    clip.addIncident(new CSSEffect({
+      animatedAttrs: {
+        opacity: 0
+      }
+    }, {
+      selector: selector,
+      duration: 1
+    }), clip.attrs.timings.intro + clip.attrs.timings.static - 1);
   }
-
-  return keys;
 }
 
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
+var uncurryThis$g = functionUncurryThis$1; // `thisNumberValue` abstract operation
+// https://tc39.es/ecma262/#sec-thisnumbervalue
 
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+
+var thisNumberValue$2 = uncurryThis$g(1.0.valueOf);
+
+var global$s = global$R;
+
+var classof$6 = classof$8;
+
+var String$4 = global$s.String;
+
+var toString$a = function (argument) {
+  if (classof$6(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
+  return String$4(argument);
+};
+
+var global$r = global$R;
+
+var toIntegerOrInfinity$5 = toIntegerOrInfinity$8;
+
+var toString$9 = toString$a;
+
+var requireObjectCoercible$5 = requireObjectCoercible$8;
+
+var RangeError$1 = global$r.RangeError; // `String.prototype.repeat` method implementation
+// https://tc39.es/ecma262/#sec-string.prototype.repeat
+
+var stringRepeat = function repeat(count) {
+  var str = toString$9(requireObjectCoercible$5(this));
+  var result = '';
+  var n = toIntegerOrInfinity$5(count);
+  if (n < 0 || n == Infinity) throw RangeError$1('Wrong number of repetitions');
+
+  for (; n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
+
+  return result;
+};
+
+var $$6 = _export$1;
+
+var global$q = global$R;
+
+var uncurryThis$f = functionUncurryThis$1;
+
+var toIntegerOrInfinity$4 = toIntegerOrInfinity$8;
+
+var thisNumberValue$1 = thisNumberValue$2;
+
+var $repeat = stringRepeat;
+
+var fails$e = fails$p;
+
+var RangeError = global$q.RangeError;
+var String$3 = global$q.String;
+var floor$1 = Math.floor;
+var repeat = uncurryThis$f($repeat);
+var stringSlice$5 = uncurryThis$f(''.slice);
+var un$ToFixed = uncurryThis$f(1.0.toFixed);
+
+var pow = function (x, n, acc) {
+  return n === 0 ? acc : n % 2 === 1 ? pow(x, n - 1, acc * x) : pow(x * x, n / 2, acc);
+};
+
+var log = function (x) {
+  var n = 0;
+  var x2 = x;
+
+  while (x2 >= 4096) {
+    n += 12;
+    x2 /= 4096;
+  }
+
+  while (x2 >= 2) {
+    n += 1;
+    x2 /= 2;
+  }
+
+  return n;
+};
+
+var multiply = function (data, n, c) {
+  var index = -1;
+  var c2 = c;
+
+  while (++index < 6) {
+    c2 += n * data[index];
+    data[index] = c2 % 1e7;
+    c2 = floor$1(c2 / 1e7);
+  }
+};
+
+var divide = function (data, n) {
+  var index = 6;
+  var c = 0;
+
+  while (--index >= 0) {
+    c += data[index];
+    data[index] = floor$1(c / n);
+    c = c % n * 1e7;
+  }
+};
+
+var dataToString = function (data) {
+  var index = 6;
+  var s = '';
+
+  while (--index >= 0) {
+    if (s !== '' || index === 0 || data[index] !== 0) {
+      var t = String$3(data[index]);
+      s = s === '' ? t : s + repeat('0', 7 - t.length) + t;
+    }
+  }
+
+  return s;
+};
+
+var FORCED$2 = fails$e(function () {
+  return un$ToFixed(0.00008, 3) !== '0.000' || un$ToFixed(0.9, 0) !== '1' || un$ToFixed(1.255, 2) !== '1.25' || un$ToFixed(1000000000000000128.0, 0) !== '1000000000000000128';
+}) || !fails$e(function () {
+  // V8 ~ Android 4.3-
+  un$ToFixed({});
+}); // `Number.prototype.toFixed` method
+// https://tc39.es/ecma262/#sec-number.prototype.tofixed
+
+$$6({
+  target: 'Number',
+  proto: true,
+  forced: FORCED$2
+}, {
+  toFixed: function toFixed(fractionDigits) {
+    var number = thisNumberValue$1(this);
+    var fractDigits = toIntegerOrInfinity$4(fractionDigits);
+    var data = [0, 0, 0, 0, 0, 0];
+    var sign = '';
+    var result = '0';
+    var e, z, j, k; // TODO: ES2018 increased the maximum number of fraction digits to 100, need to improve the implementation
+
+    if (fractDigits < 0 || fractDigits > 20) throw RangeError('Incorrect fraction digits'); // eslint-disable-next-line no-self-compare -- NaN check
+
+    if (number != number) return 'NaN';
+    if (number <= -1e21 || number >= 1e21) return String$3(number);
+
+    if (number < 0) {
+      sign = '-';
+      number = -number;
+    }
+
+    if (number > 1e-21) {
+      e = log(number * pow(2, 69, 1)) - 69;
+      z = e < 0 ? number * pow(2, -e, 1) : number / pow(2, e, 1);
+      z *= 0x10000000000000;
+      e = 52 - e;
+
+      if (e > 0) {
+        multiply(data, 0, z);
+        j = fractDigits;
+
+        while (j >= 7) {
+          multiply(data, 1e7, 0);
+          j -= 7;
+        }
+
+        multiply(data, pow(10, j, 1), 0);
+        j = e - 1;
+
+        while (j >= 23) {
+          divide(data, 1 << 23);
+          j -= 23;
+        }
+
+        divide(data, 1 << j);
+        multiply(data, 1, 1);
+        divide(data, 2);
+        result = dataToString(data);
+      } else {
+        multiply(data, 0, z);
+        multiply(data, 1 << -e, 0);
+        result = dataToString(data) + repeat('0', fractDigits);
+      }
+    }
+
+    if (fractDigits > 0) {
+      k = result.length;
+      result = sign + (k <= fractDigits ? '0.' + repeat('0', fractDigits - k) + result : stringSlice$5(result, 0, k - fractDigits) + '.' + stringSlice$5(result, k - fractDigits));
     } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
+      result = sign + result;
     }
-  }
 
-  return target;
+    return result;
+  }
+});
+
+var TO_STRING_TAG_SUPPORT$2 = toStringTagSupport$1;
+
+var classof$5 = classof$8; // `Object.prototype.toString` method implementation
+// https://tc39.es/ecma262/#sec-object.prototype.tostring
+
+
+var objectToString = TO_STRING_TAG_SUPPORT$2 ? {}.toString : function toString() {
+  return '[object ' + classof$5(this) + ']';
+};
+
+var TO_STRING_TAG_SUPPORT$1 = toStringTagSupport$1;
+
+var redefine$7 = redefine$9.exports;
+
+var toString$8 = objectToString; // `Object.prototype.toString` method
+// https://tc39.es/ecma262/#sec-object.prototype.tostring
+
+
+if (!TO_STRING_TAG_SUPPORT$1) {
+  redefine$7(Object.prototype, 'toString', toString$8, {
+    unsafe: true
+  });
 }
 
-function _classCallCheck$1(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
+var anObject$9 = anObject$c; // `RegExp.prototype.flags` getter implementation
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
+
+
+var regexpFlags$1 = function () {
+  var that = anObject$9(this);
+  var result = '';
+  if (that.global) result += 'g';
+  if (that.ignoreCase) result += 'i';
+  if (that.multiline) result += 'm';
+  if (that.dotAll) result += 's';
+  if (that.unicode) result += 'u';
+  if (that.sticky) result += 'y';
+  return result;
+};
+
+var uncurryThis$e = functionUncurryThis$1;
+
+var PROPER_FUNCTION_NAME$1 = functionName$1.PROPER;
+
+var redefine$6 = redefine$9.exports;
+
+var anObject$8 = anObject$c;
+
+var isPrototypeOf$3 = objectIsPrototypeOf$1;
+
+var $toString = toString$a;
+
+var fails$d = fails$p;
+
+var regExpFlags$1 = regexpFlags$1;
+
+var TO_STRING = 'toString';
+var RegExpPrototype$4 = RegExp.prototype;
+var n$ToString = RegExpPrototype$4[TO_STRING];
+var getFlags$1 = uncurryThis$e(regExpFlags$1);
+var NOT_GENERIC = fails$d(function () {
+  return n$ToString.call({
+    source: 'a',
+    flags: 'b'
+  }) != '/a/b';
+}); // FF44- RegExp#toString has a wrong name
+
+var INCORRECT_NAME = PROPER_FUNCTION_NAME$1 && n$ToString.name != TO_STRING; // `RegExp.prototype.toString` method
+// https://tc39.es/ecma262/#sec-regexp.prototype.tostring
+
+if (NOT_GENERIC || INCORRECT_NAME) {
+  redefine$6(RegExp.prototype, TO_STRING, function toString() {
+    var R = anObject$8(this);
+    var p = $toString(R.source);
+    var rf = R.flags;
+    var f = $toString(rf === undefined && isPrototypeOf$3(RegExpPrototype$4, R) && !('flags' in RegExpPrototype$4) ? getFlags$1(R) : rf);
+    return '/' + p + '/' + f;
+  }, {
+    unsafe: true
+  });
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
+
+var isProduction = process.env.NODE_ENV === 'production';
+
+function warning(condition, message) {
+  if (!isProduction) {
+    if (condition) {
+      return;
+    }
+
+    var text = "Warning: " + message;
+
+    if (typeof console !== 'undefined') {
+      console.warn(text);
+    }
+
+    try {
+      throw Error(text);
+    } catch (x) {}
   }
 }
 
@@ -1848,19 +2188,3063 @@ function _createClass$2(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
+function _setPrototypeOf$2(o, p) {
+  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf$2(o, p);
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  _setPrototypeOf$2(subClass, superClass);
+}
+
+function _assertThisInitialized$2(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
 
-  return obj;
+  return self;
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+var plainObjectConstrurctor = {}.constructor;
+
+function cloneStyle(style) {
+  if (style == null || typeof style !== 'object') return style;
+  if (Array.isArray(style)) return style.map(cloneStyle);
+  if (style.constructor !== plainObjectConstrurctor) return style;
+  var newStyle = {};
+
+  for (var name in style) {
+    newStyle[name] = cloneStyle(style[name]);
+  }
+
+  return newStyle;
+}
+/**
+ * Create a rule instance.
+ */
+
+
+function createRule(name, decl, options) {
+  if (name === void 0) {
+    name = 'unnamed';
+  }
+
+  var jss = options.jss;
+  var declCopy = cloneStyle(decl);
+  var rule = jss.plugins.onCreateRule(name, declCopy, options);
+  if (rule) return rule; // It is an at-rule and it has no instance.
+
+  if (name[0] === '@') {
+    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Unknown rule " + name) : void 0;
+  }
+
+  return null;
+}
+
+var join = function join(value, by) {
+  var result = '';
+
+  for (var i = 0; i < value.length; i++) {
+    // Remove !important from the value, it will be readded later.
+    if (value[i] === '!important') break;
+    if (result) result += by;
+    result += value[i];
+  }
+
+  return result;
+};
+/**
+ * Converts JSS array value to a CSS string.
+ *
+ * `margin: [['5px', '10px']]` > `margin: 5px 10px;`
+ * `border: ['1px', '2px']` > `border: 1px, 2px;`
+ * `margin: [['5px', '10px'], '!important']` > `margin: 5px 10px !important;`
+ * `color: ['red', !important]` > `color: red !important;`
+ */
+
+
+var toCssValue = function toCssValue(value, ignoreImportant) {
+  if (ignoreImportant === void 0) {
+    ignoreImportant = false;
+  }
+
+  if (!Array.isArray(value)) return value;
+  var cssValue = ''; // Support space separated values via `[['5px', '10px']]`.
+
+  if (Array.isArray(value[0])) {
+    for (var i = 0; i < value.length; i++) {
+      if (value[i] === '!important') break;
+      if (cssValue) cssValue += ', ';
+      cssValue += join(value[i], ' ');
+    }
+  } else cssValue = join(value, ', '); // Add !important, because it was ignored.
+
+
+  if (!ignoreImportant && value[value.length - 1] === '!important') {
+    cssValue += ' !important';
+  }
+
+  return cssValue;
+};
+
+function getWhitespaceSymbols(options) {
+  if (options && options.format === false) {
+    return {
+      linebreak: '',
+      space: ''
+    };
+  }
+
+  return {
+    linebreak: '\n',
+    space: ' '
+  };
+}
+/**
+ * Indent a string.
+ * http://jsperf.com/array-join-vs-for
+ */
+
+
+function indentStr(str, indent) {
+  var result = '';
+
+  for (var index = 0; index < indent; index++) {
+    result += '  ';
+  }
+
+  return result + str;
+}
+/**
+ * Converts a Rule to CSS string.
+ */
+
+
+function toCss(selector, style, options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  var result = '';
+  if (!style) return result;
+  var _options = options,
+      _options$indent = _options.indent,
+      indent = _options$indent === void 0 ? 0 : _options$indent;
+  var fallbacks = style.fallbacks;
+
+  if (options.format === false) {
+    indent = -Infinity;
+  }
+
+  var _getWhitespaceSymbols = getWhitespaceSymbols(options),
+      linebreak = _getWhitespaceSymbols.linebreak,
+      space = _getWhitespaceSymbols.space;
+
+  if (selector) indent++; // Apply fallbacks first.
+
+  if (fallbacks) {
+    // Array syntax {fallbacks: [{prop: value}]}
+    if (Array.isArray(fallbacks)) {
+      for (var index = 0; index < fallbacks.length; index++) {
+        var fallback = fallbacks[index];
+
+        for (var prop in fallback) {
+          var value = fallback[prop];
+
+          if (value != null) {
+            if (result) result += linebreak;
+            result += indentStr(prop + ":" + space + toCssValue(value) + ";", indent);
+          }
+        }
+      }
+    } else {
+      // Object syntax {fallbacks: {prop: value}}
+      for (var _prop in fallbacks) {
+        var _value = fallbacks[_prop];
+
+        if (_value != null) {
+          if (result) result += linebreak;
+          result += indentStr(_prop + ":" + space + toCssValue(_value) + ";", indent);
+        }
+      }
+    }
+  }
+
+  for (var _prop2 in style) {
+    var _value2 = style[_prop2];
+
+    if (_value2 != null && _prop2 !== 'fallbacks') {
+      if (result) result += linebreak;
+      result += indentStr(_prop2 + ":" + space + toCssValue(_value2) + ";", indent);
+    }
+  } // Allow empty style in this case, because properties will be added dynamically.
+
+
+  if (!result && !options.allowEmpty) return result; // When rule is being stringified before selector was defined.
+
+  if (!selector) return result;
+  indent--;
+  if (result) result = "" + linebreak + result + linebreak;
+  return indentStr("" + selector + space + "{" + result, indent) + indentStr('}', indent);
+}
+
+var escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
+var nativeEscape = typeof CSS !== 'undefined' && CSS.escape;
+
+var escape = function (str) {
+  return nativeEscape ? nativeEscape(str) : str.replace(escapeRegex, '\\$1');
+};
+
+var BaseStyleRule = /*#__PURE__*/function () {
+  function BaseStyleRule(key, style, options) {
+    this.type = 'style';
+    this.isProcessed = false;
+    var sheet = options.sheet,
+        Renderer = options.Renderer;
+    this.key = key;
+    this.options = options;
+    this.style = style;
+    if (sheet) this.renderer = sheet.renderer;else if (Renderer) this.renderer = new Renderer();
+  }
+  /**
+   * Get or set a style property.
+   */
+
+
+  var _proto = BaseStyleRule.prototype;
+
+  _proto.prop = function prop(name, value, options) {
+    // It's a getter.
+    if (value === undefined) return this.style[name]; // Don't do anything if the value has not changed.
+
+    var force = options ? options.force : false;
+    if (!force && this.style[name] === value) return this;
+    var newValue = value;
+
+    if (!options || options.process !== false) {
+      newValue = this.options.jss.plugins.onChangeValue(value, name, this);
+    }
+
+    var isEmpty = newValue == null || newValue === false;
+    var isDefined = (name in this.style); // Value is empty and wasn't defined before.
+
+    if (isEmpty && !isDefined && !force) return this; // We are going to remove this value.
+
+    var remove = isEmpty && isDefined;
+    if (remove) delete this.style[name];else this.style[name] = newValue; // Renderable is defined if StyleSheet option `link` is true.
+
+    if (this.renderable && this.renderer) {
+      if (remove) this.renderer.removeProperty(this.renderable, name);else this.renderer.setProperty(this.renderable, name, newValue);
+      return this;
+    }
+
+    var sheet = this.options.sheet;
+
+    if (sheet && sheet.attached) {
+      process.env.NODE_ENV !== "production" ? warning(false, '[JSS] Rule is not linked. Missing sheet option "link: true".') : void 0;
+    }
+
+    return this;
+  };
+
+  return BaseStyleRule;
+}();
+
+var StyleRule = /*#__PURE__*/function (_BaseStyleRule) {
+  _inheritsLoose(StyleRule, _BaseStyleRule);
+
+  function StyleRule(key, style, options) {
+    var _this;
+
+    _this = _BaseStyleRule.call(this, key, style, options) || this;
+    var selector = options.selector,
+        scoped = options.scoped,
+        sheet = options.sheet,
+        generateId = options.generateId;
+
+    if (selector) {
+      _this.selectorText = selector;
+    } else if (scoped !== false) {
+      _this.id = generateId(_assertThisInitialized$2(_assertThisInitialized$2(_this)), sheet);
+      _this.selectorText = "." + escape(_this.id);
+    }
+
+    return _this;
+  }
+  /**
+   * Set selector string.
+   * Attention: use this with caution. Most browsers didn't implement
+   * selectorText setter, so this may result in rerendering of entire Style Sheet.
+   */
+
+
+  var _proto2 = StyleRule.prototype;
+  /**
+   * Apply rule to an element inline.
+   */
+
+  _proto2.applyTo = function applyTo(renderable) {
+    var renderer = this.renderer;
+
+    if (renderer) {
+      var json = this.toJSON();
+
+      for (var prop in json) {
+        renderer.setProperty(renderable, prop, json[prop]);
+      }
+    }
+
+    return this;
+  }
+  /**
+   * Returns JSON representation of the rule.
+   * Fallbacks are not supported.
+   * Useful for inline styles.
+   */
+  ;
+
+  _proto2.toJSON = function toJSON() {
+    var json = {};
+
+    for (var prop in this.style) {
+      var value = this.style[prop];
+      if (typeof value !== 'object') json[prop] = value;else if (Array.isArray(value)) json[prop] = toCssValue(value);
+    }
+
+    return json;
+  }
+  /**
+   * Generates a CSS string.
+   */
+  ;
+
+  _proto2.toString = function toString(options) {
+    var sheet = this.options.sheet;
+    var link = sheet ? sheet.options.link : false;
+    var opts = link ? _extends({}, options, {
+      allowEmpty: true
+    }) : options;
+    return toCss(this.selectorText, this.style, opts);
+  };
+
+  _createClass$2(StyleRule, [{
+    key: "selector",
+    set: function set(selector) {
+      if (selector === this.selectorText) return;
+      this.selectorText = selector;
+      var renderer = this.renderer,
+          renderable = this.renderable;
+      if (!renderable || !renderer) return;
+      var hasChanged = renderer.setSelector(renderable, selector); // If selector setter is not implemented, rerender the rule.
+
+      if (!hasChanged) {
+        renderer.replaceRule(renderable, this);
+      }
+    }
+    /**
+     * Get selector string.
+     */
+    ,
+    get: function get() {
+      return this.selectorText;
+    }
+  }]);
+
+  return StyleRule;
+}(BaseStyleRule);
+
+var pluginStyleRule = {
+  onCreateRule: function onCreateRule(key, style, options) {
+    if (key[0] === '@' || options.parent && options.parent.type === 'keyframes') {
+      return null;
+    }
+
+    return new StyleRule(key, style, options);
+  }
+};
+var defaultToStringOptions = {
+  indent: 1,
+  children: true
+};
+var atRegExp = /@([\w-]+)/;
+/**
+ * Conditional rule for @media, @supports
+ */
+
+var ConditionalRule = /*#__PURE__*/function () {
+  function ConditionalRule(key, styles, options) {
+    this.type = 'conditional';
+    this.isProcessed = false;
+    this.key = key;
+    var atMatch = key.match(atRegExp);
+    this.at = atMatch ? atMatch[1] : 'unknown'; // Key might contain a unique suffix in case the `name` passed by user was duplicate.
+
+    this.query = options.name || "@" + this.at;
+    this.options = options;
+    this.rules = new RuleList(_extends({}, options, {
+      parent: this
+    }));
+
+    for (var name in styles) {
+      this.rules.add(name, styles[name]);
+    }
+
+    this.rules.process();
+  }
+  /**
+   * Get a rule.
+   */
+
+
+  var _proto = ConditionalRule.prototype;
+
+  _proto.getRule = function getRule(name) {
+    return this.rules.get(name);
+  }
+  /**
+   * Get index of a rule.
+   */
+  ;
+
+  _proto.indexOf = function indexOf(rule) {
+    return this.rules.indexOf(rule);
+  }
+  /**
+   * Create and register rule, run plugins.
+   */
+  ;
+
+  _proto.addRule = function addRule(name, style, options) {
+    var rule = this.rules.add(name, style, options);
+    if (!rule) return null;
+    this.options.jss.plugins.onProcessRule(rule);
+    return rule;
+  }
+  /**
+   * Replace rule, run plugins.
+   */
+  ;
+
+  _proto.replaceRule = function replaceRule(name, style, options) {
+    var newRule = this.rules.replace(name, style, options);
+    if (newRule) this.options.jss.plugins.onProcessRule(newRule);
+    return newRule;
+  }
+  /**
+   * Generates a CSS string.
+   */
+  ;
+
+  _proto.toString = function toString(options) {
+    if (options === void 0) {
+      options = defaultToStringOptions;
+    }
+
+    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
+        linebreak = _getWhitespaceSymbols.linebreak;
+
+    if (options.indent == null) options.indent = defaultToStringOptions.indent;
+    if (options.children == null) options.children = defaultToStringOptions.children;
+
+    if (options.children === false) {
+      return this.query + " {}";
+    }
+
+    var children = this.rules.toString(options);
+    return children ? this.query + " {" + linebreak + children + linebreak + "}" : '';
+  };
+
+  return ConditionalRule;
+}();
+
+var keyRegExp = /@media|@supports\s+/;
+var pluginConditionalRule = {
+  onCreateRule: function onCreateRule(key, styles, options) {
+    return keyRegExp.test(key) ? new ConditionalRule(key, styles, options) : null;
+  }
+};
+var defaultToStringOptions$1 = {
+  indent: 1,
+  children: true
+};
+var nameRegExp = /@keyframes\s+([\w-]+)/;
+/**
+ * Rule for @keyframes
+ */
+
+var KeyframesRule = /*#__PURE__*/function () {
+  function KeyframesRule(key, frames, options) {
+    this.type = 'keyframes';
+    this.at = '@keyframes';
+    this.isProcessed = false;
+    var nameMatch = key.match(nameRegExp);
+
+    if (nameMatch && nameMatch[1]) {
+      this.name = nameMatch[1];
+    } else {
+      this.name = 'noname';
+      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Bad keyframes name " + key) : void 0;
+    }
+
+    this.key = this.type + "-" + this.name;
+    this.options = options;
+    var scoped = options.scoped,
+        sheet = options.sheet,
+        generateId = options.generateId;
+    this.id = scoped === false ? this.name : escape(generateId(this, sheet));
+    this.rules = new RuleList(_extends({}, options, {
+      parent: this
+    }));
+
+    for (var name in frames) {
+      this.rules.add(name, frames[name], _extends({}, options, {
+        parent: this
+      }));
+    }
+
+    this.rules.process();
+  }
+  /**
+   * Generates a CSS string.
+   */
+
+
+  var _proto = KeyframesRule.prototype;
+
+  _proto.toString = function toString(options) {
+    if (options === void 0) {
+      options = defaultToStringOptions$1;
+    }
+
+    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
+        linebreak = _getWhitespaceSymbols.linebreak;
+
+    if (options.indent == null) options.indent = defaultToStringOptions$1.indent;
+    if (options.children == null) options.children = defaultToStringOptions$1.children;
+
+    if (options.children === false) {
+      return this.at + " " + this.id + " {}";
+    }
+
+    var children = this.rules.toString(options);
+    if (children) children = "" + linebreak + children + linebreak;
+    return this.at + " " + this.id + " {" + children + "}";
+  };
+
+  return KeyframesRule;
+}();
+
+var keyRegExp$1 = /@keyframes\s+/;
+var refRegExp = /\$([\w-]+)/g;
+
+var findReferencedKeyframe = function findReferencedKeyframe(val, keyframes) {
+  if (typeof val === 'string') {
+    return val.replace(refRegExp, function (match, name) {
+      if (name in keyframes) {
+        return keyframes[name];
+      }
+
+      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Referenced keyframes rule \"" + name + "\" is not defined.") : void 0;
+      return match;
+    });
+  }
+
+  return val;
+};
+/**
+ * Replace the reference for a animation name.
+ */
+
+
+var replaceRef = function replaceRef(style, prop, keyframes) {
+  var value = style[prop];
+  var refKeyframe = findReferencedKeyframe(value, keyframes);
+
+  if (refKeyframe !== value) {
+    style[prop] = refKeyframe;
+  }
+};
+
+var pluginKeyframesRule = {
+  onCreateRule: function onCreateRule(key, frames, options) {
+    return typeof key === 'string' && keyRegExp$1.test(key) ? new KeyframesRule(key, frames, options) : null;
+  },
+  // Animation name ref replacer.
+  onProcessStyle: function onProcessStyle(style, rule, sheet) {
+    if (rule.type !== 'style' || !sheet) return style;
+    if ('animation-name' in style) replaceRef(style, 'animation-name', sheet.keyframes);
+    if ('animation' in style) replaceRef(style, 'animation', sheet.keyframes);
+    return style;
+  },
+  onChangeValue: function onChangeValue(val, prop, rule) {
+    var sheet = rule.options.sheet;
+
+    if (!sheet) {
+      return val;
+    }
+
+    switch (prop) {
+      case 'animation':
+        return findReferencedKeyframe(val, sheet.keyframes);
+
+      case 'animation-name':
+        return findReferencedKeyframe(val, sheet.keyframes);
+
+      default:
+        return val;
+    }
+  }
+};
+
+var KeyframeRule = /*#__PURE__*/function (_BaseStyleRule) {
+  _inheritsLoose(KeyframeRule, _BaseStyleRule);
+
+  function KeyframeRule() {
+    return _BaseStyleRule.apply(this, arguments) || this;
+  }
+
+  var _proto = KeyframeRule.prototype;
+  /**
+   * Generates a CSS string.
+   */
+
+  _proto.toString = function toString(options) {
+    var sheet = this.options.sheet;
+    var link = sheet ? sheet.options.link : false;
+    var opts = link ? _extends({}, options, {
+      allowEmpty: true
+    }) : options;
+    return toCss(this.key, this.style, opts);
+  };
+
+  return KeyframeRule;
+}(BaseStyleRule);
+
+var pluginKeyframeRule = {
+  onCreateRule: function onCreateRule(key, style, options) {
+    if (options.parent && options.parent.type === 'keyframes') {
+      return new KeyframeRule(key, style, options);
+    }
+
+    return null;
+  }
+};
+
+var FontFaceRule = /*#__PURE__*/function () {
+  function FontFaceRule(key, style, options) {
+    this.type = 'font-face';
+    this.at = '@font-face';
+    this.isProcessed = false;
+    this.key = key;
+    this.style = style;
+    this.options = options;
+  }
+  /**
+   * Generates a CSS string.
+   */
+
+
+  var _proto = FontFaceRule.prototype;
+
+  _proto.toString = function toString(options) {
+    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
+        linebreak = _getWhitespaceSymbols.linebreak;
+
+    if (Array.isArray(this.style)) {
+      var str = '';
+
+      for (var index = 0; index < this.style.length; index++) {
+        str += toCss(this.at, this.style[index]);
+        if (this.style[index + 1]) str += linebreak;
+      }
+
+      return str;
+    }
+
+    return toCss(this.at, this.style, options);
+  };
+
+  return FontFaceRule;
+}();
+
+var keyRegExp$2 = /@font-face/;
+var pluginFontFaceRule = {
+  onCreateRule: function onCreateRule(key, style, options) {
+    return keyRegExp$2.test(key) ? new FontFaceRule(key, style, options) : null;
+  }
+};
+
+var ViewportRule = /*#__PURE__*/function () {
+  function ViewportRule(key, style, options) {
+    this.type = 'viewport';
+    this.at = '@viewport';
+    this.isProcessed = false;
+    this.key = key;
+    this.style = style;
+    this.options = options;
+  }
+  /**
+   * Generates a CSS string.
+   */
+
+
+  var _proto = ViewportRule.prototype;
+
+  _proto.toString = function toString(options) {
+    return toCss(this.key, this.style, options);
+  };
+
+  return ViewportRule;
+}();
+
+var pluginViewportRule = {
+  onCreateRule: function onCreateRule(key, style, options) {
+    return key === '@viewport' || key === '@-ms-viewport' ? new ViewportRule(key, style, options) : null;
+  }
+};
+
+var SimpleRule = /*#__PURE__*/function () {
+  function SimpleRule(key, value, options) {
+    this.type = 'simple';
+    this.isProcessed = false;
+    this.key = key;
+    this.value = value;
+    this.options = options;
+  }
+  /**
+   * Generates a CSS string.
+   */
+  // eslint-disable-next-line no-unused-vars
+
+
+  var _proto = SimpleRule.prototype;
+
+  _proto.toString = function toString(options) {
+    if (Array.isArray(this.value)) {
+      var str = '';
+
+      for (var index = 0; index < this.value.length; index++) {
+        str += this.key + " " + this.value[index] + ";";
+        if (this.value[index + 1]) str += '\n';
+      }
+
+      return str;
+    }
+
+    return this.key + " " + this.value + ";";
+  };
+
+  return SimpleRule;
+}();
+
+var keysMap = {
+  '@charset': true,
+  '@import': true,
+  '@namespace': true
+};
+var pluginSimpleRule = {
+  onCreateRule: function onCreateRule(key, value, options) {
+    return key in keysMap ? new SimpleRule(key, value, options) : null;
+  }
+};
+var plugins = [pluginStyleRule, pluginConditionalRule, pluginKeyframesRule, pluginKeyframeRule, pluginFontFaceRule, pluginViewportRule, pluginSimpleRule];
+var defaultUpdateOptions = {
+  process: true
+};
+var forceUpdateOptions = {
+  force: true,
+  process: true
+  /**
+   * Contains rules objects and allows adding/removing etc.
+   * Is used for e.g. by `StyleSheet` or `ConditionalRule`.
+   */
+
+};
+
+var RuleList = /*#__PURE__*/function () {
+  // Rules registry for access by .get() method.
+  // It contains the same rule registered by name and by selector.
+  // Original styles object.
+  // Used to ensure correct rules order.
+  function RuleList(options) {
+    this.map = {};
+    this.raw = {};
+    this.index = [];
+    this.counter = 0;
+    this.options = options;
+    this.classes = options.classes;
+    this.keyframes = options.keyframes;
+  }
+  /**
+   * Create and register rule.
+   *
+   * Will not render after Style Sheet was rendered the first time.
+   */
+
+
+  var _proto = RuleList.prototype;
+
+  _proto.add = function add(name, decl, ruleOptions) {
+    var _this$options = this.options,
+        parent = _this$options.parent,
+        sheet = _this$options.sheet,
+        jss = _this$options.jss,
+        Renderer = _this$options.Renderer,
+        generateId = _this$options.generateId,
+        scoped = _this$options.scoped;
+
+    var options = _extends({
+      classes: this.classes,
+      parent: parent,
+      sheet: sheet,
+      jss: jss,
+      Renderer: Renderer,
+      generateId: generateId,
+      scoped: scoped,
+      name: name,
+      keyframes: this.keyframes,
+      selector: undefined
+    }, ruleOptions); // When user uses .createStyleSheet(), duplicate names are not possible, but
+    // `sheet.addRule()` opens the door for any duplicate rule name. When this happens
+    // we need to make the key unique within this RuleList instance scope.
+
+
+    var key = name;
+
+    if (name in this.raw) {
+      key = name + "-d" + this.counter++;
+    } // We need to save the original decl before creating the rule
+    // because cache plugin needs to use it as a key to return a cached rule.
+
+
+    this.raw[key] = decl;
+
+    if (key in this.classes) {
+      // E.g. rules inside of @media container
+      options.selector = "." + escape(this.classes[key]);
+    }
+
+    var rule = createRule(key, decl, options);
+    if (!rule) return null;
+    this.register(rule);
+    var index = options.index === undefined ? this.index.length : options.index;
+    this.index.splice(index, 0, rule);
+    return rule;
+  }
+  /**
+   * Replace rule.
+   * Create a new rule and remove old one instead of overwriting
+   * because we want to invoke onCreateRule hook to make plugins work.
+   */
+  ;
+
+  _proto.replace = function replace(name, decl, ruleOptions) {
+    var oldRule = this.get(name);
+    var oldIndex = this.index.indexOf(oldRule);
+
+    if (oldRule) {
+      this.remove(oldRule);
+    }
+
+    var options = ruleOptions;
+    if (oldIndex !== -1) options = _extends({}, ruleOptions, {
+      index: oldIndex
+    });
+    return this.add(name, decl, options);
+  }
+  /**
+   * Get a rule by name or selector.
+   */
+  ;
+
+  _proto.get = function get(nameOrSelector) {
+    return this.map[nameOrSelector];
+  }
+  /**
+   * Delete a rule.
+   */
+  ;
+
+  _proto.remove = function remove(rule) {
+    this.unregister(rule);
+    delete this.raw[rule.key];
+    this.index.splice(this.index.indexOf(rule), 1);
+  }
+  /**
+   * Get index of a rule.
+   */
+  ;
+
+  _proto.indexOf = function indexOf(rule) {
+    return this.index.indexOf(rule);
+  }
+  /**
+   * Run `onProcessRule()` plugins on every rule.
+   */
+  ;
+
+  _proto.process = function process() {
+    var plugins = this.options.jss.plugins; // We need to clone array because if we modify the index somewhere else during a loop
+    // we end up with very hard-to-track-down side effects.
+
+    this.index.slice(0).forEach(plugins.onProcessRule, plugins);
+  }
+  /**
+   * Register a rule in `.map`, `.classes` and `.keyframes` maps.
+   */
+  ;
+
+  _proto.register = function register(rule) {
+    this.map[rule.key] = rule;
+
+    if (rule instanceof StyleRule) {
+      this.map[rule.selector] = rule;
+      if (rule.id) this.classes[rule.key] = rule.id;
+    } else if (rule instanceof KeyframesRule && this.keyframes) {
+      this.keyframes[rule.name] = rule.id;
+    }
+  }
+  /**
+   * Unregister a rule.
+   */
+  ;
+
+  _proto.unregister = function unregister(rule) {
+    delete this.map[rule.key];
+
+    if (rule instanceof StyleRule) {
+      delete this.map[rule.selector];
+      delete this.classes[rule.key];
+    } else if (rule instanceof KeyframesRule) {
+      delete this.keyframes[rule.name];
+    }
+  }
+  /**
+   * Update the function values with a new data.
+   */
+  ;
+
+  _proto.update = function update() {
+    var name;
+    var data;
+    var options;
+
+    if (typeof (arguments.length <= 0 ? undefined : arguments[0]) === 'string') {
+      name = arguments.length <= 0 ? undefined : arguments[0];
+      data = arguments.length <= 1 ? undefined : arguments[1];
+      options = arguments.length <= 2 ? undefined : arguments[2];
+    } else {
+      data = arguments.length <= 0 ? undefined : arguments[0];
+      options = arguments.length <= 1 ? undefined : arguments[1];
+      name = null;
+    }
+
+    if (name) {
+      this.updateOne(this.get(name), data, options);
+    } else {
+      for (var index = 0; index < this.index.length; index++) {
+        this.updateOne(this.index[index], data, options);
+      }
+    }
+  }
+  /**
+   * Execute plugins, update rule props.
+   */
+  ;
+
+  _proto.updateOne = function updateOne(rule, data, options) {
+    if (options === void 0) {
+      options = defaultUpdateOptions;
+    }
+
+    var _this$options2 = this.options,
+        plugins = _this$options2.jss.plugins,
+        sheet = _this$options2.sheet; // It is a rules container like for e.g. ConditionalRule.
+
+    if (rule.rules instanceof RuleList) {
+      rule.rules.update(data, options);
+      return;
+    }
+
+    var style = rule.style;
+    plugins.onUpdate(data, rule, sheet, options); // We rely on a new `style` ref in case it was mutated during onUpdate hook.
+
+    if (options.process && style && style !== rule.style) {
+      // We need to run the plugins in case new `style` relies on syntax plugins.
+      plugins.onProcessStyle(rule.style, rule, sheet); // Update and add props.
+
+      for (var prop in rule.style) {
+        var nextValue = rule.style[prop];
+        var prevValue = style[prop]; // We need to use `force: true` because `rule.style` has been updated during onUpdate hook, so `rule.prop()` will not update the CSSOM rule.
+        // We do this comparison to avoid unneeded `rule.prop()` calls, since we have the old `style` object here.
+
+        if (nextValue !== prevValue) {
+          rule.prop(prop, nextValue, forceUpdateOptions);
+        }
+      } // Remove props.
+
+
+      for (var _prop in style) {
+        var _nextValue = rule.style[_prop];
+        var _prevValue = style[_prop]; // We need to use `force: true` because `rule.style` has been updated during onUpdate hook, so `rule.prop()` will not update the CSSOM rule.
+        // We do this comparison to avoid unneeded `rule.prop()` calls, since we have the old `style` object here.
+
+        if (_nextValue == null && _nextValue !== _prevValue) {
+          rule.prop(_prop, null, forceUpdateOptions);
+        }
+      }
+    }
+  }
+  /**
+   * Convert rules to a CSS string.
+   */
+  ;
+
+  _proto.toString = function toString(options) {
+    var str = '';
+    var sheet = this.options.sheet;
+    var link = sheet ? sheet.options.link : false;
+
+    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
+        linebreak = _getWhitespaceSymbols.linebreak;
+
+    for (var index = 0; index < this.index.length; index++) {
+      var rule = this.index[index];
+      var css = rule.toString(options); // No need to render an empty rule.
+
+      if (!css && !link) continue;
+      if (str) str += linebreak;
+      str += css;
+    }
+
+    return str;
+  };
+
+  return RuleList;
+}();
+
+var StyleSheet = /*#__PURE__*/function () {
+  function StyleSheet(styles, options) {
+    this.attached = false;
+    this.deployed = false;
+    this.classes = {};
+    this.keyframes = {};
+    this.options = _extends({}, options, {
+      sheet: this,
+      parent: this,
+      classes: this.classes,
+      keyframes: this.keyframes
+    });
+
+    if (options.Renderer) {
+      this.renderer = new options.Renderer(this);
+    }
+
+    this.rules = new RuleList(this.options);
+
+    for (var name in styles) {
+      this.rules.add(name, styles[name]);
+    }
+
+    this.rules.process();
+  }
+  /**
+   * Attach renderable to the render tree.
+   */
+
+
+  var _proto = StyleSheet.prototype;
+
+  _proto.attach = function attach() {
+    if (this.attached) return this;
+    if (this.renderer) this.renderer.attach();
+    this.attached = true; // Order is important, because we can't use insertRule API if style element is not attached.
+
+    if (!this.deployed) this.deploy();
+    return this;
+  }
+  /**
+   * Remove renderable from render tree.
+   */
+  ;
+
+  _proto.detach = function detach() {
+    if (!this.attached) return this;
+    if (this.renderer) this.renderer.detach();
+    this.attached = false;
+    return this;
+  }
+  /**
+   * Add a rule to the current stylesheet.
+   * Will insert a rule also after the stylesheet has been rendered first time.
+   */
+  ;
+
+  _proto.addRule = function addRule(name, decl, options) {
+    var queue = this.queue; // Plugins can create rules.
+    // In order to preserve the right order, we need to queue all `.addRule` calls,
+    // which happen after the first `rules.add()` call.
+
+    if (this.attached && !queue) this.queue = [];
+    var rule = this.rules.add(name, decl, options);
+    if (!rule) return null;
+    this.options.jss.plugins.onProcessRule(rule);
+
+    if (this.attached) {
+      if (!this.deployed) return rule; // Don't insert rule directly if there is no stringified version yet.
+      // It will be inserted all together when .attach is called.
+
+      if (queue) queue.push(rule);else {
+        this.insertRule(rule);
+
+        if (this.queue) {
+          this.queue.forEach(this.insertRule, this);
+          this.queue = undefined;
+        }
+      }
+      return rule;
+    } // We can't add rules to a detached style node.
+    // We will redeploy the sheet once user will attach it.
+
+
+    this.deployed = false;
+    return rule;
+  }
+  /**
+   * Replace a rule in the current stylesheet.
+   */
+  ;
+
+  _proto.replaceRule = function replaceRule(nameOrSelector, decl, options) {
+    var oldRule = this.rules.get(nameOrSelector);
+    if (!oldRule) return this.addRule(nameOrSelector, decl, options);
+    var newRule = this.rules.replace(nameOrSelector, decl, options);
+
+    if (newRule) {
+      this.options.jss.plugins.onProcessRule(newRule);
+    }
+
+    if (this.attached) {
+      if (!this.deployed) return newRule; // Don't replace / delete rule directly if there is no stringified version yet.
+      // It will be inserted all together when .attach is called.
+
+      if (this.renderer) {
+        if (!newRule) {
+          this.renderer.deleteRule(oldRule);
+        } else if (oldRule.renderable) {
+          this.renderer.replaceRule(oldRule.renderable, newRule);
+        }
+      }
+
+      return newRule;
+    } // We can't replace rules to a detached style node.
+    // We will redeploy the sheet once user will attach it.
+
+
+    this.deployed = false;
+    return newRule;
+  }
+  /**
+   * Insert rule into the StyleSheet
+   */
+  ;
+
+  _proto.insertRule = function insertRule(rule) {
+    if (this.renderer) {
+      this.renderer.insertRule(rule);
+    }
+  }
+  /**
+   * Create and add rules.
+   * Will render also after Style Sheet was rendered the first time.
+   */
+  ;
+
+  _proto.addRules = function addRules(styles, options) {
+    var added = [];
+
+    for (var name in styles) {
+      var rule = this.addRule(name, styles[name], options);
+      if (rule) added.push(rule);
+    }
+
+    return added;
+  }
+  /**
+   * Get a rule by name or selector.
+   */
+  ;
+
+  _proto.getRule = function getRule(nameOrSelector) {
+    return this.rules.get(nameOrSelector);
+  }
+  /**
+   * Delete a rule by name.
+   * Returns `true`: if rule has been deleted from the DOM.
+   */
+  ;
+
+  _proto.deleteRule = function deleteRule(name) {
+    var rule = typeof name === 'object' ? name : this.rules.get(name);
+
+    if (!rule || // Style sheet was created without link: true and attached, in this case we
+    // won't be able to remove the CSS rule from the DOM.
+    this.attached && !rule.renderable) {
+      return false;
+    }
+
+    this.rules.remove(rule);
+
+    if (this.attached && rule.renderable && this.renderer) {
+      return this.renderer.deleteRule(rule.renderable);
+    }
+
+    return true;
+  }
+  /**
+   * Get index of a rule.
+   */
+  ;
+
+  _proto.indexOf = function indexOf(rule) {
+    return this.rules.indexOf(rule);
+  }
+  /**
+   * Deploy pure CSS string to a renderable.
+   */
+  ;
+
+  _proto.deploy = function deploy() {
+    if (this.renderer) this.renderer.deploy();
+    this.deployed = true;
+    return this;
+  }
+  /**
+   * Update the function values with a new data.
+   */
+  ;
+
+  _proto.update = function update() {
+    var _this$rules;
+
+    (_this$rules = this.rules).update.apply(_this$rules, arguments);
+
+    return this;
+  }
+  /**
+   * Updates a single rule.
+   */
+  ;
+
+  _proto.updateOne = function updateOne(rule, data, options) {
+    this.rules.updateOne(rule, data, options);
+    return this;
+  }
+  /**
+   * Convert rules to a CSS string.
+   */
+  ;
+
+  _proto.toString = function toString(options) {
+    return this.rules.toString(options);
+  };
+
+  return StyleSheet;
+}();
+
+var PluginsRegistry = /*#__PURE__*/function () {
+  function PluginsRegistry() {
+    this.plugins = {
+      internal: [],
+      external: []
+    };
+    this.registry = {};
+  }
+
+  var _proto = PluginsRegistry.prototype;
+  /**
+   * Call `onCreateRule` hooks and return an object if returned by a hook.
+   */
+
+  _proto.onCreateRule = function onCreateRule(name, decl, options) {
+    for (var i = 0; i < this.registry.onCreateRule.length; i++) {
+      var rule = this.registry.onCreateRule[i](name, decl, options);
+      if (rule) return rule;
+    }
+
+    return null;
+  }
+  /**
+   * Call `onProcessRule` hooks.
+   */
+  ;
+
+  _proto.onProcessRule = function onProcessRule(rule) {
+    if (rule.isProcessed) return;
+    var sheet = rule.options.sheet;
+
+    for (var i = 0; i < this.registry.onProcessRule.length; i++) {
+      this.registry.onProcessRule[i](rule, sheet);
+    }
+
+    if (rule.style) this.onProcessStyle(rule.style, rule, sheet);
+    rule.isProcessed = true;
+  }
+  /**
+   * Call `onProcessStyle` hooks.
+   */
+  ;
+
+  _proto.onProcessStyle = function onProcessStyle(style, rule, sheet) {
+    for (var i = 0; i < this.registry.onProcessStyle.length; i++) {
+      rule.style = this.registry.onProcessStyle[i](rule.style, rule, sheet);
+    }
+  }
+  /**
+   * Call `onProcessSheet` hooks.
+   */
+  ;
+
+  _proto.onProcessSheet = function onProcessSheet(sheet) {
+    for (var i = 0; i < this.registry.onProcessSheet.length; i++) {
+      this.registry.onProcessSheet[i](sheet);
+    }
+  }
+  /**
+   * Call `onUpdate` hooks.
+   */
+  ;
+
+  _proto.onUpdate = function onUpdate(data, rule, sheet, options) {
+    for (var i = 0; i < this.registry.onUpdate.length; i++) {
+      this.registry.onUpdate[i](data, rule, sheet, options);
+    }
+  }
+  /**
+   * Call `onChangeValue` hooks.
+   */
+  ;
+
+  _proto.onChangeValue = function onChangeValue(value, prop, rule) {
+    var processedValue = value;
+
+    for (var i = 0; i < this.registry.onChangeValue.length; i++) {
+      processedValue = this.registry.onChangeValue[i](processedValue, prop, rule);
+    }
+
+    return processedValue;
+  }
+  /**
+   * Register a plugin.
+   */
+  ;
+
+  _proto.use = function use(newPlugin, options) {
+    if (options === void 0) {
+      options = {
+        queue: 'external'
+      };
+    }
+
+    var plugins = this.plugins[options.queue]; // Avoids applying same plugin twice, at least based on ref.
+
+    if (plugins.indexOf(newPlugin) !== -1) {
+      return;
+    }
+
+    plugins.push(newPlugin);
+    this.registry = [].concat(this.plugins.external, this.plugins.internal).reduce(function (registry, plugin) {
+      for (var name in plugin) {
+        if (name in registry) {
+          registry[name].push(plugin[name]);
+        } else {
+          process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Unknown hook \"" + name + "\".") : void 0;
+        }
+      }
+
+      return registry;
+    }, {
+      onCreateRule: [],
+      onProcessRule: [],
+      onProcessStyle: [],
+      onProcessSheet: [],
+      onChangeValue: [],
+      onUpdate: []
+    });
+  };
+
+  return PluginsRegistry;
+}();
+/**
+ * Sheets registry to access all instances in one place.
+ */
+
+
+var SheetsRegistry = /*#__PURE__*/function () {
+  function SheetsRegistry() {
+    this.registry = [];
+  }
+
+  var _proto = SheetsRegistry.prototype;
+  /**
+   * Register a Style Sheet.
+   */
+
+  _proto.add = function add(sheet) {
+    var registry = this.registry;
+    var index = sheet.options.index;
+    if (registry.indexOf(sheet) !== -1) return;
+
+    if (registry.length === 0 || index >= this.index) {
+      registry.push(sheet);
+      return;
+    } // Find a position.
+
+
+    for (var i = 0; i < registry.length; i++) {
+      if (registry[i].options.index > index) {
+        registry.splice(i, 0, sheet);
+        return;
+      }
+    }
+  }
+  /**
+   * Reset the registry.
+   */
+  ;
+
+  _proto.reset = function reset() {
+    this.registry = [];
+  }
+  /**
+   * Remove a Style Sheet.
+   */
+  ;
+
+  _proto.remove = function remove(sheet) {
+    var index = this.registry.indexOf(sheet);
+    this.registry.splice(index, 1);
+  }
+  /**
+   * Convert all attached sheets to a CSS string.
+   */
+  ;
+
+  _proto.toString = function toString(_temp) {
+    var _ref = _temp === void 0 ? {} : _temp,
+        attached = _ref.attached,
+        options = _objectWithoutPropertiesLoose(_ref, ["attached"]);
+
+    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
+        linebreak = _getWhitespaceSymbols.linebreak;
+
+    var css = '';
+
+    for (var i = 0; i < this.registry.length; i++) {
+      var sheet = this.registry[i];
+
+      if (attached != null && sheet.attached !== attached) {
+        continue;
+      }
+
+      if (css) css += linebreak;
+      css += sheet.toString(options);
+    }
+
+    return css;
+  };
+
+  _createClass$2(SheetsRegistry, [{
+    key: "index",
+
+    /**
+     * Current highest index number.
+     */
+    get: function get() {
+      return this.registry.length === 0 ? 0 : this.registry[this.registry.length - 1].options.index;
+    }
+  }]);
+
+  return SheetsRegistry;
+}();
+/**
+ * This is a global sheets registry. Only DomRenderer will add sheets to it.
+ * On the server one should use an own SheetsRegistry instance and add the
+ * sheets to it, because you need to make sure to create a new registry for
+ * each request in order to not leak sheets across requests.
+ */
+
+
+var sheets = new SheetsRegistry();
+/* eslint-disable */
+
+/**
+ * Now that `globalThis` is available on most platforms
+ * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis#browser_compatibility)
+ * we check for `globalThis` first. `globalThis` is necessary for jss
+ * to run in Agoric's secure version of JavaScript (SES). Under SES,
+ * `globalThis` exists, but `window`, `self`, and `Function('return
+ * this')()` are all undefined for security reasons.
+ *
+ * https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+ */
+
+var globalThis$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' && window.Math === Math ? window : typeof self !== 'undefined' && self.Math === Math ? self : Function('return this')();
+var ns = '2f1acc6c3a606b082e5eef5e54414ffb';
+if (globalThis$1[ns] == null) globalThis$1[ns] = 0; // Bundle may contain multiple JSS versions at the same time. In order to identify
+// the current version with just one short number and use it for classes generation
+// we use a counter. Also it is more accurate, because user can manually reevaluate
+// the module.
+
+var moduleId = globalThis$1[ns]++;
+var maxRules = 1e10;
+/**
+ * Returns a function which generates unique class names based on counters.
+ * When new generator function is created, rule counter is reseted.
+ * We need to reset the rule counter for SSR for each request.
+ */
+
+var createGenerateId = function createGenerateId(options) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  var ruleCounter = 0;
+
+  var generateId = function generateId(rule, sheet) {
+    ruleCounter += 1;
+
+    if (ruleCounter > maxRules) {
+      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] You might have a memory leak. Rule counter is at " + ruleCounter + ".") : void 0;
+    }
+
+    var jssId = '';
+    var prefix = '';
+
+    if (sheet) {
+      if (sheet.options.classNamePrefix) {
+        prefix = sheet.options.classNamePrefix;
+      }
+
+      if (sheet.options.jss.id != null) {
+        jssId = String(sheet.options.jss.id);
+      }
+    }
+
+    if (options.minify) {
+      // Using "c" because a number can't be the first char in a class name.
+      return "" + (prefix || 'c') + moduleId + jssId + ruleCounter;
+    }
+
+    return prefix + rule.key + "-" + moduleId + (jssId ? "-" + jssId : '') + "-" + ruleCounter;
+  };
+
+  return generateId;
+};
+/**
+ * Cache the value from the first time a function is called.
+ */
+
+
+var memoize = function memoize(fn) {
+  var value;
+  return function () {
+    if (!value) value = fn();
+    return value;
+  };
+};
+/**
+ * Get a style property value.
+ */
+
+
+var getPropertyValue = function getPropertyValue(cssRule, prop) {
+  try {
+    // Support CSSTOM.
+    if (cssRule.attributeStyleMap) {
+      return cssRule.attributeStyleMap.get(prop);
+    }
+
+    return cssRule.style.getPropertyValue(prop);
+  } catch (err) {
+    // IE may throw if property is unknown.
+    return '';
+  }
+};
+/**
+ * Set a style property.
+ */
+
+
+var setProperty = function setProperty(cssRule, prop, value) {
+  try {
+    var cssValue = value;
+
+    if (Array.isArray(value)) {
+      cssValue = toCssValue(value, true);
+
+      if (value[value.length - 1] === '!important') {
+        cssRule.style.setProperty(prop, cssValue, 'important');
+        return true;
+      }
+    } // Support CSSTOM.
+
+
+    if (cssRule.attributeStyleMap) {
+      cssRule.attributeStyleMap.set(prop, cssValue);
+    } else {
+      cssRule.style.setProperty(prop, cssValue);
+    }
+  } catch (err) {
+    // IE may throw if property is unknown.
+    return false;
+  }
+
+  return true;
+};
+/**
+ * Remove a style property.
+ */
+
+
+var removeProperty = function removeProperty(cssRule, prop) {
+  try {
+    // Support CSSTOM.
+    if (cssRule.attributeStyleMap) {
+      cssRule.attributeStyleMap.delete(prop);
+    } else {
+      cssRule.style.removeProperty(prop);
+    }
+  } catch (err) {
+    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] DOMException \"" + err.message + "\" was thrown. Tried to remove property \"" + prop + "\".") : void 0;
+  }
+};
+/**
+ * Set the selector.
+ */
+
+
+var setSelector = function setSelector(cssRule, selectorText) {
+  cssRule.selectorText = selectorText; // Return false if setter was not successful.
+  // Currently works in chrome only.
+
+  return cssRule.selectorText === selectorText;
+};
+/**
+ * Gets the `head` element upon the first call and caches it.
+ * We assume it can't be null.
+ */
+
+
+var getHead = memoize(function () {
+  return document.querySelector('head');
+});
+/**
+ * Find attached sheet with an index higher than the passed one.
+ */
+
+function findHigherSheet(registry, options) {
+  for (var i = 0; i < registry.length; i++) {
+    var sheet = registry[i];
+
+    if (sheet.attached && sheet.options.index > options.index && sheet.options.insertionPoint === options.insertionPoint) {
+      return sheet;
+    }
+  }
+
+  return null;
+}
+/**
+ * Find attached sheet with the highest index.
+ */
+
+
+function findHighestSheet(registry, options) {
+  for (var i = registry.length - 1; i >= 0; i--) {
+    var sheet = registry[i];
+
+    if (sheet.attached && sheet.options.insertionPoint === options.insertionPoint) {
+      return sheet;
+    }
+  }
+
+  return null;
+}
+/**
+ * Find a comment with "jss" inside.
+ */
+
+
+function findCommentNode(text) {
+  var head = getHead();
+
+  for (var i = 0; i < head.childNodes.length; i++) {
+    var node = head.childNodes[i];
+
+    if (node.nodeType === 8 && node.nodeValue.trim() === text) {
+      return node;
+    }
+  }
+
+  return null;
+}
+/**
+ * Find a node before which we can insert the sheet.
+ */
+
+
+function findPrevNode(options) {
+  var registry = sheets.registry;
+
+  if (registry.length > 0) {
+    // Try to insert before the next higher sheet.
+    var sheet = findHigherSheet(registry, options);
+
+    if (sheet && sheet.renderer) {
+      return {
+        parent: sheet.renderer.element.parentNode,
+        node: sheet.renderer.element
+      };
+    } // Otherwise insert after the last attached.
+
+
+    sheet = findHighestSheet(registry, options);
+
+    if (sheet && sheet.renderer) {
+      return {
+        parent: sheet.renderer.element.parentNode,
+        node: sheet.renderer.element.nextSibling
+      };
+    }
+  } // Try to find a comment placeholder if registry is empty.
+
+
+  var insertionPoint = options.insertionPoint;
+
+  if (insertionPoint && typeof insertionPoint === 'string') {
+    var comment = findCommentNode(insertionPoint);
+
+    if (comment) {
+      return {
+        parent: comment.parentNode,
+        node: comment.nextSibling
+      };
+    } // If user specifies an insertion point and it can't be found in the document -
+    // bad specificity issues may appear.
+
+
+    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Insertion point \"" + insertionPoint + "\" not found.") : void 0;
+  }
+
+  return false;
+}
+/**
+ * Insert style element into the DOM.
+ */
+
+
+function insertStyle(style, options) {
+  var insertionPoint = options.insertionPoint;
+  var nextNode = findPrevNode(options);
+
+  if (nextNode !== false && nextNode.parent) {
+    nextNode.parent.insertBefore(style, nextNode.node);
+    return;
+  } // Works with iframes and any node types.
+
+
+  if (insertionPoint && typeof insertionPoint.nodeType === 'number') {
+    var insertionPointElement = insertionPoint;
+    var parentNode = insertionPointElement.parentNode;
+    if (parentNode) parentNode.insertBefore(style, insertionPointElement.nextSibling);else process.env.NODE_ENV !== "production" ? warning(false, '[JSS] Insertion point is not in the DOM.') : void 0;
+    return;
+  }
+
+  getHead().appendChild(style);
+}
+/**
+ * Read jss nonce setting from the page if the user has set it.
+ */
+
+
+var getNonce = memoize(function () {
+  var node = document.querySelector('meta[property="csp-nonce"]');
+  return node ? node.getAttribute('content') : null;
+});
+
+var _insertRule = function insertRule(container, rule, index) {
+  try {
+    if ('insertRule' in container) {
+      container.insertRule(rule, index);
+    } // Keyframes rule.
+    else if ('appendRule' in container) {
+      container.appendRule(rule);
+    }
+  } catch (err) {
+    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] " + err.message) : void 0;
+    return false;
+  }
+
+  return container.cssRules[index];
+};
+
+var getValidRuleInsertionIndex = function getValidRuleInsertionIndex(container, index) {
+  var maxIndex = container.cssRules.length; // In case previous insertion fails, passed index might be wrong
+
+  if (index === undefined || index > maxIndex) {
+    // eslint-disable-next-line no-param-reassign
+    return maxIndex;
+  }
+
+  return index;
+};
+
+var createStyle = function createStyle() {
+  var el = document.createElement('style'); // Without it, IE will have a broken source order specificity if we
+  // insert rules after we insert the style tag.
+  // It seems to kick-off the source order specificity algorithm.
+
+  el.textContent = '\n';
+  return el;
+};
+
+var DomRenderer = /*#__PURE__*/function () {
+  // Will be empty if link: true option is not set, because
+  // it is only for use together with insertRule API.
+  function DomRenderer(sheet) {
+    this.getPropertyValue = getPropertyValue;
+    this.setProperty = setProperty;
+    this.removeProperty = removeProperty;
+    this.setSelector = setSelector;
+    this.hasInsertedRules = false;
+    this.cssRules = []; // There is no sheet when the renderer is used from a standalone StyleRule.
+
+    if (sheet) sheets.add(sheet);
+    this.sheet = sheet;
+
+    var _ref = this.sheet ? this.sheet.options : {},
+        media = _ref.media,
+        meta = _ref.meta,
+        element = _ref.element;
+
+    this.element = element || createStyle();
+    this.element.setAttribute('data-jss', '');
+    if (media) this.element.setAttribute('media', media);
+    if (meta) this.element.setAttribute('data-meta', meta);
+    var nonce = getNonce();
+    if (nonce) this.element.setAttribute('nonce', nonce);
+  }
+  /**
+   * Insert style element into render tree.
+   */
+
+
+  var _proto = DomRenderer.prototype;
+
+  _proto.attach = function attach() {
+    // In the case the element node is external and it is already in the DOM.
+    if (this.element.parentNode || !this.sheet) return;
+    insertStyle(this.element, this.sheet.options); // When rules are inserted using `insertRule` API, after `sheet.detach().attach()`
+    // most browsers create a new CSSStyleSheet, except of all IEs.
+
+    var deployed = Boolean(this.sheet && this.sheet.deployed);
+
+    if (this.hasInsertedRules && deployed) {
+      this.hasInsertedRules = false;
+      this.deploy();
+    }
+  }
+  /**
+   * Remove style element from render tree.
+   */
+  ;
+
+  _proto.detach = function detach() {
+    if (!this.sheet) return;
+    var parentNode = this.element.parentNode;
+    if (parentNode) parentNode.removeChild(this.element); // In the most browsers, rules inserted using insertRule() API will be lost when style element is removed.
+    // Though IE will keep them and we need a consistent behavior.
+
+    if (this.sheet.options.link) {
+      this.cssRules = [];
+      this.element.textContent = '\n';
+    }
+  }
+  /**
+   * Inject CSS string into element.
+   */
+  ;
+
+  _proto.deploy = function deploy() {
+    var sheet = this.sheet;
+    if (!sheet) return;
+
+    if (sheet.options.link) {
+      this.insertRules(sheet.rules);
+      return;
+    }
+
+    this.element.textContent = "\n" + sheet.toString() + "\n";
+  }
+  /**
+   * Insert RuleList into an element.
+   */
+  ;
+
+  _proto.insertRules = function insertRules(rules, nativeParent) {
+    for (var i = 0; i < rules.index.length; i++) {
+      this.insertRule(rules.index[i], i, nativeParent);
+    }
+  }
+  /**
+   * Insert a rule into element.
+   */
+  ;
+
+  _proto.insertRule = function insertRule(rule, index, nativeParent) {
+    if (nativeParent === void 0) {
+      nativeParent = this.element.sheet;
+    }
+
+    if (rule.rules) {
+      var parent = rule;
+      var latestNativeParent = nativeParent;
+
+      if (rule.type === 'conditional' || rule.type === 'keyframes') {
+        var _insertionIndex = getValidRuleInsertionIndex(nativeParent, index); // We need to render the container without children first.
+
+
+        latestNativeParent = _insertRule(nativeParent, parent.toString({
+          children: false
+        }), _insertionIndex);
+
+        if (latestNativeParent === false) {
+          return false;
+        }
+
+        this.refCssRule(rule, _insertionIndex, latestNativeParent);
+      }
+
+      this.insertRules(parent.rules, latestNativeParent);
+      return latestNativeParent;
+    }
+
+    var ruleStr = rule.toString();
+    if (!ruleStr) return false;
+    var insertionIndex = getValidRuleInsertionIndex(nativeParent, index);
+
+    var nativeRule = _insertRule(nativeParent, ruleStr, insertionIndex);
+
+    if (nativeRule === false) {
+      return false;
+    }
+
+    this.hasInsertedRules = true;
+    this.refCssRule(rule, insertionIndex, nativeRule);
+    return nativeRule;
+  };
+
+  _proto.refCssRule = function refCssRule(rule, index, cssRule) {
+    rule.renderable = cssRule; // We only want to reference the top level rules, deleteRule API doesn't support removing nested rules
+    // like rules inside media queries or keyframes
+
+    if (rule.options.parent instanceof StyleSheet) {
+      this.cssRules.splice(index, 0, cssRule);
+    }
+  }
+  /**
+   * Delete a rule.
+   */
+  ;
+
+  _proto.deleteRule = function deleteRule(cssRule) {
+    var sheet = this.element.sheet;
+    var index = this.indexOf(cssRule);
+    if (index === -1) return false;
+    sheet.deleteRule(index);
+    this.cssRules.splice(index, 1);
+    return true;
+  }
+  /**
+   * Get index of a CSS Rule.
+   */
+  ;
+
+  _proto.indexOf = function indexOf(cssRule) {
+    return this.cssRules.indexOf(cssRule);
+  }
+  /**
+   * Generate a new CSS rule and replace the existing one.
+   */
+  ;
+
+  _proto.replaceRule = function replaceRule(cssRule, rule) {
+    var index = this.indexOf(cssRule);
+    if (index === -1) return false;
+    this.element.sheet.deleteRule(index);
+    this.cssRules.splice(index, 1);
+    return this.insertRule(rule, index);
+  }
+  /**
+   * Get all rules elements.
+   */
+  ;
+
+  _proto.getRules = function getRules() {
+    return this.element.sheet.cssRules;
+  };
+
+  return DomRenderer;
+}();
+
+var instanceCounter = 0;
+
+var Jss = /*#__PURE__*/function () {
+  function Jss(options) {
+    this.id = instanceCounter++;
+    this.version = "10.9.0";
+    this.plugins = new PluginsRegistry();
+    this.options = {
+      id: {
+        minify: false
+      },
+      createGenerateId: createGenerateId,
+      Renderer: isBrowser ? DomRenderer : null,
+      plugins: []
+    };
+    this.generateId = createGenerateId({
+      minify: false
+    });
+
+    for (var i = 0; i < plugins.length; i++) {
+      this.plugins.use(plugins[i], {
+        queue: 'internal'
+      });
+    }
+
+    this.setup(options);
+  }
+  /**
+   * Prepares various options, applies plugins.
+   * Should not be used twice on the same instance, because there is no plugins
+   * deduplication logic.
+   */
+
+
+  var _proto = Jss.prototype;
+
+  _proto.setup = function setup(options) {
+    if (options === void 0) {
+      options = {};
+    }
+
+    if (options.createGenerateId) {
+      this.options.createGenerateId = options.createGenerateId;
+    }
+
+    if (options.id) {
+      this.options.id = _extends({}, this.options.id, options.id);
+    }
+
+    if (options.createGenerateId || options.id) {
+      this.generateId = this.options.createGenerateId(this.options.id);
+    }
+
+    if (options.insertionPoint != null) this.options.insertionPoint = options.insertionPoint;
+
+    if ('Renderer' in options) {
+      this.options.Renderer = options.Renderer;
+    } // eslint-disable-next-line prefer-spread
+
+
+    if (options.plugins) this.use.apply(this, options.plugins);
+    return this;
+  }
+  /**
+   * Create a Style Sheet.
+   */
+  ;
+
+  _proto.createStyleSheet = function createStyleSheet(styles, options) {
+    if (options === void 0) {
+      options = {};
+    }
+
+    var _options = options,
+        index = _options.index;
+
+    if (typeof index !== 'number') {
+      index = sheets.index === 0 ? 0 : sheets.index + 1;
+    }
+
+    var sheet = new StyleSheet(styles, _extends({}, options, {
+      jss: this,
+      generateId: options.generateId || this.generateId,
+      insertionPoint: this.options.insertionPoint,
+      Renderer: this.options.Renderer,
+      index: index
+    }));
+    this.plugins.onProcessSheet(sheet);
+    return sheet;
+  }
+  /**
+   * Detach the Style Sheet and remove it from the registry.
+   */
+  ;
+
+  _proto.removeStyleSheet = function removeStyleSheet(sheet) {
+    sheet.detach();
+    sheets.remove(sheet);
+    return this;
+  }
+  /**
+   * Create a rule without a Style Sheet.
+   * [Deprecated] will be removed in the next major version.
+   */
+  ;
+
+  _proto.createRule = function createRule$1(name, style, options) {
+    if (style === void 0) {
+      style = {};
+    }
+
+    if (options === void 0) {
+      options = {};
+    } // Enable rule without name for inline styles.
+
+
+    if (typeof name === 'object') {
+      return this.createRule(undefined, name, style);
+    }
+
+    var ruleOptions = _extends({}, options, {
+      name: name,
+      jss: this,
+      Renderer: this.options.Renderer
+    });
+
+    if (!ruleOptions.generateId) ruleOptions.generateId = this.generateId;
+    if (!ruleOptions.classes) ruleOptions.classes = {};
+    if (!ruleOptions.keyframes) ruleOptions.keyframes = {};
+    var rule = createRule(name, style, ruleOptions);
+    if (rule) this.plugins.onProcessRule(rule);
+    return rule;
+  }
+  /**
+   * Register plugin. Passed function will be invoked with a rule instance.
+   */
+  ;
+
+  _proto.use = function use() {
+    var _this = this;
+
+    for (var _len = arguments.length, plugins = new Array(_len), _key = 0; _key < _len; _key++) {
+      plugins[_key] = arguments[_key];
+    }
+
+    plugins.forEach(function (plugin) {
+      _this.plugins.use(plugin);
+    });
+    return this;
+  };
+
+  return Jss;
+}();
+
+var createJss = function createJss(options) {
+  return new Jss(options);
+};
+/**
+ * A better abstraction over CSS.
+ *
+ * @copyright Oleg Isonen (Slobodskoi) / Isonen 2014-present
+ * @website https://github.com/cssinjs/jss
+ * @license MIT
+ */
+
+
+var index$4 = createJss();
+var jss = index$4;
+
+function buildCSS$4(barChart) {
+  var _titleContainer;
+
+  var createGenerateId = function createGenerateId() {
+    return function (rule) {
+      return rule.key;
+    };
+  };
+
+  jss.setup({
+    createGenerateId: createGenerateId
+  });
+  var styles = {
+    "y-axis": {
+      width: "4px",
+      height: "70%",
+      left: "14%",
+      top: "15%",
+      background: barChart.tertiaryC,
+      position: "absolute"
+    },
+    "x-axis": {
+      width: "74%",
+      height: "4px",
+      top: "85%",
+      left: "14%",
+      background: barChart.tertiaryC,
+      position: "absolute"
+    },
+    gridlines: {
+      width: "100%",
+      height: "calc(100% + 3px)",
+      display: "flex",
+      "flex-direction": "column",
+      "justify-content": "space-between"
+    },
+    gridLine: {
+      height: "3px",
+      width: "100%",
+      background: barChart.secondaryC,
+      "align-self": "flex-end"
+    },
+    graph: {
+      top: 0,
+      left: 0,
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      "justify-content": "space-around",
+      overflow: "hidden"
+    },
+    "bar-container": {
+      "align-self": "flex-end",
+      width: "".concat(100 / barChart.data.length, "%"),
+      margin: "0% ".concat(10 / barChart.data.length + 1, "%"),
+      height: "100%",
+      display: "flex"
+    },
+    "bar-fill": {
+      width: "100%",
+      height: "100%",
+      background: barChart.primaryC,
+      "align-self": "center"
+    },
+    "block-background": {
+      width: "100%",
+      height: "100%",
+      background: barChart.accentC,
+      position: "relative"
+    },
+    "title-back-animHelper": {
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      "flex-direction": "row-reverse"
+    },
+    "title-back-wrapper": {
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      position: "absolute",
+      "flex-direction": "row",
+      "z-index": "-1"
+    },
+    "x-labels-back-wrapper": {
+      width: "70%",
+      height: "5%",
+      top: "87%",
+      left: "16%",
+      position: "absolute",
+      display: "flex",
+      "flex-direction": "row-reverse"
+    },
+    "x-labels-container": {
+      "font-family": barChart.fontFamily,
+      background: "transparent",
+      width: "70%",
+      height: "5%",
+      top: "87%",
+      left: "16%",
+      position: "absolute",
+      display: "flex",
+      "align-items": "center",
+      "z-index": "1",
+      "justify-content": "space-around"
+    },
+    "letter-wrapper": {
+      "font-size": barChart.fontSize,
+      display: "flex",
+      "flex-direction": "column",
+      position: "relative"
+    },
+    "letter-container": {
+      overflow: "hidden",
+      position: "relative"
+    },
+    "title-container": (_titleContainer = {
+      "font-family": barChart.fontFamily,
+      background: "transparent",
+      width: "70%",
+      height: "fit-content"
+    }, _defineProperty$1(_titleContainer, "height", "-moz-fit-content"), _defineProperty$1(_titleContainer, "min-height", "5%"), _defineProperty$1(_titleContainer, "max-height", "7%"), _defineProperty$1(_titleContainer, "top", "7%"), _defineProperty$1(_titleContainer, "left", "16%"), _defineProperty$1(_titleContainer, "position", "absolute"), _defineProperty$1(_titleContainer, "display", "flex"), _defineProperty$1(_titleContainer, "z-index", "1"), _defineProperty$1(_titleContainer, "justify-content", "space-around"), _titleContainer),
+    "title-wrapper": {
+      display: "flex",
+      "flex-grow": "2",
+      "flex-wrap": "wrap",
+      "align-items": "center",
+      overflow: "hidden",
+      "padding-left": "6px",
+      "z-index": "1"
+    },
+    "subtitle-wrapper": {
+      display: "flex",
+      "z-index": "1",
+      "flex-wrap": "wrap",
+      "align-items": "center"
+    },
+    "subtitle-position-end": {
+      display: "flex",
+      "flex-grow": "1",
+      "padding-right": "6px",
+      "flex-wrap": "wrap",
+      "max-width": "34%",
+      overflow: "hidden",
+      "justify-content": "flex-end"
+    },
+    "label-container": {
+      position: "relative",
+      top: "1px",
+      display: "flex",
+      "flex-direction": "row",
+      overflow: "hidden"
+    },
+    "container-barChart": {
+      width: "100%",
+      height: "100%",
+      background: barChart.backgroundC,
+      display: "flex"
+    },
+    "graph-container": {
+      left: "16%",
+      top: "17%",
+      width: "70%",
+      height: "63%",
+      position: "absolute"
+    },
+    fontColorOn: {
+      color: barChart.fontC
+    },
+    "space-char": {
+      visibility: "hidden"
+    },
+    "accent-background": {
+      width: "100%",
+      height: "100%",
+      background: barChart.accentC,
+      position: "relative"
+    }
+  };
+  barChart.data.map(function (datum, i) {
+    styles["".concat(datum.name, "-bar-").concat(i)] = {
+      "align-self": "flex-end",
+      width: "".concat(100 / barChart.data.length, "%"),
+      margin: "0% ".concat(10 / barChart.data.length + 1, "%"),
+      height: "100%",
+      display: "flex"
+    };
+    styles["".concat(datum.name, "-bar-").concat(i)].height = "\n            ".concat(datum.value.toFixed(2) / barChart.maxPoint * 100, "%");
+    styles["".concat(datum.name, "-bar-fill")] = {
+      height: "100%"
+    };
+  });
+  var styleSheet = jss.createStyleSheet(styles).toString();
+  return styleSheet;
+}
+
+/**
+ * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
+ */
+
+var BarChartSimple = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
+  _inherits$2(BarChartSimple, _MotorCortex$HTMLClip);
+
+  var _super = _createSuper$2(BarChartSimple);
+
+  function BarChartSimple() {
+    _classCallCheck$2(this, BarChartSimple);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass$3(BarChartSimple, [{
+    key: "html",
+    get: // Building HTML tree for incident
+    function get() {
+      var _this = this;
+
+      this.buildVars(); // Title modal html generation
+
+      var title = [];
+
+      for (var i in this.title) {
+        var letter = [];
+
+        if (this.title[i] === " ") {
+          letter.push('<div class="space-char letter-wrapper">-</div>');
+        } else {
+          letter.push("<div class=\"fontColorOn letter-wrapper\">".concat(this.title[i], "</div>"));
+        }
+
+        title.push("<div id={\"letter-\" + i} class=\"letter-container\">\n          ".concat(letter, "\n        </div>"));
+      } // Subtitle modal html generation
+
+
+      var subtitle = [];
+
+      for (var _i in this.subtitle) {
+        var _letter = [];
+
+        if (this.subtitle[_i] === " ") {
+          _letter.push('<div class="space-char letter-wrapper">-</div>');
+        } else {
+          _letter.push(MotorCortex.utils.createDOMElement("div", {
+            class: "fontColorOn letter-wrapper"
+          }, this.subtitle[_i]));
+        }
+
+        subtitle.push("<div id={\"letter-\" + i} class=\"letter-container\">\n          ".concat(_letter, "\n        </div>"));
+      } // Gridlines conditional html generation
+
+
+      var gridLines = [];
+
+      for (var _i2 = 0; _i2 < this.gridLinesNum; _i2++) {
+        gridLines.push(MotorCortex.utils.createDOMElement("div", {
+          class: "gridLine",
+          id: "gridLine" + _i2
+        }));
+      } // X-axis labels html generation with data parameter as reference
+
+
+      var xLabels = [];
+
+      for (var _i3 in this.data) {
+        var label = [];
+
+        if (this.data[_i3].name.length > 4) {
+          this.data[_i3].name = this.data[_i3].name.slice(0, 4);
+        }
+
+        xLabels.push(MotorCortex.utils.createDOMElement("div", {
+          class: "label-container",
+          id: "label-" + _i3
+        }, label));
+      } //  Bars html generation with data parameter as reference
+
+
+      var bars = this.data.map(function (datum, i) {
+        _this.maxPoint = _this.maxPoint < datum.value ? datum.value : _this.maxPoint;
+        return MotorCortex.utils.createDOMElement("div", {
+          class: datum.name + "-bar-".concat(i)
+        }, MotorCortex.utils.createDOMElement("div", {
+          class: "bar-fill",
+          style: " background: ".concat(datum.color ? datum.color : _this.primaryC, " "),
+          id: datum.name + "-bar-fill"
+        }));
+      });
+      this.maxPoint = this.attrs.data.maxValue ? this.attrs.data.maxValue : this.maxPoint; // MAIN HTML TREE
+
+      var barGraphHTML = MotorCortex.utils.createDOMElement("div", {
+        class: "container-barChart"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "title-container"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "title-wrapper"
+      }, title), MotorCortex.utils.createDOMElement("div", {
+        class: "subtitle-position-end"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "subtitle-wrapper"
+      }, subtitle)), MotorCortex.utils.createDOMElement("div", {
+        class: "title-back-wrapper"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "title-back-animHelper"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "title-background block-background"
+      })))), MotorCortex.utils.createDOMElement("div", {
+        class: "graph-container"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "graph"
+      }, bars), MotorCortex.utils.createDOMElement("div", {
+        class: "gridlines"
+      }, gridLines)), MotorCortex.utils.createDOMElement("div", {
+        class: "y-axis"
+      }), MotorCortex.utils.createDOMElement("div", {
+        class: "x-axis"
+      }), MotorCortex.utils.createDOMElement("div", {
+        class: "x-labels-container"
+      }, xLabels), MotorCortex.utils.createDOMElement("div", {
+        class: "x-labels-back-wrapper"
+      }, MotorCortex.utils.createDOMElement("div", {
+        class: "x-labels-background block-background"
+      })));
+      return barGraphHTML;
+    } // Build CSS rules for incident
+
+  }, {
+    key: "css",
+    get: function get() {
+      return buildCSS$4(this);
+    } // Font API call (only google fonts API supported)
+
+  }, {
+    key: "fonts",
+    get: function get() {
+      return [{
+        type: "google-font",
+        src: "".concat(this.url)
+      }];
+    } // MotorCortex Animation generation and
+
+  }, {
+    key: "buildTree",
+    value: function buildTree() {
+      opacityControl(this, ".container-barChart"); // INTRO CONTROL
+
+      if (this.attrs.timings.intro) {
+        var textAnimDur = this.introDur * 0.75;
+        var introGroup = new MotorCortex.Group(); // Axis Intro Control
+
+        var axisCombo = new MotorCortex.Combo({
+          incidents: [{
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                height: "70%"
+              },
+              initialValues: {
+                height: "0%"
+              }
+            },
+            props: {
+              selector: ".y-axis",
+              duration: Math.trunc(this.introDur * 0.2),
+              easing: "easeInQuad"
+            },
+            position: Math.trunc(this.introDur * 0)
+          }, {
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                width: "74%"
+              },
+              initialValues: {
+                width: "0%"
+              }
+            },
+            props: {
+              selector: ".x-axis",
+              duration: Math.trunc(this.introDur * 0.3),
+              easing: "easeOutQuad"
+            },
+            position: Math.trunc(this.introDur * 0.2)
+          }]
+        }, {
+          selector: ".container-barChart"
+        });
+        introGroup.addIncident(axisCombo, this.introDur * 0); // GridLines Intro Control
+
+        var gridLinesAnim = new CSSEffect({
+          animatedAttrs: {
+            width: "100%"
+          },
+          initialValues: {
+            width: "0%"
+          }
+        }, {
+          selector: ".gridLine",
+          duration: Math.trunc(this.introDur * 0.5),
+          easing: "easeOutQuad"
+        });
+        introGroup.addIncident(gridLinesAnim, Math.trunc(this.introDur * 0.2)); // Title Bar Intro Control
+
+        var titlesAnim = new MotorCortex.Group();
+        titlesAnim.addIncident(new CSSEffect({
+          animatedAttrs: {
+            width: "100%"
+          },
+          initialValues: {
+            width: "0%"
+          }
+        }, {
+          selector: ".title-background",
+          duration: Math.trunc(this.introDur * 0.25),
+          easing: "easeInOutQuad"
+        }), 0); // Main Title Intro: letter animation control
+
+        var titleDur = this.introDur * 0.7;
+        var titleLetterDur = titleDur * 2 / (this.title.length + 1);
+        var titleIncidents = [];
+
+        for (var i in this.title) {
+          titleIncidents.push({
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                left: "0px",
+                opacity: 1
+              },
+              initialValues: {
+                left: "20px",
+                opacity: 0
+              }
+            },
+            props: {
+              selector: "#letter-".concat(i),
+              duration: Math.trunc(titleLetterDur),
+              easing: "easeOutQuart"
+            },
+            position: Math.trunc(titleLetterDur * i / 2)
+          });
+        }
+
+        var titleCombo = new MotorCortex.Combo({
+          incidents: titleIncidents
+        }, {
+          selector: ".title-wrapper"
+        });
+        titlesAnim.addIncident(titleCombo, Math.trunc(this.introDur * 0.25)); // Subtitle Intro: letter animation control
+
+        var subtitleDur = this.introDur * 0.8;
+        var subLetterDur = subtitleDur * 2 / (this.subtitle.length + 1);
+        var subIncidents = [];
+
+        for (var _i4 in this.subtitle) {
+          subIncidents.push({
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                left: "0px",
+                opacity: 1
+              },
+              initialValues: {
+                left: "20px",
+                opacity: 0
+              }
+            },
+            props: {
+              selector: "#letter-".concat(_i4),
+              duration: Math.trunc(subLetterDur),
+              easing: "easeOutQuart"
+            },
+            position: Math.trunc(subLetterDur * _i4 / 2)
+          });
+        }
+
+        var subtitleCombo = new MotorCortex.Combo({
+          incidents: subIncidents
+        }, {
+          selector: ".subtitle-wrapper"
+        });
+        titlesAnim.addIncident(subtitleCombo, Math.trunc(this.introDur * 0.1));
+        introGroup.addIncident(titlesAnim, Math.trunc(this.introDur * 0.05)); // Labels (xAxis) Intro Control
+
+        var xLabelsAnim = new MotorCortex.Group();
+        xLabelsAnim.addIncident(new CSSEffect({
+          animatedAttrs: {
+            width: "70%"
+          },
+          initialValues: {
+            width: "0%"
+          }
+        }, {
+          selector: ".x-labels-back-wrapper",
+          duration: Math.trunc(this.introDur * 0.25),
+          easing: "easeInOutCubic"
+        }), 0); // Labels (xAxis) Intro: letter animation control
+
+        var labelDur = textAnimDur * 2 / (this.data.length + 1);
+
+        for (var _i5 in this.data) {
+          var labelLength = this.data[_i5].name.length;
+          var letterDur = labelDur * 2 / (labelLength + 1);
+          var incidents = [];
+
+          for (var z in this.data[_i5].name) {
+            incidents.push({
+              incidentClass: CSSEffect,
+              attrs: {
+                animatedAttrs: {
+                  top: "0px",
+                  opacity: 1
+                },
+                initialValues: {
+                  top: "-30px",
+                  opacity: 0
+                }
+              },
+              props: {
+                selector: "#letter-".concat(_i5, "-").concat(z),
+                duration: Math.trunc(letterDur),
+                easing: "easeOutQuart"
+              },
+              position: Math.trunc(letterDur * z / 2)
+            });
+          }
+
+          var datumCombo = new MotorCortex.Combo({
+            incidents: incidents
+          }, {
+            selector: ".label-container"
+          });
+          xLabelsAnim.addIncident(datumCombo, Math.trunc(textAnimDur / (this.data.length + 1) * _i5));
+        }
+
+        introGroup.addIncident(xLabelsAnim, Math.trunc(this.introDur * 0.05)); // Bar Intro Control
+
+        var barAnimation = new MotorCortex.Combo({
+          incidents: [{
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                height: "100%"
+              },
+              initialValues: {
+                height: "0%"
+              }
+            },
+            props: {
+              duration: Math.trunc(this.introDur * 0.3),
+              easing: "easeInOutQuad"
+            },
+            position: 0
+          }]
+        }, {
+          selector: ".bar-fill",
+          delay: "@stagger(0, ".concat(Math.trunc(this.introDur * 0.4), ")")
+        });
+        introGroup.addIncident(barAnimation, Math.trunc(this.introDur * 0.3));
+        this.addIncident(introGroup, this.introDur * 0);
+      } // OUTRO CONTROL
+
+
+      if (this.attrs.timings.outro) {
+        var _textAnimDur = this.outroDur * 0.75;
+
+        var outroGroup = new MotorCortex.Group(); // Axis Outro Control
+
+        var axisCombooutro = new MotorCortex.Combo({
+          incidents: [{
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                width: "0%"
+              },
+              initialValues: {
+                width: "74%"
+              }
+            },
+            props: {
+              selector: ".x-axis",
+              duration: Math.trunc(this.outroDur * 0.2),
+              easing: "easeInQuad"
+            },
+            position: this.outroDur * 0
+          }, {
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                height: "0%"
+              },
+              initialValues: {
+                height: "70%"
+              }
+            },
+            props: {
+              selector: ".y-axis",
+              duration: Math.trunc(this.outroDur * 0.3),
+              easing: "easeOutQuad"
+            },
+            position: Math.trunc(this.outroDur * 0.2)
+          }]
+        }, {
+          selector: ".container-barChart"
+        });
+        outroGroup.addIncident(axisCombooutro, Math.trunc(this.outroDur * 0.5)); // GridLines Outro Control
+
+        var gridLinesoutro = new CSSEffect({
+          animatedAttrs: {
+            width: "0%"
+          },
+          initialValues: {
+            width: "100%"
+          }
+        }, {
+          selector: ".gridlines",
+          easing: "easeInOutQuad",
+          duration: Math.trunc(this.outroDur * 0.5)
+        });
+        outroGroup.addIncident(gridLinesoutro, Math.trunc(this.outroDur * 0.2)); // Title Bar Outro Control
+
+        var titlesoutro = new MotorCortex.Group();
+        titlesoutro.addIncident(new CSSEffect({
+          animatedAttrs: {
+            width: "0%"
+          },
+          initialValues: {
+            width: "100%"
+          }
+        }, {
+          selector: ".title-back-animHelper",
+          duration: Math.trunc(this.outroDur * 0.45),
+          easing: "easeInOutQuad"
+        }), Math.trunc(this.outroDur * 0.3)); // Main Title Outro: letter animation control
+
+        var _titleDur = this.outroDur * 0.8;
+
+        var _letterDur = _titleDur * 2 / (this.title.length + 1);
+
+        var _titleIncidents = [];
+
+        for (var _i6 in this.title) {
+          _titleIncidents.push({
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                left: "20px",
+                opacity: 0
+              },
+              initialValues: {
+                left: "0px",
+                opacity: 1
+              }
+            },
+            props: {
+              selector: "#letter-".concat(_i6),
+              duration: Math.trunc(_letterDur),
+              easing: "easeOutQuart"
+            },
+            position: Math.trunc(_letterDur * (this.title.length - _i6 - 1) / 2)
+          });
+        }
+
+        var _titleCombo = new MotorCortex.Combo({
+          incidents: _titleIncidents
+        }, {
+          selector: ".title-wrapper"
+        });
+
+        titlesoutro.addIncident(_titleCombo, Math.trunc(this.outroDur * 0.1)); // Subtitle Outro: letter animation control
+
+        var _subtitleDur = this.outroDur * 0.4;
+
+        var _subLetterDur = _subtitleDur * 2 / (this.subtitle.length + 1);
+
+        var _subIncidents = [];
+
+        for (var _i7 in this.subtitle) {
+          _subIncidents.push({
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                left: "20px",
+                opacity: 0
+              },
+              initialValues: {
+                left: "0px",
+                opacity: 1
+              }
+            },
+            props: {
+              selector: "#letter-".concat(_i7),
+              duration: Math.trunc(_subLetterDur),
+              easing: "easeOutQuart"
+            },
+            position: Math.trunc(_subLetterDur * (this.subtitle.length - _i7 - 1) / 2)
+          });
+        }
+
+        var _subtitleCombo = new MotorCortex.Combo({
+          incidents: _subIncidents
+        }, {
+          selector: ".subtitle-wrapper"
+        });
+
+        titlesoutro.addIncident(_subtitleCombo, Math.trunc(this.outroDur * 0));
+        outroGroup.addIncident(titlesoutro, Math.trunc(this.outroDur * 0.05)); // Labels (xAxis) Outro Control
+
+        var xLabelsoutro = new MotorCortex.Group();
+        xLabelsoutro.addIncident(new CSSEffect({
+          animatedAttrs: {
+            width: "0%"
+          },
+          initialValues: {
+            width: "100%"
+          }
+        }, {
+          selector: ".x-labels-background",
+          duration: Math.trunc(this.outroDur * 0.45),
+          easing: "easeInOutCubic"
+        }), this.outroDur * 0.3); // Labels (xAxis) Outro: letter animation control
+
+        var _labelDur = _textAnimDur * 2 / (this.data.length + 1);
+
+        for (var _i8 in this.data) {
+          var _labelLength = this.data[_i8].name.length;
+
+          var _letterDur2 = _labelDur * 2 / (_labelLength + 1);
+
+          var _incidents = [];
+
+          for (var _z in this.data[_i8].name) {
+            _incidents.push({
+              incidentClass: CSSEffect,
+              attrs: {
+                animatedAttrs: {
+                  opacity: 0,
+                  top: "-30px"
+                },
+                initialValues: {
+                  opacity: 1,
+                  top: "0px"
+                }
+              },
+              props: {
+                selector: "#letter-".concat(_i8, "-").concat(_z),
+                duration: Math.trunc(_letterDur2),
+                easing: "easeInQuart"
+              },
+              position: Math.trunc(_letterDur2 * _z / 2)
+            });
+          }
+
+          var _datumCombo = new MotorCortex.Combo({
+            incidents: _incidents
+          }, {
+            selector: ".label-container"
+          });
+
+          xLabelsoutro.addIncident(_datumCombo, Math.trunc(_textAnimDur / (this.data.length + 1) * _i8));
+        }
+
+        outroGroup.addIncident(xLabelsoutro, Math.trunc(this.outroDur * 0.05)); // Bar outro Control
+
+        var barIncidents = [];
+
+        for (var _i9 in this.data) {
+          barIncidents.push({
+            incidentClass: CSSEffect,
+            attrs: {
+              animatedAttrs: {
+                height: "0%"
+              },
+              initialValues: {
+                height: "100%"
+              }
+            },
+            props: {
+              duration: Math.trunc(this.outroDur * 0.3),
+              easing: "easeInOutCubic",
+              selector: "#".concat(this.data[_i9].name, "-bar-fill")
+            },
+            position: Math.trunc(_subLetterDur * (this.data.length - _i9 - 1) / 2)
+          });
+        }
+
+        var barAnimationoutro = new MotorCortex.Combo({
+          incidents: barIncidents
+        }, {
+          selector: ".graph"
+        });
+        outroGroup.addIncident(barAnimationoutro, this.outroDur * 0);
+        this.addIncident(outroGroup, 0 + this.introDur + this.staticDur);
+      } // STATIC DURATION CONTROL
+
+
+      var staticIncident = new CSSEffect({
+        animatedAttrs: {}
+      }, {
+        selector: ".container-barChart",
+        duration: this.staticDur
+      });
+      this.addIncident(staticIncident, this.introDur);
+    }
+  }, {
+    key: "buildVars",
+    value: function buildVars() {
+      this.data = this.attrs.data.data;
+      this.title = this.attrs.data.title;
+      this.subtitle = this.attrs.data.subtitle;
+      this.maxPoint = 0;
+      this.gridLinesNum = this.attrs.data.showGrid ? 11 : 0;
+      this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
+      this.primaryC = this.attrs.palette.primary ? this.attrs.palette.primary : colorPalette.gray;
+      this.secondaryC = this.attrs.palette.secondary ? this.attrs.palette.secondary : colorPalette.lightGray;
+      this.tertiaryC = this.attrs.palette.tertiary ? this.attrs.palette.tertiary : colorPalette.darkGray;
+      this.fontC = this.attrs.palette.font ? this.attrs.palette.font : colorPalette.font;
+      this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : colorPalette.accent;
+      this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : colorPalette.background;
+      this.attrs.font = this.attrs.font ? this.attrs.font : {};
+      this.fontFamily = this.attrs.font.fontFamily ? this.attrs.font.fontFamily : "'Staatliches', cursive";
+      this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
+      this.url = this.attrs.font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
+      this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
+      this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
+      this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
+
+      if (this.attrs.timings.static === 0) {
+        this.staticDur = 0;
+      } else {
+        this.staticDur = this.attrs.timings.static ? this.attrs.timings.static : 1000;
+      }
+    }
+  }]);
+
+  return BarChartSimple;
+}(MotorCortex.HTMLClip);
+
+function _classCallCheck$1(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties$1(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass$1(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$1(Constructor, staticProps);
+  return Constructor;
 }
 
 function _inherits$1(subClass, superClass) {
@@ -1875,7 +5259,7 @@ function _inherits$1(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf$2(subClass, superClass);
+  if (superClass) _setPrototypeOf$1(subClass, superClass);
 }
 
 function _getPrototypeOf$1(o) {
@@ -1885,13 +5269,13 @@ function _getPrototypeOf$1(o) {
   return _getPrototypeOf$1(o);
 }
 
-function _setPrototypeOf$2(o, p) {
-  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$1(o, p) {
+  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$2(o, p);
+  return _setPrototypeOf$1(o, p);
 }
 
 function _isNativeReflectConstruct$1() {
@@ -1907,7 +5291,7 @@ function _isNativeReflectConstruct$1() {
   }
 }
 
-function _assertThisInitialized$2(self) {
+function _assertThisInitialized$1(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -1922,7 +5306,7 @@ function _possibleConstructorReturn$1(self, call) {
     throw new TypeError("Derived constructors may only return object or undefined");
   }
 
-  return _assertThisInitialized$2(self);
+  return _assertThisInitialized$1(self);
 }
 
 function _createSuper$1(Derived) {
@@ -1943,6 +5327,803 @@ function _createSuper$1(Derived) {
     return _possibleConstructorReturn$1(this, result);
   };
 }
+/**
+ * The purpose of Effects is to timely alter the state or value of attributes of
+ * selected elements of the context, specified on the "selector"
+ * property of theirs.
+ *
+ * The attributes of the elements that the Effect manipulates are
+ * always defined on the attrs.animatedAttrs object, passed to it on its constructor.
+ * Each key of this object corresponds to an attribute that the Effect will alter and the value
+ * of each specifies the final value to go to.
+ * On runtime, each Effect is analysed first by element and secondly
+ * by animatedAttr.
+ * For example an Effect that has the selector ".my-class",
+ * that applies in two elements of the context, and has two animatedAttrs
+ * will be analysed into four in total "MonoIncidents" (2 elements * 2 animatedAttrs).
+ * Each of these produced MonoIncidents refer to a very specific element and
+ * to a very specific animated attribute.
+ * The Class that you are defining here extends Effect which represents exactly this MonoIncident.
+ *
+ * Thus, here you'll find:
+ * the following properties:
+ * - this.element: provides a reference to the specific element of the MonoIncident
+ * - this.attributeKey: the key of the animatedAttr of the MonoIncident
+ * - this.targetValue: the final value of the animatedAttr
+ * - this.initialValue: the initial value of the animatedAttr
+ * and the following methods:
+ * - onGetContext
+ * - getScratchValue
+ * - onProgress
+ * which are analysed more inline
+ *
+ **/
+
+
+var Counter$2 = /*#__PURE__*/function (_MotorCortex$Effect) {
+  _inherits$1(Counter, _MotorCortex$Effect);
+
+  var _super = _createSuper$1(Counter);
+
+  function Counter() {
+    _classCallCheck$1(this, Counter);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass$1(Counter, [{
+    key: "getScratchValue",
+    value:
+    /**
+     * the very first MonoIncident of the specific element and the
+     * specific attribute that will ever enter a Clip will be asked
+     * to provide the initial (the scratch) value of its animatedAttr
+     * for its element.
+     **/
+    function getScratchValue() {
+      return 0;
+    }
+    /**
+     * The moment the Effect gets applied as MonoIncident to the specific
+     * element and for the specific animatedAttr.
+     * You can use this method to initialise anything you need to initialise
+     * in order to use it on the onProgress method
+     **/
+
+  }, {
+    key: "onGetContext",
+    value: function onGetContext() {
+      this.element.innerHTML = this.initialValue;
+    }
+    /**
+     * Takes two arguments the "fraction" which is a number from 0 to 1, representing
+     * the fraction (the percentage) of the duration that we are in,
+     * and the millisecond which defines the absolute millisecond.
+     * You can use this method to animate your attribute.
+     * Remember that you don't need to worry about easings. Easings are already
+     * applied before reaching the execution of this method. This method's
+     * arguments have already been re-calculated based on the easing.
+     **/
+
+  }, {
+    key: "onProgress",
+    value: function onProgress(fraction) {
+      var currentVal = this.initialValue + (this.targetValue - this.initialValue) * fraction;
+
+      if (this.attrs.decimals) {
+        currentVal = currentVal.toFixed(this.attrs.decimals);
+      } else {
+        currentVal = Math.trunc(currentVal);
+      }
+
+      this.element.innerHTML = currentVal;
+    }
+  }]);
+
+  return Counter;
+}(MotorCortex.Effect);
+
+var name$2 = "@donkeyclip/motorcortex-counter";
+var version$3 = "1.1.1";
+var index$3 = {
+  npm_name: name$2,
+  // don't touch this
+  version: version$3,
+  // don't touch this
+  incidents: [{
+    exportable: Counter$2,
+    name: "Counter",
+    attributesValidationRules: {
+      animatedAttrs: {
+        type: "object",
+        props: {
+          count: {
+            type: "number"
+          }
+        }
+      },
+      decimals: {
+        type: "number",
+        optional: true,
+        min: 0,
+        max: 20,
+        integer: true
+      }
+    }
+  }]
+};
+
+// iterable DOM collections
+// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
+var domIterables = {
+  CSSRuleList: 0,
+  CSSStyleDeclaration: 0,
+  CSSValueList: 0,
+  ClientRectList: 0,
+  DOMRectList: 0,
+  DOMStringList: 0,
+  DOMTokenList: 1,
+  DataTransferItemList: 0,
+  FileList: 0,
+  HTMLAllCollection: 0,
+  HTMLCollection: 0,
+  HTMLFormElement: 0,
+  HTMLSelectElement: 0,
+  MediaList: 0,
+  MimeTypeArray: 0,
+  NamedNodeMap: 0,
+  NodeList: 1,
+  PaintRequestList: 0,
+  Plugin: 0,
+  PluginArray: 0,
+  SVGLengthList: 0,
+  SVGNumberList: 0,
+  SVGPathSegList: 0,
+  SVGPointList: 0,
+  SVGStringList: 0,
+  SVGTransformList: 0,
+  SourceBufferList: 0,
+  StyleSheetList: 0,
+  TextTrackCueList: 0,
+  TextTrackList: 0,
+  TouchList: 0
+};
+
+// in old WebKit versions, `element.classList` is not an instance of global `DOMTokenList`
+var documentCreateElement$2 = documentCreateElement$3;
+
+var classList = documentCreateElement$2('span').classList;
+var DOMTokenListPrototype$2 = classList && classList.constructor && classList.constructor.prototype;
+var domTokenListPrototype = DOMTokenListPrototype$2 === Object.prototype ? undefined : DOMTokenListPrototype$2;
+
+var fails$c = fails$p;
+
+var arrayMethodIsStrict$3 = function (METHOD_NAME, argument) {
+  var method = [][METHOD_NAME];
+  return !!method && fails$c(function () {
+    // eslint-disable-next-line no-useless-call,no-throw-literal -- required for testing
+    method.call(null, argument || function () {
+      throw 1;
+    }, 1);
+  });
+};
+
+var $forEach = arrayIteration.forEach;
+
+var arrayMethodIsStrict$2 = arrayMethodIsStrict$3;
+
+var STRICT_METHOD$2 = arrayMethodIsStrict$2('forEach'); // `Array.prototype.forEach` method implementation
+// https://tc39.es/ecma262/#sec-array.prototype.foreach
+
+var arrayForEach = !STRICT_METHOD$2 ? function forEach(callbackfn
+/* , thisArg */
+) {
+  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined); // eslint-disable-next-line es/no-array-prototype-foreach -- safe
+} : [].forEach;
+
+var global$p = global$R;
+
+var DOMIterables$1 = domIterables;
+
+var DOMTokenListPrototype$1 = domTokenListPrototype;
+
+var forEach = arrayForEach;
+
+var createNonEnumerableProperty$5 = createNonEnumerableProperty$9;
+
+var handlePrototype$1 = function (CollectionPrototype) {
+  // some Chrome versions have non-configurable methods on DOMTokenList
+  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
+    createNonEnumerableProperty$5(CollectionPrototype, 'forEach', forEach);
+  } catch (error) {
+    CollectionPrototype.forEach = forEach;
+  }
+};
+
+for (var COLLECTION_NAME$1 in DOMIterables$1) {
+  if (DOMIterables$1[COLLECTION_NAME$1]) {
+    handlePrototype$1(global$p[COLLECTION_NAME$1] && global$p[COLLECTION_NAME$1].prototype);
+  }
+}
+
+handlePrototype$1(DOMTokenListPrototype$1);
+
+function buildCSS$3(cssArgs) {
+  var createGenerateId = function createGenerateId() {
+    return function (rule) {
+      return rule.key;
+    };
+  };
+
+  jss.setup({
+    createGenerateId: createGenerateId
+  });
+  var styles = {
+    "container-progressBar": {
+      height: "100%",
+      background: cssArgs.palette.background ? cssArgs.palette.background : colorPalette.background,
+      display: "flex",
+      color: cssArgs.palette.font ? cssArgs.palette.font : colorPalette.font,
+      "font-family": cssArgs.font.fontFamily ? cssArgs.font.fontFamily : "'Staatliches', cursive"
+    },
+    row: {
+      display: "flex",
+      "flex-direction": "row",
+      position: "absolute",
+      left: "20%",
+      "align-items": "center",
+      height: "".concat(60 / cssArgs.barCount, "%"),
+      width: "100%"
+    },
+    "container-bar": {
+      position: "absolute",
+      height: "100%",
+      background: cssArgs.palette.secondary ? cssArgs.palette.secondary : colorPalette.darkGray,
+      "border-radius": "4rem",
+      width: "60%",
+      "box-shadow": "2px 2px 5px gray",
+      border: "0.2rem solid ".concat(cssArgs.palette.accent ? cssArgs.palette.accent : colorPalette.accent),
+      "z-index": "1",
+      overflow: "hidden"
+    },
+    "inner-bar": {
+      position: "relative",
+      background: cssArgs.palette.primary ? cssArgs.palette.primary : colorPalette.lightGray,
+      height: "102%",
+      "border-radius": "4rem",
+      bottom: "-1px",
+      "z-index": "2px",
+      top: "-0.5px"
+    },
+    text: {
+      position: "relative",
+      "z-index": "0",
+      opacity: "1",
+      left: "62%",
+      "font-size": cssArgs.font.size ? cssArgs.font.size : "1.2rem"
+    },
+    "bar-header": {
+      position: "absolute",
+      left: "-21%",
+      "text-align": "right",
+      width: "20%",
+      "font-size": cssArgs.font.size ? cssArgs.font.size : "1.2rem"
+    }
+  };
+  var avg = cssArgs.barSum / cssArgs.barCount;
+  cssArgs.data.forEach(function (elem, index) {
+    styles["row-".concat(index)] = {
+      bottom: "".concat(50 + (avg - index) * 100 / cssArgs.barCount - 60 / cssArgs.barCount * 2.15, "%")
+    };
+    styles["inner-bar-".concat(index)] = {
+      width: "".concat(elem.value.toFixed(2), "%")
+    };
+  });
+  var styleSheet = jss.createStyleSheet(styles).toString();
+  return styleSheet;
+}
+
+var Counter$1 = MotorCortex.loadPlugin(index$3);
+/**
+ * The purpose of extending the HTMLClip is to full, parametric
+ * HTMLClips with both context and Incidents.
+ *
+ * HTMLClip allows you to set your html, css, fonts and audioSources
+ * upfront by the corresponding getter methods. You can use the this.attrs
+ * reference on these methods so you can generate dynamic content.
+ * Overwrite ONLY the ones you are interested in, ignore the rest.
+ * The buildTree method allows developers to define Incidents (of any plugin)
+ * dynamically and position them on the Clip.
+ */
+
+var ProgressBar = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
+  _inherits$2(ProgressBar, _MotorCortex$HTMLClip);
+
+  var _super = _createSuper$2(ProgressBar);
+
+  function ProgressBar() {
+    _classCallCheck$2(this, ProgressBar);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass$3(ProgressBar, [{
+    key: "html",
+    get: function get() {
+      var _this = this;
+
+      var list = this.attrs.data.map(function (elem, index) {
+        var _this$attrs$options;
+
+        return MotorCortex.utils.createDOMElement("div", {
+          class: "row row-" + index
+        }, MotorCortex.utils.createDOMElement("div", {
+          class: "bar-header"
+        }, elem.name), MotorCortex.utils.createDOMElement("div", {
+          class: "container-bar container-bar-" + index
+        }, MotorCortex.utils.createDOMElement("div", {
+          class: "inner-bar inner-bar-" + index + " " + (elem.value < _this.criticalValue ? "extra-trunced-" + index : null)
+        })), MotorCortex.utils.createDOMElement("div", {
+          class: "text indicator-".concat(index)
+        }, elem.value), MotorCortex.utils.createDOMElement("div", {
+          class: "text text-unit"
+        }, !((_this$attrs$options = _this.attrs.options) !== null && _this$attrs$options !== void 0 && _this$attrs$options.hidePercentage) ? "%" : null));
+      });
+      return MotorCortex.utils.createDOMElement("div", {
+        class: "container-progressBar"
+      }, list);
+    }
+  }, {
+    key: "css",
+    get: function get() {
+      var cssArgs = {
+        barSum: this.barSum,
+        barCount: this.barCount,
+        data: this.attrs.data,
+        palette: this.attrs.palette ? this.attrs.palette : {},
+        font: this.attrs.font ? this.attrs.font : {},
+        options: this.attrs.options ? this.attrs.options : {}
+      };
+      return buildCSS$3(cssArgs);
+    }
+  }, {
+    key: "fonts",
+    get: function get() {
+      var _this$attrs$font;
+
+      return [{
+        type: "google-font",
+        src: (_this$attrs$font = this.attrs.font) !== null && _this$attrs$font !== void 0 && _this$attrs$font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
+      }];
+    }
+  }, {
+    key: "buildTree",
+    value: function buildTree() {
+      var _this$attrs$timings;
+
+      if (this.attrs.timings.static === 0) {
+        this.static = 0;
+      } else {
+        this.static = this.attrs.timings.static ? this.attrs.timings.static : 1000;
+      }
+
+      this.intro = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
+      this.outro = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
+      var avg = this.barSum / this.barCount;
+      fadeOutOpacityControl(this, ".container-progressBar");
+
+      if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.intro) {
+        var slideInDuration = Math.floor(this.intro * 0.33);
+        var expandBaseDuration = Math.floor(this.intro * 0.25);
+        var expandBarDuration = Math.floor(this.intro * 0.33);
+
+        for (var i = 0; i < this.barCount; i++) {
+          var slideIn = new CSSEffect({
+            animatedAttrs: {
+              bottom: "".concat(50 + (avg - i) * 100 / this.barCount - 60 / this.barCount * 2.15, "%"),
+              opacity: 1
+            },
+            initialValues: {
+              bottom: "-".concat(65 / this.barCount, "%"),
+              opacity: 0
+            }
+          }, {
+            duration: slideInDuration,
+            selector: ".row-".concat(i),
+            easing: "easeInOutQuad"
+          });
+          var expand_base = new CSSEffect({
+            animatedAttrs: {
+              width: "60%"
+            },
+            initialValues: {
+              width: "0.2%"
+            }
+          }, {
+            duration: expandBaseDuration,
+            selector: ".container-bar-".concat(i),
+            easing: "easeInOutQuad"
+          });
+          var expand_bar = new CSSEffect({
+            animatedAttrs: {
+              width: "".concat(this.attrs.data[i].value.toFixed(2), "%")
+            },
+            initialValues: {
+              width: "0%"
+            }
+          }, {
+            duration: expandBarDuration,
+            selector: ".inner-bar-".concat(i),
+            easing: "easeInOutQuad"
+          });
+          var indicatorCounter = new Counter$1.Counter({
+            animatedAttrs: {
+              count: this.attrs.data[i].value
+            },
+            initialValues: {
+              count: 0
+            }
+          }, {
+            easing: "easeInOutQuad",
+            selector: ".indicator-".concat(i),
+            duration: expandBarDuration
+          });
+          this.addIncident(slideIn, 0);
+          this.addIncident(expand_base, slideInDuration);
+          this.addIncident(expand_bar, slideInDuration + expandBaseDuration);
+          this.addIncident(indicatorCounter, slideInDuration + expandBaseDuration);
+        }
+
+        var expand_text = new CSSEffect({
+          animatedAttrs: {
+            left: "62%",
+            opacity: 1
+          },
+          initialValues: {
+            left: "0%",
+            opacity: 0
+          }
+        }, {
+          duration: expandBarDuration,
+          selector: ".text",
+          easing: "easeInOutQuad"
+        });
+        this.addIncident(expand_text, slideInDuration);
+      }
+
+      var staticGraph = new CSSEffect({
+        animatedAttrs: {}
+      }, {
+        duration: this.static,
+        selector: ".container-progressBar"
+      });
+      this.addIncident(staticGraph, this.intro);
+
+      if (this.outro) {
+        var bufferTime = this.intro + this.static + this.outro;
+
+        var _slideInDuration = Math.floor(this.outro * 0.33);
+
+        var _expandBaseDuration = Math.floor(this.outro * 0.25);
+
+        var _expandBarDuration = Math.floor(this.outro * 0.33);
+
+        for (var _i = 0; _i < this.barCount; _i++) {
+          var _slideIn = new CSSEffect({
+            animatedAttrs: {
+              bottom: "-".concat(65 / this.barCount, "%"),
+              opacity: 0
+            },
+            initialValues: {
+              bottom: "".concat(50 + (avg - _i) * 100 / this.barCount - 60 / this.barCount * 2.15, "%"),
+              opacity: 1
+            }
+          }, {
+            duration: _slideInDuration,
+            selector: ".row-".concat(_i),
+            easing: "easeInOutQuad"
+          });
+
+          var _expand_base = new CSSEffect({
+            animatedAttrs: {
+              width: "0.2%"
+            },
+            initialValues: {
+              width: "60%"
+            }
+          }, {
+            duration: _expandBaseDuration,
+            selector: ".container-bar-".concat(_i),
+            easing: "easeInOutQuad"
+          });
+
+          var _expand_bar = new CSSEffect({
+            animatedAttrs: {
+              width: "0%"
+            },
+            initialValues: {
+              width: "".concat(this.attrs.data[_i].value.toFixed(2), "%")
+            }
+          }, {
+            duration: _expandBarDuration,
+            selector: ".inner-bar-".concat(_i),
+            easing: "easeInOutQuad"
+          });
+
+          var _indicatorCounter = new Counter$1.Counter({
+            animatedAttrs: {
+              count: 0
+            },
+            initialValues: {
+              count: this.attrs.data[_i].value
+            }
+          }, {
+            easing: "easeInOutQuad",
+            selector: ".indicator-".concat(_i),
+            duration: _expandBarDuration
+          });
+
+          this.addIncident(_slideIn, bufferTime - _slideInDuration);
+          this.addIncident(_expand_base, bufferTime - _slideInDuration - _expandBaseDuration);
+          this.addIncident(_expand_bar, bufferTime - _slideInDuration - _expandBaseDuration - _expandBarDuration);
+          this.addIncident(_indicatorCounter, bufferTime - _slideInDuration - _expandBaseDuration - _expandBarDuration);
+        }
+
+        var _expand_text = new CSSEffect({
+          animatedAttrs: {
+            left: "0%",
+            opacity: 0
+          },
+          initialValues: {
+            left: "62%",
+            opacity: 1
+          }
+        }, {
+          duration: _expandBarDuration,
+          selector: ".text",
+          easing: "easeInOutQuad"
+        });
+
+        this.addIncident(_expand_text, bufferTime - _slideInDuration - _expandBaseDuration * 1.1);
+      }
+    }
+  }, {
+    key: "barSum",
+    get: function get() {
+      var sum = 0;
+
+      for (var i = 1; i <= this.barCount; i++) {
+        sum += i;
+      }
+
+      return sum;
+    }
+  }, {
+    key: "barCount",
+    get: function get() {
+      return this.attrs.data.length;
+    }
+  }, {
+    key: "criticalValue",
+    get: function get() {
+      if (this.barCount / 10 === 1) {
+        return this.barCount / 10 * 10;
+      } else if (this.barCount / 10 > 1) {
+        return (this.barCount / 10 - 1) * 10;
+      } else {
+        return (this.barCount / 10 + 1) * 10;
+      }
+    }
+  }]);
+
+  return ProgressBar;
+}(MotorCortex.HTMLClip);
+
+/* eslint-disable es/no-array-prototype-indexof -- required for testing */
+
+var $$5 = _export$1;
+
+var uncurryThis$d = functionUncurryThis$1;
+
+var $IndexOf = arrayIncludes$1.indexOf;
+
+var arrayMethodIsStrict$1 = arrayMethodIsStrict$3;
+
+var un$IndexOf = uncurryThis$d([].indexOf);
+var NEGATIVE_ZERO = !!un$IndexOf && 1 / un$IndexOf([1], 1, -0) < 0;
+var STRICT_METHOD$1 = arrayMethodIsStrict$1('indexOf'); // `Array.prototype.indexOf` method
+// https://tc39.es/ecma262/#sec-array.prototype.indexof
+
+$$5({
+  target: 'Array',
+  proto: true,
+  forced: NEGATIVE_ZERO || !STRICT_METHOD$1
+}, {
+  indexOf: function indexOf(searchElement
+  /* , fromIndex = 0 */
+  ) {
+    var fromIndex = arguments.length > 1 ? arguments[1] : undefined;
+    return NEGATIVE_ZERO // convert -0 to +0
+    ? un$IndexOf(this, searchElement, fromIndex) || 0 : $IndexOf(this, searchElement, fromIndex);
+  }
+});
+
+var $$4 = _export$1;
+
+var uncurryThis$c = functionUncurryThis$1;
+
+var IndexedObject$1 = indexedObject$1;
+
+var toIndexedObject$5 = toIndexedObject$a;
+
+var arrayMethodIsStrict = arrayMethodIsStrict$3;
+
+var un$Join = uncurryThis$c([].join);
+var ES3_STRINGS = IndexedObject$1 != Object;
+var STRICT_METHOD = arrayMethodIsStrict('join', ','); // `Array.prototype.join` method
+// https://tc39.es/ecma262/#sec-array.prototype.join
+
+$$4({
+  target: 'Array',
+  proto: true,
+  forced: ES3_STRINGS || !STRICT_METHOD
+}, {
+  join: function join(separator) {
+    return un$Join(toIndexedObject$5(this), separator === undefined ? ',' : separator);
+  }
+});
+
+function ownKeys$2(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys$2(Object(source), !0).forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys$2(Object(source)).forEach(function (key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+
+  return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 /*
  * anime.js v3.1.5
  * (c) 2021 Julian Garnier
@@ -1957,7 +6138,6 @@ function _createSuper$1(Derived) {
  * animejs.com
  */
 // Defaults
-
 
 var defaultInstanceSettings = {};
 var defaultTweenSettings = {
@@ -2929,67 +7109,25 @@ anime.penner = penner;
 anime.path = getPath;
 anime.getPathProgress = getPathProgress;
 var anime_es = anime;
-var transform = ["translateX", "translateY", "translateZ", "rotate", "rotateX", "rotateY", "rotateZ", "scale", "scaleX", "scaleY", "scaleZ", "skewX", "skewY", "perspective"];
-var compositeAttributes = {
-  transform: transform
-};
 
-function getMatrix2D(win, element) {
-  var transform = win.getComputedStyle(element).transform;
+var Anime = /*#__PURE__*/function (_MotorCortex$Extendab) {
+  _inherits(Anime, _MotorCortex$Extendab);
 
-  if (transform === "" || transform === "none") {
-    return {};
-  }
-
-  var values = transform.split("(")[1].split(")")[0].split(",");
-
-  var qrDecompone = function qrDecompone(a) {
-    var angle = Math.atan2(a[1], a[0]),
-        denom = Math.pow(a[0], 2) + Math.pow(a[1], 2),
-        denom2 = Math.pow(a[2], 2) + Math.pow(a[3], 2),
-        scaleX = Math.sqrt(denom),
-        scaleY = (a[0] * a[3] - a[2] * a[1]) / scaleX,
-        skewX = Math.atan2(a[0] * a[2] + a[1] * a[3], denom),
-        skewY = Math.atan2(a[1] * a[3] + a[0] * a[2], denom2);
-    return {
-      rotate: angle / (Math.PI / 180) + "deg",
-      // this is rotation angle in degrees
-      scaleX: scaleX,
-      // scaleX factor
-      scaleY: scaleY,
-      // scaleY factor
-      skewX: (denom === 1 ? skewX / (Math.PI / 180) : 0) + "deg",
-      // skewX angle degrees
-      skewY: (denom2 === 1 ? skewY / (Math.PI / 180) : 0) + "deg",
-      // skewY angle degrees
-      translateX: a[4] + "px",
-      // translation point  x
-      translateY: a[5] + "px" // translation point  y
-
-    };
-  };
-
-  return qrDecompone(values);
-}
-
-var Anime$4 = /*#__PURE__*/function (_MotorCortex$Effect) {
-  _inherits$1(Anime, _MotorCortex$Effect);
-
-  var _super = _createSuper$1(Anime);
+  var _super = _createSuper(Anime);
 
   function Anime() {
-    _classCallCheck$1(this, Anime);
+    _classCallCheck(this, Anime);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$2(Anime, [{
+  _createClass(Anime, [{
     key: "onGetContext",
     value: function onGetContext() {
       var options = {};
 
-      if (Object.prototype.hasOwnProperty.call(compositeAttributes, this.attributeKey)) {
-        var compoAttribute = compositeAttributes[this.attributeKey];
+      if (Object.prototype.hasOwnProperty.call(this.compoAttributes, this.attributeKey)) {
+        var compoAttribute = this.compoAttributes[this.attributeKey];
 
         for (var i = 0; i < compoAttribute.length; i++) {
           if (!Object.prototype.hasOwnProperty.call(this.targetValue, compoAttribute[i])) {
@@ -3009,23 +7147,6 @@ var Anime$4 = /*#__PURE__*/function (_MotorCortex$Effect) {
         targets: this.element
       }, (this.attrs || {}).attrs || {}), options)); // handle first render initial values
     }
-  }, {
-    key: "getScratchValue",
-    value: function getScratchValue() {
-      if (this.attributeKey !== "transform") {
-        return anime_es.get(this.element, this.attributeKey);
-      }
-
-      var obj = {};
-      var transform = compositeAttributes[this.attributeKey];
-      var currentTransform = getMatrix2D(this.context.window, this.element);
-
-      for (var i = 0; i < transform.length; i++) {
-        obj[transform[i]] = Object.prototype.hasOwnProperty.call(currentTransform, transform[i]) ? currentTransform[transform[i]] : anime_es.get(this.element, transform[i]);
-      }
-
-      return obj;
-    }
     /**
      * @param {number} f
      */
@@ -3038,7 +7159,1116 @@ var Anime$4 = /*#__PURE__*/function (_MotorCortex$Effect) {
   }]);
 
   return Anime;
-}(MotorCortex.Effect);
+}(MotorCortex.ExtendableCSSEffect);
+
+var check = function (it) {
+  return it && it.Math == Math && it;
+}; // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+
+
+var global$o = // eslint-disable-next-line es/no-global-this -- safe
+check(typeof globalThis == 'object' && globalThis) || check(typeof window == 'object' && window) || // eslint-disable-next-line no-restricted-globals -- safe
+check(typeof self == 'object' && self) || check(typeof commonjsGlobal == 'object' && commonjsGlobal) || // eslint-disable-next-line no-new-func -- fallback
+function () {
+  return this;
+}() || Function('return this')();
+
+var objectGetOwnPropertyDescriptor = {};
+
+var fails$a = function (exec) {
+  try {
+    return !!exec();
+  } catch (error) {
+    return true;
+  }
+};
+
+var fails$9$1 = fails$a; // Detect IE8's incomplete defineProperty implementation
+
+var descriptors = !fails$9$1(function () {
+  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  return Object.defineProperty({}, 1, {
+    get: function () {
+      return 7;
+    }
+  })[1] != 7;
+});
+var fails$8$1 = fails$a;
+var functionBindNative = !fails$8$1(function () {
+  var test = function () {
+    /* empty */
+  }.bind(); // eslint-disable-next-line no-prototype-builtins -- safe
+
+
+  return typeof test != 'function' || test.hasOwnProperty('prototype');
+});
+var NATIVE_BIND$1 = functionBindNative;
+var call$4$1 = Function.prototype.call;
+var functionCall = NATIVE_BIND$1 ? call$4$1.bind(call$4$1) : function () {
+  return call$4$1.apply(call$4$1, arguments);
+};
+var objectPropertyIsEnumerable = {};
+var $propertyIsEnumerable = {}.propertyIsEnumerable; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+var getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor; // Nashorn ~ JDK8 bug
+
+var NASHORN_BUG = getOwnPropertyDescriptor$1 && !$propertyIsEnumerable.call({
+  1: 2
+}, 1); // `Object.prototype.propertyIsEnumerable` method implementation
+// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
+
+objectPropertyIsEnumerable.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
+  var descriptor = getOwnPropertyDescriptor$1(this, V);
+  return !!descriptor && descriptor.enumerable;
+} : $propertyIsEnumerable;
+
+var createPropertyDescriptor$3 = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+var NATIVE_BIND$2 = functionBindNative;
+var FunctionPrototype$1 = Function.prototype;
+var bind = FunctionPrototype$1.bind;
+var call$3$1 = FunctionPrototype$1.call;
+var uncurryThis$a = NATIVE_BIND$2 && bind.bind(call$3$1, call$3$1);
+var functionUncurryThis = NATIVE_BIND$2 ? function (fn) {
+  return fn && uncurryThis$a(fn);
+} : function (fn) {
+  return fn && function () {
+    return call$3$1.apply(fn, arguments);
+  };
+};
+var uncurryThis$9 = functionUncurryThis;
+var toString$1$1 = uncurryThis$9({}.toString);
+var stringSlice$4 = uncurryThis$9(''.slice);
+
+var classofRaw$1 = function (it) {
+  return stringSlice$4(toString$1$1(it), 8, -1);
+};
+
+var global$n = global$o;
+var uncurryThis$8$1 = functionUncurryThis;
+var fails$7$1 = fails$a;
+var classof$3$1 = classofRaw$1;
+var Object$4 = global$n.Object;
+var split = uncurryThis$8$1(''.split); // fallback for non-array-like ES3 and non-enumerable old V8 strings
+
+var indexedObject = fails$7$1(function () {
+  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346
+  // eslint-disable-next-line no-prototype-builtins -- safe
+  return !Object$4('z').propertyIsEnumerable(0);
+}) ? function (it) {
+  return classof$3$1(it) == 'String' ? split(it, '') : Object$4(it);
+} : Object$4;
+var global$m = global$o;
+var TypeError$8 = global$m.TypeError; // `RequireObjectCoercible` abstract operation
+// https://tc39.es/ecma262/#sec-requireobjectcoercible
+
+var requireObjectCoercible$2$1 = function (it) {
+  if (it == undefined) throw TypeError$8("Can't call method on " + it);
+  return it;
+};
+
+var IndexedObject = indexedObject;
+var requireObjectCoercible$1$1 = requireObjectCoercible$2$1;
+
+var toIndexedObject$3 = function (it) {
+  return IndexedObject(requireObjectCoercible$1$1(it));
+}; // https://tc39.es/ecma262/#sec-iscallable
+
+
+var isCallable$b = function (argument) {
+  return typeof argument == 'function';
+};
+
+var isCallable$a = isCallable$b;
+
+var isObject$7 = function (it) {
+  return typeof it == 'object' ? it !== null : isCallable$a(it);
+};
+
+var global$l = global$o;
+var isCallable$9 = isCallable$b;
+
+var aFunction = function (argument) {
+  return isCallable$9(argument) ? argument : undefined;
+};
+
+var getBuiltIn$4 = function (namespace, method) {
+  return arguments.length < 2 ? aFunction(global$l[namespace]) : global$l[namespace] && global$l[namespace][method];
+};
+
+var uncurryThis$7$1 = functionUncurryThis;
+var objectIsPrototypeOf = uncurryThis$7$1({}.isPrototypeOf);
+var getBuiltIn$3 = getBuiltIn$4;
+var engineUserAgent = getBuiltIn$3('navigator', 'userAgent') || '';
+var global$k = global$o;
+var userAgent = engineUserAgent;
+var process$1 = global$k.process;
+var Deno = global$k.Deno;
+var versions = process$1 && process$1.versions || Deno && Deno.version;
+var v8 = versions && versions.v8;
+var match, version$1;
+
+if (v8) {
+  match = v8.split('.'); // in old Chrome, versions of V8 isn't V8 = Chrome / 10
+  // but their correct versions are not interesting for us
+
+  version$1 = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
+} // BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
+// so check `userAgent` even if `.v8` exists, but 0
+
+
+if (!version$1 && userAgent) {
+  match = userAgent.match(/Edge\/(\d+)/);
+
+  if (!match || match[1] >= 74) {
+    match = userAgent.match(/Chrome\/(\d+)/);
+    if (match) version$1 = +match[1];
+  }
+}
+
+var engineV8Version = version$1;
+/* eslint-disable es/no-symbol -- required for testing */
+
+var V8_VERSION$2 = engineV8Version;
+var fails$6$1 = fails$a; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
+
+var nativeSymbol = !!Object.getOwnPropertySymbols && !fails$6$1(function () {
+  var symbol = Symbol(); // Chrome 38 Symbol has incorrect toString conversion
+  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
+
+  return !String(symbol) || !(Object(symbol) instanceof Symbol) || // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+  !Symbol.sham && V8_VERSION$2 && V8_VERSION$2 < 41;
+});
+/* eslint-disable es/no-symbol -- required for testing */
+
+var NATIVE_SYMBOL$1 = nativeSymbol;
+var useSymbolAsUid = NATIVE_SYMBOL$1 && !Symbol.sham && typeof Symbol.iterator == 'symbol';
+var global$j = global$o;
+var getBuiltIn$2 = getBuiltIn$4;
+var isCallable$8 = isCallable$b;
+var isPrototypeOf$2 = objectIsPrototypeOf;
+var USE_SYMBOL_AS_UID$1 = useSymbolAsUid;
+var Object$3 = global$j.Object;
+var isSymbol$2 = USE_SYMBOL_AS_UID$1 ? function (it) {
+  return typeof it == 'symbol';
+} : function (it) {
+  var $Symbol = getBuiltIn$2('Symbol');
+  return isCallable$8($Symbol) && isPrototypeOf$2($Symbol.prototype, Object$3(it));
+};
+var global$i = global$o;
+var String$2 = global$i.String;
+
+var tryToString$1 = function (argument) {
+  try {
+    return String$2(argument);
+  } catch (error) {
+    return 'Object';
+  }
+};
+
+var global$h = global$o;
+var isCallable$7 = isCallable$b;
+var tryToString$2 = tryToString$1;
+var TypeError$7 = global$h.TypeError; // `Assert: IsCallable(argument) is true`
+
+var aCallable$1 = function (argument) {
+  if (isCallable$7(argument)) return argument;
+  throw TypeError$7(tryToString$2(argument) + ' is not a function');
+};
+
+var aCallable = aCallable$1; // `GetMethod` abstract operation
+// https://tc39.es/ecma262/#sec-getmethod
+
+var getMethod$1$1 = function (V, P) {
+  var func = V[P];
+  return func == null ? undefined : aCallable(func);
+};
+
+var global$g = global$o;
+var call$2$1 = functionCall;
+var isCallable$6 = isCallable$b;
+var isObject$6 = isObject$7;
+var TypeError$6$1 = global$g.TypeError; // `OrdinaryToPrimitive` abstract operation
+// https://tc39.es/ecma262/#sec-ordinarytoprimitive
+
+var ordinaryToPrimitive$1 = function (input, pref) {
+  var fn, val;
+  if (pref === 'string' && isCallable$6(fn = input.toString) && !isObject$6(val = call$2$1(fn, input))) return val;
+  if (isCallable$6(fn = input.valueOf) && !isObject$6(val = call$2$1(fn, input))) return val;
+  if (pref !== 'string' && isCallable$6(fn = input.toString) && !isObject$6(val = call$2$1(fn, input))) return val;
+  throw TypeError$6$1("Can't convert object to primitive value");
+};
+
+var shared$3 = {
+  exports: {}
+};
+var global$f = global$o; // eslint-disable-next-line es/no-object-defineproperty -- safe
+
+var defineProperty$6 = Object.defineProperty;
+
+var setGlobal$3 = function (key, value) {
+  try {
+    defineProperty$6(global$f, key, {
+      value: value,
+      configurable: true,
+      writable: true
+    });
+  } catch (error) {
+    global$f[key] = value;
+  }
+
+  return value;
+};
+
+var global$e$1 = global$o;
+var setGlobal$2 = setGlobal$3;
+var SHARED = '__core-js_shared__';
+var store$3 = global$e$1[SHARED] || setGlobal$2(SHARED, {});
+var sharedStore = store$3;
+var store$2 = sharedStore;
+(shared$3.exports = function (key, value) {
+  return store$2[key] || (store$2[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: '3.20.3',
+  mode: 'global',
+  copyright: '© 2014-2022 Denis Pushkarev (zloirock.ru)',
+  license: 'https://github.com/zloirock/core-js/blob/v3.20.3/LICENSE',
+  source: 'https://github.com/zloirock/core-js'
+});
+var global$d$1 = global$o;
+var requireObjectCoercible$4 = requireObjectCoercible$2$1;
+var Object$2 = global$d$1.Object; // `ToObject` abstract operation
+// https://tc39.es/ecma262/#sec-toobject
+
+var toObject$2 = function (argument) {
+  return Object$2(requireObjectCoercible$4(argument));
+};
+
+var uncurryThis$6$1 = functionUncurryThis;
+var toObject$1 = toObject$2;
+var hasOwnProperty = uncurryThis$6$1({}.hasOwnProperty); // `HasOwnProperty` abstract operation
+// https://tc39.es/ecma262/#sec-hasownproperty
+
+var hasOwnProperty_1 = Object.hasOwn || function hasOwn(it, key) {
+  return hasOwnProperty(toObject$1(it), key);
+};
+
+var uncurryThis$5$1 = functionUncurryThis;
+var id = 0;
+var postfix = Math.random();
+var toString$7 = uncurryThis$5$1(1.0.toString);
+
+var uid$2 = function (key) {
+  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString$7(++id + postfix, 36);
+};
+
+var global$c$1 = global$o;
+var shared$2 = shared$3.exports;
+var hasOwn$6 = hasOwnProperty_1;
+var uid$1 = uid$2;
+var NATIVE_SYMBOL = nativeSymbol;
+var USE_SYMBOL_AS_UID = useSymbolAsUid;
+var WellKnownSymbolsStore = shared$2('wks');
+var Symbol$1$1 = global$c$1.Symbol;
+var symbolFor = Symbol$1$1 && Symbol$1$1['for'];
+var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol$1$1 : Symbol$1$1 && Symbol$1$1.withoutSetter || uid$1;
+
+var wellKnownSymbol$6$1 = function (name) {
+  if (!hasOwn$6(WellKnownSymbolsStore, name) || !(NATIVE_SYMBOL || typeof WellKnownSymbolsStore[name] == 'string')) {
+    var description = 'Symbol.' + name;
+
+    if (NATIVE_SYMBOL && hasOwn$6(Symbol$1$1, name)) {
+      WellKnownSymbolsStore[name] = Symbol$1$1[name];
+    } else if (USE_SYMBOL_AS_UID && symbolFor) {
+      WellKnownSymbolsStore[name] = symbolFor(description);
+    } else {
+      WellKnownSymbolsStore[name] = createWellKnownSymbol(description);
+    }
+  }
+
+  return WellKnownSymbolsStore[name];
+};
+
+var global$b$1 = global$o;
+var call$1$1 = functionCall;
+var isObject$5 = isObject$7;
+var isSymbol$1 = isSymbol$2;
+var getMethod$2 = getMethod$1$1;
+var ordinaryToPrimitive = ordinaryToPrimitive$1;
+var wellKnownSymbol$5$1 = wellKnownSymbol$6$1;
+var TypeError$5$1 = global$b$1.TypeError;
+var TO_PRIMITIVE = wellKnownSymbol$5$1('toPrimitive'); // `ToPrimitive` abstract operation
+// https://tc39.es/ecma262/#sec-toprimitive
+
+var toPrimitive$1 = function (input, pref) {
+  if (!isObject$5(input) || isSymbol$1(input)) return input;
+  var exoticToPrim = getMethod$2(input, TO_PRIMITIVE);
+  var result;
+
+  if (exoticToPrim) {
+    if (pref === undefined) pref = 'default';
+    result = call$1$1(exoticToPrim, input, pref);
+    if (!isObject$5(result) || isSymbol$1(result)) return result;
+    throw TypeError$5$1("Can't convert object to primitive value");
+  }
+
+  if (pref === undefined) pref = 'number';
+  return ordinaryToPrimitive(input, pref);
+};
+
+var toPrimitive$2 = toPrimitive$1;
+var isSymbol$3 = isSymbol$2; // `ToPropertyKey` abstract operation
+// https://tc39.es/ecma262/#sec-topropertykey
+
+var toPropertyKey$3 = function (argument) {
+  var key = toPrimitive$2(argument, 'string');
+  return isSymbol$3(key) ? key : key + '';
+};
+
+var global$a$1 = global$o;
+var isObject$4 = isObject$7;
+var document$1 = global$a$1.document; // typeof document.createElement is 'object' in old IE
+
+var EXISTS$1 = isObject$4(document$1) && isObject$4(document$1.createElement);
+
+var documentCreateElement$1 = function (it) {
+  return EXISTS$1 ? document$1.createElement(it) : {};
+};
+
+var DESCRIPTORS$5$1 = descriptors;
+var fails$5$1 = fails$a;
+var createElement = documentCreateElement$1; // Thanks to IE8 for its funny defineProperty
+
+var ie8DomDefine = !DESCRIPTORS$5$1 && !fails$5$1(function () {
+  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  return Object.defineProperty(createElement('div'), 'a', {
+    get: function () {
+      return 7;
+    }
+  }).a != 7;
+});
+var DESCRIPTORS$4$1 = descriptors;
+var call$6 = functionCall;
+var propertyIsEnumerableModule = objectPropertyIsEnumerable;
+var createPropertyDescriptor$2 = createPropertyDescriptor$3;
+var toIndexedObject$2 = toIndexedObject$3;
+var toPropertyKey$2 = toPropertyKey$3;
+var hasOwn$5 = hasOwnProperty_1;
+var IE8_DOM_DEFINE$1 = ie8DomDefine; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+var $getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
+
+objectGetOwnPropertyDescriptor.f = DESCRIPTORS$4$1 ? $getOwnPropertyDescriptor$1 : function getOwnPropertyDescriptor(O, P) {
+  O = toIndexedObject$2(O);
+  P = toPropertyKey$2(P);
+  if (IE8_DOM_DEFINE$1) try {
+    return $getOwnPropertyDescriptor$1(O, P);
+  } catch (error) {
+    /* empty */
+  }
+  if (hasOwn$5(O, P)) return createPropertyDescriptor$2(!call$6(propertyIsEnumerableModule.f, O, P), O[P]);
+};
+var objectDefineProperty = {};
+var DESCRIPTORS$3$1 = descriptors;
+var fails$4$1 = fails$a; // V8 ~ Chrome 36-
+// https://bugs.chromium.org/p/v8/issues/detail?id=3334
+
+var v8PrototypeDefineBug = DESCRIPTORS$3$1 && fails$4$1(function () {
+  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  return Object.defineProperty(function () {
+    /* empty */
+  }, 'prototype', {
+    value: 42,
+    writable: false
+  }).prototype != 42;
+});
+var global$9$1 = global$o;
+var isObject$3 = isObject$7;
+var String$1$1 = global$9$1.String;
+var TypeError$4$1 = global$9$1.TypeError; // `Assert: Type(argument) is Object`
+
+var anObject$2$1 = function (argument) {
+  if (isObject$3(argument)) return argument;
+  throw TypeError$4$1(String$1$1(argument) + ' is not an object');
+};
+
+var global$8$1 = global$o;
+var DESCRIPTORS$2$1 = descriptors;
+var IE8_DOM_DEFINE = ie8DomDefine;
+var V8_PROTOTYPE_DEFINE_BUG$1 = v8PrototypeDefineBug;
+var anObject$1$1 = anObject$2$1;
+var toPropertyKey$1 = toPropertyKey$3;
+var TypeError$3$1 = global$8$1.TypeError; // eslint-disable-next-line es/no-object-defineproperty -- safe
+
+var $defineProperty = Object.defineProperty; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var ENUMERABLE = 'enumerable';
+var CONFIGURABLE$1 = 'configurable';
+var WRITABLE = 'writable'; // `Object.defineProperty` method
+// https://tc39.es/ecma262/#sec-object.defineproperty
+
+objectDefineProperty.f = DESCRIPTORS$2$1 ? V8_PROTOTYPE_DEFINE_BUG$1 ? function defineProperty(O, P, Attributes) {
+  anObject$1$1(O);
+  P = toPropertyKey$1(P);
+  anObject$1$1(Attributes);
+
+  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
+    var current = $getOwnPropertyDescriptor(O, P);
+
+    if (current && current[WRITABLE]) {
+      O[P] = Attributes.value;
+      Attributes = {
+        configurable: CONFIGURABLE$1 in Attributes ? Attributes[CONFIGURABLE$1] : current[CONFIGURABLE$1],
+        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
+        writable: false
+      };
+    }
+  }
+
+  return $defineProperty(O, P, Attributes);
+} : $defineProperty : function defineProperty(O, P, Attributes) {
+  anObject$1$1(O);
+  P = toPropertyKey$1(P);
+  anObject$1$1(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return $defineProperty(O, P, Attributes);
+  } catch (error) {
+    /* empty */
+  }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError$3$1('Accessors not supported');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+var DESCRIPTORS$1$1 = descriptors;
+var definePropertyModule$2$1 = objectDefineProperty;
+var createPropertyDescriptor$1 = createPropertyDescriptor$3;
+var createNonEnumerableProperty$3$1 = DESCRIPTORS$1$1 ? function (object, key, value) {
+  return definePropertyModule$2$1.f(object, key, createPropertyDescriptor$1(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+var redefine$1$1 = {
+  exports: {}
+};
+var uncurryThis$4$1 = functionUncurryThis;
+var isCallable$5$1 = isCallable$b;
+var store$1 = sharedStore;
+var functionToString = uncurryThis$4$1(Function.toString); // this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
+
+if (!isCallable$5$1(store$1.inspectSource)) {
+  store$1.inspectSource = function (it) {
+    return functionToString(it);
+  };
+}
+
+var inspectSource$3 = store$1.inspectSource;
+var global$7$1 = global$o;
+var isCallable$4$1 = isCallable$b;
+var inspectSource$2 = inspectSource$3;
+var WeakMap$1 = global$7$1.WeakMap;
+var nativeWeakMap = isCallable$4$1(WeakMap$1) && /native code/.test(inspectSource$2(WeakMap$1));
+var shared$1 = shared$3.exports;
+var uid = uid$2;
+var keys$2 = shared$1('keys');
+
+var sharedKey$1$1 = function (key) {
+  return keys$2[key] || (keys$2[key] = uid(key));
+};
+
+var hiddenKeys$3 = {};
+var NATIVE_WEAK_MAP = nativeWeakMap;
+var global$6$1 = global$o;
+var uncurryThis$3$1 = functionUncurryThis;
+var isObject$2 = isObject$7;
+var createNonEnumerableProperty$2$1 = createNonEnumerableProperty$3$1;
+var hasOwn$4 = hasOwnProperty_1;
+var shared$4 = sharedStore;
+var sharedKey$2 = sharedKey$1$1;
+var hiddenKeys$2 = hiddenKeys$3;
+var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
+var TypeError$2$1 = global$6$1.TypeError;
+var WeakMap = global$6$1.WeakMap;
+var set, get, has;
+
+var enforce = function (it) {
+  return has(it) ? get(it) : set(it, {});
+};
+
+var getterFor = function (TYPE) {
+  return function (it) {
+    var state;
+
+    if (!isObject$2(it) || (state = get(it)).type !== TYPE) {
+      throw TypeError$2$1('Incompatible receiver, ' + TYPE + ' required');
+    }
+
+    return state;
+  };
+};
+
+if (NATIVE_WEAK_MAP || shared$4.state) {
+  var store = shared$4.state || (shared$4.state = new WeakMap());
+  var wmget = uncurryThis$3$1(store.get);
+  var wmhas = uncurryThis$3$1(store.has);
+  var wmset = uncurryThis$3$1(store.set);
+
+  set = function (it, metadata) {
+    if (wmhas(store, it)) throw new TypeError$2$1(OBJECT_ALREADY_INITIALIZED);
+    metadata.facade = it;
+    wmset(store, it, metadata);
+    return metadata;
+  };
+
+  get = function (it) {
+    return wmget(store, it) || {};
+  };
+
+  has = function (it) {
+    return wmhas(store, it);
+  };
+} else {
+  var STATE = sharedKey$2('state');
+  hiddenKeys$2[STATE] = true;
+
+  set = function (it, metadata) {
+    if (hasOwn$4(it, STATE)) throw new TypeError$2$1(OBJECT_ALREADY_INITIALIZED);
+    metadata.facade = it;
+    createNonEnumerableProperty$2$1(it, STATE, metadata);
+    return metadata;
+  };
+
+  get = function (it) {
+    return hasOwn$4(it, STATE) ? it[STATE] : {};
+  };
+
+  has = function (it) {
+    return hasOwn$4(it, STATE);
+  };
+}
+
+var internalState = {
+  set: set,
+  get: get,
+  has: has,
+  enforce: enforce,
+  getterFor: getterFor
+};
+var DESCRIPTORS$7 = descriptors;
+var hasOwn$3$1 = hasOwnProperty_1;
+var FunctionPrototype$2 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+var getDescriptor = DESCRIPTORS$7 && Object.getOwnPropertyDescriptor;
+var EXISTS = hasOwn$3$1(FunctionPrototype$2, 'name'); // additional protection from minified / mangled / dropped function names
+
+var PROPER = EXISTS && function something() {
+  /* empty */
+}.name === 'something';
+
+var CONFIGURABLE = EXISTS && (!DESCRIPTORS$7 || DESCRIPTORS$7 && getDescriptor(FunctionPrototype$2, 'name').configurable);
+var functionName = {
+  EXISTS: EXISTS,
+  PROPER: PROPER,
+  CONFIGURABLE: CONFIGURABLE
+};
+var global$5$1 = global$o;
+var isCallable$3$1 = isCallable$b;
+var hasOwn$2$1 = hasOwnProperty_1;
+var createNonEnumerableProperty$1$1 = createNonEnumerableProperty$3$1;
+var setGlobal$1 = setGlobal$3;
+var inspectSource$1 = inspectSource$3;
+var InternalStateModule$1 = internalState;
+var CONFIGURABLE_FUNCTION_NAME$1 = functionName.CONFIGURABLE;
+var getInternalState$4 = InternalStateModule$1.get;
+var enforceInternalState$1 = InternalStateModule$1.enforce;
+var TEMPLATE = String(String).split('String');
+(redefine$1$1.exports = function (O, key, value, options) {
+  var unsafe = options ? !!options.unsafe : false;
+  var simple = options ? !!options.enumerable : false;
+  var noTargetGet = options ? !!options.noTargetGet : false;
+  var name = options && options.name !== undefined ? options.name : key;
+  var state;
+
+  if (isCallable$3$1(value)) {
+    if (String(name).slice(0, 7) === 'Symbol(') {
+      name = '[' + String(name).replace(/^Symbol\(([^)]*)\)/, '$1') + ']';
+    }
+
+    if (!hasOwn$2$1(value, 'name') || CONFIGURABLE_FUNCTION_NAME$1 && value.name !== name) {
+      createNonEnumerableProperty$1$1(value, 'name', name);
+    }
+
+    state = enforceInternalState$1(value);
+
+    if (!state.source) {
+      state.source = TEMPLATE.join(typeof name == 'string' ? name : '');
+    }
+  }
+
+  if (O === global$5$1) {
+    if (simple) O[key] = value;else setGlobal$1(key, value);
+    return;
+  } else if (!unsafe) {
+    delete O[key];
+  } else if (!noTargetGet && O[key]) {
+    simple = true;
+  }
+
+  if (simple) O[key] = value;else createNonEnumerableProperty$1$1(O, key, value); // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, 'toString', function toString() {
+  return isCallable$3$1(this) && getInternalState$4(this).source || inspectSource$1(this);
+});
+var objectGetOwnPropertyNames = {};
+var ceil = Math.ceil;
+var floor = Math.floor; // `ToIntegerOrInfinity` abstract operation
+// https://tc39.es/ecma262/#sec-tointegerorinfinity
+
+var toIntegerOrInfinity$2 = function (argument) {
+  var number = +argument; // eslint-disable-next-line no-self-compare -- safe
+
+  return number !== number || number === 0 ? 0 : (number > 0 ? floor : ceil)(number);
+};
+
+var toIntegerOrInfinity$1 = toIntegerOrInfinity$2;
+var max$1 = Math.max;
+var min$1 = Math.min; // Helper for a popular repeating case of the spec:
+// Let integer be ? ToInteger(index).
+// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
+
+var toAbsoluteIndex$1 = function (index, length) {
+  var integer = toIntegerOrInfinity$1(index);
+  return integer < 0 ? max$1(integer + length, 0) : min$1(integer, length);
+};
+
+var toIntegerOrInfinity$3 = toIntegerOrInfinity$2;
+var min$2 = Math.min; // `ToLength` abstract operation
+// https://tc39.es/ecma262/#sec-tolength
+
+var toLength$1$1 = function (argument) {
+  return argument > 0 ? min$2(toIntegerOrInfinity$3(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
+};
+
+var toLength$2 = toLength$1$1; // `LengthOfArrayLike` abstract operation
+// https://tc39.es/ecma262/#sec-lengthofarraylike
+
+var lengthOfArrayLike$2 = function (obj) {
+  return toLength$2(obj.length);
+};
+
+var toIndexedObject$1$1 = toIndexedObject$3;
+var toAbsoluteIndex$2 = toAbsoluteIndex$1;
+var lengthOfArrayLike$1 = lengthOfArrayLike$2; // `Array.prototype.{ indexOf, includes }` methods implementation
+
+var createMethod$2 = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIndexedObject$1$1($this);
+    var length = lengthOfArrayLike$1(O);
+    var index = toAbsoluteIndex$2(fromIndex, length);
+    var value; // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare -- NaN check
+
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++]; // eslint-disable-next-line no-self-compare -- NaN check
+
+      if (value != value) return true; // Array#indexOf ignores holes, Array#includes - not
+    } else for (; length > index; index++) {
+      if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
+    }
+    return !IS_INCLUDES && -1;
+  };
+};
+
+var arrayIncludes = {
+  // `Array.prototype.includes` method
+  // https://tc39.es/ecma262/#sec-array.prototype.includes
+  includes: createMethod$2(true),
+  // `Array.prototype.indexOf` method
+  // https://tc39.es/ecma262/#sec-array.prototype.indexof
+  indexOf: createMethod$2(false)
+};
+var uncurryThis$2$1 = functionUncurryThis;
+var hasOwn$1$1 = hasOwnProperty_1;
+var toIndexedObject$4 = toIndexedObject$3;
+var indexOf$1 = arrayIncludes.indexOf;
+var hiddenKeys$1 = hiddenKeys$3;
+var push$1 = uncurryThis$2$1([].push);
+
+var objectKeysInternal = function (object, names) {
+  var O = toIndexedObject$4(object);
+  var i = 0;
+  var result = [];
+  var key;
+
+  for (key in O) !hasOwn$1$1(hiddenKeys$1, key) && hasOwn$1$1(O, key) && push$1(result, key); // Don't enum bug & hidden keys
+
+
+  while (names.length > i) if (hasOwn$1$1(O, key = names[i++])) {
+    ~indexOf$1(result, key) || push$1(result, key);
+  }
+
+  return result;
+};
+
+var enumBugKeys$1$1 = ['constructor', 'hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'valueOf'];
+var internalObjectKeys$1 = objectKeysInternal;
+var enumBugKeys$2 = enumBugKeys$1$1;
+var hiddenKeys$4 = enumBugKeys$2.concat('length', 'prototype'); // `Object.getOwnPropertyNames` method
+// https://tc39.es/ecma262/#sec-object.getownpropertynames
+// eslint-disable-next-line es/no-object-getownpropertynames -- safe
+
+objectGetOwnPropertyNames.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return internalObjectKeys$1(O, hiddenKeys$4);
+};
+
+var objectGetOwnPropertySymbols = {};
+objectGetOwnPropertySymbols.f = Object.getOwnPropertySymbols;
+var getBuiltIn$1$1 = getBuiltIn$4;
+var uncurryThis$1$1 = functionUncurryThis;
+var getOwnPropertyNamesModule = objectGetOwnPropertyNames;
+var getOwnPropertySymbolsModule = objectGetOwnPropertySymbols;
+var anObject$7 = anObject$2$1;
+var concat = uncurryThis$1$1([].concat); // all object keys, includes non-enumerable and symbols
+
+var ownKeys$1 = getBuiltIn$1$1('Reflect', 'ownKeys') || function ownKeys(it) {
+  var keys = getOwnPropertyNamesModule.f(anObject$7(it));
+  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
+  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
+};
+
+var hasOwn$7 = hasOwnProperty_1;
+var ownKeys = ownKeys$1;
+var getOwnPropertyDescriptorModule = objectGetOwnPropertyDescriptor;
+var definePropertyModule$1$1 = objectDefineProperty;
+
+var copyConstructorProperties$1 = function (target, source, exceptions) {
+  var keys = ownKeys(source);
+  var defineProperty = definePropertyModule$1$1.f;
+  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+
+    if (!hasOwn$7(target, key) && !(exceptions && hasOwn$7(exceptions, key))) {
+      defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+    }
+  }
+};
+
+var fails$3$1 = fails$a;
+var isCallable$2$1 = isCallable$b;
+var replacement = /#|\.prototype\./;
+
+var isForced$1$1 = function (feature, detection) {
+  var value = data[normalize(feature)];
+  return value == POLYFILL ? true : value == NATIVE ? false : isCallable$2$1(detection) ? fails$3$1(detection) : !!detection;
+};
+
+var normalize = isForced$1$1.normalize = function (string) {
+  return String(string).replace(replacement, '.').toLowerCase();
+};
+
+var data = isForced$1$1.data = {};
+var NATIVE = isForced$1$1.NATIVE = 'N';
+var POLYFILL = isForced$1$1.POLYFILL = 'P';
+var isForced_1 = isForced$1$1;
+var global$4$1 = global$o;
+var getOwnPropertyDescriptor$2 = objectGetOwnPropertyDescriptor.f;
+var createNonEnumerableProperty$4 = createNonEnumerableProperty$3$1;
+var redefine$5 = redefine$1$1.exports;
+var setGlobal = setGlobal$3;
+var copyConstructorProperties = copyConstructorProperties$1;
+var isForced$2 = isForced_1;
+/*
+  options.target      - name of the target object
+  options.global      - target is the global object
+  options.stat        - export as static methods of target
+  options.proto       - export as prototype methods of target
+  options.real        - real prototype method for the `pure` version
+  options.forced      - export even if the native feature is available
+  options.bind        - bind methods to the target, required for the `pure` version
+  options.wrap        - wrap constructors to preventing global pollution, required for the `pure` version
+  options.unsafe      - use the simple assignment of property instead of delete + defineProperty
+  options.sham        - add a flag to not completely full polyfills
+  options.enumerable  - export as enumerable property
+  options.noTargetGet - prevent calling a getter on target
+  options.name        - the .name of the function if it does not match the key
+*/
+
+var _export = function (options, source) {
+  var TARGET = options.target;
+  var GLOBAL = options.global;
+  var STATIC = options.stat;
+  var FORCED, target, key, targetProperty, sourceProperty, descriptor;
+
+  if (GLOBAL) {
+    target = global$4$1;
+  } else if (STATIC) {
+    target = global$4$1[TARGET] || setGlobal(TARGET, {});
+  } else {
+    target = (global$4$1[TARGET] || {}).prototype;
+  }
+
+  if (target) for (key in source) {
+    sourceProperty = source[key];
+
+    if (options.noTargetGet) {
+      descriptor = getOwnPropertyDescriptor$2(target, key);
+      targetProperty = descriptor && descriptor.value;
+    } else targetProperty = target[key];
+
+    FORCED = isForced$2(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contained in target
+
+    if (!FORCED && targetProperty !== undefined) {
+      if (typeof sourceProperty == typeof targetProperty) continue;
+      copyConstructorProperties(sourceProperty, targetProperty);
+    } // add a flag to not completely full polyfills
+
+
+    if (options.sham || targetProperty && targetProperty.sham) {
+      createNonEnumerableProperty$4(sourceProperty, 'sham', true);
+    } // extend global
+
+
+    redefine$5(target, key, sourceProperty, options);
+  }
+};
+
+var classof$2$1 = classofRaw$1; // `IsArray` abstract operation
+// https://tc39.es/ecma262/#sec-isarray
+// eslint-disable-next-line es/no-array-isarray -- safe
+
+var isArray$2 = Array.isArray || function isArray(argument) {
+  return classof$2$1(argument) == 'Array';
+};
+
+var toPropertyKey = toPropertyKey$3;
+var definePropertyModule$3 = objectDefineProperty;
+var createPropertyDescriptor$4 = createPropertyDescriptor$3;
+
+var createProperty$1 = function (object, key, value) {
+  var propertyKey = toPropertyKey(key);
+  if (propertyKey in object) definePropertyModule$3.f(object, propertyKey, createPropertyDescriptor$4(0, value));else object[propertyKey] = value;
+};
+
+var wellKnownSymbol$4$1 = wellKnownSymbol$6$1;
+var TO_STRING_TAG$1$1 = wellKnownSymbol$4$1('toStringTag');
+var test = {};
+test[TO_STRING_TAG$1$1] = 'z';
+var toStringTagSupport = String(test) === '[object z]';
+var global$3$1 = global$o;
+var TO_STRING_TAG_SUPPORT = toStringTagSupport;
+var isCallable$1$1 = isCallable$b;
+var classofRaw = classofRaw$1;
+var wellKnownSymbol$3$1 = wellKnownSymbol$6$1;
+var TO_STRING_TAG$2 = wellKnownSymbol$3$1('toStringTag');
+var Object$1$1 = global$3$1.Object; // ES3 wrong here
+
+var CORRECT_ARGUMENTS = classofRaw(function () {
+  return arguments;
+}()) == 'Arguments'; // fallback for IE11 Script Access Denied error
+
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (error) {
+    /* empty */
+  }
+}; // getting tag from ES6+ `Object.prototype.toString`
+
+
+var classof$1$1 = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
+  var O, tag, result;
+  return it === undefined ? 'Undefined' : it === null ? 'Null' // @@toStringTag case
+  : typeof (tag = tryGet(O = Object$1$1(it), TO_STRING_TAG$2)) == 'string' ? tag // builtinTag case
+  : CORRECT_ARGUMENTS ? classofRaw(O) // ES3 arguments fallback
+  : (result = classofRaw(O)) == 'Object' && isCallable$1$1(O.callee) ? 'Arguments' : result;
+};
+var uncurryThis$b = functionUncurryThis;
+var fails$2$1 = fails$a;
+var isCallable$c = isCallable$b;
+var classof$4 = classof$1$1;
+var getBuiltIn$5 = getBuiltIn$4;
+var inspectSource = inspectSource$3;
+
+var noop = function () {
+  /* empty */
+};
+
+var empty = [];
+var construct = getBuiltIn$5('Reflect', 'construct');
+var constructorRegExp = /^\s*(?:class|function)\b/;
+var exec$3 = uncurryThis$b(constructorRegExp.exec);
+var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
+
+var isConstructorModern = function isConstructor(argument) {
+  if (!isCallable$c(argument)) return false;
+
+  try {
+    construct(noop, empty, argument);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+var isConstructorLegacy = function isConstructor(argument) {
+  if (!isCallable$c(argument)) return false;
+
+  switch (classof$4(argument)) {
+    case 'AsyncFunction':
+    case 'GeneratorFunction':
+    case 'AsyncGeneratorFunction':
+      return false;
+  }
+
+  try {
+    // we can't check .prototype since constructors produced by .bind haven't it
+    // `Function#toString` throws on some built-it function in some legacy engines
+    // (for example, `DOMQuad` and similar in FF41-)
+    return INCORRECT_TO_STRING || !!exec$3(constructorRegExp, inspectSource(argument));
+  } catch (error) {
+    return true;
+  }
+};
+
+isConstructorLegacy.sham = true; // `IsConstructor` abstract operation
+// https://tc39.es/ecma262/#sec-isconstructor
+
+var isConstructor$1 = !construct || fails$2$1(function () {
+  var called;
+  return isConstructorModern(isConstructorModern.call) || !isConstructorModern(Object) || !isConstructorModern(function () {
+    called = true;
+  }) || called;
+}) ? isConstructorLegacy : isConstructorModern;
+var global$2$1 = global$o;
+var isArray$1 = isArray$2;
+var isConstructor$2 = isConstructor$1;
+var isObject$1$1 = isObject$7;
+var wellKnownSymbol$2$1 = wellKnownSymbol$6$1;
+var SPECIES$1$1 = wellKnownSymbol$2$1('species');
+var Array$1$1 = global$2$1.Array; // a part of `ArraySpeciesCreate` abstract operation
+// https://tc39.es/ecma262/#sec-arrayspeciescreate
+
+var arraySpeciesConstructor$1 = function (originalArray) {
+  var C;
+
+  if (isArray$1(originalArray)) {
+    C = originalArray.constructor; // cross-realm fallback
+
+    if (isConstructor$2(C) && (C === Array$1$1 || isArray$1(C.prototype))) C = undefined;else if (isObject$1$1(C)) {
+      C = C[SPECIES$1$1];
+      if (C === null) C = undefined;
+    }
+  }
+
+  return C === undefined ? Array$1$1 : C;
+};
+
+var arraySpeciesConstructor = arraySpeciesConstructor$1; // `ArraySpeciesCreate` abstract operation
+// https://tc39.es/ecma262/#sec-arrayspeciescreate
+
+var arraySpeciesCreate$1 = function (originalArray, length) {
+  return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
+};
+
+var fails$1$1 = fails$a;
+var wellKnownSymbol$1$1 = wellKnownSymbol$6$1;
+var V8_VERSION$1 = engineV8Version;
+var SPECIES$3 = wellKnownSymbol$1$1('species');
+
+var arrayMethodHasSpeciesSupport$1 = function (METHOD_NAME) {
+  // We can't use this feature detection in V8 since it causes
+  // deoptimization and serious performance degradation
+  // https://github.com/zloirock/core-js/issues/677
+  return V8_VERSION$1 >= 51 || !fails$1$1(function () {
+    var array = [];
+    var constructor = array.constructor = {};
+
+    constructor[SPECIES$3] = function () {
+      return {
+        foo: 1
+      };
+    };
+
+    return array[METHOD_NAME](Boolean).foo !== 1;
+  });
+};
+
+var $$3 = _export;
+var global$1$1 = global$o;
+var fails$b = fails$a;
+var isArray = isArray$2;
+var isObject$8 = isObject$7;
+var toObject$3 = toObject$2;
+var lengthOfArrayLike$3 = lengthOfArrayLike$2;
+var createProperty$2 = createProperty$1;
+var arraySpeciesCreate = arraySpeciesCreate$1;
+var arrayMethodHasSpeciesSupport = arrayMethodHasSpeciesSupport$1;
+var wellKnownSymbol$a = wellKnownSymbol$6$1;
+var V8_VERSION = engineV8Version;
+var IS_CONCAT_SPREADABLE = wellKnownSymbol$a('isConcatSpreadable');
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
+var TypeError$1$1 = global$1$1.TypeError; // We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+
+var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails$b(function () {
+  var array = [];
+  array[IS_CONCAT_SPREADABLE] = false;
+  return array.concat()[0] !== array;
+});
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+
+var isConcatSpreadable = function (O) {
+  if (!isObject$8(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE];
+  return spreadable !== undefined ? !!spreadable : isArray(O);
+};
+
+var FORCED$1 = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT; // `Array.prototype.concat` method
+// https://tc39.es/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+
+$$3({
+  target: 'Array',
+  proto: true,
+  forced: FORCED$1
+}, {
+  // eslint-disable-next-line no-unused-vars -- required for `.length`
+  concat: function concat(arg) {
+    var O = toObject$3(this);
+    var A = arraySpeciesCreate(O, 0);
+    var n = 0;
+    var i, k, length, len, E;
+
+    for (i = -1, length = arguments.length; i < length; i++) {
+      E = i === -1 ? O : arguments[i];
+
+      if (isConcatSpreadable(E)) {
+        len = lengthOfArrayLike$3(E);
+        if (n + len > MAX_SAFE_INTEGER) throw TypeError$1$1(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty$2(A, n, E[k]);
+      } else {
+        if (n >= MAX_SAFE_INTEGER) throw TypeError$1$1(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        createProperty$2(A, n++, E);
+      }
+    }
+
+    A.length = n;
+    return A;
+  }
+});
 /**
  * Takes as attributes:
  * {
@@ -3051,19 +8281,18 @@ var Anime$4 = /*#__PURE__*/function (_MotorCortex$Effect) {
  }
 **/
 
+var MotionPath = /*#__PURE__*/function (_Effect) {
+  _inherits(MotionPath, _Effect);
 
-var MotionPath = /*#__PURE__*/function (_MotorCortex$Effect) {
-  _inherits$1(MotionPath, _MotorCortex$Effect);
-
-  var _super = _createSuper$1(MotionPath);
+  var _super = _createSuper(MotionPath);
 
   function MotionPath() {
-    _classCallCheck$1(this, MotionPath);
+    _classCallCheck(this, MotionPath);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$2(MotionPath, [{
+  _createClass(MotionPath, [{
     key: "onGetContext",
     value: function onGetContext() {
       this.pixelsAccuracy = this.attrs.pixelsAccuracy || 4;
@@ -3092,883 +8321,15 @@ var MotionPath = /*#__PURE__*/function (_MotorCortex$Effect) {
   }]);
 
   return MotionPath;
-}(MotorCortex.Effect);
+}(Effect);
 
-var nu = ["cm", "mm", "in", "px", "pt", "pc", "em", "ex", "ch", "rem", "vw", "vh", "vmin", "vmax", "%"];
-var ru = ["deg", "rad", "grad", "turn"];
-var _MEASUREMENT = "measurement";
-var _COLOR = "color";
-var animatedAttrs = {
-  type: "object",
-  // strict : true,
-  props: {
-    background: {
-      optional: true,
-      type: _COLOR
-    },
-    backgroundColor: {
-      optional: true,
-      type: _COLOR
-    },
-    backgroundPosition: {
-      optional: true,
-      type: "string"
-    },
-    backgroundSize: {
-      optional: true,
-      type: "string"
-    },
-    border: {
-      optional: true,
-      type: "string"
-    },
-    borderBottom: {
-      optional: true,
-      type: "string"
-    },
-    borderBottomColor: {
-      optional: true,
-      type: _COLOR
-    },
-    borderBottomLeftRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderBottomRightRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderBottomWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderColor: {
-      optional: true,
-      type: _COLOR
-    },
-    borderEndEndRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderEndStartRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderImageOutset: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    borderImageSlice: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    borderImageWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    borderLeft: {
-      optional: true,
-      type: "string"
-    },
-    borderLeftColor: {
-      optional: true,
-      type: _COLOR
-    },
-    borderLeftWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderRight: {
-      optional: true,
-      type: "string"
-    },
-    borderRightColor: {
-      optional: true,
-      type: _COLOR
-    },
-    borderRightWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderStartEndRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderStartStartRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderTop: {
-      optional: true,
-      type: "string"
-    },
-    borderTopColor: {
-      optional: true,
-      type: _COLOR
-    },
-    borderTopLeftRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderTopRightRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderTopWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    borderWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    bottom: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    boxShadow: {
-      optional: true,
-      type: "string"
-    },
-    caretColor: {
-      optional: true,
-      type: _COLOR
-    },
-    color: {
-      optional: true,
-      type: _COLOR
-    },
-    columnCount: {
-      optional: true,
-      type: "number",
-      min: 0,
-      integer: true
-    },
-    columnGap: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    columnRule: {
-      optional: true,
-      type: "string"
-    },
-    columnRuleColor: {
-      optional: true,
-      type: _COLOR
-    },
-    columnRuleWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    columns: {
-      optional: true,
-      type: "number",
-      min: 0,
-      integer: true
-    },
-    columnWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    flex: {
-      optional: true,
-      type: "number",
-      min: 0,
-      integer: true
-    },
-    flexBasis: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    flexGrow: {
-      optional: true,
-      type: "number",
-      min: 0,
-      integer: true
-    },
-    flexShrink: {
-      optional: true,
-      type: "number",
-      min: 0,
-      integer: true
-    },
-    font: {
-      optional: true,
-      type: "string"
-    },
-    fontSize: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    fontSizeAdjust: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    fontStretch: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: ["%"]
-    },
-    fontWeight: {
-      optional: true,
-      type: "string"
-    },
-    gap: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    gridColumnGap: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    gridGap: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    gridRowGap: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    gridTemplateColumns: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    gridTemplateRows: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    height: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    inset: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    insetBlock: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    insetBlockEnd: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    insetBlockStart: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    insetInline: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    insetInlineEnd: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    insetInlineStart: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    left: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    letterSpacing: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    lineClamp: {
-      optional: true,
-      type: "number",
-      min: 0,
-      integer: true
-    },
-    lineHeight: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    margin: {
-      optional: true,
-      type: "string"
-    },
-    marginBottom: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    marginLeft: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    marginRight: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    marginTop: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    maskBorder: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    maskPosition: {
-      optional: true,
-      type: "string"
-    },
-    maskSize: {
-      optional: true,
-      type: "string"
-    },
-    maxHeight: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    maxWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu,
-      min: 0
-    },
-    objectPosition: {
-      optional: true,
-      type: "string"
-    },
-    offset: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    offsetAnchor: {
-      optional: true,
-      type: "string"
-    },
-    offsetDistance: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    offsetPath: {
-      optional: true,
-      type: "string"
-    },
-    offsetPosition: {
-      optional: true,
-      type: "string"
-    },
-    offsetRotate: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: ru
-    },
-    opacity: {
-      optional: true,
-      type: "number",
-      min: 0,
-      max: 1
-    },
-    order: {
-      optional: true,
-      type: "number",
-      integer: true
-    },
-    outline: {
-      optional: true,
-      type: "string"
-    },
-    outlineColor: {
-      optional: true,
-      type: _COLOR
-    },
-    outlineOffset: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    outlineRadius: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    outlineRadiusBottomleft: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    outlineRadiusBottomright: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    outlineRadiusTopleft: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    outlineRadiusTopright: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    outlineWidth: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    padding: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    paddingBottom: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    paddingLeft: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    paddingRight: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    paddingTop: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    perspective: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    perspectiveOrigin: {
-      optional: true,
-      type: "string"
-    },
-    right: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    rotate: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: ru
-    },
-    rowGap: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scale: {
-      optional: true,
-      type: "number",
-      min: 0
-    },
-    scrollbarColor: {
-      optional: true,
-      type: _COLOR
-    },
-    scrollMargin: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginBlock: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginBlockEnd: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginBlockStart: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginBottom: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginInline: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginInlineEnd: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginInlineStart: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginLeft: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginRight: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollMarginTop: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPadding: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingBlock: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingBlockEnd: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingBlockStart: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingBottom: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingInline: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingInlineEnd: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingInlineStart: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingLeft: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingRight: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollPaddingTop: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    scrollSnapCoordinate: {
-      optional: true,
-      type: "string"
-    },
-    scrollSnapDestination: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    shapeImageThreshold: {
-      optional: true,
-      type: "string"
-    },
-    shapeMargin: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    shapeOutside: {
-      optional: true,
-      type: "string"
-    },
-    tabSize: {
-      optional: true,
-      type: "string"
-    },
-    textDecoration: {
-      optional: true,
-      type: "string"
-    },
-    textDecorationColor: {
-      optional: true,
-      type: _COLOR
-    },
-    textDecorationThickness: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    textEmphasis: {
-      optional: true,
-      type: "string"
-    },
-    textEmphasisColor: {
-      optional: true,
-      type: _COLOR
-    },
-    textFillColor: {
-      optional: true,
-      type: _COLOR
-    },
-    textIndent: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    textShadow: {
-      optional: true,
-      type: "string"
-    },
-    textStroke: {
-      optional: true,
-      type: "string"
-    },
-    textStrokeColor: {
-      optional: true,
-      type: _COLOR
-    },
-    textUnderlineOffset: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    top: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    transform: {
-      optional: true,
-      type: "object",
-      props: {
-        translateX: {
-          type: _MEASUREMENT,
-          units: nu,
-          optional: true
-        },
-        translateY: {
-          type: _MEASUREMENT,
-          units: nu,
-          optional: true
-        },
-        translateZ: {
-          type: _MEASUREMENT,
-          units: nu,
-          optional: true
-        },
-        rotate: {
-          type: _MEASUREMENT,
-          units: ru,
-          optional: true
-        },
-        rotateX: {
-          type: _MEASUREMENT,
-          units: ru,
-          optional: true
-        },
-        rotateY: {
-          type: _MEASUREMENT,
-          units: ru,
-          optional: true
-        },
-        rotateZ: {
-          type: _MEASUREMENT,
-          units: ru,
-          optional: true
-        },
-        scale: {
-          type: "number",
-          min: 0,
-          optional: true
-        },
-        scaleX: {
-          type: "number",
-          min: 0,
-          optional: true
-        },
-        scaleY: {
-          type: "number",
-          min: 0,
-          optional: true
-        },
-        scaleZ: {
-          type: "number",
-          min: 0,
-          optional: true
-        },
-        skewX: {
-          type: _MEASUREMENT,
-          units: ru,
-          optional: true
-        },
-        skewY: {
-          type: _MEASUREMENT,
-          units: ru,
-          optional: true
-        },
-        perspective: {
-          type: _MEASUREMENT,
-          units: nu,
-          optional: true
-        }
-      }
-    },
-    transformOrigin: {
-      optional: true,
-      type: "string"
-    },
-    verticalAlign: {
-      optional: true,
-      type: "string"
-    },
-    visibility: {
-      optional: true,
-      type: "string"
-    },
-    width: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    wordSpacing: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: nu
-    },
-    zIndex: {
-      optional: true,
-      type: "number",
-      integer: true
-    },
-    zoom: {
-      optional: true,
-      type: _MEASUREMENT,
-      units: ["%"],
-      min: 0
-    }
-  },
-  transformOrigin: {
-    type: "string"
-  },
-  verticalAlign: {
-    type: "string"
-  },
-  visibility: {
-    type: "string"
-  },
-  width: {
-    type: _MEASUREMENT,
-    units: nu
-  },
-  wordSpacing: {
-    type: _MEASUREMENT,
-    units: nu
-  },
-  zIndex: {
-    type: "number",
-    integer: true
-  },
-  zoom: {
-    type: _MEASUREMENT,
-    units: ["%"],
-    min: 0
-  }
-};
-var name$2 = "@donkeyclip/motorcortex-anime";
-var version$2 = "2.1.16";
-var index$4 = {
-  npm_name: name$2,
+var name$1 = "@donkeyclip/motorcortex-anime";
+var version$2 = "2.1.17";
+var index$2 = {
+  npm_name: name$1,
   version: version$2,
+  CSSEffect: Anime,
   incidents: [{
-    exportable: Anime$4,
-    name: "Anime",
-    attributesValidationRules: {
-      animatedAttrs: animatedAttrs
-    }
-  }, {
     exportable: MotionPath,
     name: "MotionPath",
     attributesValidationRules: {
@@ -3986,4138 +8347,12 @@ var index$4 = {
         }
       }
     }
-  }],
-  compositeAttributes: compositeAttributes
-};
-
-var colorPalette = {
-  gray: "#75706E",
-  lightGray: "#B2B1AE",
-  darkGray: "#434243",
-  whiteBack: "#EEEEEE",
-  font: "#100300",
-  accent: "#FFD800",
-  background: "transparent",
-  dataColors: ["rgb(117,112,110)", "rgb(255,216,0)", "rgb(87,86,87)", "rgb(163, 255, 200)", "rgb(255,255,255)", "rgb(206, 36, 132)", "rgb(68, 214, 37)", "rgb(228, 31, 31)", "rgb(68, 36, 157)", "rgb(45, 109, 121)"]
-};
-
-var Anime$3 = MotorCortex.loadPlugin(index$4); // Static control
-// Making the contents of this animation invisible before timestamp:0
-// and after timestamp: {totalDuration}
-
-function opacityControl(clip, selector) {
-  clip.addIncident(new Anime$3.Anime({
-    animatedAttrs: {
-      opacity: 1
-    },
-    initialValues: {
-      opacity: 0
-    }
-  }, {
-    selector: selector,
-    duration: 1
-  }), 0);
-  clip.addIncident(new Anime$3.Anime({
-    animatedAttrs: {
-      opacity: 0
-    }
-  }, {
-    selector: selector,
-    duration: 1
-  }), clip.introDur + clip.staticDur + clip.outroDur - 1);
-} // Static control: used for fadeout outro components
-// Making the contents of this animation invisible before timestamp:0
-// and after timestamp: {totalDuration}
-
-function fadeOutOpacityControl(clip, selector) {
-  clip.addIncident(new Anime$3.Anime({
-    animatedAttrs: {
-      opacity: 1
-    },
-    initialValues: {
-      opacity: 0
-    }
-  }, {
-    selector: selector,
-    duration: 1
-  }), 0);
-
-  if (!clip.attrs.timings.outro) {
-    clip.addIncident(new Anime$3.Anime({
-      animatedAttrs: {
-        opacity: 0
-      }
-    }, {
-      selector: selector,
-      duration: 1
-    }), clip.attrs.timings.intro + clip.attrs.timings.static - 1);
-  }
-}
-
-var uncurryThis$d = functionUncurryThis; // `thisNumberValue` abstract operation
-// https://tc39.es/ecma262/#sec-thisnumbervalue
-
-
-var thisNumberValue$2 = uncurryThis$d(1.0.valueOf);
-
-var global$i = global$H;
-
-var classof$5 = classof$7;
-
-var String$3 = global$i.String;
-
-var toString$9 = function (argument) {
-  if (classof$5(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
-  return String$3(argument);
-};
-
-var global$h = global$H;
-
-var toIntegerOrInfinity$2 = toIntegerOrInfinity$5;
-
-var toString$8 = toString$9;
-
-var requireObjectCoercible$4 = requireObjectCoercible$7;
-
-var RangeError$1 = global$h.RangeError; // `String.prototype.repeat` method implementation
-// https://tc39.es/ecma262/#sec-string.prototype.repeat
-
-var stringRepeat = function repeat(count) {
-  var str = toString$8(requireObjectCoercible$4(this));
-  var result = '';
-  var n = toIntegerOrInfinity$2(count);
-  if (n < 0 || n == Infinity) throw RangeError$1('Wrong number of repetitions');
-
-  for (; n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
-
-  return result;
-};
-
-var $$5 = _export;
-
-var global$g = global$H;
-
-var uncurryThis$c = functionUncurryThis;
-
-var toIntegerOrInfinity$1 = toIntegerOrInfinity$5;
-
-var thisNumberValue$1 = thisNumberValue$2;
-
-var $repeat = stringRepeat;
-
-var fails$c = fails$n;
-
-var RangeError = global$g.RangeError;
-var String$2 = global$g.String;
-var floor = Math.floor;
-var repeat = uncurryThis$c($repeat);
-var stringSlice$4 = uncurryThis$c(''.slice);
-var un$ToFixed = uncurryThis$c(1.0.toFixed);
-
-var pow = function (x, n, acc) {
-  return n === 0 ? acc : n % 2 === 1 ? pow(x, n - 1, acc * x) : pow(x * x, n / 2, acc);
-};
-
-var log = function (x) {
-  var n = 0;
-  var x2 = x;
-
-  while (x2 >= 4096) {
-    n += 12;
-    x2 /= 4096;
-  }
-
-  while (x2 >= 2) {
-    n += 1;
-    x2 /= 2;
-  }
-
-  return n;
-};
-
-var multiply = function (data, n, c) {
-  var index = -1;
-  var c2 = c;
-
-  while (++index < 6) {
-    c2 += n * data[index];
-    data[index] = c2 % 1e7;
-    c2 = floor(c2 / 1e7);
-  }
-};
-
-var divide = function (data, n) {
-  var index = 6;
-  var c = 0;
-
-  while (--index >= 0) {
-    c += data[index];
-    data[index] = floor(c / n);
-    c = c % n * 1e7;
-  }
-};
-
-var dataToString = function (data) {
-  var index = 6;
-  var s = '';
-
-  while (--index >= 0) {
-    if (s !== '' || index === 0 || data[index] !== 0) {
-      var t = String$2(data[index]);
-      s = s === '' ? t : s + repeat('0', 7 - t.length) + t;
-    }
-  }
-
-  return s;
-};
-
-var FORCED$1 = fails$c(function () {
-  return un$ToFixed(0.00008, 3) !== '0.000' || un$ToFixed(0.9, 0) !== '1' || un$ToFixed(1.255, 2) !== '1.25' || un$ToFixed(1000000000000000128.0, 0) !== '1000000000000000128';
-}) || !fails$c(function () {
-  // V8 ~ Android 4.3-
-  un$ToFixed({});
-}); // `Number.prototype.toFixed` method
-// https://tc39.es/ecma262/#sec-number.prototype.tofixed
-
-$$5({
-  target: 'Number',
-  proto: true,
-  forced: FORCED$1
-}, {
-  toFixed: function toFixed(fractionDigits) {
-    var number = thisNumberValue$1(this);
-    var fractDigits = toIntegerOrInfinity$1(fractionDigits);
-    var data = [0, 0, 0, 0, 0, 0];
-    var sign = '';
-    var result = '0';
-    var e, z, j, k; // TODO: ES2018 increased the maximum number of fraction digits to 100, need to improve the implementation
-
-    if (fractDigits < 0 || fractDigits > 20) throw RangeError('Incorrect fraction digits'); // eslint-disable-next-line no-self-compare -- NaN check
-
-    if (number != number) return 'NaN';
-    if (number <= -1e21 || number >= 1e21) return String$2(number);
-
-    if (number < 0) {
-      sign = '-';
-      number = -number;
-    }
-
-    if (number > 1e-21) {
-      e = log(number * pow(2, 69, 1)) - 69;
-      z = e < 0 ? number * pow(2, -e, 1) : number / pow(2, e, 1);
-      z *= 0x10000000000000;
-      e = 52 - e;
-
-      if (e > 0) {
-        multiply(data, 0, z);
-        j = fractDigits;
-
-        while (j >= 7) {
-          multiply(data, 1e7, 0);
-          j -= 7;
-        }
-
-        multiply(data, pow(10, j, 1), 0);
-        j = e - 1;
-
-        while (j >= 23) {
-          divide(data, 1 << 23);
-          j -= 23;
-        }
-
-        divide(data, 1 << j);
-        multiply(data, 1, 1);
-        divide(data, 2);
-        result = dataToString(data);
-      } else {
-        multiply(data, 0, z);
-        multiply(data, 1 << -e, 0);
-        result = dataToString(data) + repeat('0', fractDigits);
-      }
-    }
-
-    if (fractDigits > 0) {
-      k = result.length;
-      result = sign + (k <= fractDigits ? '0.' + repeat('0', fractDigits - k) + result : stringSlice$4(result, 0, k - fractDigits) + '.' + stringSlice$4(result, k - fractDigits));
-    } else {
-      result = sign + result;
-    }
-
-    return result;
-  }
-});
-
-var TO_STRING_TAG_SUPPORT$1 = toStringTagSupport;
-
-var classof$4 = classof$7; // `Object.prototype.toString` method implementation
-// https://tc39.es/ecma262/#sec-object.prototype.tostring
-
-
-var objectToString = TO_STRING_TAG_SUPPORT$1 ? {}.toString : function toString() {
-  return '[object ' + classof$4(this) + ']';
-};
-
-var TO_STRING_TAG_SUPPORT = toStringTagSupport;
-
-var redefine$6 = redefine$8.exports;
-
-var toString$7 = objectToString; // `Object.prototype.toString` method
-// https://tc39.es/ecma262/#sec-object.prototype.tostring
-
-
-if (!TO_STRING_TAG_SUPPORT) {
-  redefine$6(Object.prototype, 'toString', toString$7, {
-    unsafe: true
-  });
-}
-
-var anObject$8 = anObject$b; // `RegExp.prototype.flags` getter implementation
-// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
-
-
-var regexpFlags$1 = function () {
-  var that = anObject$8(this);
-  var result = '';
-  if (that.global) result += 'g';
-  if (that.ignoreCase) result += 'i';
-  if (that.multiline) result += 'm';
-  if (that.dotAll) result += 's';
-  if (that.unicode) result += 'u';
-  if (that.sticky) result += 'y';
-  return result;
-};
-
-var uncurryThis$b = functionUncurryThis;
-
-var PROPER_FUNCTION_NAME$1 = functionName.PROPER;
-
-var redefine$5 = redefine$8.exports;
-
-var anObject$7 = anObject$b;
-
-var isPrototypeOf$2 = objectIsPrototypeOf;
-
-var $toString = toString$9;
-
-var fails$b = fails$n;
-
-var regExpFlags$1 = regexpFlags$1;
-
-var TO_STRING = 'toString';
-var RegExpPrototype$4 = RegExp.prototype;
-var n$ToString = RegExpPrototype$4[TO_STRING];
-var getFlags$1 = uncurryThis$b(regExpFlags$1);
-var NOT_GENERIC = fails$b(function () {
-  return n$ToString.call({
-    source: 'a',
-    flags: 'b'
-  }) != '/a/b';
-}); // FF44- RegExp#toString has a wrong name
-
-var INCORRECT_NAME = PROPER_FUNCTION_NAME$1 && n$ToString.name != TO_STRING; // `RegExp.prototype.toString` method
-// https://tc39.es/ecma262/#sec-regexp.prototype.tostring
-
-if (NOT_GENERIC || INCORRECT_NAME) {
-  redefine$5(RegExp.prototype, TO_STRING, function toString() {
-    var R = anObject$7(this);
-    var p = $toString(R.source);
-    var rf = R.flags;
-    var f = $toString(rf === undefined && isPrototypeOf$2(RegExpPrototype$4, R) && !('flags' in RegExpPrototype$4) ? getFlags$1(R) : rf);
-    return '/' + p + '/' + f;
-  }, {
-    unsafe: true
-  });
-}
-
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
-
-var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
-
-var isProduction = process.env.NODE_ENV === 'production';
-
-function warning(condition, message) {
-  if (!isProduction) {
-    if (condition) {
-      return;
-    }
-
-    var text = "Warning: " + message;
-
-    if (typeof console !== 'undefined') {
-      console.warn(text);
-    }
-
-    try {
-      throw Error(text);
-    } catch (x) {}
-  }
-}
-
-function _defineProperties$1(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
-  return Constructor;
-}
-
-function _setPrototypeOf$1(o, p) {
-  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf$1(o, p);
-}
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  _setPrototypeOf$1(subClass, superClass);
-}
-
-function _assertThisInitialized$1(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _objectWithoutPropertiesLoose(source, excluded) {
-  if (source == null) return {};
-  var target = {};
-  var sourceKeys = Object.keys(source);
-  var key, i;
-
-  for (i = 0; i < sourceKeys.length; i++) {
-    key = sourceKeys[i];
-    if (excluded.indexOf(key) >= 0) continue;
-    target[key] = source[key];
-  }
-
-  return target;
-}
-
-var plainObjectConstrurctor = {}.constructor;
-
-function cloneStyle(style) {
-  if (style == null || typeof style !== 'object') return style;
-  if (Array.isArray(style)) return style.map(cloneStyle);
-  if (style.constructor !== plainObjectConstrurctor) return style;
-  var newStyle = {};
-
-  for (var name in style) {
-    newStyle[name] = cloneStyle(style[name]);
-  }
-
-  return newStyle;
-}
-/**
- * Create a rule instance.
- */
-
-
-function createRule(name, decl, options) {
-  if (name === void 0) {
-    name = 'unnamed';
-  }
-
-  var jss = options.jss;
-  var declCopy = cloneStyle(decl);
-  var rule = jss.plugins.onCreateRule(name, declCopy, options);
-  if (rule) return rule; // It is an at-rule and it has no instance.
-
-  if (name[0] === '@') {
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Unknown rule " + name) : void 0;
-  }
-
-  return null;
-}
-
-var join = function join(value, by) {
-  var result = '';
-
-  for (var i = 0; i < value.length; i++) {
-    // Remove !important from the value, it will be readded later.
-    if (value[i] === '!important') break;
-    if (result) result += by;
-    result += value[i];
-  }
-
-  return result;
-};
-/**
- * Converts JSS array value to a CSS string.
- *
- * `margin: [['5px', '10px']]` > `margin: 5px 10px;`
- * `border: ['1px', '2px']` > `border: 1px, 2px;`
- * `margin: [['5px', '10px'], '!important']` > `margin: 5px 10px !important;`
- * `color: ['red', !important]` > `color: red !important;`
- */
-
-
-var toCssValue = function toCssValue(value, ignoreImportant) {
-  if (ignoreImportant === void 0) {
-    ignoreImportant = false;
-  }
-
-  if (!Array.isArray(value)) return value;
-  var cssValue = ''; // Support space separated values via `[['5px', '10px']]`.
-
-  if (Array.isArray(value[0])) {
-    for (var i = 0; i < value.length; i++) {
-      if (value[i] === '!important') break;
-      if (cssValue) cssValue += ', ';
-      cssValue += join(value[i], ' ');
-    }
-  } else cssValue = join(value, ', '); // Add !important, because it was ignored.
-
-
-  if (!ignoreImportant && value[value.length - 1] === '!important') {
-    cssValue += ' !important';
-  }
-
-  return cssValue;
-};
-
-function getWhitespaceSymbols(options) {
-  if (options && options.format === false) {
-    return {
-      linebreak: '',
-      space: ''
-    };
-  }
-
-  return {
-    linebreak: '\n',
-    space: ' '
-  };
-}
-/**
- * Indent a string.
- * http://jsperf.com/array-join-vs-for
- */
-
-
-function indentStr(str, indent) {
-  var result = '';
-
-  for (var index = 0; index < indent; index++) {
-    result += '  ';
-  }
-
-  return result + str;
-}
-/**
- * Converts a Rule to CSS string.
- */
-
-
-function toCss(selector, style, options) {
-  if (options === void 0) {
-    options = {};
-  }
-
-  var result = '';
-  if (!style) return result;
-  var _options = options,
-      _options$indent = _options.indent,
-      indent = _options$indent === void 0 ? 0 : _options$indent;
-  var fallbacks = style.fallbacks;
-
-  if (options.format === false) {
-    indent = -Infinity;
-  }
-
-  var _getWhitespaceSymbols = getWhitespaceSymbols(options),
-      linebreak = _getWhitespaceSymbols.linebreak,
-      space = _getWhitespaceSymbols.space;
-
-  if (selector) indent++; // Apply fallbacks first.
-
-  if (fallbacks) {
-    // Array syntax {fallbacks: [{prop: value}]}
-    if (Array.isArray(fallbacks)) {
-      for (var index = 0; index < fallbacks.length; index++) {
-        var fallback = fallbacks[index];
-
-        for (var prop in fallback) {
-          var value = fallback[prop];
-
-          if (value != null) {
-            if (result) result += linebreak;
-            result += indentStr(prop + ":" + space + toCssValue(value) + ";", indent);
-          }
-        }
-      }
-    } else {
-      // Object syntax {fallbacks: {prop: value}}
-      for (var _prop in fallbacks) {
-        var _value = fallbacks[_prop];
-
-        if (_value != null) {
-          if (result) result += linebreak;
-          result += indentStr(_prop + ":" + space + toCssValue(_value) + ";", indent);
-        }
-      }
-    }
-  }
-
-  for (var _prop2 in style) {
-    var _value2 = style[_prop2];
-
-    if (_value2 != null && _prop2 !== 'fallbacks') {
-      if (result) result += linebreak;
-      result += indentStr(_prop2 + ":" + space + toCssValue(_value2) + ";", indent);
-    }
-  } // Allow empty style in this case, because properties will be added dynamically.
-
-
-  if (!result && !options.allowEmpty) return result; // When rule is being stringified before selector was defined.
-
-  if (!selector) return result;
-  indent--;
-  if (result) result = "" + linebreak + result + linebreak;
-  return indentStr("" + selector + space + "{" + result, indent) + indentStr('}', indent);
-}
-
-var escapeRegex = /([[\].#*$><+~=|^:(),"'`\s])/g;
-var nativeEscape = typeof CSS !== 'undefined' && CSS.escape;
-
-var escape = function (str) {
-  return nativeEscape ? nativeEscape(str) : str.replace(escapeRegex, '\\$1');
-};
-
-var BaseStyleRule = /*#__PURE__*/function () {
-  function BaseStyleRule(key, style, options) {
-    this.type = 'style';
-    this.isProcessed = false;
-    var sheet = options.sheet,
-        Renderer = options.Renderer;
-    this.key = key;
-    this.options = options;
-    this.style = style;
-    if (sheet) this.renderer = sheet.renderer;else if (Renderer) this.renderer = new Renderer();
-  }
-  /**
-   * Get or set a style property.
-   */
-
-
-  var _proto = BaseStyleRule.prototype;
-
-  _proto.prop = function prop(name, value, options) {
-    // It's a getter.
-    if (value === undefined) return this.style[name]; // Don't do anything if the value has not changed.
-
-    var force = options ? options.force : false;
-    if (!force && this.style[name] === value) return this;
-    var newValue = value;
-
-    if (!options || options.process !== false) {
-      newValue = this.options.jss.plugins.onChangeValue(value, name, this);
-    }
-
-    var isEmpty = newValue == null || newValue === false;
-    var isDefined = (name in this.style); // Value is empty and wasn't defined before.
-
-    if (isEmpty && !isDefined && !force) return this; // We are going to remove this value.
-
-    var remove = isEmpty && isDefined;
-    if (remove) delete this.style[name];else this.style[name] = newValue; // Renderable is defined if StyleSheet option `link` is true.
-
-    if (this.renderable && this.renderer) {
-      if (remove) this.renderer.removeProperty(this.renderable, name);else this.renderer.setProperty(this.renderable, name, newValue);
-      return this;
-    }
-
-    var sheet = this.options.sheet;
-
-    if (sheet && sheet.attached) {
-      process.env.NODE_ENV !== "production" ? warning(false, '[JSS] Rule is not linked. Missing sheet option "link: true".') : void 0;
-    }
-
-    return this;
-  };
-
-  return BaseStyleRule;
-}();
-
-var StyleRule = /*#__PURE__*/function (_BaseStyleRule) {
-  _inheritsLoose(StyleRule, _BaseStyleRule);
-
-  function StyleRule(key, style, options) {
-    var _this;
-
-    _this = _BaseStyleRule.call(this, key, style, options) || this;
-    var selector = options.selector,
-        scoped = options.scoped,
-        sheet = options.sheet,
-        generateId = options.generateId;
-
-    if (selector) {
-      _this.selectorText = selector;
-    } else if (scoped !== false) {
-      _this.id = generateId(_assertThisInitialized$1(_assertThisInitialized$1(_this)), sheet);
-      _this.selectorText = "." + escape(_this.id);
-    }
-
-    return _this;
-  }
-  /**
-   * Set selector string.
-   * Attention: use this with caution. Most browsers didn't implement
-   * selectorText setter, so this may result in rerendering of entire Style Sheet.
-   */
-
-
-  var _proto2 = StyleRule.prototype;
-  /**
-   * Apply rule to an element inline.
-   */
-
-  _proto2.applyTo = function applyTo(renderable) {
-    var renderer = this.renderer;
-
-    if (renderer) {
-      var json = this.toJSON();
-
-      for (var prop in json) {
-        renderer.setProperty(renderable, prop, json[prop]);
-      }
-    }
-
-    return this;
-  }
-  /**
-   * Returns JSON representation of the rule.
-   * Fallbacks are not supported.
-   * Useful for inline styles.
-   */
-  ;
-
-  _proto2.toJSON = function toJSON() {
-    var json = {};
-
-    for (var prop in this.style) {
-      var value = this.style[prop];
-      if (typeof value !== 'object') json[prop] = value;else if (Array.isArray(value)) json[prop] = toCssValue(value);
-    }
-
-    return json;
-  }
-  /**
-   * Generates a CSS string.
-   */
-  ;
-
-  _proto2.toString = function toString(options) {
-    var sheet = this.options.sheet;
-    var link = sheet ? sheet.options.link : false;
-    var opts = link ? _extends({}, options, {
-      allowEmpty: true
-    }) : options;
-    return toCss(this.selectorText, this.style, opts);
-  };
-
-  _createClass$1(StyleRule, [{
-    key: "selector",
-    set: function set(selector) {
-      if (selector === this.selectorText) return;
-      this.selectorText = selector;
-      var renderer = this.renderer,
-          renderable = this.renderable;
-      if (!renderable || !renderer) return;
-      var hasChanged = renderer.setSelector(renderable, selector); // If selector setter is not implemented, rerender the rule.
-
-      if (!hasChanged) {
-        renderer.replaceRule(renderable, this);
-      }
-    }
-    /**
-     * Get selector string.
-     */
-    ,
-    get: function get() {
-      return this.selectorText;
-    }
-  }]);
-
-  return StyleRule;
-}(BaseStyleRule);
-
-var pluginStyleRule = {
-  onCreateRule: function onCreateRule(key, style, options) {
-    if (key[0] === '@' || options.parent && options.parent.type === 'keyframes') {
-      return null;
-    }
-
-    return new StyleRule(key, style, options);
-  }
-};
-var defaultToStringOptions = {
-  indent: 1,
-  children: true
-};
-var atRegExp = /@([\w-]+)/;
-/**
- * Conditional rule for @media, @supports
- */
-
-var ConditionalRule = /*#__PURE__*/function () {
-  function ConditionalRule(key, styles, options) {
-    this.type = 'conditional';
-    this.isProcessed = false;
-    this.key = key;
-    var atMatch = key.match(atRegExp);
-    this.at = atMatch ? atMatch[1] : 'unknown'; // Key might contain a unique suffix in case the `name` passed by user was duplicate.
-
-    this.query = options.name || "@" + this.at;
-    this.options = options;
-    this.rules = new RuleList(_extends({}, options, {
-      parent: this
-    }));
-
-    for (var name in styles) {
-      this.rules.add(name, styles[name]);
-    }
-
-    this.rules.process();
-  }
-  /**
-   * Get a rule.
-   */
-
-
-  var _proto = ConditionalRule.prototype;
-
-  _proto.getRule = function getRule(name) {
-    return this.rules.get(name);
-  }
-  /**
-   * Get index of a rule.
-   */
-  ;
-
-  _proto.indexOf = function indexOf(rule) {
-    return this.rules.indexOf(rule);
-  }
-  /**
-   * Create and register rule, run plugins.
-   */
-  ;
-
-  _proto.addRule = function addRule(name, style, options) {
-    var rule = this.rules.add(name, style, options);
-    if (!rule) return null;
-    this.options.jss.plugins.onProcessRule(rule);
-    return rule;
-  }
-  /**
-   * Generates a CSS string.
-   */
-  ;
-
-  _proto.toString = function toString(options) {
-    if (options === void 0) {
-      options = defaultToStringOptions;
-    }
-
-    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
-        linebreak = _getWhitespaceSymbols.linebreak;
-
-    if (options.indent == null) options.indent = defaultToStringOptions.indent;
-    if (options.children == null) options.children = defaultToStringOptions.children;
-
-    if (options.children === false) {
-      return this.query + " {}";
-    }
-
-    var children = this.rules.toString(options);
-    return children ? this.query + " {" + linebreak + children + linebreak + "}" : '';
-  };
-
-  return ConditionalRule;
-}();
-
-var keyRegExp = /@media|@supports\s+/;
-var pluginConditionalRule = {
-  onCreateRule: function onCreateRule(key, styles, options) {
-    return keyRegExp.test(key) ? new ConditionalRule(key, styles, options) : null;
-  }
-};
-var defaultToStringOptions$1 = {
-  indent: 1,
-  children: true
-};
-var nameRegExp = /@keyframes\s+([\w-]+)/;
-/**
- * Rule for @keyframes
- */
-
-var KeyframesRule = /*#__PURE__*/function () {
-  function KeyframesRule(key, frames, options) {
-    this.type = 'keyframes';
-    this.at = '@keyframes';
-    this.isProcessed = false;
-    var nameMatch = key.match(nameRegExp);
-
-    if (nameMatch && nameMatch[1]) {
-      this.name = nameMatch[1];
-    } else {
-      this.name = 'noname';
-      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Bad keyframes name " + key) : void 0;
-    }
-
-    this.key = this.type + "-" + this.name;
-    this.options = options;
-    var scoped = options.scoped,
-        sheet = options.sheet,
-        generateId = options.generateId;
-    this.id = scoped === false ? this.name : escape(generateId(this, sheet));
-    this.rules = new RuleList(_extends({}, options, {
-      parent: this
-    }));
-
-    for (var name in frames) {
-      this.rules.add(name, frames[name], _extends({}, options, {
-        parent: this
-      }));
-    }
-
-    this.rules.process();
-  }
-  /**
-   * Generates a CSS string.
-   */
-
-
-  var _proto = KeyframesRule.prototype;
-
-  _proto.toString = function toString(options) {
-    if (options === void 0) {
-      options = defaultToStringOptions$1;
-    }
-
-    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
-        linebreak = _getWhitespaceSymbols.linebreak;
-
-    if (options.indent == null) options.indent = defaultToStringOptions$1.indent;
-    if (options.children == null) options.children = defaultToStringOptions$1.children;
-
-    if (options.children === false) {
-      return this.at + " " + this.id + " {}";
-    }
-
-    var children = this.rules.toString(options);
-    if (children) children = "" + linebreak + children + linebreak;
-    return this.at + " " + this.id + " {" + children + "}";
-  };
-
-  return KeyframesRule;
-}();
-
-var keyRegExp$1 = /@keyframes\s+/;
-var refRegExp = /\$([\w-]+)/g;
-
-var findReferencedKeyframe = function findReferencedKeyframe(val, keyframes) {
-  if (typeof val === 'string') {
-    return val.replace(refRegExp, function (match, name) {
-      if (name in keyframes) {
-        return keyframes[name];
-      }
-
-      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Referenced keyframes rule \"" + name + "\" is not defined.") : void 0;
-      return match;
-    });
-  }
-
-  return val;
-};
-/**
- * Replace the reference for a animation name.
- */
-
-
-var replaceRef = function replaceRef(style, prop, keyframes) {
-  var value = style[prop];
-  var refKeyframe = findReferencedKeyframe(value, keyframes);
-
-  if (refKeyframe !== value) {
-    style[prop] = refKeyframe;
-  }
-};
-
-var pluginKeyframesRule = {
-  onCreateRule: function onCreateRule(key, frames, options) {
-    return typeof key === 'string' && keyRegExp$1.test(key) ? new KeyframesRule(key, frames, options) : null;
-  },
-  // Animation name ref replacer.
-  onProcessStyle: function onProcessStyle(style, rule, sheet) {
-    if (rule.type !== 'style' || !sheet) return style;
-    if ('animation-name' in style) replaceRef(style, 'animation-name', sheet.keyframes);
-    if ('animation' in style) replaceRef(style, 'animation', sheet.keyframes);
-    return style;
-  },
-  onChangeValue: function onChangeValue(val, prop, rule) {
-    var sheet = rule.options.sheet;
-
-    if (!sheet) {
-      return val;
-    }
-
-    switch (prop) {
-      case 'animation':
-        return findReferencedKeyframe(val, sheet.keyframes);
-
-      case 'animation-name':
-        return findReferencedKeyframe(val, sheet.keyframes);
-
-      default:
-        return val;
-    }
-  }
-};
-
-var KeyframeRule = /*#__PURE__*/function (_BaseStyleRule) {
-  _inheritsLoose(KeyframeRule, _BaseStyleRule);
-
-  function KeyframeRule() {
-    return _BaseStyleRule.apply(this, arguments) || this;
-  }
-
-  var _proto = KeyframeRule.prototype;
-  /**
-   * Generates a CSS string.
-   */
-
-  _proto.toString = function toString(options) {
-    var sheet = this.options.sheet;
-    var link = sheet ? sheet.options.link : false;
-    var opts = link ? _extends({}, options, {
-      allowEmpty: true
-    }) : options;
-    return toCss(this.key, this.style, opts);
-  };
-
-  return KeyframeRule;
-}(BaseStyleRule);
-
-var pluginKeyframeRule = {
-  onCreateRule: function onCreateRule(key, style, options) {
-    if (options.parent && options.parent.type === 'keyframes') {
-      return new KeyframeRule(key, style, options);
-    }
-
-    return null;
-  }
-};
-
-var FontFaceRule = /*#__PURE__*/function () {
-  function FontFaceRule(key, style, options) {
-    this.type = 'font-face';
-    this.at = '@font-face';
-    this.isProcessed = false;
-    this.key = key;
-    this.style = style;
-    this.options = options;
-  }
-  /**
-   * Generates a CSS string.
-   */
-
-
-  var _proto = FontFaceRule.prototype;
-
-  _proto.toString = function toString(options) {
-    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
-        linebreak = _getWhitespaceSymbols.linebreak;
-
-    if (Array.isArray(this.style)) {
-      var str = '';
-
-      for (var index = 0; index < this.style.length; index++) {
-        str += toCss(this.at, this.style[index]);
-        if (this.style[index + 1]) str += linebreak;
-      }
-
-      return str;
-    }
-
-    return toCss(this.at, this.style, options);
-  };
-
-  return FontFaceRule;
-}();
-
-var keyRegExp$2 = /@font-face/;
-var pluginFontFaceRule = {
-  onCreateRule: function onCreateRule(key, style, options) {
-    return keyRegExp$2.test(key) ? new FontFaceRule(key, style, options) : null;
-  }
-};
-
-var ViewportRule = /*#__PURE__*/function () {
-  function ViewportRule(key, style, options) {
-    this.type = 'viewport';
-    this.at = '@viewport';
-    this.isProcessed = false;
-    this.key = key;
-    this.style = style;
-    this.options = options;
-  }
-  /**
-   * Generates a CSS string.
-   */
-
-
-  var _proto = ViewportRule.prototype;
-
-  _proto.toString = function toString(options) {
-    return toCss(this.key, this.style, options);
-  };
-
-  return ViewportRule;
-}();
-
-var pluginViewportRule = {
-  onCreateRule: function onCreateRule(key, style, options) {
-    return key === '@viewport' || key === '@-ms-viewport' ? new ViewportRule(key, style, options) : null;
-  }
-};
-
-var SimpleRule = /*#__PURE__*/function () {
-  function SimpleRule(key, value, options) {
-    this.type = 'simple';
-    this.isProcessed = false;
-    this.key = key;
-    this.value = value;
-    this.options = options;
-  }
-  /**
-   * Generates a CSS string.
-   */
-  // eslint-disable-next-line no-unused-vars
-
-
-  var _proto = SimpleRule.prototype;
-
-  _proto.toString = function toString(options) {
-    if (Array.isArray(this.value)) {
-      var str = '';
-
-      for (var index = 0; index < this.value.length; index++) {
-        str += this.key + " " + this.value[index] + ";";
-        if (this.value[index + 1]) str += '\n';
-      }
-
-      return str;
-    }
-
-    return this.key + " " + this.value + ";";
-  };
-
-  return SimpleRule;
-}();
-
-var keysMap = {
-  '@charset': true,
-  '@import': true,
-  '@namespace': true
-};
-var pluginSimpleRule = {
-  onCreateRule: function onCreateRule(key, value, options) {
-    return key in keysMap ? new SimpleRule(key, value, options) : null;
-  }
-};
-var plugins = [pluginStyleRule, pluginConditionalRule, pluginKeyframesRule, pluginKeyframeRule, pluginFontFaceRule, pluginViewportRule, pluginSimpleRule];
-var defaultUpdateOptions = {
-  process: true
-};
-var forceUpdateOptions = {
-  force: true,
-  process: true
-  /**
-   * Contains rules objects and allows adding/removing etc.
-   * Is used for e.g. by `StyleSheet` or `ConditionalRule`.
-   */
-
-};
-
-var RuleList = /*#__PURE__*/function () {
-  // Rules registry for access by .get() method.
-  // It contains the same rule registered by name and by selector.
-  // Original styles object.
-  // Used to ensure correct rules order.
-  function RuleList(options) {
-    this.map = {};
-    this.raw = {};
-    this.index = [];
-    this.counter = 0;
-    this.options = options;
-    this.classes = options.classes;
-    this.keyframes = options.keyframes;
-  }
-  /**
-   * Create and register rule.
-   *
-   * Will not render after Style Sheet was rendered the first time.
-   */
-
-
-  var _proto = RuleList.prototype;
-
-  _proto.add = function add(name, decl, ruleOptions) {
-    var _this$options = this.options,
-        parent = _this$options.parent,
-        sheet = _this$options.sheet,
-        jss = _this$options.jss,
-        Renderer = _this$options.Renderer,
-        generateId = _this$options.generateId,
-        scoped = _this$options.scoped;
-
-    var options = _extends({
-      classes: this.classes,
-      parent: parent,
-      sheet: sheet,
-      jss: jss,
-      Renderer: Renderer,
-      generateId: generateId,
-      scoped: scoped,
-      name: name,
-      keyframes: this.keyframes,
-      selector: undefined
-    }, ruleOptions); // When user uses .createStyleSheet(), duplicate names are not possible, but
-    // `sheet.addRule()` opens the door for any duplicate rule name. When this happens
-    // we need to make the key unique within this RuleList instance scope.
-
-
-    var key = name;
-
-    if (name in this.raw) {
-      key = name + "-d" + this.counter++;
-    } // We need to save the original decl before creating the rule
-    // because cache plugin needs to use it as a key to return a cached rule.
-
-
-    this.raw[key] = decl;
-
-    if (key in this.classes) {
-      // E.g. rules inside of @media container
-      options.selector = "." + escape(this.classes[key]);
-    }
-
-    var rule = createRule(key, decl, options);
-    if (!rule) return null;
-    this.register(rule);
-    var index = options.index === undefined ? this.index.length : options.index;
-    this.index.splice(index, 0, rule);
-    return rule;
-  }
-  /**
-   * Get a rule.
-   */
-  ;
-
-  _proto.get = function get(name) {
-    return this.map[name];
-  }
-  /**
-   * Delete a rule.
-   */
-  ;
-
-  _proto.remove = function remove(rule) {
-    this.unregister(rule);
-    delete this.raw[rule.key];
-    this.index.splice(this.index.indexOf(rule), 1);
-  }
-  /**
-   * Get index of a rule.
-   */
-  ;
-
-  _proto.indexOf = function indexOf(rule) {
-    return this.index.indexOf(rule);
-  }
-  /**
-   * Run `onProcessRule()` plugins on every rule.
-   */
-  ;
-
-  _proto.process = function process() {
-    var plugins = this.options.jss.plugins; // We need to clone array because if we modify the index somewhere else during a loop
-    // we end up with very hard-to-track-down side effects.
-
-    this.index.slice(0).forEach(plugins.onProcessRule, plugins);
-  }
-  /**
-   * Register a rule in `.map`, `.classes` and `.keyframes` maps.
-   */
-  ;
-
-  _proto.register = function register(rule) {
-    this.map[rule.key] = rule;
-
-    if (rule instanceof StyleRule) {
-      this.map[rule.selector] = rule;
-      if (rule.id) this.classes[rule.key] = rule.id;
-    } else if (rule instanceof KeyframesRule && this.keyframes) {
-      this.keyframes[rule.name] = rule.id;
-    }
-  }
-  /**
-   * Unregister a rule.
-   */
-  ;
-
-  _proto.unregister = function unregister(rule) {
-    delete this.map[rule.key];
-
-    if (rule instanceof StyleRule) {
-      delete this.map[rule.selector];
-      delete this.classes[rule.key];
-    } else if (rule instanceof KeyframesRule) {
-      delete this.keyframes[rule.name];
-    }
-  }
-  /**
-   * Update the function values with a new data.
-   */
-  ;
-
-  _proto.update = function update() {
-    var name;
-    var data;
-    var options;
-
-    if (typeof (arguments.length <= 0 ? undefined : arguments[0]) === 'string') {
-      name = arguments.length <= 0 ? undefined : arguments[0];
-      data = arguments.length <= 1 ? undefined : arguments[1];
-      options = arguments.length <= 2 ? undefined : arguments[2];
-    } else {
-      data = arguments.length <= 0 ? undefined : arguments[0];
-      options = arguments.length <= 1 ? undefined : arguments[1];
-      name = null;
-    }
-
-    if (name) {
-      this.updateOne(this.map[name], data, options);
-    } else {
-      for (var index = 0; index < this.index.length; index++) {
-        this.updateOne(this.index[index], data, options);
-      }
-    }
-  }
-  /**
-   * Execute plugins, update rule props.
-   */
-  ;
-
-  _proto.updateOne = function updateOne(rule, data, options) {
-    if (options === void 0) {
-      options = defaultUpdateOptions;
-    }
-
-    var _this$options2 = this.options,
-        plugins = _this$options2.jss.plugins,
-        sheet = _this$options2.sheet; // It is a rules container like for e.g. ConditionalRule.
-
-    if (rule.rules instanceof RuleList) {
-      rule.rules.update(data, options);
-      return;
-    }
-
-    var style = rule.style;
-    plugins.onUpdate(data, rule, sheet, options); // We rely on a new `style` ref in case it was mutated during onUpdate hook.
-
-    if (options.process && style && style !== rule.style) {
-      // We need to run the plugins in case new `style` relies on syntax plugins.
-      plugins.onProcessStyle(rule.style, rule, sheet); // Update and add props.
-
-      for (var prop in rule.style) {
-        var nextValue = rule.style[prop];
-        var prevValue = style[prop]; // We need to use `force: true` because `rule.style` has been updated during onUpdate hook, so `rule.prop()` will not update the CSSOM rule.
-        // We do this comparison to avoid unneeded `rule.prop()` calls, since we have the old `style` object here.
-
-        if (nextValue !== prevValue) {
-          rule.prop(prop, nextValue, forceUpdateOptions);
-        }
-      } // Remove props.
-
-
-      for (var _prop in style) {
-        var _nextValue = rule.style[_prop];
-        var _prevValue = style[_prop]; // We need to use `force: true` because `rule.style` has been updated during onUpdate hook, so `rule.prop()` will not update the CSSOM rule.
-        // We do this comparison to avoid unneeded `rule.prop()` calls, since we have the old `style` object here.
-
-        if (_nextValue == null && _nextValue !== _prevValue) {
-          rule.prop(_prop, null, forceUpdateOptions);
-        }
-      }
-    }
-  }
-  /**
-   * Convert rules to a CSS string.
-   */
-  ;
-
-  _proto.toString = function toString(options) {
-    var str = '';
-    var sheet = this.options.sheet;
-    var link = sheet ? sheet.options.link : false;
-
-    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
-        linebreak = _getWhitespaceSymbols.linebreak;
-
-    for (var index = 0; index < this.index.length; index++) {
-      var rule = this.index[index];
-      var css = rule.toString(options); // No need to render an empty rule.
-
-      if (!css && !link) continue;
-      if (str) str += linebreak;
-      str += css;
-    }
-
-    return str;
-  };
-
-  return RuleList;
-}();
-
-var StyleSheet = /*#__PURE__*/function () {
-  function StyleSheet(styles, options) {
-    this.attached = false;
-    this.deployed = false;
-    this.classes = {};
-    this.keyframes = {};
-    this.options = _extends({}, options, {
-      sheet: this,
-      parent: this,
-      classes: this.classes,
-      keyframes: this.keyframes
-    });
-
-    if (options.Renderer) {
-      this.renderer = new options.Renderer(this);
-    }
-
-    this.rules = new RuleList(this.options);
-
-    for (var name in styles) {
-      this.rules.add(name, styles[name]);
-    }
-
-    this.rules.process();
-  }
-  /**
-   * Attach renderable to the render tree.
-   */
-
-
-  var _proto = StyleSheet.prototype;
-
-  _proto.attach = function attach() {
-    if (this.attached) return this;
-    if (this.renderer) this.renderer.attach();
-    this.attached = true; // Order is important, because we can't use insertRule API if style element is not attached.
-
-    if (!this.deployed) this.deploy();
-    return this;
-  }
-  /**
-   * Remove renderable from render tree.
-   */
-  ;
-
-  _proto.detach = function detach() {
-    if (!this.attached) return this;
-    if (this.renderer) this.renderer.detach();
-    this.attached = false;
-    return this;
-  }
-  /**
-   * Add a rule to the current stylesheet.
-   * Will insert a rule also after the stylesheet has been rendered first time.
-   */
-  ;
-
-  _proto.addRule = function addRule(name, decl, options) {
-    var queue = this.queue; // Plugins can create rules.
-    // In order to preserve the right order, we need to queue all `.addRule` calls,
-    // which happen after the first `rules.add()` call.
-
-    if (this.attached && !queue) this.queue = [];
-    var rule = this.rules.add(name, decl, options);
-    if (!rule) return null;
-    this.options.jss.plugins.onProcessRule(rule);
-
-    if (this.attached) {
-      if (!this.deployed) return rule; // Don't insert rule directly if there is no stringified version yet.
-      // It will be inserted all together when .attach is called.
-
-      if (queue) queue.push(rule);else {
-        this.insertRule(rule);
-
-        if (this.queue) {
-          this.queue.forEach(this.insertRule, this);
-          this.queue = undefined;
-        }
-      }
-      return rule;
-    } // We can't add rules to a detached style node.
-    // We will redeploy the sheet once user will attach it.
-
-
-    this.deployed = false;
-    return rule;
-  }
-  /**
-   * Insert rule into the StyleSheet
-   */
-  ;
-
-  _proto.insertRule = function insertRule(rule) {
-    if (this.renderer) {
-      this.renderer.insertRule(rule);
-    }
-  }
-  /**
-   * Create and add rules.
-   * Will render also after Style Sheet was rendered the first time.
-   */
-  ;
-
-  _proto.addRules = function addRules(styles, options) {
-    var added = [];
-
-    for (var name in styles) {
-      var rule = this.addRule(name, styles[name], options);
-      if (rule) added.push(rule);
-    }
-
-    return added;
-  }
-  /**
-   * Get a rule by name.
-   */
-  ;
-
-  _proto.getRule = function getRule(name) {
-    return this.rules.get(name);
-  }
-  /**
-   * Delete a rule by name.
-   * Returns `true`: if rule has been deleted from the DOM.
-   */
-  ;
-
-  _proto.deleteRule = function deleteRule(name) {
-    var rule = typeof name === 'object' ? name : this.rules.get(name);
-
-    if (!rule || // Style sheet was created without link: true and attached, in this case we
-    // won't be able to remove the CSS rule from the DOM.
-    this.attached && !rule.renderable) {
-      return false;
-    }
-
-    this.rules.remove(rule);
-
-    if (this.attached && rule.renderable && this.renderer) {
-      return this.renderer.deleteRule(rule.renderable);
-    }
-
-    return true;
-  }
-  /**
-   * Get index of a rule.
-   */
-  ;
-
-  _proto.indexOf = function indexOf(rule) {
-    return this.rules.indexOf(rule);
-  }
-  /**
-   * Deploy pure CSS string to a renderable.
-   */
-  ;
-
-  _proto.deploy = function deploy() {
-    if (this.renderer) this.renderer.deploy();
-    this.deployed = true;
-    return this;
-  }
-  /**
-   * Update the function values with a new data.
-   */
-  ;
-
-  _proto.update = function update() {
-    var _this$rules;
-
-    (_this$rules = this.rules).update.apply(_this$rules, arguments);
-
-    return this;
-  }
-  /**
-   * Updates a single rule.
-   */
-  ;
-
-  _proto.updateOne = function updateOne(rule, data, options) {
-    this.rules.updateOne(rule, data, options);
-    return this;
-  }
-  /**
-   * Convert rules to a CSS string.
-   */
-  ;
-
-  _proto.toString = function toString(options) {
-    return this.rules.toString(options);
-  };
-
-  return StyleSheet;
-}();
-
-var PluginsRegistry = /*#__PURE__*/function () {
-  function PluginsRegistry() {
-    this.plugins = {
-      internal: [],
-      external: []
-    };
-    this.registry = {};
-  }
-
-  var _proto = PluginsRegistry.prototype;
-  /**
-   * Call `onCreateRule` hooks and return an object if returned by a hook.
-   */
-
-  _proto.onCreateRule = function onCreateRule(name, decl, options) {
-    for (var i = 0; i < this.registry.onCreateRule.length; i++) {
-      var rule = this.registry.onCreateRule[i](name, decl, options);
-      if (rule) return rule;
-    }
-
-    return null;
-  }
-  /**
-   * Call `onProcessRule` hooks.
-   */
-  ;
-
-  _proto.onProcessRule = function onProcessRule(rule) {
-    if (rule.isProcessed) return;
-    var sheet = rule.options.sheet;
-
-    for (var i = 0; i < this.registry.onProcessRule.length; i++) {
-      this.registry.onProcessRule[i](rule, sheet);
-    }
-
-    if (rule.style) this.onProcessStyle(rule.style, rule, sheet);
-    rule.isProcessed = true;
-  }
-  /**
-   * Call `onProcessStyle` hooks.
-   */
-  ;
-
-  _proto.onProcessStyle = function onProcessStyle(style, rule, sheet) {
-    for (var i = 0; i < this.registry.onProcessStyle.length; i++) {
-      rule.style = this.registry.onProcessStyle[i](rule.style, rule, sheet);
-    }
-  }
-  /**
-   * Call `onProcessSheet` hooks.
-   */
-  ;
-
-  _proto.onProcessSheet = function onProcessSheet(sheet) {
-    for (var i = 0; i < this.registry.onProcessSheet.length; i++) {
-      this.registry.onProcessSheet[i](sheet);
-    }
-  }
-  /**
-   * Call `onUpdate` hooks.
-   */
-  ;
-
-  _proto.onUpdate = function onUpdate(data, rule, sheet, options) {
-    for (var i = 0; i < this.registry.onUpdate.length; i++) {
-      this.registry.onUpdate[i](data, rule, sheet, options);
-    }
-  }
-  /**
-   * Call `onChangeValue` hooks.
-   */
-  ;
-
-  _proto.onChangeValue = function onChangeValue(value, prop, rule) {
-    var processedValue = value;
-
-    for (var i = 0; i < this.registry.onChangeValue.length; i++) {
-      processedValue = this.registry.onChangeValue[i](processedValue, prop, rule);
-    }
-
-    return processedValue;
-  }
-  /**
-   * Register a plugin.
-   */
-  ;
-
-  _proto.use = function use(newPlugin, options) {
-    if (options === void 0) {
-      options = {
-        queue: 'external'
-      };
-    }
-
-    var plugins = this.plugins[options.queue]; // Avoids applying same plugin twice, at least based on ref.
-
-    if (plugins.indexOf(newPlugin) !== -1) {
-      return;
-    }
-
-    plugins.push(newPlugin);
-    this.registry = [].concat(this.plugins.external, this.plugins.internal).reduce(function (registry, plugin) {
-      for (var name in plugin) {
-        if (name in registry) {
-          registry[name].push(plugin[name]);
-        } else {
-          process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Unknown hook \"" + name + "\".") : void 0;
-        }
-      }
-
-      return registry;
-    }, {
-      onCreateRule: [],
-      onProcessRule: [],
-      onProcessStyle: [],
-      onProcessSheet: [],
-      onChangeValue: [],
-      onUpdate: []
-    });
-  };
-
-  return PluginsRegistry;
-}();
-/**
- * Sheets registry to access all instances in one place.
- */
-
-
-var SheetsRegistry = /*#__PURE__*/function () {
-  function SheetsRegistry() {
-    this.registry = [];
-  }
-
-  var _proto = SheetsRegistry.prototype;
-  /**
-   * Register a Style Sheet.
-   */
-
-  _proto.add = function add(sheet) {
-    var registry = this.registry;
-    var index = sheet.options.index;
-    if (registry.indexOf(sheet) !== -1) return;
-
-    if (registry.length === 0 || index >= this.index) {
-      registry.push(sheet);
-      return;
-    } // Find a position.
-
-
-    for (var i = 0; i < registry.length; i++) {
-      if (registry[i].options.index > index) {
-        registry.splice(i, 0, sheet);
-        return;
-      }
-    }
-  }
-  /**
-   * Reset the registry.
-   */
-  ;
-
-  _proto.reset = function reset() {
-    this.registry = [];
-  }
-  /**
-   * Remove a Style Sheet.
-   */
-  ;
-
-  _proto.remove = function remove(sheet) {
-    var index = this.registry.indexOf(sheet);
-    this.registry.splice(index, 1);
-  }
-  /**
-   * Convert all attached sheets to a CSS string.
-   */
-  ;
-
-  _proto.toString = function toString(_temp) {
-    var _ref = _temp === void 0 ? {} : _temp,
-        attached = _ref.attached,
-        options = _objectWithoutPropertiesLoose(_ref, ["attached"]);
-
-    var _getWhitespaceSymbols = getWhitespaceSymbols(options),
-        linebreak = _getWhitespaceSymbols.linebreak;
-
-    var css = '';
-
-    for (var i = 0; i < this.registry.length; i++) {
-      var sheet = this.registry[i];
-
-      if (attached != null && sheet.attached !== attached) {
-        continue;
-      }
-
-      if (css) css += linebreak;
-      css += sheet.toString(options);
-    }
-
-    return css;
-  };
-
-  _createClass$1(SheetsRegistry, [{
-    key: "index",
-
-    /**
-     * Current highest index number.
-     */
-    get: function get() {
-      return this.registry.length === 0 ? 0 : this.registry[this.registry.length - 1].options.index;
-    }
-  }]);
-
-  return SheetsRegistry;
-}();
-/**
- * This is a global sheets registry. Only DomRenderer will add sheets to it.
- * On the server one should use an own SheetsRegistry instance and add the
- * sheets to it, because you need to make sure to create a new registry for
- * each request in order to not leak sheets across requests.
- */
-
-
-var sheets = new SheetsRegistry();
-/* eslint-disable */
-
-/**
- * Now that `globalThis` is available on most platforms
- * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis#browser_compatibility)
- * we check for `globalThis` first. `globalThis` is necessary for jss
- * to run in Agoric's secure version of JavaScript (SES). Under SES,
- * `globalThis` exists, but `window`, `self`, and `Function('return
- * this')()` are all undefined for security reasons.
- *
- * https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
- */
-
-var globalThis$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' && window.Math === Math ? window : typeof self !== 'undefined' && self.Math === Math ? self : Function('return this')();
-var ns = '2f1acc6c3a606b082e5eef5e54414ffb';
-if (globalThis$1[ns] == null) globalThis$1[ns] = 0; // Bundle may contain multiple JSS versions at the same time. In order to identify
-// the current version with just one short number and use it for classes generation
-// we use a counter. Also it is more accurate, because user can manually reevaluate
-// the module.
-
-var moduleId = globalThis$1[ns]++;
-var maxRules = 1e10;
-/**
- * Returns a function which generates unique class names based on counters.
- * When new generator function is created, rule counter is reseted.
- * We need to reset the rule counter for SSR for each request.
- */
-
-var createGenerateId = function createGenerateId(options) {
-  if (options === void 0) {
-    options = {};
-  }
-
-  var ruleCounter = 0;
-
-  var generateId = function generateId(rule, sheet) {
-    ruleCounter += 1;
-
-    if (ruleCounter > maxRules) {
-      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] You might have a memory leak. Rule counter is at " + ruleCounter + ".") : void 0;
-    }
-
-    var jssId = '';
-    var prefix = '';
-
-    if (sheet) {
-      if (sheet.options.classNamePrefix) {
-        prefix = sheet.options.classNamePrefix;
-      }
-
-      if (sheet.options.jss.id != null) {
-        jssId = String(sheet.options.jss.id);
-      }
-    }
-
-    if (options.minify) {
-      // Using "c" because a number can't be the first char in a class name.
-      return "" + (prefix || 'c') + moduleId + jssId + ruleCounter;
-    }
-
-    return prefix + rule.key + "-" + moduleId + (jssId ? "-" + jssId : '') + "-" + ruleCounter;
-  };
-
-  return generateId;
-};
-/**
- * Cache the value from the first time a function is called.
- */
-
-
-var memoize = function memoize(fn) {
-  var value;
-  return function () {
-    if (!value) value = fn();
-    return value;
-  };
-};
-/**
- * Get a style property value.
- */
-
-
-var getPropertyValue = function getPropertyValue(cssRule, prop) {
-  try {
-    // Support CSSTOM.
-    if (cssRule.attributeStyleMap) {
-      return cssRule.attributeStyleMap.get(prop);
-    }
-
-    return cssRule.style.getPropertyValue(prop);
-  } catch (err) {
-    // IE may throw if property is unknown.
-    return '';
-  }
-};
-/**
- * Set a style property.
- */
-
-
-var setProperty = function setProperty(cssRule, prop, value) {
-  try {
-    var cssValue = value;
-
-    if (Array.isArray(value)) {
-      cssValue = toCssValue(value, true);
-
-      if (value[value.length - 1] === '!important') {
-        cssRule.style.setProperty(prop, cssValue, 'important');
-        return true;
-      }
-    } // Support CSSTOM.
-
-
-    if (cssRule.attributeStyleMap) {
-      cssRule.attributeStyleMap.set(prop, cssValue);
-    } else {
-      cssRule.style.setProperty(prop, cssValue);
-    }
-  } catch (err) {
-    // IE may throw if property is unknown.
-    return false;
-  }
-
-  return true;
-};
-/**
- * Remove a style property.
- */
-
-
-var removeProperty = function removeProperty(cssRule, prop) {
-  try {
-    // Support CSSTOM.
-    if (cssRule.attributeStyleMap) {
-      cssRule.attributeStyleMap.delete(prop);
-    } else {
-      cssRule.style.removeProperty(prop);
-    }
-  } catch (err) {
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] DOMException \"" + err.message + "\" was thrown. Tried to remove property \"" + prop + "\".") : void 0;
-  }
-};
-/**
- * Set the selector.
- */
-
-
-var setSelector = function setSelector(cssRule, selectorText) {
-  cssRule.selectorText = selectorText; // Return false if setter was not successful.
-  // Currently works in chrome only.
-
-  return cssRule.selectorText === selectorText;
-};
-/**
- * Gets the `head` element upon the first call and caches it.
- * We assume it can't be null.
- */
-
-
-var getHead = memoize(function () {
-  return document.querySelector('head');
-});
-/**
- * Find attached sheet with an index higher than the passed one.
- */
-
-function findHigherSheet(registry, options) {
-  for (var i = 0; i < registry.length; i++) {
-    var sheet = registry[i];
-
-    if (sheet.attached && sheet.options.index > options.index && sheet.options.insertionPoint === options.insertionPoint) {
-      return sheet;
-    }
-  }
-
-  return null;
-}
-/**
- * Find attached sheet with the highest index.
- */
-
-
-function findHighestSheet(registry, options) {
-  for (var i = registry.length - 1; i >= 0; i--) {
-    var sheet = registry[i];
-
-    if (sheet.attached && sheet.options.insertionPoint === options.insertionPoint) {
-      return sheet;
-    }
-  }
-
-  return null;
-}
-/**
- * Find a comment with "jss" inside.
- */
-
-
-function findCommentNode(text) {
-  var head = getHead();
-
-  for (var i = 0; i < head.childNodes.length; i++) {
-    var node = head.childNodes[i];
-
-    if (node.nodeType === 8 && node.nodeValue.trim() === text) {
-      return node;
-    }
-  }
-
-  return null;
-}
-/**
- * Find a node before which we can insert the sheet.
- */
-
-
-function findPrevNode(options) {
-  var registry = sheets.registry;
-
-  if (registry.length > 0) {
-    // Try to insert before the next higher sheet.
-    var sheet = findHigherSheet(registry, options);
-
-    if (sheet && sheet.renderer) {
-      return {
-        parent: sheet.renderer.element.parentNode,
-        node: sheet.renderer.element
-      };
-    } // Otherwise insert after the last attached.
-
-
-    sheet = findHighestSheet(registry, options);
-
-    if (sheet && sheet.renderer) {
-      return {
-        parent: sheet.renderer.element.parentNode,
-        node: sheet.renderer.element.nextSibling
-      };
-    }
-  } // Try to find a comment placeholder if registry is empty.
-
-
-  var insertionPoint = options.insertionPoint;
-
-  if (insertionPoint && typeof insertionPoint === 'string') {
-    var comment = findCommentNode(insertionPoint);
-
-    if (comment) {
-      return {
-        parent: comment.parentNode,
-        node: comment.nextSibling
-      };
-    } // If user specifies an insertion point and it can't be found in the document -
-    // bad specificity issues may appear.
-
-
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Insertion point \"" + insertionPoint + "\" not found.") : void 0;
-  }
-
-  return false;
-}
-/**
- * Insert style element into the DOM.
- */
-
-
-function insertStyle(style, options) {
-  var insertionPoint = options.insertionPoint;
-  var nextNode = findPrevNode(options);
-
-  if (nextNode !== false && nextNode.parent) {
-    nextNode.parent.insertBefore(style, nextNode.node);
-    return;
-  } // Works with iframes and any node types.
-
-
-  if (insertionPoint && typeof insertionPoint.nodeType === 'number') {
-    var insertionPointElement = insertionPoint;
-    var parentNode = insertionPointElement.parentNode;
-    if (parentNode) parentNode.insertBefore(style, insertionPointElement.nextSibling);else process.env.NODE_ENV !== "production" ? warning(false, '[JSS] Insertion point is not in the DOM.') : void 0;
-    return;
-  }
-
-  getHead().appendChild(style);
-}
-/**
- * Read jss nonce setting from the page if the user has set it.
- */
-
-
-var getNonce = memoize(function () {
-  var node = document.querySelector('meta[property="csp-nonce"]');
-  return node ? node.getAttribute('content') : null;
-});
-
-var _insertRule = function insertRule(container, rule, index) {
-  try {
-    if ('insertRule' in container) {
-      container.insertRule(rule, index);
-    } // Keyframes rule.
-    else if ('appendRule' in container) {
-      container.appendRule(rule);
-    }
-  } catch (err) {
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] " + err.message) : void 0;
-    return false;
-  }
-
-  return container.cssRules[index];
-};
-
-var getValidRuleInsertionIndex = function getValidRuleInsertionIndex(container, index) {
-  var maxIndex = container.cssRules.length; // In case previous insertion fails, passed index might be wrong
-
-  if (index === undefined || index > maxIndex) {
-    // eslint-disable-next-line no-param-reassign
-    return maxIndex;
-  }
-
-  return index;
-};
-
-var createStyle = function createStyle() {
-  var el = document.createElement('style'); // Without it, IE will have a broken source order specificity if we
-  // insert rules after we insert the style tag.
-  // It seems to kick-off the source order specificity algorithm.
-
-  el.textContent = '\n';
-  return el;
-};
-
-var DomRenderer = /*#__PURE__*/function () {
-  // Will be empty if link: true option is not set, because
-  // it is only for use together with insertRule API.
-  function DomRenderer(sheet) {
-    this.getPropertyValue = getPropertyValue;
-    this.setProperty = setProperty;
-    this.removeProperty = removeProperty;
-    this.setSelector = setSelector;
-    this.hasInsertedRules = false;
-    this.cssRules = []; // There is no sheet when the renderer is used from a standalone StyleRule.
-
-    if (sheet) sheets.add(sheet);
-    this.sheet = sheet;
-
-    var _ref = this.sheet ? this.sheet.options : {},
-        media = _ref.media,
-        meta = _ref.meta,
-        element = _ref.element;
-
-    this.element = element || createStyle();
-    this.element.setAttribute('data-jss', '');
-    if (media) this.element.setAttribute('media', media);
-    if (meta) this.element.setAttribute('data-meta', meta);
-    var nonce = getNonce();
-    if (nonce) this.element.setAttribute('nonce', nonce);
-  }
-  /**
-   * Insert style element into render tree.
-   */
-
-
-  var _proto = DomRenderer.prototype;
-
-  _proto.attach = function attach() {
-    // In the case the element node is external and it is already in the DOM.
-    if (this.element.parentNode || !this.sheet) return;
-    insertStyle(this.element, this.sheet.options); // When rules are inserted using `insertRule` API, after `sheet.detach().attach()`
-    // most browsers create a new CSSStyleSheet, except of all IEs.
-
-    var deployed = Boolean(this.sheet && this.sheet.deployed);
-
-    if (this.hasInsertedRules && deployed) {
-      this.hasInsertedRules = false;
-      this.deploy();
-    }
-  }
-  /**
-   * Remove style element from render tree.
-   */
-  ;
-
-  _proto.detach = function detach() {
-    if (!this.sheet) return;
-    var parentNode = this.element.parentNode;
-    if (parentNode) parentNode.removeChild(this.element); // In the most browsers, rules inserted using insertRule() API will be lost when style element is removed.
-    // Though IE will keep them and we need a consistent behavior.
-
-    if (this.sheet.options.link) {
-      this.cssRules = [];
-      this.element.textContent = '\n';
-    }
-  }
-  /**
-   * Inject CSS string into element.
-   */
-  ;
-
-  _proto.deploy = function deploy() {
-    var sheet = this.sheet;
-    if (!sheet) return;
-
-    if (sheet.options.link) {
-      this.insertRules(sheet.rules);
-      return;
-    }
-
-    this.element.textContent = "\n" + sheet.toString() + "\n";
-  }
-  /**
-   * Insert RuleList into an element.
-   */
-  ;
-
-  _proto.insertRules = function insertRules(rules, nativeParent) {
-    for (var i = 0; i < rules.index.length; i++) {
-      this.insertRule(rules.index[i], i, nativeParent);
-    }
-  }
-  /**
-   * Insert a rule into element.
-   */
-  ;
-
-  _proto.insertRule = function insertRule(rule, index, nativeParent) {
-    if (nativeParent === void 0) {
-      nativeParent = this.element.sheet;
-    }
-
-    if (rule.rules) {
-      var parent = rule;
-      var latestNativeParent = nativeParent;
-
-      if (rule.type === 'conditional' || rule.type === 'keyframes') {
-        var _insertionIndex = getValidRuleInsertionIndex(nativeParent, index); // We need to render the container without children first.
-
-
-        latestNativeParent = _insertRule(nativeParent, parent.toString({
-          children: false
-        }), _insertionIndex);
-
-        if (latestNativeParent === false) {
-          return false;
-        }
-
-        this.refCssRule(rule, _insertionIndex, latestNativeParent);
-      }
-
-      this.insertRules(parent.rules, latestNativeParent);
-      return latestNativeParent;
-    }
-
-    var ruleStr = rule.toString();
-    if (!ruleStr) return false;
-    var insertionIndex = getValidRuleInsertionIndex(nativeParent, index);
-
-    var nativeRule = _insertRule(nativeParent, ruleStr, insertionIndex);
-
-    if (nativeRule === false) {
-      return false;
-    }
-
-    this.hasInsertedRules = true;
-    this.refCssRule(rule, insertionIndex, nativeRule);
-    return nativeRule;
-  };
-
-  _proto.refCssRule = function refCssRule(rule, index, cssRule) {
-    rule.renderable = cssRule; // We only want to reference the top level rules, deleteRule API doesn't support removing nested rules
-    // like rules inside media queries or keyframes
-
-    if (rule.options.parent instanceof StyleSheet) {
-      this.cssRules[index] = cssRule;
-    }
-  }
-  /**
-   * Delete a rule.
-   */
-  ;
-
-  _proto.deleteRule = function deleteRule(cssRule) {
-    var sheet = this.element.sheet;
-    var index = this.indexOf(cssRule);
-    if (index === -1) return false;
-    sheet.deleteRule(index);
-    this.cssRules.splice(index, 1);
-    return true;
-  }
-  /**
-   * Get index of a CSS Rule.
-   */
-  ;
-
-  _proto.indexOf = function indexOf(cssRule) {
-    return this.cssRules.indexOf(cssRule);
-  }
-  /**
-   * Generate a new CSS rule and replace the existing one.
-   *
-   * Only used for some old browsers because they can't set a selector.
-   */
-  ;
-
-  _proto.replaceRule = function replaceRule(cssRule, rule) {
-    var index = this.indexOf(cssRule);
-    if (index === -1) return false;
-    this.element.sheet.deleteRule(index);
-    this.cssRules.splice(index, 1);
-    return this.insertRule(rule, index);
-  }
-  /**
-   * Get all rules elements.
-   */
-  ;
-
-  _proto.getRules = function getRules() {
-    return this.element.sheet.cssRules;
-  };
-
-  return DomRenderer;
-}();
-
-var instanceCounter = 0;
-
-var Jss = /*#__PURE__*/function () {
-  function Jss(options) {
-    this.id = instanceCounter++;
-    this.version = "10.8.0";
-    this.plugins = new PluginsRegistry();
-    this.options = {
-      id: {
-        minify: false
-      },
-      createGenerateId: createGenerateId,
-      Renderer: isBrowser ? DomRenderer : null,
-      plugins: []
-    };
-    this.generateId = createGenerateId({
-      minify: false
-    });
-
-    for (var i = 0; i < plugins.length; i++) {
-      this.plugins.use(plugins[i], {
-        queue: 'internal'
-      });
-    }
-
-    this.setup(options);
-  }
-  /**
-   * Prepares various options, applies plugins.
-   * Should not be used twice on the same instance, because there is no plugins
-   * deduplication logic.
-   */
-
-
-  var _proto = Jss.prototype;
-
-  _proto.setup = function setup(options) {
-    if (options === void 0) {
-      options = {};
-    }
-
-    if (options.createGenerateId) {
-      this.options.createGenerateId = options.createGenerateId;
-    }
-
-    if (options.id) {
-      this.options.id = _extends({}, this.options.id, options.id);
-    }
-
-    if (options.createGenerateId || options.id) {
-      this.generateId = this.options.createGenerateId(this.options.id);
-    }
-
-    if (options.insertionPoint != null) this.options.insertionPoint = options.insertionPoint;
-
-    if ('Renderer' in options) {
-      this.options.Renderer = options.Renderer;
-    } // eslint-disable-next-line prefer-spread
-
-
-    if (options.plugins) this.use.apply(this, options.plugins);
-    return this;
-  }
-  /**
-   * Create a Style Sheet.
-   */
-  ;
-
-  _proto.createStyleSheet = function createStyleSheet(styles, options) {
-    if (options === void 0) {
-      options = {};
-    }
-
-    var _options = options,
-        index = _options.index;
-
-    if (typeof index !== 'number') {
-      index = sheets.index === 0 ? 0 : sheets.index + 1;
-    }
-
-    var sheet = new StyleSheet(styles, _extends({}, options, {
-      jss: this,
-      generateId: options.generateId || this.generateId,
-      insertionPoint: this.options.insertionPoint,
-      Renderer: this.options.Renderer,
-      index: index
-    }));
-    this.plugins.onProcessSheet(sheet);
-    return sheet;
-  }
-  /**
-   * Detach the Style Sheet and remove it from the registry.
-   */
-  ;
-
-  _proto.removeStyleSheet = function removeStyleSheet(sheet) {
-    sheet.detach();
-    sheets.remove(sheet);
-    return this;
-  }
-  /**
-   * Create a rule without a Style Sheet.
-   * [Deprecated] will be removed in the next major version.
-   */
-  ;
-
-  _proto.createRule = function createRule$1(name, style, options) {
-    if (style === void 0) {
-      style = {};
-    }
-
-    if (options === void 0) {
-      options = {};
-    } // Enable rule without name for inline styles.
-
-
-    if (typeof name === 'object') {
-      return this.createRule(undefined, name, style);
-    }
-
-    var ruleOptions = _extends({}, options, {
-      name: name,
-      jss: this,
-      Renderer: this.options.Renderer
-    });
-
-    if (!ruleOptions.generateId) ruleOptions.generateId = this.generateId;
-    if (!ruleOptions.classes) ruleOptions.classes = {};
-    if (!ruleOptions.keyframes) ruleOptions.keyframes = {};
-    var rule = createRule(name, style, ruleOptions);
-    if (rule) this.plugins.onProcessRule(rule);
-    return rule;
-  }
-  /**
-   * Register plugin. Passed function will be invoked with a rule instance.
-   */
-  ;
-
-  _proto.use = function use() {
-    var _this = this;
-
-    for (var _len = arguments.length, plugins = new Array(_len), _key = 0; _key < _len; _key++) {
-      plugins[_key] = arguments[_key];
-    }
-
-    plugins.forEach(function (plugin) {
-      _this.plugins.use(plugin);
-    });
-    return this;
-  };
-
-  return Jss;
-}();
-
-var createJss = function createJss(options) {
-  return new Jss(options);
-};
-/**
- * A better abstraction over CSS.
- *
- * @copyright Oleg Isonen (Slobodskoi) / Isonen 2014-present
- * @website https://github.com/cssinjs/jss
- * @license MIT
- */
-
-
-var index$3 = createJss();
-var jss = index$3;
-
-function buildCSS$4(barChart) {
-  var _titleContainer;
-
-  var createGenerateId = function createGenerateId() {
-    return function (rule) {
-      return rule.key;
-    };
-  };
-
-  jss.setup({
-    createGenerateId: createGenerateId
-  });
-  var styles = {
-    "y-axis": {
-      width: "4px",
-      height: "70%",
-      left: "14%",
-      top: "15%",
-      background: barChart.tertiaryC,
-      position: "absolute"
-    },
-    "x-axis": {
-      width: "74%",
-      height: "4px",
-      top: "85%",
-      left: "14%",
-      background: barChart.tertiaryC,
-      position: "absolute"
-    },
-    gridlines: {
-      width: "100%",
-      height: "calc(100% + 3px)",
-      display: "flex",
-      "flex-direction": "column",
-      "justify-content": "space-between"
-    },
-    gridLine: {
-      height: "3px",
-      width: "100%",
-      background: barChart.secondaryC,
-      "align-self": "flex-end"
-    },
-    graph: {
-      top: 0,
-      left: 0,
-      position: "absolute",
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      "justify-content": "space-around",
-      overflow: "hidden"
-    },
-    "bar-container": {
-      "align-self": "flex-end",
-      width: "".concat(100 / barChart.data.length, "%"),
-      margin: "0% ".concat(10 / barChart.data.length + 1, "%"),
-      height: "100%",
-      display: "flex"
-    },
-    "bar-fill": {
-      width: "100%",
-      height: "100%",
-      background: barChart.primaryC,
-      "align-self": "center"
-    },
-    "block-background": {
-      width: "100%",
-      height: "100%",
-      background: barChart.accentC,
-      position: "relative"
-    },
-    "title-back-animHelper": {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      "flex-direction": "row-reverse"
-    },
-    "title-back-wrapper": {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      position: "absolute",
-      "flex-direction": "row",
-      "z-index": "-1"
-    },
-    "x-labels-back-wrapper": {
-      width: "70%",
-      height: "5%",
-      top: "87%",
-      left: "16%",
-      position: "absolute",
-      display: "flex",
-      "flex-direction": "row-reverse"
-    },
-    "x-labels-container": {
-      "font-family": barChart.fontFamily,
-      background: "transparent",
-      width: "70%",
-      height: "5%",
-      top: "87%",
-      left: "16%",
-      position: "absolute",
-      display: "flex",
-      "align-items": "center",
-      "z-index": "1",
-      "justify-content": "space-around"
-    },
-    "letter-wrapper": {
-      "font-size": barChart.fontSize,
-      display: "flex",
-      "flex-direction": "column",
-      position: "relative"
-    },
-    "letter-container": {
-      overflow: "hidden",
-      position: "relative"
-    },
-    "title-container": (_titleContainer = {
-      "font-family": barChart.fontFamily,
-      background: "transparent",
-      width: "70%",
-      height: "fit-content"
-    }, _defineProperty$1(_titleContainer, "height", "-moz-fit-content"), _defineProperty$1(_titleContainer, "min-height", "5%"), _defineProperty$1(_titleContainer, "max-height", "7%"), _defineProperty$1(_titleContainer, "top", "7%"), _defineProperty$1(_titleContainer, "left", "16%"), _defineProperty$1(_titleContainer, "position", "absolute"), _defineProperty$1(_titleContainer, "display", "flex"), _defineProperty$1(_titleContainer, "z-index", "1"), _defineProperty$1(_titleContainer, "justify-content", "space-around"), _titleContainer),
-    "title-wrapper": {
-      display: "flex",
-      "flex-grow": "2",
-      "flex-wrap": "wrap",
-      "align-items": "center",
-      overflow: "hidden",
-      "padding-left": "6px",
-      "z-index": "1"
-    },
-    "subtitle-wrapper": {
-      display: "flex",
-      "z-index": "1",
-      "flex-wrap": "wrap",
-      "align-items": "center"
-    },
-    "subtitle-position-end": {
-      display: "flex",
-      "flex-grow": "1",
-      "padding-right": "6px",
-      "flex-wrap": "wrap",
-      "max-width": "34%",
-      overflow: "hidden",
-      "justify-content": "flex-end"
-    },
-    "label-container": {
-      position: "relative",
-      top: "1px",
-      display: "flex",
-      "flex-direction": "row",
-      overflow: "hidden"
-    },
-    "container-barChart": {
-      width: "100%",
-      height: "100%",
-      background: barChart.backgroundC,
-      display: "flex"
-    },
-    "graph-container": {
-      left: "16%",
-      top: "17%",
-      width: "70%",
-      height: "63%",
-      position: "absolute"
-    },
-    fontColorOn: {
-      color: barChart.fontC
-    },
-    "space-char": {
-      visibility: "hidden"
-    },
-    "accent-background": {
-      width: "100%",
-      height: "100%",
-      background: barChart.accentC,
-      position: "relative"
-    }
-  };
-  barChart.data.map(function (datum, i) {
-    styles["".concat(datum.name, "-bar-").concat(i)] = {
-      "align-self": "flex-end",
-      width: "".concat(100 / barChart.data.length, "%"),
-      margin: "0% ".concat(10 / barChart.data.length + 1, "%"),
-      height: "100%",
-      display: "flex"
-    };
-    styles["".concat(datum.name, "-bar-").concat(i)].height = "\n            ".concat(datum.value.toFixed(2) / barChart.maxPoint * 100, "%");
-    styles["".concat(datum.name, "-bar-fill")] = {
-      height: "100%"
-    };
-  });
-  var styleSheet = jss.createStyleSheet(styles).toString();
-  return styleSheet;
-}
-
-var Anime$2 = MotorCortex.loadPlugin(index$4);
-/**
- * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
- */
-
-var BarChartSimple = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(BarChartSimple, _MotorCortex$HTMLClip);
-
-  var _super = _createSuper$2(BarChartSimple);
-
-  function BarChartSimple() {
-    _classCallCheck$2(this, BarChartSimple);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass$3(BarChartSimple, [{
-    key: "html",
-    get: // Building HTML tree for incident
-    function get() {
-      var _this = this;
-
-      this.buildVars(); // Title modal html generation
-
-      var title = [];
-
-      for (var i in this.title) {
-        var letter = [];
-
-        if (this.title[i] === " ") {
-          letter.push('<div class="space-char letter-wrapper">-</div>');
-        } else {
-          letter.push("<div class=\"fontColorOn letter-wrapper\">".concat(this.title[i], "</div>"));
-        }
-
-        title.push("<div id={\"letter-\" + i} class=\"letter-container\">\n          ".concat(letter, "\n        </div>"));
-      } // Subtitle modal html generation
-
-
-      var subtitle = [];
-
-      for (var _i in this.subtitle) {
-        var _letter = [];
-
-        if (this.subtitle[_i] === " ") {
-          _letter.push('<div class="space-char letter-wrapper">-</div>');
-        } else {
-          _letter.push(MotorCortex.utils.createDOMElement("div", {
-            class: "fontColorOn letter-wrapper"
-          }, this.subtitle[_i]));
-        }
-
-        subtitle.push("<div id={\"letter-\" + i} class=\"letter-container\">\n          ".concat(_letter, "\n        </div>"));
-      } // Gridlines conditional html generation
-
-
-      var gridLines = [];
-
-      for (var _i2 = 0; _i2 < this.gridLinesNum; _i2++) {
-        gridLines.push(MotorCortex.utils.createDOMElement("div", {
-          class: "gridLine",
-          id: "gridLine" + _i2
-        }));
-      } // X-axis labels html generation with data parameter as reference
-
-
-      var xLabels = [];
-
-      for (var _i3 in this.data) {
-        var label = [];
-
-        if (this.data[_i3].name.length > 4) {
-          this.data[_i3].name = this.data[_i3].name.slice(0, 4);
-        }
-
-        xLabels.push(MotorCortex.utils.createDOMElement("div", {
-          class: "label-container",
-          id: "label-" + _i3
-        }, label));
-      } //  Bars html generation with data parameter as reference
-
-
-      var bars = this.data.map(function (datum, i) {
-        _this.maxPoint = _this.maxPoint < datum.value ? datum.value : _this.maxPoint;
-        return MotorCortex.utils.createDOMElement("div", {
-          class: datum.name + "-bar-".concat(i)
-        }, MotorCortex.utils.createDOMElement("div", {
-          class: "bar-fill",
-          style: " background: ".concat(datum.color ? datum.color : _this.primaryC, " "),
-          id: datum.name + "-bar-fill"
-        }));
-      });
-      this.maxPoint = this.attrs.data.maxValue ? this.attrs.data.maxValue : this.maxPoint; // MAIN HTML TREE
-
-      var barGraphHTML = MotorCortex.utils.createDOMElement("div", {
-        class: "container-barChart"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "title-container"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "title-wrapper"
-      }, title), MotorCortex.utils.createDOMElement("div", {
-        class: "subtitle-position-end"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "subtitle-wrapper"
-      }, subtitle)), MotorCortex.utils.createDOMElement("div", {
-        class: "title-back-wrapper"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "title-back-animHelper"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "title-background block-background"
-      })))), MotorCortex.utils.createDOMElement("div", {
-        class: "graph-container"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "graph"
-      }, bars), MotorCortex.utils.createDOMElement("div", {
-        class: "gridlines"
-      }, gridLines)), MotorCortex.utils.createDOMElement("div", {
-        class: "y-axis"
-      }), MotorCortex.utils.createDOMElement("div", {
-        class: "x-axis"
-      }), MotorCortex.utils.createDOMElement("div", {
-        class: "x-labels-container"
-      }, xLabels), MotorCortex.utils.createDOMElement("div", {
-        class: "x-labels-back-wrapper"
-      }, MotorCortex.utils.createDOMElement("div", {
-        class: "x-labels-background block-background"
-      })));
-      return barGraphHTML;
-    } // Build CSS rules for incident
-
-  }, {
-    key: "css",
-    get: function get() {
-      return buildCSS$4(this);
-    } // Font API call (only google fonts API supported)
-
-  }, {
-    key: "fonts",
-    get: function get() {
-      return [{
-        type: "google-font",
-        src: "".concat(this.url)
-      }];
-    } // MotorCortex Animation generation and
-
-  }, {
-    key: "buildTree",
-    value: function buildTree() {
-      opacityControl(this, ".container-barChart"); // INTRO CONTROL
-
-      if (this.attrs.timings.intro) {
-        var textAnimDur = this.introDur * 0.75;
-        var introGroup = new MotorCortex.Group(); // Axis Intro Control
-
-        var axisCombo = new MotorCortex.Combo({
-          incidents: [{
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                height: "70%"
-              },
-              initialValues: {
-                height: "0%"
-              }
-            },
-            props: {
-              selector: ".y-axis",
-              duration: Math.trunc(this.introDur * 0.2),
-              easing: "easeInQuad"
-            },
-            position: Math.trunc(this.introDur * 0)
-          }, {
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                width: "74%"
-              },
-              initialValues: {
-                width: "0%"
-              }
-            },
-            props: {
-              selector: ".x-axis",
-              duration: Math.trunc(this.introDur * 0.3),
-              easing: "easeOutQuad"
-            },
-            position: Math.trunc(this.introDur * 0.2)
-          }]
-        }, {
-          selector: ".container-barChart"
-        });
-        introGroup.addIncident(axisCombo, this.introDur * 0); // GridLines Intro Control
-
-        var gridLinesAnim = new Anime$2.Anime({
-          animatedAttrs: {
-            width: "100%"
-          },
-          initialValues: {
-            width: "0%"
-          }
-        }, {
-          selector: ".gridLine",
-          duration: Math.trunc(this.introDur * 0.5),
-          easing: "easeOutQuad"
-        });
-        introGroup.addIncident(gridLinesAnim, Math.trunc(this.introDur * 0.2)); // Title Bar Intro Control
-
-        var titlesAnim = new MotorCortex.Group();
-        titlesAnim.addIncident(new Anime$2.Anime({
-          animatedAttrs: {
-            width: "100%"
-          },
-          initialValues: {
-            width: "0%"
-          }
-        }, {
-          selector: ".title-background",
-          duration: Math.trunc(this.introDur * 0.25),
-          easing: "easeInOutQuad"
-        }), 0); // Main Title Intro: letter animation control
-
-        var titleDur = this.introDur * 0.7;
-        var titleLetterDur = titleDur * 2 / (this.title.length + 1);
-        var titleIncidents = [];
-
-        for (var i in this.title) {
-          titleIncidents.push({
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                left: "0px",
-                opacity: 1
-              },
-              initialValues: {
-                left: "20px",
-                opacity: 0
-              }
-            },
-            props: {
-              selector: "#letter-".concat(i),
-              duration: Math.trunc(titleLetterDur),
-              easing: "easeOutQuart"
-            },
-            position: Math.trunc(titleLetterDur * i / 2)
-          });
-        }
-
-        var titleCombo = new MotorCortex.Combo({
-          incidents: titleIncidents
-        }, {
-          selector: ".title-wrapper"
-        });
-        titlesAnim.addIncident(titleCombo, Math.trunc(this.introDur * 0.25)); // Subtitle Intro: letter animation control
-
-        var subtitleDur = this.introDur * 0.8;
-        var subLetterDur = subtitleDur * 2 / (this.subtitle.length + 1);
-        var subIncidents = [];
-
-        for (var _i4 in this.subtitle) {
-          subIncidents.push({
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                left: "0px",
-                opacity: 1
-              },
-              initialValues: {
-                left: "20px",
-                opacity: 0
-              }
-            },
-            props: {
-              selector: "#letter-".concat(_i4),
-              duration: Math.trunc(subLetterDur),
-              easing: "easeOutQuart"
-            },
-            position: Math.trunc(subLetterDur * _i4 / 2)
-          });
-        }
-
-        var subtitleCombo = new MotorCortex.Combo({
-          incidents: subIncidents
-        }, {
-          selector: ".subtitle-wrapper"
-        });
-        titlesAnim.addIncident(subtitleCombo, Math.trunc(this.introDur * 0.1));
-        introGroup.addIncident(titlesAnim, Math.trunc(this.introDur * 0.05)); // Labels (xAxis) Intro Control
-
-        var xLabelsAnim = new MotorCortex.Group();
-        xLabelsAnim.addIncident(new Anime$2.Anime({
-          animatedAttrs: {
-            width: "70%"
-          },
-          initialValues: {
-            width: "0%"
-          }
-        }, {
-          selector: ".x-labels-back-wrapper",
-          duration: Math.trunc(this.introDur * 0.25),
-          easing: "easeInOutCubic"
-        }), 0); // Labels (xAxis) Intro: letter animation control
-
-        var labelDur = textAnimDur * 2 / (this.data.length + 1);
-
-        for (var _i5 in this.data) {
-          var labelLength = this.data[_i5].name.length;
-          var letterDur = labelDur * 2 / (labelLength + 1);
-          var incidents = [];
-
-          for (var z in this.data[_i5].name) {
-            incidents.push({
-              incidentClass: Anime$2.Anime,
-              attrs: {
-                animatedAttrs: {
-                  top: "0px",
-                  opacity: 1
-                },
-                initialValues: {
-                  top: "-30px",
-                  opacity: 0
-                }
-              },
-              props: {
-                selector: "#letter-".concat(_i5, "-").concat(z),
-                duration: Math.trunc(letterDur),
-                easing: "easeOutQuart"
-              },
-              position: Math.trunc(letterDur * z / 2)
-            });
-          }
-
-          var datumCombo = new MotorCortex.Combo({
-            incidents: incidents
-          }, {
-            selector: ".label-container"
-          });
-          xLabelsAnim.addIncident(datumCombo, Math.trunc(textAnimDur / (this.data.length + 1) * _i5));
-        }
-
-        introGroup.addIncident(xLabelsAnim, Math.trunc(this.introDur * 0.05)); // Bar Intro Control
-
-        var barAnimation = new MotorCortex.Combo({
-          incidents: [{
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                height: "100%"
-              },
-              initialValues: {
-                height: "0%"
-              }
-            },
-            props: {
-              duration: Math.trunc(this.introDur * 0.3),
-              easing: "easeInOutQuad"
-            },
-            position: 0
-          }]
-        }, {
-          selector: ".bar-fill",
-          delay: "@stagger(0, ".concat(Math.trunc(this.introDur * 0.4), ")")
-        });
-        introGroup.addIncident(barAnimation, Math.trunc(this.introDur * 0.3));
-        this.addIncident(introGroup, this.introDur * 0);
-      } // OUTRO CONTROL
-
-
-      if (this.attrs.timings.outro) {
-        var _textAnimDur = this.outroDur * 0.75;
-
-        var outroGroup = new MotorCortex.Group(); // Axis Outro Control
-
-        var axisCombooutro = new MotorCortex.Combo({
-          incidents: [{
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                width: "0%"
-              },
-              initialValues: {
-                width: "74%"
-              }
-            },
-            props: {
-              selector: ".x-axis",
-              duration: Math.trunc(this.outroDur * 0.2),
-              easing: "easeInQuad"
-            },
-            position: this.outroDur * 0
-          }, {
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                height: "0%"
-              },
-              initialValues: {
-                height: "70%"
-              }
-            },
-            props: {
-              selector: ".y-axis",
-              duration: Math.trunc(this.outroDur * 0.3),
-              easing: "easeOutQuad"
-            },
-            position: Math.trunc(this.outroDur * 0.2)
-          }]
-        }, {
-          selector: ".container-barChart"
-        });
-        outroGroup.addIncident(axisCombooutro, Math.trunc(this.outroDur * 0.5)); // GridLines Outro Control
-
-        var gridLinesoutro = new Anime$2.Anime({
-          animatedAttrs: {
-            width: "0%"
-          },
-          initialValues: {
-            width: "100%"
-          }
-        }, {
-          selector: ".gridlines",
-          easing: "easeInOutQuad",
-          duration: Math.trunc(this.outroDur * 0.5)
-        });
-        outroGroup.addIncident(gridLinesoutro, Math.trunc(this.outroDur * 0.2)); // Title Bar Outro Control
-
-        var titlesoutro = new MotorCortex.Group();
-        titlesoutro.addIncident(new Anime$2.Anime({
-          animatedAttrs: {
-            width: "0%"
-          },
-          initialValues: {
-            width: "100%"
-          }
-        }, {
-          selector: ".title-back-animHelper",
-          duration: Math.trunc(this.outroDur * 0.45),
-          easing: "easeInOutQuad"
-        }), Math.trunc(this.outroDur * 0.3)); // Main Title Outro: letter animation control
-
-        var _titleDur = this.outroDur * 0.8;
-
-        var _letterDur = _titleDur * 2 / (this.title.length + 1);
-
-        var _titleIncidents = [];
-
-        for (var _i6 in this.title) {
-          _titleIncidents.push({
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                left: "20px",
-                opacity: 0
-              },
-              initialValues: {
-                left: "0px",
-                opacity: 1
-              }
-            },
-            props: {
-              selector: "#letter-".concat(_i6),
-              duration: Math.trunc(_letterDur),
-              easing: "easeOutQuart"
-            },
-            position: Math.trunc(_letterDur * (this.title.length - _i6 - 1) / 2)
-          });
-        }
-
-        var _titleCombo = new MotorCortex.Combo({
-          incidents: _titleIncidents
-        }, {
-          selector: ".title-wrapper"
-        });
-
-        titlesoutro.addIncident(_titleCombo, Math.trunc(this.outroDur * 0.1)); // Subtitle Outro: letter animation control
-
-        var _subtitleDur = this.outroDur * 0.4;
-
-        var _subLetterDur = _subtitleDur * 2 / (this.subtitle.length + 1);
-
-        var _subIncidents = [];
-
-        for (var _i7 in this.subtitle) {
-          _subIncidents.push({
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                left: "20px",
-                opacity: 0
-              },
-              initialValues: {
-                left: "0px",
-                opacity: 1
-              }
-            },
-            props: {
-              selector: "#letter-".concat(_i7),
-              duration: Math.trunc(_subLetterDur),
-              easing: "easeOutQuart"
-            },
-            position: Math.trunc(_subLetterDur * (this.subtitle.length - _i7 - 1) / 2)
-          });
-        }
-
-        var _subtitleCombo = new MotorCortex.Combo({
-          incidents: _subIncidents
-        }, {
-          selector: ".subtitle-wrapper"
-        });
-
-        titlesoutro.addIncident(_subtitleCombo, Math.trunc(this.outroDur * 0));
-        outroGroup.addIncident(titlesoutro, Math.trunc(this.outroDur * 0.05)); // Labels (xAxis) Outro Control
-
-        var xLabelsoutro = new MotorCortex.Group();
-        xLabelsoutro.addIncident(new Anime$2.Anime({
-          animatedAttrs: {
-            width: "0%"
-          },
-          initialValues: {
-            width: "100%"
-          }
-        }, {
-          selector: ".x-labels-background",
-          duration: Math.trunc(this.outroDur * 0.45),
-          easing: "easeInOutCubic"
-        }), this.outroDur * 0.3); // Labels (xAxis) Outro: letter animation control
-
-        var _labelDur = _textAnimDur * 2 / (this.data.length + 1);
-
-        for (var _i8 in this.data) {
-          var _labelLength = this.data[_i8].name.length;
-
-          var _letterDur2 = _labelDur * 2 / (_labelLength + 1);
-
-          var _incidents = [];
-
-          for (var _z in this.data[_i8].name) {
-            _incidents.push({
-              incidentClass: Anime$2.Anime,
-              attrs: {
-                animatedAttrs: {
-                  opacity: 0,
-                  top: "-30px"
-                },
-                initialValues: {
-                  opacity: 1,
-                  top: "0px"
-                }
-              },
-              props: {
-                selector: "#letter-".concat(_i8, "-").concat(_z),
-                duration: Math.trunc(_letterDur2),
-                easing: "easeInQuart"
-              },
-              position: Math.trunc(_letterDur2 * _z / 2)
-            });
-          }
-
-          var _datumCombo = new MotorCortex.Combo({
-            incidents: _incidents
-          }, {
-            selector: ".label-container"
-          });
-
-          xLabelsoutro.addIncident(_datumCombo, Math.trunc(_textAnimDur / (this.data.length + 1) * _i8));
-        }
-
-        outroGroup.addIncident(xLabelsoutro, Math.trunc(this.outroDur * 0.05)); // Bar outro Control
-
-        var barIncidents = [];
-
-        for (var _i9 in this.data) {
-          barIncidents.push({
-            incidentClass: Anime$2.Anime,
-            attrs: {
-              animatedAttrs: {
-                height: "0%"
-              },
-              initialValues: {
-                height: "100%"
-              }
-            },
-            props: {
-              duration: Math.trunc(this.outroDur * 0.3),
-              easing: "easeInOutCubic",
-              selector: "#".concat(this.data[_i9].name, "-bar-fill")
-            },
-            position: Math.trunc(_subLetterDur * (this.data.length - _i9 - 1) / 2)
-          });
-        }
-
-        var barAnimationoutro = new MotorCortex.Combo({
-          incidents: barIncidents
-        }, {
-          selector: ".graph"
-        });
-        outroGroup.addIncident(barAnimationoutro, this.outroDur * 0);
-        this.addIncident(outroGroup, 0 + this.introDur + this.staticDur);
-      } // STATIC DURATION CONTROL
-
-
-      var staticIncident = new Anime$2.Anime({
-        animatedAttrs: {}
-      }, {
-        selector: ".container-barChart",
-        duration: this.staticDur
-      });
-      this.addIncident(staticIncident, this.introDur);
-    }
-  }, {
-    key: "buildVars",
-    value: function buildVars() {
-      this.data = this.attrs.data.data;
-      this.title = this.attrs.data.title;
-      this.subtitle = this.attrs.data.subtitle;
-      this.maxPoint = 0;
-      this.gridLinesNum = this.attrs.data.showGrid ? 11 : 0;
-      this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-      this.primaryC = this.attrs.palette.primary ? this.attrs.palette.primary : colorPalette.gray;
-      this.secondaryC = this.attrs.palette.secondary ? this.attrs.palette.secondary : colorPalette.lightGray;
-      this.tertiaryC = this.attrs.palette.tertiary ? this.attrs.palette.tertiary : colorPalette.darkGray;
-      this.fontC = this.attrs.palette.font ? this.attrs.palette.font : colorPalette.font;
-      this.accentC = this.attrs.palette.accent ? this.attrs.palette.accent : colorPalette.accent;
-      this.backgroundC = this.attrs.palette.background ? this.attrs.palette.background : colorPalette.background;
-      this.attrs.font = this.attrs.font ? this.attrs.font : {};
-      this.fontFamily = this.attrs.font.fontFamily ? this.attrs.font.fontFamily : "'Staatliches', cursive";
-      this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-      this.url = this.attrs.font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
-      this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
-      this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-      this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-
-      if (this.attrs.timings.static === 0) {
-        this.staticDur = 0;
-      } else {
-        this.staticDur = this.attrs.timings.static ? this.attrs.timings.static : 1000;
-      }
-    }
-  }]);
-
-  return BarChartSimple;
-}(MotorCortex.HTMLClip);
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-
-  return _assertThisInitialized(self);
-}
-
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-        result;
-
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-
-    return _possibleConstructorReturn(this, result);
-  };
-}
-/**
- * The purpose of Effects is to timely alter the state or value of attributes of
- * selected elements of the context, specified on the "selector"
- * property of theirs.
- *
- * The attributes of the elements that the Effect manipulates are
- * always defined on the attrs.animatedAttrs object, passed to it on its constructor.
- * Each key of this object corresponds to an attribute that the Effect will alter and the value
- * of each specifies the final value to go to.
- * On runtime, each Effect is analysed first by element and secondly
- * by animatedAttr.
- * For example an Effect that has the selector ".my-class",
- * that applies in two elements of the context, and has two animatedAttrs
- * will be analysed into four in total "MonoIncidents" (2 elements * 2 animatedAttrs).
- * Each of these produced MonoIncidents refer to a very specific element and
- * to a very specific animated attribute.
- * The Class that you are defining here extends Effect which represents exactly this MonoIncident.
- *
- * Thus, here you'll find:
- * the following properties:
- * - this.element: provides a reference to the specific element of the MonoIncident
- * - this.attributeKey: the key of the animatedAttr of the MonoIncident
- * - this.targetValue: the final value of the animatedAttr
- * - this.initialValue: the initial value of the animatedAttr
- * and the following methods:
- * - onGetContext
- * - getScratchValue
- * - onProgress
- * which are analysed more inline
- *
- **/
-
-
-var Counter$2 = /*#__PURE__*/function (_MotorCortex$Effect) {
-  _inherits(Counter, _MotorCortex$Effect);
-
-  var _super = _createSuper(Counter);
-
-  function Counter() {
-    _classCallCheck(this, Counter);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(Counter, [{
-    key: "getScratchValue",
-    value:
-    /**
-     * the very first MonoIncident of the specific element and the
-     * specific attribute that will ever enter a Clip will be asked
-     * to provide the initial (the scratch) value of its animatedAttr
-     * for its element.
-     **/
-    function getScratchValue() {
-      return 0;
-    }
-    /**
-     * The moment the Effect gets applied as MonoIncident to the specific
-     * element and for the specific animatedAttr.
-     * You can use this method to initialise anything you need to initialise
-     * in order to use it on the onProgress method
-     **/
-
-  }, {
-    key: "onGetContext",
-    value: function onGetContext() {
-      this.element.innerHTML = this.initialValue;
-    }
-    /**
-     * Takes two arguments the "fraction" which is a number from 0 to 1, representing
-     * the fraction (the percentage) of the duration that we are in,
-     * and the millisecond which defines the absolute millisecond.
-     * You can use this method to animate your attribute.
-     * Remember that you don't need to worry about easings. Easings are already
-     * applied before reaching the execution of this method. This method's
-     * arguments have already been re-calculated based on the easing.
-     **/
-
-  }, {
-    key: "onProgress",
-    value: function onProgress(fraction) {
-      var currentVal = this.initialValue + (this.targetValue - this.initialValue) * fraction;
-
-      if (this.attrs.decimals) {
-        currentVal = currentVal.toFixed(this.attrs.decimals);
-      } else {
-        currentVal = Math.trunc(currentVal);
-      }
-
-      this.element.innerHTML = currentVal;
-    }
-  }]);
-
-  return Counter;
-}(MotorCortex.Effect);
-
-var name$1 = "@donkeyclip/motorcortex-counter";
-var version$1 = "1.1.1";
-var index$2 = {
-  npm_name: name$1,
-  // don't touch this
-  version: version$1,
-  // don't touch this
-  incidents: [{
-    exportable: Counter$2,
-    name: "Counter",
-    attributesValidationRules: {
-      animatedAttrs: {
-        type: "object",
-        props: {
-          count: {
-            type: "number"
-          }
-        }
-      },
-      decimals: {
-        type: "number",
-        optional: true,
-        min: 0,
-        max: 20,
-        integer: true
-      }
-    }
   }]
 };
 
-// iterable DOM collections
-// flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
-var domIterables = {
-  CSSRuleList: 0,
-  CSSStyleDeclaration: 0,
-  CSSValueList: 0,
-  ClientRectList: 0,
-  DOMRectList: 0,
-  DOMStringList: 0,
-  DOMTokenList: 1,
-  DataTransferItemList: 0,
-  FileList: 0,
-  HTMLAllCollection: 0,
-  HTMLCollection: 0,
-  HTMLFormElement: 0,
-  HTMLSelectElement: 0,
-  MediaList: 0,
-  MimeTypeArray: 0,
-  NamedNodeMap: 0,
-  NodeList: 1,
-  PaintRequestList: 0,
-  Plugin: 0,
-  PluginArray: 0,
-  SVGLengthList: 0,
-  SVGNumberList: 0,
-  SVGPathSegList: 0,
-  SVGPointList: 0,
-  SVGStringList: 0,
-  SVGTransformList: 0,
-  SourceBufferList: 0,
-  StyleSheetList: 0,
-  TextTrackCueList: 0,
-  TextTrackList: 0,
-  TouchList: 0
-};
+var global$e = global$R;
 
-// in old WebKit versions, `element.classList` is not an instance of global `DOMTokenList`
-var documentCreateElement$1 = documentCreateElement$2;
-
-var classList = documentCreateElement$1('span').classList;
-var DOMTokenListPrototype$2 = classList && classList.constructor && classList.constructor.prototype;
-var domTokenListPrototype = DOMTokenListPrototype$2 === Object.prototype ? undefined : DOMTokenListPrototype$2;
-
-var fails$a = fails$n;
-
-var arrayMethodIsStrict$3 = function (METHOD_NAME, argument) {
-  var method = [][METHOD_NAME];
-  return !!method && fails$a(function () {
-    // eslint-disable-next-line no-useless-call,no-throw-literal -- required for testing
-    method.call(null, argument || function () {
-      throw 1;
-    }, 1);
-  });
-};
-
-var $forEach = arrayIteration.forEach;
-
-var arrayMethodIsStrict$2 = arrayMethodIsStrict$3;
-
-var STRICT_METHOD$2 = arrayMethodIsStrict$2('forEach'); // `Array.prototype.forEach` method implementation
-// https://tc39.es/ecma262/#sec-array.prototype.foreach
-
-var arrayForEach = !STRICT_METHOD$2 ? function forEach(callbackfn
-/* , thisArg */
-) {
-  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined); // eslint-disable-next-line es/no-array-prototype-foreach -- safe
-} : [].forEach;
-
-var global$f = global$H;
-
-var DOMIterables$1 = domIterables;
-
-var DOMTokenListPrototype$1 = domTokenListPrototype;
-
-var forEach = arrayForEach;
-
-var createNonEnumerableProperty$4 = createNonEnumerableProperty$8;
-
-var handlePrototype$1 = function (CollectionPrototype) {
-  // some Chrome versions have non-configurable methods on DOMTokenList
-  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
-    createNonEnumerableProperty$4(CollectionPrototype, 'forEach', forEach);
-  } catch (error) {
-    CollectionPrototype.forEach = forEach;
-  }
-};
-
-for (var COLLECTION_NAME$1 in DOMIterables$1) {
-  if (DOMIterables$1[COLLECTION_NAME$1]) {
-    handlePrototype$1(global$f[COLLECTION_NAME$1] && global$f[COLLECTION_NAME$1].prototype);
-  }
-}
-
-handlePrototype$1(DOMTokenListPrototype$1);
-
-function buildCSS$3(cssArgs) {
-  var createGenerateId = function createGenerateId() {
-    return function (rule) {
-      return rule.key;
-    };
-  };
-
-  jss.setup({
-    createGenerateId: createGenerateId
-  });
-  var styles = {
-    "container-progressBar": {
-      height: "100%",
-      background: cssArgs.palette.background ? cssArgs.palette.background : colorPalette.background,
-      display: "flex",
-      color: cssArgs.palette.font ? cssArgs.palette.font : colorPalette.font,
-      "font-family": cssArgs.font.fontFamily ? cssArgs.font.fontFamily : "'Staatliches', cursive"
-    },
-    row: {
-      display: "flex",
-      "flex-direction": "row",
-      position: "absolute",
-      left: "20%",
-      "align-items": "center",
-      height: "".concat(60 / cssArgs.barCount, "%"),
-      width: "100%"
-    },
-    "container-bar": {
-      position: "absolute",
-      height: "100%",
-      background: cssArgs.palette.secondary ? cssArgs.palette.secondary : colorPalette.darkGray,
-      "border-radius": "4rem",
-      width: "60%",
-      "box-shadow": "2px 2px 5px gray",
-      border: "0.2rem solid ".concat(cssArgs.palette.accent ? cssArgs.palette.accent : colorPalette.accent),
-      "z-index": "1",
-      overflow: "hidden"
-    },
-    "inner-bar": {
-      position: "relative",
-      background: cssArgs.palette.primary ? cssArgs.palette.primary : colorPalette.lightGray,
-      height: "102%",
-      "border-radius": "4rem",
-      bottom: "-1px",
-      "z-index": "2px",
-      top: "-0.5px"
-    },
-    text: {
-      position: "relative",
-      "z-index": "0",
-      opacity: "1",
-      left: "62%",
-      "font-size": cssArgs.font.size ? cssArgs.font.size : "1.2rem"
-    },
-    "bar-header": {
-      position: "absolute",
-      left: "-21%",
-      "text-align": "right",
-      width: "20%",
-      "font-size": cssArgs.font.size ? cssArgs.font.size : "1.2rem"
-    }
-  };
-  var avg = cssArgs.barSum / cssArgs.barCount;
-  cssArgs.data.forEach(function (elem, index) {
-    styles["row-".concat(index)] = {
-      bottom: "".concat(50 + (avg - index) * 100 / cssArgs.barCount - 60 / cssArgs.barCount * 2.15, "%")
-    };
-    styles["inner-bar-".concat(index)] = {
-      width: "".concat(elem.value.toFixed(2), "%")
-    };
-  });
-  var styleSheet = jss.createStyleSheet(styles).toString();
-  return styleSheet;
-}
-
-var Counter$1 = MotorCortex.loadPlugin(index$2);
-var MCAnime$1 = MotorCortex.loadPlugin(index$4);
-/**
- * The purpose of extending the HTMLClip is to full, parametric
- * HTMLClips with both context and Incidents.
- *
- * HTMLClip allows you to set your html, css, fonts and audioSources
- * upfront by the corresponding getter methods. You can use the this.attrs
- * reference on these methods so you can generate dynamic content.
- * Overwrite ONLY the ones you are interested in, ignore the rest.
- * The buildTree method allows developers to define Incidents (of any plugin)
- * dynamically and position them on the Clip.
- */
-
-var ProgressBar = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(ProgressBar, _MotorCortex$HTMLClip);
-
-  var _super = _createSuper$2(ProgressBar);
-
-  function ProgressBar() {
-    _classCallCheck$2(this, ProgressBar);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass$3(ProgressBar, [{
-    key: "html",
-    get: function get() {
-      var _this = this;
-
-      var list = this.attrs.data.map(function (elem, index) {
-        var _this$attrs$options;
-
-        return MotorCortex.utils.createDOMElement("div", {
-          class: "row row-" + index
-        }, MotorCortex.utils.createDOMElement("div", {
-          class: "bar-header"
-        }, elem.name), MotorCortex.utils.createDOMElement("div", {
-          class: "container-bar container-bar-" + index
-        }, MotorCortex.utils.createDOMElement("div", {
-          class: "inner-bar inner-bar-" + index + " " + (elem.value < _this.criticalValue ? "extra-trunced-" + index : null)
-        })), MotorCortex.utils.createDOMElement("div", {
-          class: "text indicator-".concat(index)
-        }, elem.value), MotorCortex.utils.createDOMElement("div", {
-          class: "text text-unit"
-        }, !((_this$attrs$options = _this.attrs.options) !== null && _this$attrs$options !== void 0 && _this$attrs$options.hidePercentage) ? "%" : null));
-      });
-      return MotorCortex.utils.createDOMElement("div", {
-        class: "container-progressBar"
-      }, list);
-    }
-  }, {
-    key: "css",
-    get: function get() {
-      var cssArgs = {
-        barSum: this.barSum,
-        barCount: this.barCount,
-        data: this.attrs.data,
-        palette: this.attrs.palette ? this.attrs.palette : {},
-        font: this.attrs.font ? this.attrs.font : {},
-        options: this.attrs.options ? this.attrs.options : {}
-      };
-      return buildCSS$3(cssArgs);
-    }
-  }, {
-    key: "fonts",
-    get: function get() {
-      var _this$attrs$font;
-
-      return [{
-        type: "google-font",
-        src: (_this$attrs$font = this.attrs.font) !== null && _this$attrs$font !== void 0 && _this$attrs$font.url ? this.attrs.font.url : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
-      }];
-    }
-  }, {
-    key: "buildTree",
-    value: function buildTree() {
-      var _this$attrs$timings;
-
-      if (this.attrs.timings.static === 0) {
-        this.static = 0;
-      } else {
-        this.static = this.attrs.timings.static ? this.attrs.timings.static : 1000;
-      }
-
-      this.intro = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-      this.outro = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-      var avg = this.barSum / this.barCount;
-      fadeOutOpacityControl(this, ".container-progressBar");
-
-      if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.intro) {
-        var slideInDuration = Math.floor(this.intro * 0.33);
-        var expandBaseDuration = Math.floor(this.intro * 0.25);
-        var expandBarDuration = Math.floor(this.intro * 0.33);
-
-        for (var i = 0; i < this.barCount; i++) {
-          var slideIn = new MCAnime$1.Anime({
-            animatedAttrs: {
-              bottom: "".concat(50 + (avg - i) * 100 / this.barCount - 60 / this.barCount * 2.15, "%"),
-              opacity: 1
-            },
-            initialValues: {
-              bottom: "-".concat(65 / this.barCount, "%"),
-              opacity: 0
-            }
-          }, {
-            duration: slideInDuration,
-            selector: ".row-".concat(i),
-            easing: "easeInOutQuad"
-          });
-          var expand_base = new MCAnime$1.Anime({
-            animatedAttrs: {
-              width: "60%"
-            },
-            initialValues: {
-              width: "0.2%"
-            }
-          }, {
-            duration: expandBaseDuration,
-            selector: ".container-bar-".concat(i),
-            easing: "easeInOutQuad"
-          });
-          var expand_bar = new MCAnime$1.Anime({
-            animatedAttrs: {
-              width: "".concat(this.attrs.data[i].value.toFixed(2), "%")
-            },
-            initialValues: {
-              width: "0%"
-            }
-          }, {
-            duration: expandBarDuration,
-            selector: ".inner-bar-".concat(i),
-            easing: "easeInOutQuad"
-          });
-          var indicatorCounter = new Counter$1.Counter({
-            animatedAttrs: {
-              count: this.attrs.data[i].value
-            },
-            initialValues: {
-              count: 0
-            }
-          }, {
-            easing: "easeInOutQuad",
-            selector: ".indicator-".concat(i),
-            duration: expandBarDuration
-          });
-          this.addIncident(slideIn, 0);
-          this.addIncident(expand_base, slideInDuration);
-          this.addIncident(expand_bar, slideInDuration + expandBaseDuration);
-          this.addIncident(indicatorCounter, slideInDuration + expandBaseDuration);
-        }
-
-        var expand_text = new MCAnime$1.Anime({
-          animatedAttrs: {
-            left: "62%",
-            opacity: 1
-          },
-          initialValues: {
-            left: "0%",
-            opacity: 0
-          }
-        }, {
-          duration: expandBarDuration,
-          selector: ".text",
-          easing: "easeInOutQuad"
-        });
-        this.addIncident(expand_text, slideInDuration);
-      }
-
-      var staticGraph = new MCAnime$1.Anime({
-        animatedAttrs: {}
-      }, {
-        duration: this.static,
-        selector: ".container-progressBar"
-      });
-      this.addIncident(staticGraph, this.intro);
-
-      if (this.outro) {
-        var bufferTime = this.intro + this.static + this.outro;
-
-        var _slideInDuration = Math.floor(this.outro * 0.33);
-
-        var _expandBaseDuration = Math.floor(this.outro * 0.25);
-
-        var _expandBarDuration = Math.floor(this.outro * 0.33);
-
-        for (var _i = 0; _i < this.barCount; _i++) {
-          var _slideIn = new MCAnime$1.Anime({
-            animatedAttrs: {
-              bottom: "-".concat(65 / this.barCount, "%"),
-              opacity: 0
-            },
-            initialValues: {
-              bottom: "".concat(50 + (avg - _i) * 100 / this.barCount - 60 / this.barCount * 2.15, "%"),
-              opacity: 1
-            }
-          }, {
-            duration: _slideInDuration,
-            selector: ".row-".concat(_i),
-            easing: "easeInOutQuad"
-          });
-
-          var _expand_base = new MCAnime$1.Anime({
-            animatedAttrs: {
-              width: "0.2%"
-            },
-            initialValues: {
-              width: "60%"
-            }
-          }, {
-            duration: _expandBaseDuration,
-            selector: ".container-bar-".concat(_i),
-            easing: "easeInOutQuad"
-          });
-
-          var _expand_bar = new MCAnime$1.Anime({
-            animatedAttrs: {
-              width: "0%"
-            },
-            initialValues: {
-              width: "".concat(this.attrs.data[_i].value.toFixed(2), "%")
-            }
-          }, {
-            duration: _expandBarDuration,
-            selector: ".inner-bar-".concat(_i),
-            easing: "easeInOutQuad"
-          });
-
-          var _indicatorCounter = new Counter$1.Counter({
-            animatedAttrs: {
-              count: 0
-            },
-            initialValues: {
-              count: this.attrs.data[_i].value
-            }
-          }, {
-            easing: "easeInOutQuad",
-            selector: ".indicator-".concat(_i),
-            duration: _expandBarDuration
-          });
-
-          this.addIncident(_slideIn, bufferTime - _slideInDuration);
-          this.addIncident(_expand_base, bufferTime - _slideInDuration - _expandBaseDuration);
-          this.addIncident(_expand_bar, bufferTime - _slideInDuration - _expandBaseDuration - _expandBarDuration);
-          this.addIncident(_indicatorCounter, bufferTime - _slideInDuration - _expandBaseDuration - _expandBarDuration);
-        }
-
-        var _expand_text = new MCAnime$1.Anime({
-          animatedAttrs: {
-            left: "0%",
-            opacity: 0
-          },
-          initialValues: {
-            left: "62%",
-            opacity: 1
-          }
-        }, {
-          duration: _expandBarDuration,
-          selector: ".text",
-          easing: "easeInOutQuad"
-        });
-
-        this.addIncident(_expand_text, bufferTime - _slideInDuration - _expandBaseDuration * 1.1);
-      }
-    }
-  }, {
-    key: "barSum",
-    get: function get() {
-      var sum = 0;
-
-      for (var i = 1; i <= this.barCount; i++) {
-        sum += i;
-      }
-
-      return sum;
-    }
-  }, {
-    key: "barCount",
-    get: function get() {
-      return this.attrs.data.length;
-    }
-  }, {
-    key: "criticalValue",
-    get: function get() {
-      if (this.barCount / 10 === 1) {
-        return this.barCount / 10 * 10;
-      } else if (this.barCount / 10 > 1) {
-        return (this.barCount / 10 - 1) * 10;
-      } else {
-        return (this.barCount / 10 + 1) * 10;
-      }
-    }
-  }]);
-
-  return ProgressBar;
-}(MotorCortex.HTMLClip);
-
-/* eslint-disable es/no-array-prototype-indexof -- required for testing */
-
-var $$4 = _export;
-
-var uncurryThis$a = functionUncurryThis;
-
-var $IndexOf = arrayIncludes.indexOf;
-
-var arrayMethodIsStrict$1 = arrayMethodIsStrict$3;
-
-var un$IndexOf = uncurryThis$a([].indexOf);
-var NEGATIVE_ZERO = !!un$IndexOf && 1 / un$IndexOf([1], 1, -0) < 0;
-var STRICT_METHOD$1 = arrayMethodIsStrict$1('indexOf'); // `Array.prototype.indexOf` method
-// https://tc39.es/ecma262/#sec-array.prototype.indexof
-
-$$4({
-  target: 'Array',
-  proto: true,
-  forced: NEGATIVE_ZERO || !STRICT_METHOD$1
-}, {
-  indexOf: function indexOf(searchElement
-  /* , fromIndex = 0 */
-  ) {
-    var fromIndex = arguments.length > 1 ? arguments[1] : undefined;
-    return NEGATIVE_ZERO // convert -0 to +0
-    ? un$IndexOf(this, searchElement, fromIndex) || 0 : $IndexOf(this, searchElement, fromIndex);
-  }
-});
-
-var $$3 = _export;
-
-var uncurryThis$9 = functionUncurryThis;
-
-var IndexedObject = indexedObject;
-
-var toIndexedObject$2 = toIndexedObject$7;
-
-var arrayMethodIsStrict = arrayMethodIsStrict$3;
-
-var un$Join = uncurryThis$9([].join);
-var ES3_STRINGS = IndexedObject != Object;
-var STRICT_METHOD = arrayMethodIsStrict('join', ','); // `Array.prototype.join` method
-// https://tc39.es/ecma262/#sec-array.prototype.join
-
-$$3({
-  target: 'Array',
-  proto: true,
-  forced: ES3_STRINGS || !STRICT_METHOD
-}, {
-  join: function join(separator) {
-    return un$Join(toIndexedObject$2(this), separator === undefined ? ',' : separator);
-  }
-});
-
-var global$e = global$H;
-
-var isCallable$5 = isCallable$h;
+var isCallable$5 = isCallable$o;
 
 var String$1 = global$e.String;
 var TypeError$6 = global$e.TypeError;
@@ -8129,9 +8364,9 @@ var aPossiblePrototype$1 = function (argument) {
 
 /* eslint-disable no-proto -- safe */
 
-var uncurryThis$8 = functionUncurryThis;
+var uncurryThis$8 = functionUncurryThis$1;
 
-var anObject$6 = anObject$b;
+var anObject$6 = anObject$c;
 
 var aPossiblePrototype = aPossiblePrototype$1; // `Object.setPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.setprototypeof
@@ -8161,9 +8396,9 @@ var objectSetPrototypeOf = Object.setPrototypeOf || ('__proto__' in {} ? functio
   };
 }() : undefined);
 
-var isCallable$4 = isCallable$h;
+var isCallable$4 = isCallable$o;
 
-var isObject$1 = isObject$a;
+var isObject$1 = isObject$h;
 
 var setPrototypeOf$1 = objectSetPrototypeOf; // makes subclassing work correct for wrapped built-ins
 
@@ -8176,11 +8411,11 @@ var inheritIfRequired$2 = function ($this, dummy, Wrapper) {
   return $this;
 };
 
-var isObject = isObject$a;
+var isObject = isObject$h;
 
-var classof$3 = classofRaw$1;
+var classof$3 = classofRaw$3;
 
-var wellKnownSymbol$9 = wellKnownSymbol$h;
+var wellKnownSymbol$9 = wellKnownSymbol$i;
 
 var MATCH$1 = wellKnownSymbol$9('match'); // `IsRegExp` abstract operation
 // https://tc39.es/ecma262/#sec-isregexp
@@ -8190,9 +8425,9 @@ var isRegexp = function (it) {
   return isObject(it) && ((isRegExp = it[MATCH$1]) !== undefined ? !!isRegExp : classof$3(it) == 'RegExp');
 };
 
-var fails$9 = fails$n;
+var fails$9 = fails$p;
 
-var global$d = global$H; // babel-minify and Closure Compiler transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError
+var global$d = global$R; // babel-minify and Closure Compiler transpiles RegExp('a', 'y') -> /a/y and it causes SyntaxError
 
 
 var $RegExp$2 = global$d.RegExp;
@@ -8218,13 +8453,13 @@ var regexpStickyHelpers = {
   UNSUPPORTED_Y: UNSUPPORTED_Y$3
 };
 
-var getBuiltIn$1 = getBuiltIn$6;
+var getBuiltIn$1 = getBuiltIn$a;
 
-var definePropertyModule$2 = objectDefineProperty;
+var definePropertyModule$2 = objectDefineProperty$1;
 
-var wellKnownSymbol$8 = wellKnownSymbol$h;
+var wellKnownSymbol$8 = wellKnownSymbol$i;
 
-var DESCRIPTORS$6 = descriptors;
+var DESCRIPTORS$6 = descriptors$1;
 
 var SPECIES$2 = wellKnownSymbol$8('species');
 
@@ -8242,9 +8477,9 @@ var setSpecies$1 = function (CONSTRUCTOR_NAME) {
   }
 };
 
-var fails$8 = fails$n;
+var fails$8 = fails$p;
 
-var global$c = global$H; // babel-minify and Closure Compiler transpiles RegExp('.', 's') -> /./s and it causes SyntaxError
+var global$c = global$R; // babel-minify and Closure Compiler transpiles RegExp('.', 's') -> /./s and it causes SyntaxError
 
 
 var $RegExp$1 = global$c.RegExp;
@@ -8253,9 +8488,9 @@ var regexpUnsupportedDotAll = fails$8(function () {
   return !(re.dotAll && re.exec('\n') && re.flags === 's');
 });
 
-var fails$7 = fails$n;
+var fails$7 = fails$p;
 
-var global$b = global$H; // babel-minify and Closure Compiler transpiles RegExp('(?<a>b)', 'g') -> /(?<a>b)/g and it causes SyntaxError
+var global$b = global$R; // babel-minify and Closure Compiler transpiles RegExp('(?<a>b)', 'g') -> /(?<a>b)/g and it causes SyntaxError
 
 
 var $RegExp = global$b.RegExp;
@@ -8264,43 +8499,43 @@ var regexpUnsupportedNcg = fails$7(function () {
   return re.exec('b').groups.a !== 'b' || 'b'.replace(re, '$<a>c') !== 'bc';
 });
 
-var DESCRIPTORS$5 = descriptors;
+var DESCRIPTORS$5 = descriptors$1;
 
-var global$a = global$H;
+var global$a = global$R;
 
-var uncurryThis$7 = functionUncurryThis;
+var uncurryThis$7 = functionUncurryThis$1;
 
-var isForced$1 = isForced_1;
+var isForced$1 = isForced_1$1;
 
 var inheritIfRequired$1 = inheritIfRequired$2;
 
-var createNonEnumerableProperty$3 = createNonEnumerableProperty$8;
+var createNonEnumerableProperty$3 = createNonEnumerableProperty$9;
 
-var defineProperty$5 = objectDefineProperty.f;
+var defineProperty$5 = objectDefineProperty$1.f;
 
-var getOwnPropertyNames$1 = objectGetOwnPropertyNames.f;
+var getOwnPropertyNames$1 = objectGetOwnPropertyNames$1.f;
 
-var isPrototypeOf$1 = objectIsPrototypeOf;
+var isPrototypeOf$1 = objectIsPrototypeOf$1;
 
 var isRegExp$1 = isRegexp;
 
-var toString$6 = toString$9;
+var toString$6 = toString$a;
 
 var regExpFlags = regexpFlags$1;
 
 var stickyHelpers$2 = regexpStickyHelpers;
 
-var redefine$4 = redefine$8.exports;
+var redefine$4 = redefine$9.exports;
 
-var fails$6 = fails$n;
+var fails$6 = fails$p;
 
-var hasOwn$3 = hasOwnProperty_1;
+var hasOwn$3 = hasOwnProperty_1$1;
 
-var enforceInternalState = internalState.enforce;
+var enforceInternalState = internalState$1.enforce;
 
 var setSpecies = setSpecies$1;
 
-var wellKnownSymbol$7 = wellKnownSymbol$h;
+var wellKnownSymbol$7 = wellKnownSymbol$i;
 
 var UNSUPPORTED_DOT_ALL$2 = regexpUnsupportedDotAll;
 
@@ -8502,17 +8737,17 @@ if (isForced$1('RegExp', BASE_FORCED)) {
 
 setSpecies('RegExp');
 
-var global$9 = global$H;
+var global$9 = global$R;
 
-var DESCRIPTORS$4 = descriptors;
+var DESCRIPTORS$4 = descriptors$1;
 
 var UNSUPPORTED_DOT_ALL$1 = regexpUnsupportedDotAll;
 
-var classof$2 = classofRaw$1;
+var classof$2 = classofRaw$3;
 
-var defineProperty$4 = objectDefineProperty.f;
+var defineProperty$4 = objectDefineProperty$1.f;
 
-var getInternalState$3 = internalState.get;
+var getInternalState$3 = internalState$1.get;
 
 var RegExpPrototype$2 = RegExp.prototype;
 var TypeError$5 = global$9.TypeError; // `RegExp.prototype.dotAll` getter
@@ -8536,9 +8771,9 @@ if (DESCRIPTORS$4 && UNSUPPORTED_DOT_ALL$1) {
 
 var objectDefineProperties = {};
 
-var internalObjectKeys = objectKeysInternal;
+var internalObjectKeys = objectKeysInternal$1;
 
-var enumBugKeys$1 = enumBugKeys$3; // `Object.keys` method
+var enumBugKeys$1 = enumBugKeys$4; // `Object.keys` method
 // https://tc39.es/ecma262/#sec-object.keys
 // eslint-disable-next-line es/no-object-keys -- safe
 
@@ -8547,15 +8782,15 @@ var objectKeys$1 = Object.keys || function keys(O) {
   return internalObjectKeys(O, enumBugKeys$1);
 };
 
-var DESCRIPTORS$3 = descriptors;
+var DESCRIPTORS$3 = descriptors$1;
 
-var V8_PROTOTYPE_DEFINE_BUG = v8PrototypeDefineBug;
+var V8_PROTOTYPE_DEFINE_BUG = v8PrototypeDefineBug$1;
 
-var definePropertyModule$1 = objectDefineProperty;
+var definePropertyModule$1 = objectDefineProperty$1;
 
-var anObject$5 = anObject$b;
+var anObject$5 = anObject$c;
 
-var toIndexedObject$1 = toIndexedObject$7;
+var toIndexedObject$1 = toIndexedObject$a;
 
 var objectKeys = objectKeys$1; // `Object.defineProperties` method
 // https://tc39.es/ecma262/#sec-object.defineproperties
@@ -8575,25 +8810,25 @@ objectDefineProperties.f = DESCRIPTORS$3 && !V8_PROTOTYPE_DEFINE_BUG ? Object.de
   return O;
 };
 
-var getBuiltIn = getBuiltIn$6;
+var getBuiltIn = getBuiltIn$a;
 
 var html$1 = getBuiltIn('document', 'documentElement');
 
 /* global ActiveXObject -- old IE, WSH */
 
-var anObject$4 = anObject$b;
+var anObject$4 = anObject$c;
 
 var definePropertiesModule = objectDefineProperties;
 
-var enumBugKeys = enumBugKeys$3;
+var enumBugKeys = enumBugKeys$4;
 
-var hiddenKeys = hiddenKeys$4;
+var hiddenKeys = hiddenKeys$8;
 
 var html = html$1;
 
-var documentCreateElement = documentCreateElement$2;
+var documentCreateElement = documentCreateElement$3;
 
-var sharedKey$1 = sharedKey$3;
+var sharedKey$1 = sharedKey$4;
 
 var GT = '>';
 var LT = '<';
@@ -8681,21 +8916,21 @@ var objectCreate = Object.create || function create(O, Properties) {
 
 /* eslint-disable regexp/no-useless-quantifier -- testing */
 
-var call$5 = functionCall;
+var call$5 = functionCall$1;
 
-var uncurryThis$6 = functionUncurryThis;
+var uncurryThis$6 = functionUncurryThis$1;
 
-var toString$5 = toString$9;
+var toString$5 = toString$a;
 
 var regexpFlags = regexpFlags$1;
 
 var stickyHelpers$1 = regexpStickyHelpers;
 
-var shared = shared$4.exports;
+var shared = shared$8.exports;
 
 var create$2 = objectCreate;
 
-var getInternalState$2 = internalState.get;
+var getInternalState$2 = internalState$1.get;
 
 var UNSUPPORTED_DOT_ALL = regexpUnsupportedDotAll;
 
@@ -8807,7 +9042,7 @@ if (PATCH) {
 
 var regexpExec$3 = patchedExec;
 
-var $$2 = _export;
+var $$2 = _export$1;
 
 var exec$1 = regexpExec$3; // `RegExp.prototype.exec` method
 // https://tc39.es/ecma262/#sec-regexp.prototype.exec
@@ -8821,17 +9056,17 @@ $$2({
   exec: exec$1
 });
 
-var global$8 = global$H;
+var global$8 = global$R;
 
-var DESCRIPTORS$2 = descriptors;
+var DESCRIPTORS$2 = descriptors$1;
 
 var MISSED_STICKY = regexpStickyHelpers.MISSED_STICKY;
 
-var classof$1 = classofRaw$1;
+var classof$1 = classofRaw$3;
 
-var defineProperty$3 = objectDefineProperty.f;
+var defineProperty$3 = objectDefineProperty$1.f;
 
-var getInternalState$1 = internalState.get;
+var getInternalState$1 = internalState$1.get;
 
 var RegExpPrototype$1 = RegExp.prototype;
 var TypeError$4 = global$8.TypeError; // `RegExp.prototype.sticky` getter
@@ -8853,17 +9088,17 @@ if (DESCRIPTORS$2 && MISSED_STICKY) {
   });
 }
 
-var uncurryThis$5 = functionUncurryThis;
+var uncurryThis$5 = functionUncurryThis$1;
 
-var redefine$3 = redefine$8.exports;
+var redefine$3 = redefine$9.exports;
 
 var regexpExec$2 = regexpExec$3;
 
-var fails$5 = fails$n;
+var fails$5 = fails$p;
 
-var wellKnownSymbol$6 = wellKnownSymbol$h;
+var wellKnownSymbol$6 = wellKnownSymbol$i;
 
-var createNonEnumerableProperty$2 = createNonEnumerableProperty$8;
+var createNonEnumerableProperty$2 = createNonEnumerableProperty$9;
 
 var SPECIES$1 = wellKnownSymbol$6('species');
 var RegExpPrototype = RegExp.prototype;
@@ -8945,13 +9180,13 @@ var fixRegexpWellKnownSymbolLogic = function (KEY, exec, FORCED, SHAM) {
   if (SHAM) createNonEnumerableProperty$2(RegExpPrototype[SYMBOL], 'sham', true);
 };
 
-var uncurryThis$4 = functionUncurryThis;
+var uncurryThis$4 = functionUncurryThis$1;
 
-var toIntegerOrInfinity = toIntegerOrInfinity$5;
+var toIntegerOrInfinity = toIntegerOrInfinity$8;
 
-var toString$4 = toString$9;
+var toString$4 = toString$a;
 
-var requireObjectCoercible$3 = requireObjectCoercible$7;
+var requireObjectCoercible$3 = requireObjectCoercible$8;
 
 var charAt$2 = uncurryThis$4(''.charAt);
 var charCodeAt$1 = uncurryThis$4(''.charCodeAt);
@@ -8986,15 +9221,15 @@ var advanceStringIndex$2 = function (S, index, unicode) {
   return index + (unicode ? charAt$1(S, index).length : 1);
 };
 
-var global$7 = global$H;
+var global$7 = global$R;
 
-var call$4 = functionCall;
+var call$4 = functionCall$1;
 
-var anObject$3 = anObject$b;
+var anObject$3 = anObject$c;
 
-var isCallable$3 = isCallable$h;
+var isCallable$3 = isCallable$o;
 
-var classof = classofRaw$1;
+var classof = classofRaw$3;
 
 var regexpExec$1 = regexpExec$3;
 
@@ -9014,19 +9249,19 @@ var regexpExecAbstract = function (R, S) {
   throw TypeError$3('RegExp#exec called on incompatible receiver');
 };
 
-var call$3 = functionCall;
+var call$3 = functionCall$1;
 
 var fixRegExpWellKnownSymbolLogic$1 = fixRegexpWellKnownSymbolLogic;
 
-var anObject$2 = anObject$b;
+var anObject$2 = anObject$c;
 
-var toLength$1 = toLength$3;
+var toLength$1 = toLength$4;
 
-var toString$3 = toString$9;
+var toString$3 = toString$a;
 
-var requireObjectCoercible$2 = requireObjectCoercible$7;
+var requireObjectCoercible$2 = requireObjectCoercible$8;
 
-var getMethod$1 = getMethod$3;
+var getMethod$1 = getMethod$4;
 
 var advanceStringIndex$1 = advanceStringIndex$2;
 
@@ -9068,11 +9303,11 @@ fixRegExpWellKnownSymbolLogic$1('match', function (MATCH, nativeMatch, maybeCall
 // a string of all valid unicode whitespaces
 var whitespaces$2 = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' + '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
-var uncurryThis$3 = functionUncurryThis;
+var uncurryThis$3 = functionUncurryThis$1;
 
-var requireObjectCoercible$1 = requireObjectCoercible$7;
+var requireObjectCoercible$1 = requireObjectCoercible$8;
 
-var toString$2 = toString$9;
+var toString$2 = toString$a;
 
 var whitespaces$1 = whitespaces$2;
 
@@ -9102,33 +9337,33 @@ var stringTrim = {
   trim: createMethod(3)
 };
 
-var DESCRIPTORS$1 = descriptors;
+var DESCRIPTORS$1 = descriptors$1;
 
-var global$6 = global$H;
+var global$6 = global$R;
 
-var uncurryThis$2 = functionUncurryThis;
+var uncurryThis$2 = functionUncurryThis$1;
 
-var isForced = isForced_1;
+var isForced = isForced_1$1;
 
-var redefine$2 = redefine$8.exports;
+var redefine$2 = redefine$9.exports;
 
-var hasOwn$2 = hasOwnProperty_1;
+var hasOwn$2 = hasOwnProperty_1$1;
 
 var inheritIfRequired = inheritIfRequired$2;
 
-var isPrototypeOf = objectIsPrototypeOf;
+var isPrototypeOf = objectIsPrototypeOf$1;
 
-var isSymbol = isSymbol$3;
+var isSymbol = isSymbol$6;
 
-var toPrimitive = toPrimitive$2;
+var toPrimitive = toPrimitive$4;
 
-var fails$4 = fails$n;
+var fails$4 = fails$p;
 
-var getOwnPropertyNames = objectGetOwnPropertyNames.f;
+var getOwnPropertyNames = objectGetOwnPropertyNames$1.f;
 
-var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
+var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor$1.f;
 
-var defineProperty$2 = objectDefineProperty.f;
+var defineProperty$2 = objectDefineProperty$1.f;
 
 var thisNumberValue = thisNumberValue$2;
 
@@ -9366,8 +9601,9 @@ var svgPresets = {
   folder: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>'
 };
 
-var Anime$1 = MotorCortex.loadPlugin(index$4);
-var Counter = MotorCortex.loadPlugin(index$2);
+var Counter = MotorCortex.loadPlugin(index$3);
+var AnimeEffect = index$2.CSSEffect;
+setCSSCore(AnimeEffect);
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
@@ -9506,7 +9742,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         var pathAnimsDur = this.introDur * 0.7;
         var trackAnimsDur = this.introDur * 0.7; // Circle Track Intro Animation
 
-        var circleTrackAnim = new Anime$1.Anime({
+        var circleTrackAnim = new CSSEffect({
           animatedAttrs: {
             "stroke-dashoffset": 0
           },
@@ -9520,7 +9756,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         });
         introGroup.addIncident(circleTrackAnim, 0); // Circle Path Intro Animation
 
-        var circlePathAnim = new Anime$1.Anime({
+        var circlePathAnim = new CSSEffect({
           animatedAttrs: {
             "stroke-dashoffset": this.pathLength - this.pathLength * this.data.value / 100
           },
@@ -9534,7 +9770,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         });
         introGroup.addIncident(circlePathAnim, Math.trunc(this.introDur * 0.3)); // Circle Track Animation Fade In Effect
 
-        var circleTrackFadeIn = new Anime$1.Anime({
+        var circleTrackFadeIn = new CSSEffect({
           animatedAttrs: {
             "stroke-width": this.boxSize * 0.05
           },
@@ -9548,7 +9784,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         });
         introGroup.addIncident(circleTrackFadeIn, 0); // Circle Path Animation Fade In Effect
 
-        var circlePathFadeIn = new Anime$1.Anime({
+        var circlePathFadeIn = new CSSEffect({
           animatedAttrs: {
             "stroke-width": this.boxSize * 0.05
           },
@@ -9562,7 +9798,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         });
         introGroup.addIncident(circlePathFadeIn, Math.trunc(this.introDur * 0.3)); // Indicator Fade In Animation
 
-        var indicatorFade = new Anime$1.Anime({
+        var indicatorFade = new CSSEffect({
           animatedAttrs: {
             opacity: 1
           },
@@ -9589,7 +9825,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         if (this.innerSVG) {
           // Gradient Background Fill-Up Intro Animation
-          var gradientBackFillBottom = new Anime$1.Anime({
+          var gradientBackFillBottom = new CSSEffect({
             animatedAttrs: {
               offset: "100%"
             },
@@ -9603,7 +9839,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
           });
           introGroup.addIncident(gradientBackFillBottom, 0); // Gradient Background Fill-Up Intro Animation
 
-          var gradientFill = new Anime$1.Anime({
+          var gradientFill = new CSSEffect({
             animatedAttrs: {
               offset: "".concat(this.data.value, "%")
             },
@@ -9616,7 +9852,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
             duration: Math.trunc(pathAnimsDur)
           });
           introGroup.addIncident(gradientFill, Math.trunc(this.introDur * 0.3));
-          var svgOpacity = new Anime$1.Anime({
+          var svgOpacity = new CSSEffect({
             animatedAttrs: {
               opacity: 1
             },
@@ -9643,7 +9879,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         var _trackAnimsDur = this.outroDur * 0.7; // Circle Track OUtro Animation
 
 
-        var _circleTrackAnim = new Anime$1.Anime({
+        var _circleTrackAnim = new CSSEffect({
           animatedAttrs: {
             "stroke-dashoffset": this.pathLength
           },
@@ -9658,7 +9894,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         outroGroup.addIncident(_circleTrackAnim, Math.trunc(this.outroDur * 0.3)); // Circle Path Outro Animation
 
-        var _circlePathAnim = new Anime$1.Anime({
+        var _circlePathAnim = new CSSEffect({
           animatedAttrs: {
             "stroke-dashoffset": this.pathLength
           },
@@ -9673,7 +9909,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         outroGroup.addIncident(_circlePathAnim, 0); // Circle Track Animation Fade Out Effect
 
-        var _circleTrackFadeIn = new Anime$1.Anime({
+        var _circleTrackFadeIn = new CSSEffect({
           animatedAttrs: {
             "stroke-width": 0
           },
@@ -9688,7 +9924,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         outroGroup.addIncident(_circleTrackFadeIn, Math.trunc(this.outroDur - _trackAnimsDur * 0.1)); // Circle Path Animation Fade Out Effect
 
-        var _circlePathFadeIn = new Anime$1.Anime({
+        var _circlePathFadeIn = new CSSEffect({
           animatedAttrs: {
             "stroke-width": 0
           },
@@ -9703,7 +9939,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         outroGroup.addIncident(_circlePathFadeIn, Math.trunc(this.outroDur * 0.7 - _trackAnimsDur * 0.1)); // Indicator Fade Out Animation
 
-        var _indicatorFade = new Anime$1.Anime({
+        var _indicatorFade = new CSSEffect({
           animatedAttrs: {
             opacity: 0
           },
@@ -9732,7 +9968,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         if (this.innerSVG) {
           // Gradient Background Empty-Out Intro Animation4
-          var _gradientBackFillBottom = new Anime$1.Anime({
+          var _gradientBackFillBottom = new CSSEffect({
             animatedAttrs: {
               offset: "".concat(0, "%")
             },
@@ -9747,7 +9983,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
           outroGroup.addIncident(_gradientBackFillBottom, Math.trunc(this.outroDur * 0.3)); // Gradient Background Fill-Up Intro Animation
 
-          var _gradientFill = new Anime$1.Anime({
+          var _gradientFill = new CSSEffect({
             animatedAttrs: {
               offset: "0%"
             },
@@ -9762,7 +9998,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
           outroGroup.addIncident(_gradientFill, 0);
 
-          var _svgOpacity = new Anime$1.Anime({
+          var _svgOpacity = new CSSEffect({
             animatedAttrs: {
               opacity: 0
             },
@@ -9782,7 +10018,7 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
       } // STATIC DURATION CONTROL
 
 
-      var staticIncident = new Anime$1.Anime({
+      var staticIncident = new CSSEffect({
         animatedAttrs: {}
       }, {
         selector: ".container-progressMeter",
@@ -9827,13 +10063,13 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
   return ProgressMeter;
 }(MotorCortex.HTMLClip);
 
-var global$5 = global$H;
+var global$5 = global$R;
 
-var fails$3 = fails$n;
+var fails$3 = fails$p;
 
-var uncurryThis$1 = functionUncurryThis;
+var uncurryThis$1 = functionUncurryThis$1;
 
-var toString$1 = toString$9;
+var toString$1 = toString$a;
 
 var trim = stringTrim.trim;
 
@@ -9855,7 +10091,7 @@ var numberParseFloat = FORCED ? function parseFloat(string) {
   return result === 0 && charAt(trimmedString, 0) == '-' ? -0 : result;
 } : n$ParseFloat;
 
-var $$1 = _export;
+var $$1 = _export$1;
 
 var $parseFloat = numberParseFloat; // `parseFloat` method
 // https://tc39.es/ecma262/#sec-parsefloat-string
@@ -9868,11 +10104,11 @@ $$1({
   parseFloat: $parseFloat
 });
 
-var wellKnownSymbol$5 = wellKnownSymbol$h;
+var wellKnownSymbol$5 = wellKnownSymbol$i;
 
 var create$1 = objectCreate;
 
-var definePropertyModule = objectDefineProperty;
+var definePropertyModule = objectDefineProperty$1;
 
 var UNSCOPABLES = wellKnownSymbol$5('unscopables');
 var ArrayPrototype = Array.prototype; // Array.prototype[@@unscopables]
@@ -9892,7 +10128,7 @@ var addToUnscopables$1 = function (key) {
 
 var iterators = {};
 
-var fails$2 = fails$n;
+var fails$2 = fails$p;
 
 var correctPrototypeGetter = !fails$2(function () {
   function F() {
@@ -9904,15 +10140,15 @@ var correctPrototypeGetter = !fails$2(function () {
   return Object.getPrototypeOf(new F()) !== F.prototype;
 });
 
-var global$4 = global$H;
+var global$4 = global$R;
 
-var hasOwn$1 = hasOwnProperty_1;
+var hasOwn$1 = hasOwnProperty_1$1;
 
-var isCallable$2 = isCallable$h;
+var isCallable$2 = isCallable$o;
 
-var toObject = toObject$4;
+var toObject = toObject$7;
 
-var sharedKey = sharedKey$3;
+var sharedKey = sharedKey$4;
 
 var CORRECT_PROTOTYPE_GETTER = correctPrototypeGetter;
 
@@ -9933,15 +10169,15 @@ var objectGetPrototypeOf = CORRECT_PROTOTYPE_GETTER ? Object$1.getPrototypeOf : 
   return object instanceof Object$1 ? ObjectPrototype : null;
 };
 
-var fails$1 = fails$n;
+var fails$1 = fails$p;
 
-var isCallable$1 = isCallable$h;
+var isCallable$1 = isCallable$o;
 
 var getPrototypeOf$1 = objectGetPrototypeOf;
 
-var redefine$1 = redefine$8.exports;
+var redefine$1 = redefine$9.exports;
 
-var wellKnownSymbol$4 = wellKnownSymbol$h;
+var wellKnownSymbol$4 = wellKnownSymbol$i;
 
 var ITERATOR$2 = wellKnownSymbol$4('iterator');
 var BUGGY_SAFARI_ITERATORS$1 = false; // `%IteratorPrototype%` object
@@ -9978,11 +10214,11 @@ var iteratorsCore = {
   BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS$1
 };
 
-var defineProperty$1 = objectDefineProperty.f;
+var defineProperty$1 = objectDefineProperty$1.f;
 
-var hasOwn = hasOwnProperty_1;
+var hasOwn = hasOwnProperty_1$1;
 
-var wellKnownSymbol$3 = wellKnownSymbol$h;
+var wellKnownSymbol$3 = wellKnownSymbol$i;
 
 var TO_STRING_TAG$1 = wellKnownSymbol$3('toStringTag');
 
@@ -10001,7 +10237,7 @@ var IteratorPrototype$1 = iteratorsCore.IteratorPrototype;
 
 var create = objectCreate;
 
-var createPropertyDescriptor = createPropertyDescriptor$4;
+var createPropertyDescriptor = createPropertyDescriptor$8;
 
 var setToStringTag$1 = setToStringTag$2;
 
@@ -10021,13 +10257,13 @@ var createIteratorConstructor$1 = function (IteratorConstructor, NAME, next, ENU
   return IteratorConstructor;
 };
 
-var $ = _export;
+var $ = _export$1;
 
-var call$2 = functionCall;
+var call$2 = functionCall$1;
 
-var FunctionName = functionName;
+var FunctionName = functionName$1;
 
-var isCallable = isCallable$h;
+var isCallable = isCallable$o;
 
 var createIteratorConstructor = createIteratorConstructor$1;
 
@@ -10037,11 +10273,11 @@ var setPrototypeOf = objectSetPrototypeOf;
 
 var setToStringTag = setToStringTag$2;
 
-var createNonEnumerableProperty$1 = createNonEnumerableProperty$8;
+var createNonEnumerableProperty$1 = createNonEnumerableProperty$9;
 
-var redefine = redefine$8.exports;
+var redefine = redefine$9.exports;
 
-var wellKnownSymbol$2 = wellKnownSymbol$h;
+var wellKnownSymbol$2 = wellKnownSymbol$i;
 
 var Iterators$1 = iterators;
 
@@ -10156,19 +10392,19 @@ var defineIterator$1 = function (Iterable, NAME, IteratorConstructor, next, DEFA
   return methods;
 };
 
-var toIndexedObject = toIndexedObject$7;
+var toIndexedObject = toIndexedObject$a;
 
 var addToUnscopables = addToUnscopables$1;
 
 var Iterators = iterators;
 
-var InternalStateModule = internalState;
+var InternalStateModule = internalState$1;
 
-var defineProperty = objectDefineProperty.f;
+var defineProperty = objectDefineProperty$1.f;
 
 var defineIterator = defineIterator$1;
 
-var DESCRIPTORS = descriptors;
+var DESCRIPTORS = descriptors$1;
 
 var ARRAY_ITERATOR = 'Array Iterator';
 var setInternalState = InternalStateModule.set;
@@ -10238,7 +10474,7 @@ if (DESCRIPTORS && values.name !== 'values') try {
   /* empty */
 }
 
-var global$3 = global$H;
+var global$3 = global$R;
 
 var DOMIterables = domIterables;
 
@@ -10246,9 +10482,9 @@ var DOMTokenListPrototype = domTokenListPrototype;
 
 var ArrayIteratorMethods = es_array_iterator;
 
-var createNonEnumerableProperty = createNonEnumerableProperty$8;
+var createNonEnumerableProperty = createNonEnumerableProperty$9;
 
-var wellKnownSymbol$1 = wellKnownSymbol$h;
+var wellKnownSymbol$1 = wellKnownSymbol$i;
 
 var ITERATOR = wellKnownSymbol$1('iterator');
 var TO_STRING_TAG = wellKnownSymbol$1('toStringTag');
@@ -10284,7 +10520,7 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 handlePrototype(DOMTokenListPrototype, 'DOMTokenList');
 
-var NATIVE_BIND = functionBindNative;
+var NATIVE_BIND = functionBindNative$1;
 
 var FunctionPrototype = Function.prototype;
 var apply$1 = FunctionPrototype.apply;
@@ -10294,11 +10530,11 @@ var functionApply = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND 
   return call$1.apply(apply$1, arguments);
 });
 
-var global$2 = global$H;
+var global$2 = global$R;
 
-var isConstructor = isConstructor$3;
+var isConstructor = isConstructor$5;
 
-var tryToString = tryToString$2;
+var tryToString = tryToString$4;
 
 var TypeError$1 = global$2.TypeError; // `Assert: IsConstructor(argument) is true`
 
@@ -10307,11 +10543,11 @@ var aConstructor$1 = function (argument) {
   throw TypeError$1(tryToString(argument) + ' is not a constructor');
 };
 
-var anObject$1 = anObject$b;
+var anObject$1 = anObject$c;
 
 var aConstructor = aConstructor$1;
 
-var wellKnownSymbol = wellKnownSymbol$h;
+var wellKnownSymbol = wellKnownSymbol$i;
 
 var SPECIES = wellKnownSymbol('species'); // `SpeciesConstructor` abstract operation
 // https://tc39.es/ecma262/#sec-speciesconstructor
@@ -10322,13 +10558,13 @@ var speciesConstructor$1 = function (O, defaultConstructor) {
   return C === undefined || (S = anObject$1(C)[SPECIES]) == undefined ? defaultConstructor : aConstructor(S);
 };
 
-var global$1 = global$H;
+var global$1 = global$R;
 
-var toAbsoluteIndex = toAbsoluteIndex$3;
+var toAbsoluteIndex = toAbsoluteIndex$5;
 
-var lengthOfArrayLike = lengthOfArrayLike$5;
+var lengthOfArrayLike = lengthOfArrayLike$8;
 
-var createProperty = createProperty$3;
+var createProperty = createProperty$5;
 
 var Array$1 = global$1.Array;
 var max = Math.max;
@@ -10347,27 +10583,27 @@ var arraySliceSimple = function (O, start, end) {
 
 var apply = functionApply;
 
-var call = functionCall;
+var call = functionCall$1;
 
-var uncurryThis = functionUncurryThis;
+var uncurryThis = functionUncurryThis$1;
 
 var fixRegExpWellKnownSymbolLogic = fixRegexpWellKnownSymbolLogic;
 
 var isRegExp = isRegexp;
 
-var anObject = anObject$b;
+var anObject = anObject$c;
 
-var requireObjectCoercible = requireObjectCoercible$7;
+var requireObjectCoercible = requireObjectCoercible$8;
 
 var speciesConstructor = speciesConstructor$1;
 
 var advanceStringIndex = advanceStringIndex$2;
 
-var toLength = toLength$3;
+var toLength = toLength$4;
 
-var toString = toString$9;
+var toString = toString$a;
 
-var getMethod = getMethod$3;
+var getMethod = getMethod$4;
 
 var arraySlice = arraySliceSimple;
 
@@ -10377,7 +10613,7 @@ var regexpExec = regexpExec$3;
 
 var stickyHelpers = regexpStickyHelpers;
 
-var fails = fails$n;
+var fails = fails$p;
 
 var UNSUPPORTED_Y = stickyHelpers.UNSUPPORTED_Y;
 var MAX_UINT32 = 0xFFFFFFFF;
@@ -11303,7 +11539,6 @@ var h = function () {
   }
 };
 
-var Anime = MotorCortex.loadPlugin(index$4);
 var SVGD = MotorCortex.loadPlugin(c$1);
 var TDCAM = MotorCortex.loadPlugin(y);
 
@@ -11317,7 +11552,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
   _createClass$3(AnimationConstructor, [{
     key: "buildStaticControl",
     value: function buildStaticControl() {
-      return new Anime.Anime({
+      return new CSSEffect({
         animatedAttrs: {}
       }, {
         selector: ".container-lineGraph",
@@ -11327,7 +11562,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
   }, {
     key: "buildBackgroundIntro",
     value: function buildBackgroundIntro() {
-      return new Anime.Anime({
+      return new CSSEffect({
         animatedAttrs: {
           height: "70%"
         },
@@ -11343,7 +11578,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
   }, {
     key: "buildBackgroundOutro",
     value: function buildBackgroundOutro() {
-      return new Anime.Anime({
+      return new CSSEffect({
         animatedAttrs: {
           height: "0%"
         },
@@ -11364,7 +11599,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
 
       for (var i in this.instance.words) {
         titleIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               top: "0px",
@@ -11398,7 +11633,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
 
       for (var i in this.instance.words) {
         titleIncidents.push({
-          incidentClass: Anime.Anime,
+          incidentClass: CSSEffect,
           attrs: {
             animatedAttrs: {
               top: "-50px",
@@ -11431,7 +11666,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
       var colorDur = colorsDur / this.instance.dataSetsNum;
       var delay = this.instance.dataSetsNum === 1 ? null : "@stagger(0, ".concat(colorsDur - colorDur, ")");
       var legendIncidents = [{
-        incidentClass: Anime.Anime,
+        incidentClass: CSSEffect,
         attrs: {
           animatedAttrs: {
             height: "".concat(this.instance.legendHeight, "%")
@@ -11446,13 +11681,13 @@ var AnimationConstructor = /*#__PURE__*/function () {
         },
         position: 0
       }, {
-        incidentClass: Anime.Anime,
+        incidentClass: CSSEffect,
         attrs: {
           animatedAttrs: {
-            opacity: "1"
+            opacity: 1
           },
           initialValues: {
-            opacity: "0"
+            opacity: 0
           }
         },
         props: {
@@ -11463,13 +11698,13 @@ var AnimationConstructor = /*#__PURE__*/function () {
         },
         position: Math.trunc(this.instance.introDur * 0.15)
       }, {
-        incidentClass: Anime.Anime,
+        incidentClass: CSSEffect,
         attrs: {
           animatedAttrs: {
-            opacity: "1"
+            opacity: 1
           },
           initialValues: {
-            opacity: "0"
+            opacity: 0
           }
         },
         props: {
@@ -11493,7 +11728,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
       var colorDur = colorsDur / this.instance.dataSetsNum;
       var delay = this.instance.dataSetsNum === 1 ? null : "@stagger(0, ".concat(colorsDur - colorDur, ", 0, linear, linear, true)");
       var legendIncidents = [{
-        incidentClass: Anime.Anime,
+        incidentClass: CSSEffect,
         attrs: {
           animatedAttrs: {
             height: "0%"
@@ -11508,13 +11743,13 @@ var AnimationConstructor = /*#__PURE__*/function () {
         },
         position: colorsDur
       }, {
-        incidentClass: Anime.Anime,
+        incidentClass: CSSEffect,
         attrs: {
           animatedAttrs: {
-            opacity: "0"
+            opacity: 1
           },
           initialValues: {
-            opacity: "1"
+            opacity: 0
           }
         },
         props: {
@@ -11525,13 +11760,13 @@ var AnimationConstructor = /*#__PURE__*/function () {
         },
         position: Math.trunc(colorsDur - this.instance.introDur * 0.15)
       }, {
-        incidentClass: Anime.Anime,
+        incidentClass: CSSEffect,
         attrs: {
           animatedAttrs: {
-            opacity: "0"
+            opacity: 1
           },
           initialValues: {
-            opacity: "1"
+            opacity: 0
           }
         },
         props: {
@@ -11553,7 +11788,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
     value: function buildIntroLabels() {
       var xLabelsAnim = new MotorCortex.Group(); // Label Background intro animation
 
-      xLabelsAnim.addIncident(new Anime.Anime({
+      xLabelsAnim.addIncident(new CSSEffect({
         animatedAttrs: {
           width: "100%"
         },
@@ -11575,7 +11810,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
 
         for (var z in this.instance.data[i].name) {
           incidents.push({
-            incidentClass: Anime.Anime,
+            incidentClass: CSSEffect,
             attrs: {
               animatedAttrs: {
                 opacity: 1
@@ -11610,7 +11845,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
       var xLabelsAnim = new MotorCortex.Group();
       var labelsDur = this.instance.outroDur * 0.55; // Label Background outro animation
 
-      xLabelsAnim.addIncident(new Anime.Anime({
+      xLabelsAnim.addIncident(new CSSEffect({
         animatedAttrs: {
           width: "0%"
         },
@@ -11632,7 +11867,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
 
         for (var z in this.instance.data[i].name) {
           incidents.push({
-            incidentClass: Anime.Anime,
+            incidentClass: CSSEffect,
             attrs: {
               animatedAttrs: {
                 opacity: 0
@@ -11679,7 +11914,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
           });
           var blockCombo = new MotorCortex.Combo({
             incidents: [{
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   opacity: 1
@@ -11707,7 +11942,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
 
         var _blockCombo = new MotorCortex.Combo({
           incidents: [{
-            incidentClass: Anime.Anime,
+            incidentClass: CSSEffect,
             attrs: {
               animatedAttrs: {
                 width: "100%"
@@ -11752,7 +11987,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
           });
           var blockCombo = new MotorCortex.Combo({
             incidents: [{
-              incidentClass: Anime.Anime,
+              incidentClass: CSSEffect,
               attrs: {
                 animatedAttrs: {
                   opacity: 0
@@ -11780,7 +12015,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
 
         var _blockCombo2 = new MotorCortex.Combo({
           incidents: [{
-            incidentClass: Anime.Anime,
+            incidentClass: CSSEffect,
             attrs: {
               animatedAttrs: {
                 width: "0%"
@@ -11836,14 +12071,14 @@ var AnimationConstructor = /*#__PURE__*/function () {
           } // Points Intro Animation
 
 
-          var pointAnimation = new Anime.Anime({
+          var pointAnimation = new CSSEffect({
             animatedAttrs: {
               opacity: 1,
-              r: this.instance.r
+              r: this.instance.r + ""
             },
             initialValues: {
               opacity: 0,
-              r: 0
+              r: "0"
             }
           }, {
             selector: "#point-".concat(l, "-").concat(i),
@@ -11858,7 +12093,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
           targetWidth = targetWidth < 6 ? 6 : targetWidth;
           var targetLeft = this.instance.findPointX(i) - targetWidth * this.instance.linesWidth / 100 * 0.5;
           var leftOffset = targetLeft + this.instance.linesWidth * (targetWidth / 100) / 2;
-          var gLabelAnimation = new Anime.Anime({
+          var gLabelAnimation = new CSSEffect({
             animatedAttrs: {
               opacity: 0.6,
               width: "".concat(targetWidth, "%"),
@@ -11989,14 +12224,14 @@ var AnimationConstructor = /*#__PURE__*/function () {
           } // Points outro Animation
 
 
-          var pointAnimation = new Anime.Anime({
+          var pointAnimation = new CSSEffect({
             animatedAttrs: {
               opacity: 0,
-              r: 0
+              r: "0"
             },
             initialValues: {
               opacity: 1,
-              r: this.instance.r
+              r: this.instance.r + ""
             }
           }, {
             selector: "#point-".concat(l, "-").concat(i),
@@ -12011,7 +12246,7 @@ var AnimationConstructor = /*#__PURE__*/function () {
           targetWidth = targetWidth < 6 ? 6 : targetWidth;
           var targetLeft = this.instance.findPointX(i) - targetWidth * this.instance.linesWidth / 100 * 0.5;
           var leftOffset = targetLeft + this.instance.linesWidth * (targetWidth / 100) / 2;
-          var gLabelAnimation = new Anime.Anime({
+          var gLabelAnimation = new CSSEffect({
             animatedAttrs: {
               opacity: 0,
               width: "0%",
@@ -12576,7 +12811,6 @@ function generateColor(index) {
   return colorPalette.dataColors[index];
 }
 
-var MCAnime = MotorCortex.loadPlugin(index$4);
 /**
  * The purpose of extending the HTMLClip is to full, parametric
  * HTMLClips with both context and Incidents.
@@ -12664,7 +12898,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
 
         if (this.attrs.data.title) {
           _toConsumableArray(this.attrs.data.title).forEach(function (char, index) {
-            var titleIn = new MCAnime.Anime({
+            var titleIn = new CSSEffect({
               animatedAttrs: {
                 right: "0%",
                 opacity: 1
@@ -12684,7 +12918,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
           });
         }
 
-        var rotateIn = new MCAnime.Anime({
+        var rotateIn = new CSSEffect({
           animatedAttrs: {
             "background-image": "conic-gradient(".concat(this.createRadiusString(), ")")
           },
@@ -12697,7 +12931,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
           easing: "easeInOutCubic"
         });
         this.addIncident(rotateIn, titleInDuration - this.intro * 0.2);
-        var legendIn = new MCAnime.Anime({
+        var legendIn = new CSSEffect({
           animatedAttrs: {
             width: "75%",
             "min-width": "50%",
@@ -12716,7 +12950,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         this.addIncident(legendIn, titleInDuration - this.intro * 0.2);
       }
 
-      var staticPie = new MCAnime.Anime({
+      var staticPie = new CSSEffect({
         animatedAttrs: {}
       }, {
         duration: this.static,
@@ -12728,7 +12962,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         var _this$attrs$timings2;
 
         var outroDuration = Math.round((_this$attrs$timings2 = this.attrs.timings) === null || _this$attrs$timings2 === void 0 ? void 0 : _this$attrs$timings2.outro);
-        var titleOut = new MCAnime.Anime({
+        var titleOut = new CSSEffect({
           animatedAttrs: {
             top: "-10%"
           },
@@ -12741,7 +12975,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
           easing: "easeInQuart"
         });
         this.addIncident(titleOut, this.intro + this.static + this.outro * 0.2);
-        var legendOut = new MCAnime.Anime({
+        var legendOut = new CSSEffect({
           animatedAttrs: {
             width: "0%",
             "min-width": "0%",
@@ -12753,7 +12987,7 @@ var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
           easing: "easeInOutCirc"
         });
         this.addIncident(legendOut, this.intro + this.static);
-        var pieOut = new MCAnime.Anime({
+        var pieOut = new CSSEffect({
           animatedAttrs: {
             "background-image": "conic-gradient(".concat(this.createNullRadiusString(), ")")
           },
