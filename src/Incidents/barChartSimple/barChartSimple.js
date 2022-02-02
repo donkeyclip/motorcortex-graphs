@@ -58,15 +58,12 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     // X-axis labels html generation with data parameter as reference
     const xLabels = [];
     for (const i in this.data) {
-      const label = [];
-
       if (this.data[i].name.length > 4) {
         this.data[i].name = this.data[i].name.slice(0, 4);
       }
-
       xLabels.push(
         <div class="label-container" id={"label-" + i}>
-          {label}
+          {this.data[i].name}
         </div>
       );
     }
