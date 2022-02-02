@@ -4652,8 +4652,6 @@ var BarChartSimple = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
       var xLabels = [];
 
       for (var _i3 in this.data) {
-        var label = [];
-
         if (this.data[_i3].name.length > 4) {
           this.data[_i3].name = this.data[_i3].name.slice(0, 4);
         }
@@ -4661,7 +4659,7 @@ var BarChartSimple = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         xLabels.push(MotorCortex.utils.createDOMElement("div", {
           class: "label-container",
           id: "label-" + _i3
-        }, label));
+        }, this.data[_i3].name));
       } //  Bars html generation with data parameter as reference
 
 
