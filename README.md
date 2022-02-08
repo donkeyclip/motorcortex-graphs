@@ -187,7 +187,7 @@ The `font` object is an optional parameter that contains three (3) values used f
 To create a Line Graph, the necessary attribute parameter is the data object. The remaining parameters implement customization of the graph and are all optional.
 
 ```javascript
-const newGraph = new MCGraphs.BarChartSimple(
+const newGraph = new MCGraphs.LineGraph(
   {
     data: lineGraphData,
     trace: {
