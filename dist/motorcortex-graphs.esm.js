@@ -578,10 +578,10 @@ var store$6 = sharedStore$1;
 (shared$8.exports = function (key, value) {
   return store$6[key] || (store$6[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.21.0',
+  version: '3.21.1',
   mode: 'global',
   copyright: '© 2014-2022 Denis Pushkarev (zloirock.ru)',
-  license: 'https://github.com/zloirock/core-js/blob/v3.21.0/LICENSE',
+  license: 'https://github.com/zloirock/core-js/blob/v3.21.1/LICENSE',
   source: 'https://github.com/zloirock/core-js'
 });
 
@@ -5499,9 +5499,9 @@ var fails$c = fails$p;
 var arrayMethodIsStrict$3 = function (METHOD_NAME, argument) {
   var method = [][METHOD_NAME];
   return !!method && fails$c(function () {
-    // eslint-disable-next-line no-useless-call,no-throw-literal -- required for testing
+    // eslint-disable-next-line no-useless-call -- required for testing
     method.call(null, argument || function () {
-      throw 1;
+      return 1;
     }, 1);
   });
 };
