@@ -1,10 +1,9 @@
-import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
+import { HTMLClip, CSSEffect, loadPlugin } from "@donkeyclip/motorcortex";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
 import buildCSS from "./progressBarStyleSheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
 
-const Counter = MotorCortex.loadPlugin(CounterPlugin);
-
+const Counter = loadPlugin(CounterPlugin);
 
 /**
  * The purpose of extending the HTMLClip is to full, parametric
@@ -17,7 +16,7 @@ const Counter = MotorCortex.loadPlugin(CounterPlugin);
  * The buildTree method allows developers to define Incidents (of any plugin)
  * dynamically and position them on the Clip.
  */
-export default class ProgressBar extends MotorCortex.HTMLClip {
+export default class ProgressBar extends HTMLClip {
   get html() {
     const list = this.attrs.data.map((elem, index) => {
       return (

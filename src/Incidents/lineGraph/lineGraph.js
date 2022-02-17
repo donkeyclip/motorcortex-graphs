@@ -4,12 +4,12 @@ import helpers from "../../shared/helpers";
 import buildCSS from "./lineGraphStylesheet";
 import config from "../../incident_config";
 import AnimationConstructor from "./AnimationConstructor";
-import MotorCortex from "@donkeyclip/motorcortex";
+import { HTMLClip, Group } from "@donkeyclip/motorcortex";
 
 /**
  * LINE GRAPH: MotorCortex Implementation
  */
-export default class LineGraph extends MotorCortex.HTMLClip {
+export default class LineGraph extends HTMLClip {
   // Building HTML tree for incident
   get html() {
     this.buildVars();
@@ -237,7 +237,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
 
     // INTRO CONTROL
     if (this.attrs.timings.intro) {
-      let introGroup = new MotorCortex.Group();
+      let introGroup = new Group();
 
       // Background Intro Animation
       introGroup.addIncident(
@@ -285,7 +285,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
 
     // OUTRO CONTROL
     if (this.attrs.timings.outro) {
-      let outroGroup = new MotorCortex.Group();
+      let outroGroup = new Group();
 
       // Background Outro Animation
       outroGroup.addIncident(

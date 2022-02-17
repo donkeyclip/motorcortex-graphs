@@ -1,8 +1,7 @@
-import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
+import { HTMLClip, CSSEffect } from "@donkeyclip/motorcortex";
 import * as DefaultStyle from "../../shared/colorPalette";
 import buildCSS from "./pieChartStylesheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
-
 
 /**
  * The purpose of extending the HTMLClip is to full, parametric
@@ -15,7 +14,7 @@ import { fadeOutOpacityControl } from "../../shared/opacityControl";
  * The buildTree method allows developers to define Incidents (of any plugin)
  * dynamically and position them on the Clip.
  */
-export default class PieChart extends MotorCortex.HTMLClip {
+export default class PieChart extends HTMLClip {
   get html() {
     this.data = this.attrs.data.data;
 
