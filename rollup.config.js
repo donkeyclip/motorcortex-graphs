@@ -2,6 +2,7 @@ import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
 import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 
@@ -13,7 +14,19 @@ export default [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" },
     ],
-    plugins: [babel(), resolve(), commonjs(), json()],
+    plugins: [
+      babel(),
+      resolve(),
+      replace({
+        values: {
+          "process.env.NODE_ENV": '"production"',
+          'process.env["NODE_ENV"]': '"production"',
+          "process.env['NODE_ENV']": '"production"',
+        },
+      }),
+      commonjs(),
+      json(),
+    ],
   },
   {
     input: "src/index.js",
@@ -32,6 +45,13 @@ export default [
       babel(),
       json(),
       resolve({ mainFields: ["module", "main", "browser"] }),
+      replace({
+        values: {
+          "process.env.NODE_ENV": '"production"',
+          'process.env["NODE_ENV"]': '"production"',
+          "process.env['NODE_ENV']": '"production"',
+        },
+      }),
       commonjs(),
       terser(),
     ],
