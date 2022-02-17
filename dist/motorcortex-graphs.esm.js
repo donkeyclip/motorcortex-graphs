@@ -426,9 +426,9 @@ var global$L = global$R;
 
 var userAgent$1 = engineUserAgent$1;
 
-var process$2 = global$L.process;
+var process$1 = global$L.process;
 var Deno$1 = global$L.Deno;
-var versions$1 = process$2 && process$2.versions || Deno$1 && Deno$1.version;
+var versions$1 = process$1 && process$1.versions || Deno$1 && Deno$1.version;
 var v8$1 = versions$1 && versions$1.v8;
 var match$1, version$4;
 
@@ -2152,26 +2152,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
 
-var isProduction = process.env.NODE_ENV === 'production';
-
-function warning(condition, message) {
-  if (!isProduction) {
-    if (condition) {
-      return;
-    }
-
-    var text = "Warning: " + message;
-
-    if (typeof console !== 'undefined') {
-      console.warn(text);
-    }
-
-    try {
-      throw Error(text);
-    } catch (x) {}
-  }
-}
-
 function _defineProperties$2(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -2255,9 +2235,7 @@ function createRule(name, decl, options) {
   var rule = jss.plugins.onCreateRule(name, declCopy, options);
   if (rule) return rule; // It is an at-rule and it has no instance.
 
-  if (name[0] === '@') {
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Unknown rule " + name) : void 0;
-  }
+  if (name[0] === '@') ;
 
   return null;
 }
@@ -2461,9 +2439,7 @@ var BaseStyleRule = /*#__PURE__*/function () {
 
     var sheet = this.options.sheet;
 
-    if (sheet && sheet.attached) {
-      process.env.NODE_ENV !== "production" ? warning(false, '[JSS] Rule is not linked. Missing sheet option "link: true".') : void 0;
-    }
+    if (sheet && sheet.attached) ;
 
     return this;
   };
@@ -2704,7 +2680,6 @@ var KeyframesRule = /*#__PURE__*/function () {
       this.name = nameMatch[1];
     } else {
       this.name = 'noname';
-      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Bad keyframes name " + key) : void 0;
     }
 
     this.key = this.type + "-" + this.name;
@@ -2764,8 +2739,6 @@ var findReferencedKeyframe = function findReferencedKeyframe(val, keyframes) {
       if (name in keyframes) {
         return keyframes[name];
       }
-
-      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Referenced keyframes rule \"" + name + "\" is not defined.") : void 0;
       return match;
     });
   }
@@ -3578,8 +3551,6 @@ var PluginsRegistry = /*#__PURE__*/function () {
       for (var name in plugin) {
         if (name in registry) {
           registry[name].push(plugin[name]);
-        } else {
-          process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Unknown hook \"" + name + "\".") : void 0;
         }
       }
 
@@ -3718,7 +3689,6 @@ if (globalThis$1[ns] == null) globalThis$1[ns] = 0; // Bundle may contain multip
 // the module.
 
 var moduleId = globalThis$1[ns]++;
-var maxRules = 1e10;
 /**
  * Returns a function which generates unique class names based on counters.
  * When new generator function is created, rule counter is reseted.
@@ -3734,10 +3704,6 @@ var createGenerateId = function createGenerateId(options) {
 
   var generateId = function generateId(rule, sheet) {
     ruleCounter += 1;
-
-    if (ruleCounter > maxRules) {
-      process.env.NODE_ENV !== "production" ? warning(false, "[JSS] You might have a memory leak. Rule counter is at " + ruleCounter + ".") : void 0;
-    }
 
     var jssId = '';
     var prefix = '';
@@ -3837,7 +3803,6 @@ var removeProperty = function removeProperty(cssRule, prop) {
       cssRule.style.removeProperty(prop);
     }
   } catch (err) {
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] DOMException \"" + err.message + "\" was thrown. Tried to remove property \"" + prop + "\".") : void 0;
   }
 };
 /**
@@ -3951,10 +3916,6 @@ function findPrevNode(options) {
         node: comment.nextSibling
       };
     } // If user specifies an insertion point and it can't be found in the document -
-    // bad specificity issues may appear.
-
-
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] Insertion point \"" + insertionPoint + "\" not found.") : void 0;
   }
 
   return false;
@@ -3977,7 +3938,7 @@ function insertStyle(style, options) {
   if (insertionPoint && typeof insertionPoint.nodeType === 'number') {
     var insertionPointElement = insertionPoint;
     var parentNode = insertionPointElement.parentNode;
-    if (parentNode) parentNode.insertBefore(style, insertionPointElement.nextSibling);else process.env.NODE_ENV !== "production" ? warning(false, '[JSS] Insertion point is not in the DOM.') : void 0;
+    if (parentNode) parentNode.insertBefore(style, insertionPointElement.nextSibling);
     return;
   }
 
@@ -4002,7 +3963,6 @@ var _insertRule = function insertRule(container, rule, index) {
       container.appendRule(rule);
     }
   } catch (err) {
-    process.env.NODE_ENV !== "production" ? warning(false, "[JSS] " + err.message) : void 0;
     return false;
   }
 
@@ -7307,9 +7267,9 @@ var getBuiltIn$3 = getBuiltIn$4;
 var engineUserAgent = getBuiltIn$3('navigator', 'userAgent') || '';
 var global$k = global$o;
 var userAgent = engineUserAgent;
-var process$1 = global$k.process;
+var process = global$k.process;
 var Deno = global$k.Deno;
-var versions = process$1 && process$1.versions || Deno && Deno.version;
+var versions = process && process.versions || Deno && Deno.version;
 var v8 = versions && versions.v8;
 var match, version$1;
 
