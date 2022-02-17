@@ -1,5 +1,14 @@
 # Changelog
 
+### [1.7.3](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.2...v1.7.3) (2022-02-17)
+
+
+### Bug Fixes
+
+* drop JSS's process.env.NODE_ENV calls so it doesn't break in the browser ([90981ad](https://www.github.com/donkeyclip/motorcortex-graphs/commit/90981adf34fe2cae4f3b9e52624d3b1ebe837703))
+* fix barchart x-axis labels ([ec39a3c](https://www.github.com/donkeyclip/motorcortex-graphs/commit/ec39a3c9771814269c2346839384604697b89c7e))
+* use anime plugin as cssLayer ([40e3e26](https://www.github.com/donkeyclip/motorcortex-graphs/commit/40e3e2614d50b4debfa69c5685eaa584fc703888))
+
 ### [1.7.2](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.1...v1.7.2) (2021-12-06)
 
 
