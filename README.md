@@ -178,8 +178,8 @@ The `font` object is an optional parameter that contains three (3) values used f
 
 | Name       | Description           | Default                                                           |     Value |
 | ---------- | :-------------------- | :---------------------------------------------------------------- | --------: |
-| url        | description           | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
-| fontFamily | description           | Righteous, cursive                                              |    string |
+| url        | A url pointing to a google font          | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
+| fontFamily | The font family to be used           | Righteous, cursive                                              |    string |
 | size       | The desired font size | 1.7rem                                                          | px/rem/em |
 
 ## LineGraph
@@ -187,7 +187,7 @@ The `font` object is an optional parameter that contains three (3) values used f
 To create a Line Graph, the necessary attribute parameter is the data object. The remaining parameters implement customization of the graph and are all optional.
 
 ```javascript
-const newGraph = new MCGraphs.BarChartSimple(
+const newGraph = new MCGraphs.LineGraph(
   {
     data: lineGraphData,
     trace: {
@@ -396,8 +396,8 @@ The `font` object is an optional parameter that contains three (3) values used f
 
 | Name       | Description           | Default                                                           |     Value |
 | ---------- | :-------------------- | :---------------------------------------------------------------- | --------: |
-| url        | description           | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
-| fontFamily | description           | Righteous, cursive                                              |    string |
+| url        | A url pointing to a google font           | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
+| fontFamily |The font family to be used           | Righteous, cursive                                              |    string |
 | size       | The desired font size | 1.7rem                                                          | px/rem/em |
 
 ## PieChart
