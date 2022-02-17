@@ -1,7 +1,13 @@
-import MotorCortex,{CSSEffect,setCSSCore} from "@donkeyclip/motorcortex";
+import {
+  loadPlugin,
+  CSSEffect,
+  setCSSCore,
+  HTMLClip,
+  Group,
+} from "@donkeyclip/motorcortex";
 import AnimeDefinition from "@donkeyclip/motorcortex-anime";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
-const Counter = MotorCortex.loadPlugin(CounterPlugin);
+const Counter = loadPlugin(CounterPlugin);
 const AnimeEffect = AnimeDefinition.CSSEffect;
 setCSSCore(AnimeEffect);
 
@@ -15,7 +21,7 @@ import { svgPresets } from "../../shared/presetsExports";
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
-export default class ProgressMeter extends MotorCortex.HTMLClip {
+export default class ProgressMeter extends HTMLClip {
   // Building HTML tree for incident
   get html() {
     this.buildVars();
@@ -166,7 +172,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
     // INTRO CONTROL
     if (this.attrs.timings.intro) {
-      const introGroup = new MotorCortex.Group();
+      const introGroup = new Group();
 
       const pathAnimsDur = this.introDur * 0.7;
       const trackAnimsDur = this.introDur * 0.7;
@@ -336,7 +342,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
     // OUTRO CONTROL
     if (this.attrs.timings.outro) {
-      const outroGroup = new MotorCortex.Group();
+      const outroGroup = new Group();
 
       const pathAnimsDur = this.outroDur * 0.7;
       const trackAnimsDur = this.outroDur * 0.7;

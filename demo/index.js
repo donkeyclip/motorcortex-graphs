@@ -1,4 +1,4 @@
-import MotorCortex from "@donkeyclip/motorcortex";
+import { loadPlugin, HTMLClip } from "@donkeyclip/motorcortex";
 import Player from "@donkeyclip/motorcortex-player";
 import MotorCortexGraph from "../dist/motorcortex-graphs.esm";
 import barChartData from "./data/barChartData.json";
@@ -7,9 +7,9 @@ import pieChartData from "./data/pieChartData.json";
 import progressBarData from "./data/progressBarData.json";
 import progressMeterData from "./data/progressMeterData.json";
 
-const MCGraphs = MotorCortex.loadPlugin(MotorCortexGraph);
+const MCGraphs = loadPlugin(MotorCortexGraph);
 
-const clip = new MotorCortex.HTMLClip({
+const clip = new HTMLClip({
   html: `
     <div class="container">
         <div id="htmlclip"></div>

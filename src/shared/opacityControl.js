@@ -1,5 +1,4 @@
-import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
-
+import { CSSEffect } from "@donkeyclip/motorcortex";
 
 // Static control
 // Making the contents of this animation invisible before timestamp:0

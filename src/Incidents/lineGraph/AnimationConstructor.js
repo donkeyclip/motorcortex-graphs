@@ -1,8 +1,8 @@
-import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
+import { CSSEffect, loadPlugin, Combo, Group } from "@donkeyclip/motorcortex";
 import SVGDDef from "@donkeyclip/motorcortex-svgdraw";
 import TDCAMDef from "@donkeyclip/motorcortex-2dcam";
-const SVGD = MotorCortex.loadPlugin(SVGDDef);
-const TDCAM = MotorCortex.loadPlugin(TDCAMDef);
+const SVGD = loadPlugin(SVGDDef);
+const TDCAM = loadPlugin(TDCAMDef);
 import config from "../../incident_config";
 
 export default class AnimationConstructor {
@@ -81,7 +81,7 @@ export default class AnimationConstructor {
       });
     }
 
-    return new MotorCortex.Combo(
+    return new Combo(
       {
         incidents: titleIncidents,
       },
@@ -118,7 +118,7 @@ export default class AnimationConstructor {
         ),
       });
     }
-    return new MotorCortex.Combo(
+    return new Combo(
       {
         incidents: titleIncidents,
       },
@@ -190,7 +190,7 @@ export default class AnimationConstructor {
       },
     ];
 
-    return new MotorCortex.Combo(
+    return new Combo(
       {
         incidents: legendIncidents,
       },
@@ -227,7 +227,7 @@ export default class AnimationConstructor {
       {
         incidentClass: CSSEffect,
         attrs: {
-         animatedAttrs: {
+          animatedAttrs: {
             opacity: 1,
           },
           initialValues: {
@@ -245,7 +245,7 @@ export default class AnimationConstructor {
       {
         incidentClass: CSSEffect,
         attrs: {
-         animatedAttrs: {
+          animatedAttrs: {
             opacity: 1,
           },
           initialValues: {
@@ -262,7 +262,7 @@ export default class AnimationConstructor {
       },
     ];
 
-    return new MotorCortex.Combo(
+    return new Combo(
       {
         incidents: legendIncidents,
       },
@@ -273,7 +273,7 @@ export default class AnimationConstructor {
   }
 
   buildIntroLabels() {
-    const xLabelsAnim = new MotorCortex.Group();
+    const xLabelsAnim = new Group();
 
     // Label Background intro animation
     xLabelsAnim.addIncident(
@@ -322,7 +322,7 @@ export default class AnimationConstructor {
         remainingDur = remainingDur / 2;
       }
 
-      const datumCombo = new MotorCortex.Combo(
+      const datumCombo = new Combo(
         {
           incidents: incidents,
         },
@@ -344,7 +344,7 @@ export default class AnimationConstructor {
   }
 
   buildOutroLabels() {
-    const xLabelsAnim = new MotorCortex.Group();
+    const xLabelsAnim = new Group();
     const labelsDur = this.instance.outroDur * 0.55;
 
     // Label Background outro animation
@@ -394,7 +394,7 @@ export default class AnimationConstructor {
         remainingDur = remainingDur / 2;
       }
 
-      const datumCombo = new MotorCortex.Combo(
+      const datumCombo = new Combo(
         {
           incidents: incidents,
         },
@@ -412,7 +412,7 @@ export default class AnimationConstructor {
   }
 
   buildIntroStele() {
-    const stelesIntro = new MotorCortex.Group();
+    const stelesIntro = new Group();
     const stelesFullDur = this.instance.introDur * 0.3;
     const steleOverlapIndex = 5;
     const blockOverlapIndex = 3;
@@ -424,10 +424,10 @@ export default class AnimationConstructor {
 
     if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
-        const steleGroup = new MotorCortex.Group({
+        const steleGroup = new Group({
           selector: `#stele-${i}`,
         });
-        const blockCombo = new MotorCortex.Combo(
+        const blockCombo = new Combo(
           {
             incidents: [
               {
@@ -458,10 +458,10 @@ export default class AnimationConstructor {
         stelesIntro.addIncident(steleGroup, Math.trunc(i * steleDelay));
       }
     } else if (this.instance.grid === "lines") {
-      const steleGroup = new MotorCortex.Group({
+      const steleGroup = new Group({
         selector: `#stele-${0}`,
       });
-      const blockCombo = new MotorCortex.Combo(
+      const blockCombo = new Combo(
         {
           incidents: [
             {
@@ -496,7 +496,7 @@ export default class AnimationConstructor {
   }
 
   buildOutroStele() {
-    const stelesOutro = new MotorCortex.Group();
+    const stelesOutro = new Group();
     const stelesFullDur = this.instance.outroDur * 0.3;
     const steleOverlapIndex = 5;
     const blockOverlapIndex = 3;
@@ -508,10 +508,10 @@ export default class AnimationConstructor {
 
     if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
-        const steleGroup = new MotorCortex.Group({
+        const steleGroup = new Group({
           selector: `#stele-${i}`,
         });
-        const blockCombo = new MotorCortex.Combo(
+        const blockCombo = new Combo(
           {
             incidents: [
               {
@@ -545,10 +545,10 @@ export default class AnimationConstructor {
         );
       }
     } else if (this.instance.grid === "lines") {
-      const steleGroup = new MotorCortex.Group({
+      const steleGroup = new Group({
         selector: `#stele-${0}`,
       });
-      const blockCombo = new MotorCortex.Combo(
+      const blockCombo = new Combo(
         {
           incidents: [
             {
@@ -591,8 +591,8 @@ export default class AnimationConstructor {
     const pointDur = segmentDur * 0.35;
     const pathDur = segmentDur * 0.8;
 
-    const pathAnimGroup = new MotorCortex.Group();
-    const pointAnimGroup = new MotorCortex.Group();
+    const pathAnimGroup = new Group();
+    const pointAnimGroup = new Group();
     for (let l = 0; l < this.instance.dataSetsNum; l++) {
       for (let i = 0; i < this.instance.data.length; i++) {
         // Path Intro Animation
@@ -623,7 +623,7 @@ export default class AnimationConstructor {
           {
             animatedAttrs: {
               opacity: 1,
-              r: this.instance.r+"",
+              r: this.instance.r + "",
             },
             initialValues: {
               opacity: 0,
@@ -797,10 +797,10 @@ export default class AnimationConstructor {
     const pathDur = segmentDur * 0.8;
     const zoomOffset = this.instance.trace ? 1 : 0;
 
-    const pathAnimGroup = new MotorCortex.Group();
-    const pointAnimGroup = new MotorCortex.Group();
+    const pathAnimGroup = new Group();
+    const pointAnimGroup = new Group();
     for (let l = 0; l < this.instance.dataSetsNum; l++) {
-      const gLabelGroup = new MotorCortex.Group();
+      const gLabelGroup = new Group();
       for (let i = 0; i < this.instance.data.length; i++) {
         // Path outro Animation
         if (i !== this.instance.data.length - 1) {
@@ -837,7 +837,7 @@ export default class AnimationConstructor {
             },
             initialValues: {
               opacity: 1,
-              r: this.instance.r+"",
+              r: this.instance.r + "",
             },
           },
           {

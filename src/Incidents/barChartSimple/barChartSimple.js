@@ -1,4 +1,4 @@
-import MotorCortex,{CSSEffect } from "@donkeyclip/motorcortex";
+import { CSSEffect, HTMLClip, Group, Combo } from "@donkeyclip/motorcortex";
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
 import buildCSS from "./barChartStylesheet";
@@ -6,7 +6,7 @@ import buildCSS from "./barChartStylesheet";
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
-export default class BarChartSimple extends MotorCortex.HTMLClip {
+export default class BarChartSimple extends HTMLClip {
   // Building HTML tree for incident
   get html() {
     this.buildVars();
@@ -138,10 +138,10 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     // INTRO CONTROL
     if (this.attrs.timings.intro) {
       const textAnimDur = this.introDur * 0.75;
-      const introGroup = new MotorCortex.Group();
+      const introGroup = new Group();
 
       // Axis Intro Control
-      const axisCombo = new MotorCortex.Combo(
+      const axisCombo = new Combo(
         {
           incidents: [
             {
@@ -205,7 +205,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(gridLinesAnim, Math.trunc(this.introDur * 0.2));
 
       // Title Bar Intro Control
-      const titlesAnim = new MotorCortex.Group();
+      const titlesAnim = new Group();
       titlesAnim.addIncident(
         new CSSEffect(
           {
@@ -252,7 +252,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         });
       }
 
-      const titleCombo = new MotorCortex.Combo(
+      const titleCombo = new Combo(
         {
           incidents: titleIncidents,
         },
@@ -288,7 +288,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         });
       }
 
-      const subtitleCombo = new MotorCortex.Combo(
+      const subtitleCombo = new Combo(
         {
           incidents: subIncidents,
         },
@@ -300,7 +300,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(titlesAnim, Math.trunc(this.introDur * 0.05));
 
       // Labels (xAxis) Intro Control
-      const xLabelsAnim = new MotorCortex.Group();
+      const xLabelsAnim = new Group();
       xLabelsAnim.addIncident(
         new CSSEffect(
           {
@@ -349,7 +349,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           });
         }
 
-        const datumCombo = new MotorCortex.Combo(
+        const datumCombo = new Combo(
           {
             incidents: incidents,
           },
@@ -365,7 +365,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(xLabelsAnim, Math.trunc(this.introDur * 0.05));
 
       // Bar Intro Control
-      const barAnimation = new MotorCortex.Combo(
+      const barAnimation = new Combo(
         {
           incidents: [
             {
@@ -399,10 +399,10 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     // OUTRO CONTROL
     if (this.attrs.timings.outro) {
       const textAnimDur = this.outroDur * 0.75;
-      const outroGroup = new MotorCortex.Group();
+      const outroGroup = new Group();
 
       // Axis Outro Control
-      const axisCombooutro = new MotorCortex.Combo(
+      const axisCombooutro = new Combo(
         {
           incidents: [
             {
@@ -466,7 +466,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       outroGroup.addIncident(gridLinesoutro, Math.trunc(this.outroDur * 0.2));
 
       // Title Bar Outro Control
-      const titlesoutro = new MotorCortex.Group();
+      const titlesoutro = new Group();
       titlesoutro.addIncident(
         new CSSEffect(
           {
@@ -511,7 +511,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           position: Math.trunc((letterDur * (this.title.length - i - 1)) / 2),
         });
       }
-      const titleCombo = new MotorCortex.Combo(
+      const titleCombo = new Combo(
         {
           incidents: titleIncidents,
         },
@@ -549,7 +549,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         });
       }
 
-      const subtitleCombo = new MotorCortex.Combo(
+      const subtitleCombo = new Combo(
         {
           incidents: subIncidents,
         },
@@ -561,7 +561,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       outroGroup.addIncident(titlesoutro, Math.trunc(this.outroDur * 0.05));
 
       // Labels (xAxis) Outro Control
-      const xLabelsoutro = new MotorCortex.Group();
+      const xLabelsoutro = new Group();
       xLabelsoutro.addIncident(
         new CSSEffect(
           {
@@ -610,7 +610,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           });
         }
 
-        const datumCombo = new MotorCortex.Combo(
+        const datumCombo = new Combo(
           {
             incidents: incidents,
           },
@@ -646,7 +646,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           position: Math.trunc((subLetterDur * (this.data.length - i - 1)) / 2),
         });
       }
-      const barAnimationoutro = new MotorCortex.Combo(
+      const barAnimationoutro = new Combo(
         {
           incidents: barIncidents,
         },
