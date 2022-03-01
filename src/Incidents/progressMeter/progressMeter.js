@@ -108,6 +108,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
             class="meter-track meter-general"
             cx={`${this.boxSize * 0.5}`}
             cy={`${this.boxSize * 0.5}`}
+            r= {this.boxSize * 0.46}
             pathLength={this.pathLength}
           ></circle>
           <circle
@@ -115,6 +116,7 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
             cx={`${this.boxSize * 0.5}`}
             cy={`${this.boxSize * 0.5}`}
             pathLength={this.pathLength}
+            r= {this.boxSize * 0.46}
           ></circle>
         </svg>
         {innerImage}

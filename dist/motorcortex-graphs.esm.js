@@ -9469,7 +9469,6 @@ function buildCSS$2(progressMeter) {
     },
     "meter-general": {
       "stroke-width": progressMeter.boxSize * 0.06,
-      r: progressMeter.boxSize * 0.46,
       "stroke-linecap": "round",
       "fill-opacity": 0,
       "transform-origin": "center",
@@ -9652,12 +9651,14 @@ var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
         class: "meter-track meter-general",
         cx: "".concat(this.boxSize * 0.5),
         cy: "".concat(this.boxSize * 0.5),
+        r: this.boxSize * 0.46,
         pathLength: this.pathLength
       }), MotorCortex.utils.createDOMElement("circle", {
         class: "meter-path meter-general",
         cx: "".concat(this.boxSize * 0.5),
         cy: "".concat(this.boxSize * 0.5),
-        pathLength: this.pathLength
+        pathLength: this.pathLength,
+        r: this.boxSize * 0.46
       })), innerImage); // Building Meter Indicator
 
       var indicatorClass = this.innerSVG === null ? "indicator-center" : "indicator-label";

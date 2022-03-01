@@ -29,7 +29,6 @@ export default function buildCSS(progressMeter) {
     },
     "meter-general": {
       "stroke-width": progressMeter.boxSize * 0.06,
-      r: progressMeter.boxSize * 0.46,
       "stroke-linecap": "round",
       "fill-opacity": 0,
       "transform-origin": "center",
