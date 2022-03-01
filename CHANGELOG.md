@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.7.4](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.3...v1.7.4) (2022-03-01)
+
+
+### Bug Fixes
+
+* fix progressMeter safari bug ([ae1c84d](https://www.github.com/donkeyclip/motorcortex-graphs/commit/ae1c84d90ef39a4be07b3b43cc24cfaad4ac308d))
+
 ### [1.7.3](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.2...v1.7.3) (2022-02-17)
 
 
