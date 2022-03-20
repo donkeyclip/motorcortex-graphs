@@ -1,12 +1,12 @@
 import MotorCortex, { CSSEffect, Effect, setCSSCore } from '@donkeyclip/motorcortex';
 
-function _classCallCheck$2(instance, Constructor) {
+function _classCallCheck$3(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties$3(target, props) {
+function _defineProperties$4(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -16,9 +16,9 @@ function _defineProperties$3(target, props) {
   }
 }
 
-function _createClass$3(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$3(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$3(Constructor, staticProps);
+function _createClass$4(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$4(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$4(Constructor, staticProps);
   Object.defineProperty(Constructor, "prototype", {
     writable: false
   });
@@ -40,7 +40,7 @@ function _defineProperty$1(obj, key, value) {
   return obj;
 }
 
-function _inherits$2(subClass, superClass) {
+function _inherits$3(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
   }
@@ -55,26 +55,26 @@ function _inherits$2(subClass, superClass) {
   Object.defineProperty(subClass, "prototype", {
     writable: false
   });
-  if (superClass) _setPrototypeOf$3(subClass, superClass);
+  if (superClass) _setPrototypeOf$4(subClass, superClass);
 }
 
-function _getPrototypeOf$2(o) {
-  _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+function _getPrototypeOf$3(o) {
+  _getPrototypeOf$3 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf$2(o);
+  return _getPrototypeOf$3(o);
 }
 
-function _setPrototypeOf$3(o, p) {
-  _setPrototypeOf$3 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$4(o, p) {
+  _setPrototypeOf$4 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$3(o, p);
+  return _setPrototypeOf$4(o, p);
 }
 
-function _isNativeReflectConstruct$2() {
+function _isNativeReflectConstruct$3() {
   if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === "function") return true;
@@ -87,7 +87,7 @@ function _isNativeReflectConstruct$2() {
   }
 }
 
-function _assertThisInitialized$3(self) {
+function _assertThisInitialized$4(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -95,32 +95,32 @@ function _assertThisInitialized$3(self) {
   return self;
 }
 
-function _possibleConstructorReturn$2(self, call) {
+function _possibleConstructorReturn$3(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
   } else if (call !== void 0) {
     throw new TypeError("Derived constructors may only return object or undefined");
   }
 
-  return _assertThisInitialized$3(self);
+  return _assertThisInitialized$4(self);
 }
 
-function _createSuper$2(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct$2();
+function _createSuper$3(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct$3();
 
   return function _createSuperInternal() {
-    var Super = _getPrototypeOf$2(Derived),
+    var Super = _getPrototypeOf$3(Derived),
         result;
 
     if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf$2(this).constructor;
+      var NewTarget = _getPrototypeOf$3(this).constructor;
 
       result = Reflect.construct(Super, arguments, NewTarget);
     } else {
       result = Super.apply(this, arguments);
     }
 
-    return _possibleConstructorReturn$2(this, result);
+    return _possibleConstructorReturn$3(this, result);
   };
 }
 
@@ -2152,7 +2152,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
 
-function _defineProperties$2(target, props) {
+function _defineProperties$3(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -2162,28 +2162,28 @@ function _defineProperties$2(target, props) {
   }
 }
 
-function _createClass$2(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$2(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$2(Constructor, staticProps);
+function _createClass$3(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$3(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$3(Constructor, staticProps);
   return Constructor;
 }
 
-function _setPrototypeOf$2(o, p) {
-  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$3(o, p) {
+  _setPrototypeOf$3 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$2(o, p);
+  return _setPrototypeOf$3(o, p);
 }
 
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
-  _setPrototypeOf$2(subClass, superClass);
+  _setPrototypeOf$3(subClass, superClass);
 }
 
-function _assertThisInitialized$2(self) {
+function _assertThisInitialized$3(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -2462,7 +2462,7 @@ var StyleRule = /*#__PURE__*/function (_BaseStyleRule) {
     if (selector) {
       _this.selectorText = selector;
     } else if (scoped !== false) {
-      _this.id = generateId(_assertThisInitialized$2(_assertThisInitialized$2(_this)), sheet);
+      _this.id = generateId(_assertThisInitialized$3(_assertThisInitialized$3(_this)), sheet);
       _this.selectorText = "." + escape(_this.id);
     }
 
@@ -2524,7 +2524,7 @@ var StyleRule = /*#__PURE__*/function (_BaseStyleRule) {
     return toCss(this.selectorText, this.style, opts);
   };
 
-  _createClass$2(StyleRule, [{
+  _createClass$3(StyleRule, [{
     key: "selector",
     set: function set(selector) {
       if (selector === this.selectorText) return;
@@ -3646,7 +3646,7 @@ var SheetsRegistry = /*#__PURE__*/function () {
     return css;
   };
 
-  _createClass$2(SheetsRegistry, [{
+  _createClass$3(SheetsRegistry, [{
     key: "index",
 
     /**
@@ -4344,8 +4344,8 @@ var createJss = function createJss(options) {
  */
 
 
-var index$4 = createJss();
-var jss = index$4;
+var index$5 = createJss();
+var jss = index$5;
 
 function buildCSS$4(barChart) {
   var _titleContainer;
@@ -4549,17 +4549,17 @@ function buildCSS$4(barChart) {
  */
 
 var BarChartSimple = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(BarChartSimple, _MotorCortex$HTMLClip);
+  _inherits$3(BarChartSimple, _MotorCortex$HTMLClip);
 
-  var _super = _createSuper$2(BarChartSimple);
+  var _super = _createSuper$3(BarChartSimple);
 
   function BarChartSimple() {
-    _classCallCheck$2(this, BarChartSimple);
+    _classCallCheck$3(this, BarChartSimple);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$3(BarChartSimple, [{
+  _createClass$4(BarChartSimple, [{
     key: "html",
     get: // Building HTML tree for incident
     function get() {
@@ -5183,13 +5183,13 @@ var BarChartSimple = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
   return BarChartSimple;
 }(MotorCortex.HTMLClip);
 
-function _classCallCheck$1(instance, Constructor) {
+function _classCallCheck$2(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties$1(target, props) {
+function _defineProperties$2(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -5199,16 +5199,16 @@ function _defineProperties$1(target, props) {
   }
 }
 
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
+function _createClass$2(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$2(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$2(Constructor, staticProps);
   Object.defineProperty(Constructor, "prototype", {
     writable: false
   });
   return Constructor;
 }
 
-function _inherits$1(subClass, superClass) {
+function _inherits$2(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
   }
@@ -5223,26 +5223,26 @@ function _inherits$1(subClass, superClass) {
   Object.defineProperty(subClass, "prototype", {
     writable: false
   });
-  if (superClass) _setPrototypeOf$1(subClass, superClass);
+  if (superClass) _setPrototypeOf$2(subClass, superClass);
 }
 
-function _getPrototypeOf$1(o) {
-  _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+function _getPrototypeOf$2(o) {
+  _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf$1(o);
+  return _getPrototypeOf$2(o);
 }
 
-function _setPrototypeOf$1(o, p) {
-  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$2(o, p) {
+  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$1(o, p);
+  return _setPrototypeOf$2(o, p);
 }
 
-function _isNativeReflectConstruct$1() {
+function _isNativeReflectConstruct$2() {
   if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === "function") return true;
@@ -5255,7 +5255,7 @@ function _isNativeReflectConstruct$1() {
   }
 }
 
-function _assertThisInitialized$1(self) {
+function _assertThisInitialized$2(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -5263,32 +5263,32 @@ function _assertThisInitialized$1(self) {
   return self;
 }
 
-function _possibleConstructorReturn$1(self, call) {
+function _possibleConstructorReturn$2(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
   } else if (call !== void 0) {
     throw new TypeError("Derived constructors may only return object or undefined");
   }
 
-  return _assertThisInitialized$1(self);
+  return _assertThisInitialized$2(self);
 }
 
-function _createSuper$1(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct$1();
+function _createSuper$2(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct$2();
 
   return function _createSuperInternal() {
-    var Super = _getPrototypeOf$1(Derived),
+    var Super = _getPrototypeOf$2(Derived),
         result;
 
     if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf$1(this).constructor;
+      var NewTarget = _getPrototypeOf$2(this).constructor;
 
       result = Reflect.construct(Super, arguments, NewTarget);
     } else {
       result = Super.apply(this, arguments);
     }
 
-    return _possibleConstructorReturn$1(this, result);
+    return _possibleConstructorReturn$2(this, result);
   };
 }
 
@@ -5446,27 +5446,27 @@ var process$1 = global$l$1.process;
 var Deno$1 = global$l$1.Deno;
 var versions$1 = process$1 && process$1.versions || Deno$1 && Deno$1.version;
 var v8$1 = versions$1 && versions$1.v8;
-var match$1, version$1$1;
+var match$1, version$1$2;
 
 if (v8$1) {
   match$1 = v8$1.split('.'); // in old Chrome, versions of V8 isn't V8 = Chrome / 10
   // but their correct versions are not interesting for us
 
-  version$1$1 = match$1[0] > 0 && match$1[0] < 4 ? 1 : +(match$1[0] + match$1[1]);
+  version$1$2 = match$1[0] > 0 && match$1[0] < 4 ? 1 : +(match$1[0] + match$1[1]);
 } // BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
 // so check `userAgent` even if `.v8` exists, but 0
 
 
-if (!version$1$1 && userAgent$1) {
+if (!version$1$2 && userAgent$1) {
   match$1 = userAgent$1.match(/Edge\/(\d+)/);
 
   if (!match$1 || match$1[1] >= 74) {
     match$1 = userAgent$1.match(/Chrome\/(\d+)/);
-    if (match$1) version$1$1 = +match$1[1];
+    if (match$1) version$1$2 = +match$1[1];
   }
 }
 
-var engineV8Version$1 = version$1$1;
+var engineV8Version$1 = version$1$2;
 /* eslint-disable es/no-symbol -- required for testing */
 
 var V8_VERSION$3 = engineV8Version$1;
@@ -6431,17 +6431,17 @@ $$6({
  **/
 
 var Counter$2 = /*#__PURE__*/function (_MotorCortex$Effect) {
-  _inherits$1(Counter, _MotorCortex$Effect);
+  _inherits$2(Counter, _MotorCortex$Effect);
 
-  var _super = _createSuper$1(Counter);
+  var _super = _createSuper$2(Counter);
 
   function Counter() {
-    _classCallCheck$1(this, Counter);
+    _classCallCheck$2(this, Counter);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$1(Counter, [{
+  _createClass$2(Counter, [{
     key: "getScratchValue",
     value:
     /**
@@ -6493,10 +6493,10 @@ var Counter$2 = /*#__PURE__*/function (_MotorCortex$Effect) {
   return Counter;
 }(MotorCortex.Effect);
 
-var name$2 = "@donkeyclip/motorcortex-counter";
+var name$3 = "@donkeyclip/motorcortex-counter";
 var version$3 = "1.1.2";
-var index$3 = {
-  npm_name: name$2,
+var index$4 = {
+  npm_name: name$3,
   // don't touch this
   version: version$3,
   // don't touch this
@@ -6693,7 +6693,7 @@ function buildCSS$3(cssArgs) {
   return styleSheet;
 }
 
-var Counter$1 = MotorCortex.loadPlugin(index$3);
+var Counter$1 = MotorCortex.loadPlugin(index$4);
 /**
  * The purpose of extending the HTMLClip is to full, parametric
  * HTMLClips with both context and Incidents.
@@ -6707,17 +6707,17 @@ var Counter$1 = MotorCortex.loadPlugin(index$3);
  */
 
 var ProgressBar = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(ProgressBar, _MotorCortex$HTMLClip);
+  _inherits$3(ProgressBar, _MotorCortex$HTMLClip);
 
-  var _super = _createSuper$2(ProgressBar);
+  var _super = _createSuper$3(ProgressBar);
 
   function ProgressBar() {
-    _classCallCheck$2(this, ProgressBar);
+    _classCallCheck$3(this, ProgressBar);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$3(ProgressBar, [{
+  _createClass$4(ProgressBar, [{
     key: "html",
     get: function get() {
       var _this = this;
@@ -7069,13 +7069,13 @@ function _objectSpread2(target) {
   return target;
 }
 
-function _classCallCheck(instance, Constructor) {
+function _classCallCheck$1(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties(target, props) {
+function _defineProperties$1(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -7085,9 +7085,9 @@ function _defineProperties(target, props) {
   }
 }
 
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
+function _createClass$1(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$1(Constructor, staticProps);
   Object.defineProperty(Constructor, "prototype", {
     writable: false
   });
@@ -7109,7 +7109,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-function _inherits(subClass, superClass) {
+function _inherits$1(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
   }
@@ -7124,26 +7124,26 @@ function _inherits(subClass, superClass) {
   Object.defineProperty(subClass, "prototype", {
     writable: false
   });
-  if (superClass) _setPrototypeOf(subClass, superClass);
+  if (superClass) _setPrototypeOf$1(subClass, superClass);
 }
 
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+function _getPrototypeOf$1(o) {
+  _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf(o);
+  return _getPrototypeOf$1(o);
 }
 
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$1(o, p) {
+  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf(o, p);
+  return _setPrototypeOf$1(o, p);
 }
 
-function _isNativeReflectConstruct() {
+function _isNativeReflectConstruct$1() {
   if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
   if (typeof Proxy === "function") return true;
@@ -7156,7 +7156,7 @@ function _isNativeReflectConstruct() {
   }
 }
 
-function _assertThisInitialized(self) {
+function _assertThisInitialized$1(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -7164,32 +7164,32 @@ function _assertThisInitialized(self) {
   return self;
 }
 
-function _possibleConstructorReturn(self, call) {
+function _possibleConstructorReturn$1(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
   } else if (call !== void 0) {
     throw new TypeError("Derived constructors may only return object or undefined");
   }
 
-  return _assertThisInitialized(self);
+  return _assertThisInitialized$1(self);
 }
 
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+function _createSuper$1(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct$1();
 
   return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
+    var Super = _getPrototypeOf$1(Derived),
         result;
 
     if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
+      var NewTarget = _getPrototypeOf$1(this).constructor;
 
       result = Reflect.construct(Super, arguments, NewTarget);
     } else {
       result = Super.apply(this, arguments);
     }
 
-    return _possibleConstructorReturn(this, result);
+    return _possibleConstructorReturn$1(this, result);
   };
 }
 
@@ -8181,17 +8181,17 @@ anime.getPathProgress = getPathProgress;
 var anime_es = anime;
 
 var Anime = /*#__PURE__*/function (_MotorCortex$Extendab) {
-  _inherits(Anime, _MotorCortex$Extendab);
+  _inherits$1(Anime, _MotorCortex$Extendab);
 
-  var _super = _createSuper(Anime);
+  var _super = _createSuper$1(Anime);
 
   function Anime() {
-    _classCallCheck(this, Anime);
+    _classCallCheck$1(this, Anime);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(Anime, [{
+  _createClass$1(Anime, [{
     key: "onGetContext",
     value: function onGetContext() {
       var options = {};
@@ -8383,27 +8383,27 @@ var process = global$k.process;
 var Deno = global$k.Deno;
 var versions = process && process.versions || Deno && Deno.version;
 var v8 = versions && versions.v8;
-var match, version$1;
+var match, version$1$1;
 
 if (v8) {
   match = v8.split('.'); // in old Chrome, versions of V8 isn't V8 = Chrome / 10
   // but their correct versions are not interesting for us
 
-  version$1 = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
+  version$1$1 = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);
 } // BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`
 // so check `userAgent` even if `.v8` exists, but 0
 
 
-if (!version$1 && userAgent) {
+if (!version$1$1 && userAgent) {
   match = userAgent.match(/Edge\/(\d+)/);
 
   if (!match || match[1] >= 74) {
     match = userAgent.match(/Chrome\/(\d+)/);
-    if (match) version$1 = +match[1];
+    if (match) version$1$1 = +match[1];
   }
 }
 
-var engineV8Version = version$1;
+var engineV8Version = version$1$1;
 /* eslint-disable es/no-symbol -- required for testing */
 
 var V8_VERSION$2 = engineV8Version;
@@ -9352,17 +9352,17 @@ $$3({
 **/
 
 var MotionPath = /*#__PURE__*/function (_Effect) {
-  _inherits(MotionPath, _Effect);
+  _inherits$1(MotionPath, _Effect);
 
-  var _super = _createSuper(MotionPath);
+  var _super = _createSuper$1(MotionPath);
 
   function MotionPath() {
-    _classCallCheck(this, MotionPath);
+    _classCallCheck$1(this, MotionPath);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(MotionPath, [{
+  _createClass$1(MotionPath, [{
     key: "onGetContext",
     value: function onGetContext() {
       this.pixelsAccuracy = this.attrs.pixelsAccuracy || 4;
@@ -9393,10 +9393,10 @@ var MotionPath = /*#__PURE__*/function (_Effect) {
   return MotionPath;
 }(Effect);
 
-var name$1 = "@donkeyclip/motorcortex-anime";
+var name$2 = "@donkeyclip/motorcortex-anime";
 var version$2 = "2.1.17";
-var index$2 = {
-  npm_name: name$1,
+var index$3 = {
+  npm_name: name$2,
   version: version$2,
   CSSEffect: Anime,
   incidents: [{
@@ -9795,8 +9795,8 @@ if (isForced$1('RegExp', BASE_FORCED)) {
     });
   };
 
-  for (var keys$1 = getOwnPropertyNames$1(NativeRegExp), index$1 = 0; keys$1.length > index$1;) {
-    proxy(keys$1[index$1++]);
+  for (var keys$1 = getOwnPropertyNames$1(NativeRegExp), index$2 = 0; keys$1.length > index$2;) {
+    proxy(keys$1[index$2++]);
   }
 
   RegExpPrototype$3.constructor = RegExpWrapper;
@@ -10670,25 +10670,25 @@ var svgPresets = {
   folder: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="48px" height="48px"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>'
 };
 
-var Counter = MotorCortex.loadPlugin(index$3);
-var AnimeEffect = index$2.CSSEffect;
+var Counter = MotorCortex.loadPlugin(index$4);
+var AnimeEffect = index$3.CSSEffect;
 setCSSCore(AnimeEffect);
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
 
 var ProgressMeter = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(ProgressMeter, _MotorCortex$HTMLClip);
+  _inherits$3(ProgressMeter, _MotorCortex$HTMLClip);
 
-  var _super = _createSuper$2(ProgressMeter);
+  var _super = _createSuper$3(ProgressMeter);
 
   function ProgressMeter() {
-    _classCallCheck$2(this, ProgressMeter);
+    _classCallCheck$3(this, ProgressMeter);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$3(ProgressMeter, [{
+  _createClass$4(ProgressMeter, [{
     key: "html",
     get: // Building HTML tree for incident
     function get() {
@@ -12097,112 +12097,164 @@ function buildCSS$1(lineGraph) {
   return styleSheet;
 }
 
-function e$1(t, e) {
-  if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
-}
-
-function n$1(t, e) {
-  for (var n = 0; n < e.length; n++) {
-    var r = e[n];
-    r.enumerable = r.enumerable || !1, r.configurable = !0, "value" in r && (r.writable = !0), Object.defineProperty(t, r.key, r);
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function r$1(t) {
-  return r$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function (t) {
-    return t.__proto__ || Object.getPrototypeOf(t);
-  }, r$1(t);
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
 }
 
-function o$1(t, e) {
-  return o$1 = Object.setPrototypeOf || function (t, e) {
-    return t.__proto__ = e, t;
-  }, o$1(t, e);
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
 }
 
-function i$1(t, e) {
-  if (e && ("object" == typeof e || "function" == typeof e)) return e;
-  if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
-  return function (t) {
-    if (void 0 === t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    return t;
-  }(t);
-}
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
 
-function a$1(t) {
-  var e = function () {
-    if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
-    if (Reflect.construct.sham) return !1;
-    if ("function" == typeof Proxy) return !0;
-
-    try {
-      return Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})), !0;
-    } catch (t) {
-      return !1;
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
     }
-  }();
+  });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
 
-  return function () {
-    var n,
-        o = r$1(t);
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
 
-    if (e) {
-      var a = r$1(this).constructor;
-      n = Reflect.construct(o, arguments, a);
-    } else n = o.apply(this, arguments);
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
 
-    return i$1(this, n);
+  return _setPrototypeOf(o, p);
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
   };
 }
 
-var c$1 = {
-  npm_name: "@donkeyclip/motorcortex-svgdraw",
-  version: "0.0.10",
+var Draw = /*#__PURE__*/function (_MotorCortex$Effect) {
+  _inherits(Draw, _MotorCortex$Effect);
+
+  var _super = _createSuper(Draw);
+
+  function Draw() {
+    _classCallCheck(this, Draw);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Draw, [{
+    key: "getScratchValue",
+    value: function getScratchValue() {
+      this.pathLength = Math.ceil(this.element.getTotalLength());
+      this.element.style.strokeDasharray = this.pathLength + " " + this.pathLength;
+      this.element.style.strokeDashoffset = this.pathLength;
+      return 0;
+    }
+  }, {
+    key: "onGetContext",
+    value: function onGetContext() {
+      this.pathLength = Math.ceil(this.element.getTotalLength());
+    }
+  }, {
+    key: "onProgress",
+    value: function onProgress(fraction) {
+      var cover = (this.targetValue - this.initialValue) * fraction + this.initialValue;
+      this.element.style.strokeDashoffset = Math.ceil(this.pathLength * (1 - cover));
+    }
+  }]);
+
+  return Draw;
+}(MotorCortex.Effect);
+
+var name$1 = "@donkeyclip/motorcortex-svgdraw";
+var version$1 = "0.0.11";
+var index$1 = {
+  npm_name: name$1,
+  version: version$1,
   incidents: [{
-    exportable: function (r) {
-      !function (t, e) {
-        if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
-        t.prototype = Object.create(e && e.prototype, {
-          constructor: {
-            value: t,
-            writable: !0,
-            configurable: !0
-          }
-        }), e && o$1(t, e);
-      }(f, MotorCortex.Effect);
-      var i,
-          c,
-          s = a$1(f);
-
-      function f() {
-        return e$1(this, f), s.apply(this, arguments);
-      }
-
-      return i = f, (c = [{
-        key: "getScratchValue",
-        value: function () {
-          return this.pathLength = Math.ceil(this.element.getTotalLength()), this.element.style.strokeDasharray = this.pathLength + " " + this.pathLength, this.element.style.strokeDashoffset = this.pathLength, 0;
-        }
-      }, {
-        key: "onGetContext",
-        value: function () {
-          this.pathLength = Math.ceil(this.element.getTotalLength());
-        }
-      }, {
-        key: "onProgress",
-        value: function (t) {
-          var e = (this.targetValue - this.initialValue) * t + this.initialValue;
-          this.element.style.strokeDashoffset = Math.ceil(this.pathLength * (1 - e));
-        }
-      }]) && n$1(i.prototype, c), f;
-    }(),
+    exportable: Draw,
     name: "Draw",
     attributesValidationRules: {
       animatedAttrs: {
         type: "object",
         props: {
           cover: {
-            type: "number",
+            type: 'number',
             min: 0,
             max: 1
           }
@@ -12610,17 +12662,17 @@ var h = function () {
   }
 };
 
-var SVGD = MotorCortex.loadPlugin(c$1);
+var SVGD = MotorCortex.loadPlugin(index$1);
 var TDCAM = MotorCortex.loadPlugin(y);
 
 var AnimationConstructor = /*#__PURE__*/function () {
   function AnimationConstructor(instance) {
-    _classCallCheck$2(this, AnimationConstructor);
+    _classCallCheck$3(this, AnimationConstructor);
 
     this.instance = instance;
   }
 
-  _createClass$3(AnimationConstructor, [{
+  _createClass$4(AnimationConstructor, [{
     key: "buildStaticControl",
     value: function buildStaticControl() {
       return new CSSEffect({
@@ -13359,17 +13411,17 @@ var AnimationConstructor = /*#__PURE__*/function () {
  */
 
 var LineGraph = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(LineGraph, _MotorCortex$HTMLClip);
+  _inherits$3(LineGraph, _MotorCortex$HTMLClip);
 
-  var _super = _createSuper$2(LineGraph);
+  var _super = _createSuper$3(LineGraph);
 
   function LineGraph() {
-    _classCallCheck$2(this, LineGraph);
+    _classCallCheck$3(this, LineGraph);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$3(LineGraph, [{
+  _createClass$4(LineGraph, [{
     key: "html",
     get: // Building HTML tree for incident
     function get() {
@@ -13895,17 +13947,17 @@ function generateColor(index) {
  */
 
 var PieChart = /*#__PURE__*/function (_MotorCortex$HTMLClip) {
-  _inherits$2(PieChart, _MotorCortex$HTMLClip);
+  _inherits$3(PieChart, _MotorCortex$HTMLClip);
 
-  var _super = _createSuper$2(PieChart);
+  var _super = _createSuper$3(PieChart);
 
   function PieChart() {
-    _classCallCheck$2(this, PieChart);
+    _classCallCheck$3(this, PieChart);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass$3(PieChart, [{
+  _createClass$4(PieChart, [{
     key: "html",
     get: function get() {
       this.data = this.attrs.data.data;
