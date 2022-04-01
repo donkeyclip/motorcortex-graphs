@@ -1,9 +1,6 @@
+const numberPartRegexp = /^[+-]?(\d+([.]\d*)?|[.]\d+)/gi;
 export default {
   extractUnitsNums: (givenString) => {
-    const numberPartRegexp = new RegExp(
-      "^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)",
-      "gi"
-    );
     const widthNumberPart = givenString.match(numberPartRegexp)[0];
     const widthUnitPart = givenString.substring(widthNumberPart.length);
     if (

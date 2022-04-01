@@ -344,34 +344,19 @@ export default class LineGraph extends HTMLClip {
 
     // Colors control
     this.colorPalette = colorPalette;
-    this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-    this.primaryC = this.attrs.palette.primary
-      ? this.attrs.palette.primary
-      : this.colorPalette.gray;
-    this.secondaryC = this.attrs.palette.secondary
-      ? this.attrs.palette.secondary
-      : this.colorPalette.lightGray;
-    this.tertiaryC = this.attrs.palette.tertiary
-      ? this.attrs.palette.tertiary
-      : this.colorPalette.darkGray;
-    this.quaternaryC = this.attrs.palette.quaternary
-      ? this.attrs.palette.quaternary
-      : this.colorPalette.whiteBack;
-    this.quinaryC = this.attrs.palette.quinary
-      ? this.attrs.palette.quinary
-      : this.colorPalette.gray;
-    this.senaryC = this.attrs.palette.senary
-      ? this.attrs.palette.senary
-      : this.colorPalette.accent;
-    this.fontC = this.attrs.palette.font
-      ? this.attrs.palette.font
-      : this.colorPalette.font;
-    this.accentC = this.attrs.palette.accent
-      ? this.attrs.palette.accent
-      : this.colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background
-      ? this.attrs.palette.background
-      : this.colorPalette.background;
+    this.attrs.palette = this.attrs.palette || {};
+    this.primaryC = this.attrs.palette.primary || this.colorPalette.gray;
+    this.secondaryC =
+      this.attrs.palette.secondary || this.colorPalette.lightGray;
+    this.tertiaryC = this.attrs.palette.tertiary || this.colorPalette.darkGray;
+    this.quaternaryC =
+      this.attrs.palette.quaternary || this.colorPalette.whiteBack;
+    this.quinaryC = this.attrs.palette.quinary || this.colorPalette.gray;
+    this.senaryC = this.attrs.palette.senary || this.colorPalette.accent;
+    this.fontC = this.attrs.palette.font || this.colorPalette.font;
+    this.accentC = this.attrs.palette.accent || this.colorPalette.accent;
+    this.backgroundC =
+      this.attrs.palette.background || this.colorPalette.background;
 
     // Data processing
     this.title = this.attrs.data.title;
@@ -388,8 +373,8 @@ export default class LineGraph extends HTMLClip {
     let colorCount = 2;
     this.dataSets.map((dataSet, l) => {
       if (dataSet.color === "" || !dataSet.color) {
-        (dataSet.color = this.colorPalette.dataColors[colorCount]),
-          colorCount++;
+        dataSet.color = this.colorPalette.dataColors[colorCount];
+        colorCount++;
       }
       if (dataSet.title === "" || !dataSet.title) {
         dataSet.title = `Dataset-${l + 1}`;
@@ -397,8 +382,7 @@ export default class LineGraph extends HTMLClip {
         dataSet.title = dataSet.title.substr(0, 10);
       }
     });
-    this.legend = this.attrs.legend ? this.attrs.legend : false;
-    this.legend = this.dataSetsNum > 1 ? true : this.legend;
+    this.legend = this.dataSetsNum > 1 ? true : this.attrs.legend || false;
     this.maxPoint = 0;
     for (const datum of this.data) {
       if (Math.max(...datum.values) > this.maxPoint) {
@@ -408,18 +392,18 @@ export default class LineGraph extends HTMLClip {
     this.maxPoint = this.attrs.data.maxValue
       ? this.attrs.data.maxValue
       : this.maxPoint;
-    this.hover = this.attrs.data.hover ? this.attrs.data.hover : false;
+    this.hover = this.attrs.data.hover || false;
     this.hover = this.dataSetsNum !== 1 ? true : this.hover;
-    this.grid = this.attrs.grid ? this.attrs.grid : "lines";
+    this.grid = this.attrs.grid || "lines";
     this.grid =
       this.grid !== "lines" && this.grid !== "steles" ? "lines" : this.grid;
-    this.gridH = this.attrs.gridH ? this.attrs.gridH : 1;
-    this.attrs.trace = this.attrs.trace ? this.attrs.trace : {};
-    this.trace = this.attrs.trace.toggle ? this.attrs.trace.toggle : false;
-    this.trace = this.dataSetsNum === 1 ? this.trace : false;
-    this.traceScale = this.attrs.trace.scale ? this.attrs.trace.scale : 1.4;
-    this.unit = this.attrs.data.unit ? this.attrs.data.unit : "%";
-    this.interval = this.attrs.data.interval ? this.attrs.data.interval : 5;
+    this.gridH = this.attrs.gridH || 1;
+    this.attrs.trace = this.attrs.trace || {};
+    this.trace =
+      this.dataSetsNum === 1 ? this.attrs.trace.toggle || false : false;
+    this.traceScale = this.attrs.trace.scale || 1.4;
+    this.unit = this.attrs.data.unit || "%";
+    this.interval = this.attrs.data.interval || 5;
     this.steleBlockNum = this.maxPoint / this.interval + 1;
 
     // Sizing and position controls
