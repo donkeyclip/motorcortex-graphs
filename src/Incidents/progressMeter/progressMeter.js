@@ -1,15 +1,11 @@
 import {
   loadPlugin,
   CSSEffect,
-  setCSSCore,
   HTMLClip,
   Group,
 } from "@donkeyclip/motorcortex";
-import AnimeDefinition from "@donkeyclip/motorcortex-anime";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
 const Counter = loadPlugin(CounterPlugin);
-const AnimeEffect = AnimeDefinition.CSSEffect;
-setCSSCore(AnimeEffect);
 
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
@@ -32,12 +28,19 @@ export default class ProgressMeter extends HTMLClip {
         ? svgPresets[this.innerSVG]
         : this.innerSVG;
 
-      const gradientControl = {
-        x1: this.innerFill.rotate ? (this.innerFill.revert ? 1 : 0) : 0,
-        x2: this.innerFill.rotate ? (this.innerFill.revert ? 0 : 1) : 0,
-        y1: this.innerFill.rotate ? 0 : this.innerFill.revert ? 0 : 1,
-        y2: this.innerFill.rotate ? 0 : this.innerFill.revert ? 1 : 0,
-      };
+      const gradientControl = this.innerFill.rotate
+        ? {
+            x1: this.innerFill.revert ? 1 : 0,
+            x2: this.innerFill.revert ? 0 : 1,
+            y1: 0,
+            y2: 0,
+          }
+        : {
+            x1: 0,
+            x2: 0,
+            y1: this.innerFill.revert ? 0 : 1,
+            y2: this.innerFill.revert ? 1 : 0,
+          };
 
       const classPos = initialSVG.indexOf("<svg ") + 5;
       const customPathClass = `class="svg-preset" fill="url(#gradientFilter)"`;
@@ -533,13 +536,11 @@ export default class ProgressMeter extends HTMLClip {
 
   buildVars() {
     this.data = this.attrs.data;
-    this.innerSVG = this.attrs.innerImage ? this.attrs.innerImage : null;
-    this.innerFill = this.data.innerFill
-      ? this.data.innerFill
-      : {
-          revert: false,
-          rotate: false,
-        };
+    this.innerSVG = this.attrs.innerImage || null;
+    this.innerFill = this.data.innerFill || {
+      revert: false,
+      rotate: false,
+    };
     this.originalDims = config.progressMeter.originalDims;
     this.heightDimension = helpers.extractUnitsNums(
       this.props.containerParams.height
@@ -553,36 +554,22 @@ export default class ProgressMeter extends HTMLClip {
         : this.heightDimension * 0.65;
     this.pathLength = 10000;
 
-    this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-    this.fontC = this.attrs.palette.font
-      ? this.attrs.palette.font
-      : colorPalette.font;
-    this.accentC = this.attrs.palette.accent
-      ? this.attrs.palette.accent
-      : colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background
-      ? this.attrs.palette.background
-      : colorPalette.background;
+    this.attrs.palette = this.attrs.palette || {};
+    this.fontC = this.attrs.palette.font || colorPalette.font;
+    this.accentC = this.attrs.palette.accent || colorPalette.accent;
+    this.backgroundC = this.attrs.palette.background || colorPalette.background;
 
-    this.attrs.font = this.attrs.font ? this.attrs.font : {};
+    this.attrs.font = this.attrs.font || {};
 
-    this.fontFamily = this.attrs.font.fontFamily
-      ? this.attrs.font.fontFamily
-      : "'Staatliches', cursive";
-    this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-    this.url = this.attrs.font.url
-      ? this.attrs.font.url
-      : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
+    this.fontFamily = this.attrs.font.fontFamily || "'Staatliches', cursive";
+    this.fontSize = this.attrs.font.size || "1.7rem";
+    this.url =
+      this.attrs.font.url ||
+      "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
 
-    this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
-    this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-    if (this.attrs.timings.static === 0) {
-      this.staticDur = 0;
-    } else {
-      this.staticDur = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
+    this.attrs.timings = this.attrs.timings || {};
+    this.introDur = this.attrs.timings.intro || 0;
+    this.outroDur = this.attrs.timings.outro || 0;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 }

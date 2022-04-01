@@ -677,45 +677,25 @@ export default class BarChartSimple extends HTMLClip {
     this.maxPoint = 0;
     this.gridLinesNum = this.attrs.data.showGrid ? 11 : 0;
 
-    this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-    this.primaryC = this.attrs.palette.primary
-      ? this.attrs.palette.primary
-      : colorPalette.gray;
-    this.secondaryC = this.attrs.palette.secondary
-      ? this.attrs.palette.secondary
-      : colorPalette.lightGray;
-    this.tertiaryC = this.attrs.palette.tertiary
-      ? this.attrs.palette.tertiary
-      : colorPalette.darkGray;
-    this.fontC = this.attrs.palette.font
-      ? this.attrs.palette.font
-      : colorPalette.font;
-    this.accentC = this.attrs.palette.accent
-      ? this.attrs.palette.accent
-      : colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background
-      ? this.attrs.palette.background
-      : colorPalette.background;
+    this.attrs.palette = this.attrs.palette || {};
+    this.primaryC = this.attrs.palette.primary || colorPalette.gray;
+    this.secondaryC = this.attrs.palette.secondary || colorPalette.lightGray;
+    this.tertiaryC = this.attrs.palette.tertiary || colorPalette.darkGray;
+    this.fontC = this.attrs.palette.font || colorPalette.font;
+    this.accentC = this.attrs.palette.accent || colorPalette.accent;
+    this.backgroundC = this.attrs.palette.background || colorPalette.background;
 
-    this.attrs.font = this.attrs.font ? this.attrs.font : {};
+    this.attrs.font = this.attrs.font || {};
 
-    this.fontFamily = this.attrs.font.fontFamily
-      ? this.attrs.font.fontFamily
-      : "'Staatliches', cursive";
-    this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-    this.url = this.attrs.font.url
-      ? this.attrs.font.url
-      : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
+    this.fontFamily = this.attrs.font.fontFamily || "'Staatliches', cursive";
+    this.fontSize = this.attrs.font.size || "1.7rem";
+    this.url =
+      this.attrs.font.url ||
+      "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
 
-    this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
-    this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-    if (this.attrs.timings.static === 0) {
-      this.staticDur = 0;
-    } else {
-      this.staticDur = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
+    this.attrs.timings = this.attrs.timings || {};
+    this.introDur = this.attrs.timings.intro || 0;
+    this.outroDur = this.attrs.timings.outro || 0;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 }

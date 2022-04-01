@@ -322,12 +322,13 @@ export default class ProgressBar extends HTMLClip {
   }
 
   get criticalValue() {
-    if (this.barCount / 10 === 1) {
-      return (this.barCount / 10) * 10;
-    } else if (this.barCount / 10 > 1) {
-      return (this.barCount / 10 - 1) * 10;
+    const barCount = this.barCount / 10;
+    if (barCount / 10 === 1) {
+      return (barCount / 10) * 10;
+    } else if (barCount / 10 > 1) {
+      return (barCount / 10 - 1) * 10;
     } else {
-      return (this.barCount / 10 + 1) * 10;
+      return (barCount + 1) * 10;
     }
   }
 }
