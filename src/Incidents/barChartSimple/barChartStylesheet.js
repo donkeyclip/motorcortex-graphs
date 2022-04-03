@@ -1,9 +1,7 @@
-import jss, { createGenerateId } from "jss";
+import jss from "jss";
 
 export default function buildCSS(barChart) {
-  const createGenerateId = () => {
-    return (rule) => rule.key;
-  };
+  const createGenerateId = () => (rule) => rule.key;
   jss.setup({ createGenerateId });
 
   const styles = {
@@ -116,7 +114,6 @@ export default function buildCSS(barChart) {
       background: "transparent",
       width: "70%",
       height: "fit-content",
-      height: "-moz-fit-content",
       "min-height": "5%",
       "max-height": "7%",
       top: "7%",

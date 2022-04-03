@@ -1,11 +1,10 @@
-import jss, { createGenerateId } from "jss";
+import jss from "jss";
 
 export default function buildCSS(progressMeter) {
   const createGenerateId = () => {
     return (rule) => rule.key;
   };
   jss.setup({ createGenerateId });
-
   const styles = {
     "container-progressMeter": {
       width: "100%",
@@ -94,7 +93,5 @@ export default function buildCSS(progressMeter) {
     },
   };
 
-  const styleSheet = jss.createStyleSheet(styles).toString();
-
-  return styleSheet;
+  return jss.createStyleSheet(styles).toString();
 }
