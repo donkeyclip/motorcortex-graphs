@@ -623,7 +623,7 @@ export default class AnimationConstructor {
           {
             animatedAttrs: {
               opacity: 1,
-              r: this.instance.r + "",
+              r: `${this.instance.r}%`,
             },
             initialValues: {
               opacity: 0,
@@ -644,9 +644,7 @@ export default class AnimationConstructor {
         const topOffset = targetTop + (this.instance.linesHeight * 0.07) / 2;
 
         let targetWidth =
-          (10 / 2) * this.instance.data.length > 10
-            ? 10
-            : (10 / 2) * this.instance.data.length;
+          this.instance.data.length > 2 ? 10 : 5 * this.instance.data.length;
         targetWidth = targetWidth < 6 ? 6 : targetWidth;
 
         const targetLeft =
@@ -837,7 +835,7 @@ export default class AnimationConstructor {
             },
             initialValues: {
               opacity: 1,
-              r: this.instance.r + "",
+              r: `${this.instance.r}%`,
             },
           },
           {

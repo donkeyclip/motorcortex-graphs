@@ -1,4 +1,4 @@
-import { CSSEffect, HTMLClip, Group, Combo } from "@donkeyclip/motorcortex";
+import { Combo, CSSEffect, Group, HTMLClip } from "@donkeyclip/motorcortex";
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
 import buildCSS from "./barChartStylesheet";
@@ -14,85 +14,72 @@ export default class BarChartSimple extends HTMLClip {
     // Title modal html generation
     const title = [];
     for (const i in this.title) {
-      const letter = [];
-      if (this.title[i] === " ") {
-        letter.push('<div class="space-char letter-wrapper">-</div>');
-      } else {
-        letter.push(
-          `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`
-        );
-      }
+      const letter =
+        this.title[i] === " "
+          ? `<div class="space-char letter-wrapper">-</div>`
+          : `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`;
 
       title.push(
-        `<div id={"letter-" + i} class="letter-container">
-          ${letter}
-        </div>`
+        `<div id="letter-${i}" class="letter-container">${letter}</div>`
       );
     }
 
     // Subtitle modal html generation
     const subtitle = [];
     for (const i in this.subtitle) {
-      const letter = [];
-      if (this.subtitle[i] === " ") {
-        letter.push('<div class="space-char letter-wrapper">-</div>');
-      } else {
-        letter.push(
-          <div class="fontColorOn letter-wrapper">{this.subtitle[i]}</div>
-        );
-      }
+      const letter =
+        this.subtitle[i] === " "
+          ? `<div class="space-char letter-wrapper">-</div>`
+          : `<div className="fontColorOn letter-wrapper">${this.subtitle[i]}</div>`;
 
       subtitle.push(
-        `<div id={"letter-" + i} class="letter-container">
-          ${letter}
-        </div>`
+        `<div id="letter-${i}" class="letter-container">${letter}</div>`
       );
     }
 
     // Gridlines conditional html generation
     const gridLines = [];
     for (let i = 0; i < this.gridLinesNum; i++) {
-      gridLines.push(<div class="gridLine" id={"gridLine" + i}></div>);
+      gridLines.push(`<div class="gridLine" id="gridLine${i}"></div>`);
     }
 
     // X-axis labels html generation with data parameter as reference
     const xLabels = [];
+    const bars = [];
     for (const i in this.data) {
-      if (this.data[i].name.length > 4) {
-        this.data[i].name = this.data[i].name.slice(0, 4);
+      const datum = this.data[i];
+      if (datum.name.length > 4) {
+        datum.name = datum.name.slice(0, 4);
+        this.data[i] = datum;
       }
       xLabels.push(
-        <div class="label-container" id={"label-" + i}>
-          {this.data[i].name}
-        </div>
+        `<div class="label-container" id="label-${i}">${this.data[i].name}</div>`
+      );
+      //  Bars html generation with data parameter as reference
+      if (this.maxPoint < datum.value) {
+        this.maxPoint = datum.value;
+      }
+      bars.push(
+        `<div class="${datum.name}-bar-${i}">
+          <div
+            class="bar-fill"
+            style="background:${datum.color ? datum.color : this.primaryC}"
+            id="${datum.name}-bar-fill"
+          ></div>
+        </div>`
       );
     }
 
-    //  Bars html generation with data parameter as reference
-    const bars = this.data.map((datum, i) => {
-      this.maxPoint = this.maxPoint < datum.value ? datum.value : this.maxPoint;
-
-      return (
-        <div class={datum.name + `-bar-${i}`}>
-          <div
-            class="bar-fill"
-            style={` background: ${datum.color ? datum.color : this.primaryC} `}
-            id={datum.name + "-bar-fill"}
-          ></div>
-        </div>
-      );
-    });
     this.maxPoint = this.attrs.data.maxValue
       ? this.attrs.data.maxValue
       : this.maxPoint;
 
     // MAIN HTML TREE
-    const barGraphHTML = (
-      <div class="container-barChart">
+    return `<div class="container-barChart">
         <div class="title-container">
-          <div class="title-wrapper">{title}</div>
+          <div class="title-wrapper">${title.join("")}</div>
           <div class="subtitle-position-end">
-            <div class="subtitle-wrapper">{subtitle}</div>
+            <div class="subtitle-wrapper">${subtitle.join("")}</div>
           </div>
           <div class="title-back-wrapper">
             <div class="title-back-animHelper">
@@ -101,19 +88,16 @@ export default class BarChartSimple extends HTMLClip {
           </div>
         </div>
         <div class="graph-container">
-          <div class="graph">{bars}</div>
-          <div class="gridlines">{gridLines}</div>
+          <div class="graph">${bars.join("")}</div>
+          <div class="gridlines">${gridLines.join("")}</div>
         </div>
         <div class="y-axis"></div>
         <div class="x-axis"></div>
-        <div class="x-labels-container">{xLabels}</div>
+        <div class="x-labels-container">${xLabels.join("")}</div>
         <div class="x-labels-back-wrapper">
           <div class="x-labels-background block-background"></div>
         </div>
-      </div>
-    );
-
-    return barGraphHTML;
+      </div>`;
   }
 
   // Build CSS rules for incident
