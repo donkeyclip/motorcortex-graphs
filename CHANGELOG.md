@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/donkeyclip/motorcortex-graphs/compare/v1.7.4...v2.0.0) (2022-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop jsx
+
+### Bug Fixes
+
+* clear imports ([bb4f14c](https://github.com/donkeyclip/motorcortex-graphs/commit/bb4f14c5ddbd1ce5918b27262ed347d46d6266f6))
+
+
+### Code Refactoring
+
+* drop jsx ([4e39dea](https://github.com/donkeyclip/motorcortex-graphs/commit/4e39dea6c770bd03527e9e58f9f5b86b9bbb2903))
+
 ### [1.7.4](https://www.github.com/donkeyclip/motorcortex-graphs/compare/v1.7.3...v1.7.4) (2022-03-01)
 
 
