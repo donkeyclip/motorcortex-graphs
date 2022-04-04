@@ -1,6 +1,6 @@
 {
   "name": "@donkeyclip/motorcortex-graphs",
-  "version": "1.7.4",
+  "version": "2.0.0",
   "description": "A plugin for creating graphs using MotorCortex",
   "main": "dist/motorcortex-graphs.cjs.js",
   "module": "dist/motorcortex-graphs.esm.js",
