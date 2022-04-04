@@ -3,7 +3,6 @@ import ProgressBar from "./Incidents/progressBar/progressBar";
 import ProgressMeter from "./Incidents/progressMeter/progressMeter";
 import LineGraph from "./Incidents/lineGraph/lineGraph";
 import PieChart from "./Incidents/pieChart/pieChart";
-import config from "./incident_config";
 import validationRules from "./validation";
 import { name, version } from "../package.json";
 
@@ -43,7 +42,6 @@ export default {
       exportable: ProgressMeter,
       name: "ProgressMeter",
       attributesValidationRules: validationRules.ProgressMeter,
-
     },
   ],
 };

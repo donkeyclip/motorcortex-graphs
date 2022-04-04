@@ -1,9 +1,15 @@
-import MotorCortex,{CSSEffect,setCSSCore} from "@donkeyclip/motorcortex";
-import AnimeDefinition from "@donkeyclip/motorcortex-anime";
+import {
+  loadPlugin,
+  CSSEffect,
+  HTMLClip,
+  setCSSCore,
+  Group,
+} from "@donkeyclip/motorcortex";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
-const Counter = MotorCortex.loadPlugin(CounterPlugin);
-const AnimeEffect = AnimeDefinition.CSSEffect;
-setCSSCore(AnimeEffect);
+import AnimeDefinition from "@donkeyclip/motorcortex-anime";
+
+setCSSCore(AnimeDefinition.CSSEffect);
+const Counter = loadPlugin(CounterPlugin);
 
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
@@ -11,27 +17,31 @@ import helpers from "../../shared/helpers";
 import buildCSS from "./progressMeterStyleSheet";
 import config from "../../incident_config";
 import { svgPresets } from "../../shared/presetsExports";
-
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
-export default class ProgressMeter extends MotorCortex.HTMLClip {
+export default class ProgressMeter extends HTMLClip {
   // Building HTML tree for incident
   get html() {
     this.buildVars();
     // Building Inner SVG
     let innerImage = null;
     if (this.innerSVG) {
-      const initialSVG = svgPresets[this.innerSVG]
-        ? svgPresets[this.innerSVG]
-        : this.innerSVG;
+      const initialSVG = svgPresets[this.innerSVG] || this.innerSVG;
 
-      const gradientControl = {
-        x1: this.innerFill.rotate ? (this.innerFill.revert ? 1 : 0) : 0,
-        x2: this.innerFill.rotate ? (this.innerFill.revert ? 0 : 1) : 0,
-        y1: this.innerFill.rotate ? 0 : this.innerFill.revert ? 0 : 1,
-        y2: this.innerFill.rotate ? 0 : this.innerFill.revert ? 1 : 0,
-      };
+      const gradientControl = this.innerFill.rotate
+        ? {
+            x1: this.innerFill.revert ? 1 : 0,
+            x2: this.innerFill.revert ? 0 : 1,
+            y1: 0,
+            y2: 0,
+          }
+        : {
+            x1: 0,
+            x2: 0,
+            y1: this.innerFill.revert ? 0 : 1,
+            y2: this.innerFill.revert ? 1 : 0,
+          };
 
       const classPos = initialSVG.indexOf("<svg ") + 5;
       const customPathClass = `class="svg-preset" fill="url(#gradientFilter)"`;
@@ -42,107 +52,94 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
       ].join("");
 
       const gradientPos = svgPath.indexOf(">") + 1;
-      const gradient = (
-        <linearGradient
+      const gradient = `<linearGradient
           class="gradient-filter"
           id="gradientFilter"
-          x1={gradientControl.x1}
-          x2={gradientControl.x2}
-          y1={gradientControl.y1}
-          y2={gradientControl.y2}
+          x1="${gradientControl.x1}"
+          x2="${gradientControl.x2}"
+          y1="${gradientControl.y1}"
+          y2="${gradientControl.y2}"
         >
-          <stop offset="0%" stop-opacity="1" stop-color={this.accentC} />
+          <stop offset=0 stop-opacity="1" stop-color="${this.accentC}"/>
           <stop
-            offset={`${this.data.value}%`}
+            offset=${this.data.value}
             stop-opacity="1"
             class="gradient-stop"
-            stop-color={this.accentC}
+            stop-color="${this.accentC}"
           />
           <stop
-            offset={`${this.data.value}%`}
+            offset=${this.data.value}
             stop-opacity="0.3"
             class="gradient-stop"
-            stop-color={this.accentC}
+            stop-color="${this.accentC}"
           />
           <stop
-            offset="100%"
+            offset=1
             stop-opacity="0.3"
             class="gradient-back-bottom"
-            stop-color={this.accentC}
+            stop-color="${this.accentC}"
           />
           <stop
-            offset="100%"
+            offset=1
             stop-opacity="0.0"
             class="gradient-back-bottom"
-            stop-color={this.accentC}
+            stop-color="${this.accentC}"
           />
           <stop
-            offset="100%"
+            offset=1
             stop-opacity="0.0"
             class="gradient-back-top"
-            stop-color={this.accentC}
+            stop-color="${this.accentC}"
           />
-        </linearGradient>
-      ).toString();
+        </linearGradient>`;
       svgPath = [
         svgPath.slice(0, gradientPos),
         gradient,
         svgPath.slice(gradientPos),
       ].join("");
 
-      innerImage = (
-        <div class="inner-svg-container">
-          <div class="path-container">{svgPath}</div>
-        </div>
-      );
+      innerImage = `<div class="inner-svg-container">
+          <div class="path-container">${svgPath}</div>
+        </div>`;
     }
 
     // Bulding SVG for meter circle
-    const svgViewBox = (
-      <div class="svg-container">
+    const svgViewBox = `<div class="svg-container">
         <svg
           class="svg-viewbox"
-          viewbox={`0 0 ${this.boxSize} ${this.boxSize}`}
+          viewbox="0 0 ${this.boxSize} ${this.boxSize}"
         >
           <circle
             class="meter-track meter-general"
-            cx={`${this.boxSize * 0.5}`}
-            cy={`${this.boxSize * 0.5}`}
-            r= {this.boxSize * 0.46}
-            pathLength={this.pathLength}
+            cx="${this.boxSize * 0.5}"
+            cy="${this.boxSize * 0.5}"
+            r= ${this.boxSize * 0.46}
+            pathLength="${this.pathLength}"
           ></circle>
           <circle
             class="meter-path meter-general"
-            cx={`${this.boxSize * 0.5}`}
-            cy={`${this.boxSize * 0.5}`}
-            pathLength={this.pathLength}
-            r= {this.boxSize * 0.46}
+            cx="${this.boxSize * 0.5}"
+            cy="${this.boxSize * 0.5}"
+            pathLength="${this.pathLength}"
           ></circle>
         </svg>
-        {innerImage}
-      </div>
-    );
+        ${innerImage}
+      </div>`;
 
     // Building Meter Indicator
     const indicatorClass =
-      this.innerSVG === null ? "indicator-center" : "indicator-label";
+      this.innerSVG == null ? "indicator-center" : "indicator-label";
 
-    const indicator = (
-      <div class={`indicator-general ${indicatorClass}`}>
-        <div class="indicator-value indicator-inner">{this.data.value}</div>
-        <div class="indicator-unit indicator-inner">{this.data.unit}</div>
-      </div>
-    );
+    const indicator = `<div class="indicator-general ${indicatorClass}">
+        <div class="indicator-value indicator-inner">${this.data.value}</div>
+        <div class="indicator-unit indicator-inner">${this.data.unit}</div>
+      </div>`;
 
     // Complete HTML tree construction
-    const progressMeterHTML = (
-      <div class="container-progressMeter">
-        {svgViewBox}
-        {indicator}
-      </div>
-    );
-
-    return progressMeterHTML;
+    return `<div class="container-progressMeter">
+        ${svgViewBox}
+        ${indicator}
+      </div>`;
   }
 
   // Build CSS rules for incident
@@ -166,10 +163,10 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
     // INTRO CONTROL
     if (this.attrs.timings.intro) {
-      const introGroup = new MotorCortex.Group();
+      const introGroup = new Group();
 
       const pathAnimsDur = this.introDur * 0.7;
-      const trackAnimsDur = this.introDur * 0.7;
+      const trackAnimsDur = pathAnimsDur;
 
       // Circle Track Intro Animation
       const circleTrackAnim = new CSSEffect(
@@ -282,10 +279,10 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         const gradientBackFillBottom = new CSSEffect(
           {
             animatedAttrs: {
-              offset: `100%`,
+              offset: 1,
             },
             initialValues: {
-              offset: `${0}%`,
+              offset: 0,
             },
           },
           {
@@ -300,10 +297,10 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         const gradientFill = new CSSEffect(
           {
             animatedAttrs: {
-              offset: `${this.data.value}%`,
+              offset: this.data.value,
             },
             initialValues: {
-              offset: `0%`,
+              offset: 0,
             },
           },
           {
@@ -336,10 +333,10 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
     // OUTRO CONTROL
     if (this.attrs.timings.outro) {
-      const outroGroup = new MotorCortex.Group();
+      const outroGroup = new Group();
 
       const pathAnimsDur = this.outroDur * 0.7;
-      const trackAnimsDur = this.outroDur * 0.7;
+      const trackAnimsDur = pathAnimsDur;
 
       // Circle Track OUtro Animation
       const circleTrackAnim = new CSSEffect(
@@ -458,10 +455,10 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         const gradientBackFillBottom = new CSSEffect(
           {
             animatedAttrs: {
-              offset: `${0}%`,
+              offset: 0,
             },
             initialValues: {
-              offset: `100%`,
+              offset: 1,
             },
           },
           {
@@ -479,10 +476,10 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         const gradientFill = new CSSEffect(
           {
             animatedAttrs: {
-              offset: `0%`,
+              offset: 0,
             },
             initialValues: {
-              offset: `${this.data.value}%`,
+              offset: this.data.value,
             },
           },
           {
@@ -527,13 +524,11 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
 
   buildVars() {
     this.data = this.attrs.data;
-    this.innerSVG = this.attrs.innerImage ? this.attrs.innerImage : null;
-    this.innerFill = this.data.innerFill
-      ? this.data.innerFill
-      : {
-          revert: false,
-          rotate: false,
-        };
+    this.innerSVG = this.attrs.innerImage || null;
+    this.innerFill = this.data.innerFill || {
+      revert: false,
+      rotate: false,
+    };
     this.originalDims = config.progressMeter.originalDims;
     this.heightDimension = helpers.extractUnitsNums(
       this.props.containerParams.height
@@ -547,36 +542,22 @@ export default class ProgressMeter extends MotorCortex.HTMLClip {
         : this.heightDimension * 0.65;
     this.pathLength = 10000;
 
-    this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-    this.fontC = this.attrs.palette.font
-      ? this.attrs.palette.font
-      : colorPalette.font;
-    this.accentC = this.attrs.palette.accent
-      ? this.attrs.palette.accent
-      : colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background
-      ? this.attrs.palette.background
-      : colorPalette.background;
+    this.attrs.palette = this.attrs.palette || {};
+    this.fontC = this.attrs.palette.font || colorPalette.font;
+    this.accentC = this.attrs.palette.accent || colorPalette.accent;
+    this.backgroundC = this.attrs.palette.background || colorPalette.background;
 
-    this.attrs.font = this.attrs.font ? this.attrs.font : {};
+    this.attrs.font = this.attrs.font || {};
 
-    this.fontFamily = this.attrs.font.fontFamily
-      ? this.attrs.font.fontFamily
-      : "'Staatliches', cursive";
-    this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-    this.url = this.attrs.font.url
-      ? this.attrs.font.url
-      : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
+    this.fontFamily = this.attrs.font.fontFamily || "'Staatliches', cursive";
+    this.fontSize = this.attrs.font.size || "1.7rem";
+    this.url =
+      this.attrs.font.url ||
+      "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
 
-    this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
-    this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-    if (this.attrs.timings.static === 0) {
-      this.staticDur = 0;
-    } else {
-      this.staticDur = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
+    this.attrs.timings = this.attrs.timings || {};
+    this.introDur = this.attrs.timings.intro || 0;
+    this.outroDur = this.attrs.timings.outro || 0;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 }

@@ -1,4 +1,4 @@
-import MotorCortex,{CSSEffect } from "@donkeyclip/motorcortex";
+import { Combo, CSSEffect, Group, HTMLClip } from "@donkeyclip/motorcortex";
 import { colorPalette } from "../../shared/colorPalette";
 import { opacityControl } from "../../shared/opacityControl";
 import buildCSS from "./barChartStylesheet";
@@ -6,7 +6,7 @@ import buildCSS from "./barChartStylesheet";
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
-export default class BarChartSimple extends MotorCortex.HTMLClip {
+export default class BarChartSimple extends HTMLClip {
   // Building HTML tree for incident
   get html() {
     this.buildVars();
@@ -14,85 +14,72 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     // Title modal html generation
     const title = [];
     for (const i in this.title) {
-      const letter = [];
-      if (this.title[i] === " ") {
-        letter.push('<div class="space-char letter-wrapper">-</div>');
-      } else {
-        letter.push(
-          `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`
-        );
-      }
+      const letter =
+        this.title[i] === " "
+          ? `<div class="space-char letter-wrapper">-</div>`
+          : `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`;
 
       title.push(
-        `<div id={"letter-" + i} class="letter-container">
-          ${letter}
-        </div>`
+        `<div id="letter-${i}" class="letter-container">${letter}</div>`
       );
     }
 
     // Subtitle modal html generation
     const subtitle = [];
     for (const i in this.subtitle) {
-      const letter = [];
-      if (this.subtitle[i] === " ") {
-        letter.push('<div class="space-char letter-wrapper">-</div>');
-      } else {
-        letter.push(
-          <div class="fontColorOn letter-wrapper">{this.subtitle[i]}</div>
-        );
-      }
+      const letter =
+        this.subtitle[i] === " "
+          ? `<div class="space-char letter-wrapper">-</div>`
+          : `<div className="fontColorOn letter-wrapper">${this.subtitle[i]}</div>`;
 
       subtitle.push(
-        `<div id={"letter-" + i} class="letter-container">
-          ${letter}
-        </div>`
+        `<div id="letter-${i}" class="letter-container">${letter}</div>`
       );
     }
 
     // Gridlines conditional html generation
     const gridLines = [];
     for (let i = 0; i < this.gridLinesNum; i++) {
-      gridLines.push(<div class="gridLine" id={"gridLine" + i}></div>);
+      gridLines.push(`<div class="gridLine" id="gridLine${i}"></div>`);
     }
 
     // X-axis labels html generation with data parameter as reference
     const xLabels = [];
+    const bars = [];
     for (const i in this.data) {
-      if (this.data[i].name.length > 4) {
-        this.data[i].name = this.data[i].name.slice(0, 4);
+      const datum = this.data[i];
+      if (datum.name.length > 4) {
+        datum.name = datum.name.slice(0, 4);
+        this.data[i] = datum;
       }
       xLabels.push(
-        <div class="label-container" id={"label-" + i}>
-          {this.data[i].name}
-        </div>
+        `<div class="label-container" id="label-${i}">${this.data[i].name}</div>`
+      );
+      //  Bars html generation with data parameter as reference
+      if (this.maxPoint < datum.value) {
+        this.maxPoint = datum.value;
+      }
+      bars.push(
+        `<div class="${datum.name}-bar-${i}">
+          <div
+            class="bar-fill"
+            style="background:${datum.color ? datum.color : this.primaryC}"
+            id="${datum.name}-bar-fill"
+          ></div>
+        </div>`
       );
     }
 
-    //  Bars html generation with data parameter as reference
-    const bars = this.data.map((datum, i) => {
-      this.maxPoint = this.maxPoint < datum.value ? datum.value : this.maxPoint;
-
-      return (
-        <div class={datum.name + `-bar-${i}`}>
-          <div
-            class="bar-fill"
-            style={` background: ${datum.color ? datum.color : this.primaryC} `}
-            id={datum.name + "-bar-fill"}
-          ></div>
-        </div>
-      );
-    });
     this.maxPoint = this.attrs.data.maxValue
       ? this.attrs.data.maxValue
       : this.maxPoint;
 
     // MAIN HTML TREE
-    const barGraphHTML = (
-      <div class="container-barChart">
+    return `<div class="container-barChart">
         <div class="title-container">
-          <div class="title-wrapper">{title}</div>
+          <div class="title-wrapper">${title.join("")}</div>
           <div class="subtitle-position-end">
-            <div class="subtitle-wrapper">{subtitle}</div>
+            <div class="subtitle-wrapper">${subtitle.join("")}</div>
           </div>
           <div class="title-back-wrapper">
             <div class="title-back-animHelper">
@@ -101,19 +88,16 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           </div>
         </div>
         <div class="graph-container">
-          <div class="graph">{bars}</div>
-          <div class="gridlines">{gridLines}</div>
+          <div class="graph">${bars.join("")}</div>
+          <div class="gridlines">${gridLines.join("")}</div>
         </div>
         <div class="y-axis"></div>
         <div class="x-axis"></div>
-        <div class="x-labels-container">{xLabels}</div>
+        <div class="x-labels-container">${xLabels.join("")}</div>
         <div class="x-labels-back-wrapper">
           <div class="x-labels-background block-background"></div>
         </div>
-      </div>
-    );
-
-    return barGraphHTML;
+      </div>`;
   }
 
   // Build CSS rules for incident
@@ -138,10 +122,10 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     // INTRO CONTROL
     if (this.attrs.timings.intro) {
       const textAnimDur = this.introDur * 0.75;
-      const introGroup = new MotorCortex.Group();
+      const introGroup = new Group();
 
       // Axis Intro Control
-      const axisCombo = new MotorCortex.Combo(
+      const axisCombo = new Combo(
         {
           incidents: [
             {
@@ -205,7 +189,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(gridLinesAnim, Math.trunc(this.introDur * 0.2));
 
       // Title Bar Intro Control
-      const titlesAnim = new MotorCortex.Group();
+      const titlesAnim = new Group();
       titlesAnim.addIncident(
         new CSSEffect(
           {
@@ -252,7 +236,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         });
       }
 
-      const titleCombo = new MotorCortex.Combo(
+      const titleCombo = new Combo(
         {
           incidents: titleIncidents,
         },
@@ -288,7 +272,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         });
       }
 
-      const subtitleCombo = new MotorCortex.Combo(
+      const subtitleCombo = new Combo(
         {
           incidents: subIncidents,
         },
@@ -300,7 +284,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(titlesAnim, Math.trunc(this.introDur * 0.05));
 
       // Labels (xAxis) Intro Control
-      const xLabelsAnim = new MotorCortex.Group();
+      const xLabelsAnim = new Group();
       xLabelsAnim.addIncident(
         new CSSEffect(
           {
@@ -349,7 +333,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           });
         }
 
-        const datumCombo = new MotorCortex.Combo(
+        const datumCombo = new Combo(
           {
             incidents: incidents,
           },
@@ -365,7 +349,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       introGroup.addIncident(xLabelsAnim, Math.trunc(this.introDur * 0.05));
 
       // Bar Intro Control
-      const barAnimation = new MotorCortex.Combo(
+      const barAnimation = new Combo(
         {
           incidents: [
             {
@@ -399,10 +383,10 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     // OUTRO CONTROL
     if (this.attrs.timings.outro) {
       const textAnimDur = this.outroDur * 0.75;
-      const outroGroup = new MotorCortex.Group();
+      const outroGroup = new Group();
 
       // Axis Outro Control
-      const axisCombooutro = new MotorCortex.Combo(
+      const axisCombooutro = new Combo(
         {
           incidents: [
             {
@@ -466,7 +450,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       outroGroup.addIncident(gridLinesoutro, Math.trunc(this.outroDur * 0.2));
 
       // Title Bar Outro Control
-      const titlesoutro = new MotorCortex.Group();
+      const titlesoutro = new Group();
       titlesoutro.addIncident(
         new CSSEffect(
           {
@@ -511,7 +495,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           position: Math.trunc((letterDur * (this.title.length - i - 1)) / 2),
         });
       }
-      const titleCombo = new MotorCortex.Combo(
+      const titleCombo = new Combo(
         {
           incidents: titleIncidents,
         },
@@ -549,7 +533,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
         });
       }
 
-      const subtitleCombo = new MotorCortex.Combo(
+      const subtitleCombo = new Combo(
         {
           incidents: subIncidents,
         },
@@ -561,7 +545,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
       outroGroup.addIncident(titlesoutro, Math.trunc(this.outroDur * 0.05));
 
       // Labels (xAxis) Outro Control
-      const xLabelsoutro = new MotorCortex.Group();
+      const xLabelsoutro = new Group();
       xLabelsoutro.addIncident(
         new CSSEffect(
           {
@@ -610,7 +594,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           });
         }
 
-        const datumCombo = new MotorCortex.Combo(
+        const datumCombo = new Combo(
           {
             incidents: incidents,
           },
@@ -646,7 +630,7 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
           position: Math.trunc((subLetterDur * (this.data.length - i - 1)) / 2),
         });
       }
-      const barAnimationoutro = new MotorCortex.Combo(
+      const barAnimationoutro = new Combo(
         {
           incidents: barIncidents,
         },
@@ -677,45 +661,25 @@ export default class BarChartSimple extends MotorCortex.HTMLClip {
     this.maxPoint = 0;
     this.gridLinesNum = this.attrs.data.showGrid ? 11 : 0;
 
-    this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-    this.primaryC = this.attrs.palette.primary
-      ? this.attrs.palette.primary
-      : colorPalette.gray;
-    this.secondaryC = this.attrs.palette.secondary
-      ? this.attrs.palette.secondary
-      : colorPalette.lightGray;
-    this.tertiaryC = this.attrs.palette.tertiary
-      ? this.attrs.palette.tertiary
-      : colorPalette.darkGray;
-    this.fontC = this.attrs.palette.font
-      ? this.attrs.palette.font
-      : colorPalette.font;
-    this.accentC = this.attrs.palette.accent
-      ? this.attrs.palette.accent
-      : colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background
-      ? this.attrs.palette.background
-      : colorPalette.background;
+    this.attrs.palette = this.attrs.palette || {};
+    this.primaryC = this.attrs.palette.primary || colorPalette.gray;
+    this.secondaryC = this.attrs.palette.secondary || colorPalette.lightGray;
+    this.tertiaryC = this.attrs.palette.tertiary || colorPalette.darkGray;
+    this.fontC = this.attrs.palette.font || colorPalette.font;
+    this.accentC = this.attrs.palette.accent || colorPalette.accent;
+    this.backgroundC = this.attrs.palette.background || colorPalette.background;
 
-    this.attrs.font = this.attrs.font ? this.attrs.font : {};
+    this.attrs.font = this.attrs.font || {};
 
-    this.fontFamily = this.attrs.font.fontFamily
-      ? this.attrs.font.fontFamily
-      : "'Staatliches', cursive";
-    this.fontSize = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
-    this.url = this.attrs.font.url
-      ? this.attrs.font.url
-      : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
+    this.fontFamily = this.attrs.font.fontFamily || "'Staatliches', cursive";
+    this.fontSize = this.attrs.font.size || "1.7rem";
+    this.url =
+      this.attrs.font.url ||
+      "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
 
-    this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
-    this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-    if (this.attrs.timings.static === 0) {
-      this.staticDur = 0;
-    } else {
-      this.staticDur = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
+    this.attrs.timings = this.attrs.timings || {};
+    this.introDur = this.attrs.timings.intro || 0;
+    this.outroDur = this.attrs.timings.outro || 0;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 }

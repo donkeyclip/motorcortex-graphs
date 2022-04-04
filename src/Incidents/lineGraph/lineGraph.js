@@ -4,32 +4,25 @@ import helpers from "../../shared/helpers";
 import buildCSS from "./lineGraphStylesheet";
 import config from "../../incident_config";
 import AnimationConstructor from "./AnimationConstructor";
-import MotorCortex from "@donkeyclip/motorcortex";
+import { HTMLClip, Group } from "@donkeyclip/motorcortex";
 
 /**
  * LINE GRAPH: MotorCortex Implementation
  */
-export default class LineGraph extends MotorCortex.HTMLClip {
+export default class LineGraph extends HTMLClip {
   // Building HTML tree for incident
   get html() {
     this.buildVars();
 
     // Title modal html generation
     const title = [];
-    for (const i in this.words) {
-      let word = [];
-
-      for (let z = 0; z < this.words[i].length; z++) {
-        word += this.words[i][z];
-      }
-
+    for (let i = 0; i < this.words.length; i++) {
       title.push(
-        <div id={"word-" + i} class="fontColorOn letter-wrapper-title">
-          {word}
-        </div>
+        `<div id="word-${i}" class="fontColorOn letter-wrapper-title">${this.words[i]}</div>`
       );
-      if (i != this.words.length - 1) {
-        title.push(<div class="space-char letter-wrapper-title">-</div>);
+
+      if (i !== this.words.length - 1) {
+        title.push('<div class="space-char letter-wrapper-title">-</div>');
       }
     }
 
@@ -39,16 +32,13 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       const legendLine = [];
       for (let l = 0; l < this.dataSetsNum; l++) {
         legendLine.push(
-          <div class="line-wrapper">
-            <div class="color-wrapper">
-              <div class={"line-color color-" + l}></div>
-            </div>
-            <div class="line-title">{this.dataSets[l].title}</div>
-          </div>
+          `<div class="line-wrapper"><div class="color-wrapper">
+              <div class="line-color color-${l}"></div>
+            </div><div class="line-title">${this.dataSets[l].title}</div></div>`
         );
       }
 
-      legend.push(<div class="legend-wrapper">{legendLine}</div>);
+      legend.push(`<div class="legend-wrapper">${legendLine.join("")}</div>`);
     }
 
     // Data stele html generation
@@ -58,32 +48,28 @@ export default class LineGraph extends MotorCortex.HTMLClip {
         const stele = [];
         for (let z = 0; z < this.steleBlockNum; z++) {
           stele.push(
-            <div
-              class={"stele-block-" + i + " stele-block stele-grid-block"}
-            ></div>
+            `<div
+              class="stele-block-${i} stele-block stele-grid-block"}
+            ></div>`
           );
         }
 
         dataSteles.push(
-          <div id={"stele-" + i} class="data-stele stele-grid">
-            {stele}
-          </div>
+          `<div id="stele-${i}" class="data-stele stele-grid">${stele.join(
+            ""
+          )}</div>`
         );
       }
     } else if (this.grid === "lines") {
       const stele = [];
       for (let z = 0; z < this.steleBlockNum; z++) {
         stele.push(
-          <div
-            class={"stele-block-" + 0 + " stele-block line-grid-block"}
-          ></div>
+          '<div class="stele-block-0 stele-block line-grid-block"></div>'
         );
       }
 
       dataSteles.push(
-        <div id={"stele-" + 0} class="data-stele line-grid">
-          {stele}
-        </div>
+        `<div id="stele-0" class="data-stele line-grid">${stele.join("")}</div>`
       );
     }
 
@@ -101,44 +87,40 @@ export default class LineGraph extends MotorCortex.HTMLClip {
           const yPoint2 = this.findPointY(i + 1, l);
 
           // Dataline Generation
-          lineSegment.push(
-            <path
-              id={`line-${l}-${i}`}
-              class={`line-${l}`}
-              d={`M ${xPoint1} ${yPoint1}` + `L ${xPoint2} ${yPoint2}`}
-              stroke={this.dataSets[l].color}
-              stroke-width={`0.65%`}
+          lineSegment.push(`<path
+              id="line-${l}-${i}"
+              class="line-${l}"
+              d="M ${xPoint1} ${yPoint1}L ${xPoint2} ${yPoint2}"
+              stroke="${this.dataSets[l].color}"
+              stroke-width="0.65%"
               stroke-linecap="round"
               fill="none"
-            />
-          );
+            />`);
         }
 
         // Datapoint Generation
         lineSegment.push(
-          <circle
-            id={`point-${l}-${i}`}
-            class={`point-${l} datapoint`}
-            cx={`${xPoint1}`}
-            cy={`${yPoint1}`}
-            r={`${this.r}%`}
-            fill={this.senaryC}
-            stroke={this.senaryC}
-          />
+          `<circle
+            id="point-${l}-${i}"
+            class="point-${l} datapoint"
+            cx="${xPoint1}"
+            cy="${yPoint1}"
+            r="${this.r}%"
+            fill="${this.senaryC}"
+            stroke="${this.senaryC}"
+          />`
         );
-        linePaths.push(<g>{lineSegment}</g>);
+        linePaths.push(`<g>${lineSegment.join("")}</g>`);
       }
-      lineGroups.push(<g>{linePaths}</g>);
+      lineGroups.push(`<g>${linePaths.join("")}</g>`);
     }
 
     const lines = [];
     lines.push(
-      <svg
+      `<svg
         class="lines-container"
-        viewbox={`0 0 ${this.linesWidth} ${this.linesHeight}`}
-      >
-        {lineGroups}
-      </svg>
+        viewbox="0 0 ${this.linesWidth} ${this.linesHeight}"
+      >${lineGroups.join("")}</svg>`
     );
 
     // Graph labels html generation with data parameters as reference
@@ -146,26 +128,25 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     for (let l = 0; l < this.dataSetsNum; l++) {
       const graphLabels = [];
       for (let i = 0; i < this.data.length; i++) {
+        const { name, values } = this.data[i];
         graphLabels.push(
-          <div>
+          `<div>
             <div
-              class={`hoverPoint-${l}-${this.data[i].name} hoverPoint`}
+              class="hoverPoint-${l}-${name} hoverPoint"
             ></div>
             <div
-              class={`label-${l}-${this.data[i].name} inner-label-container`}
-              id={`label-${l}-${this.data[i].name}`}
+              class="label-${l}-${name} inner-label-container"
+              id="label-${l}-${name}"
             >
               <div class="inner-label">
-                {`${parseFloat(this.data[i].values[l].toFixed(2))} ${
-                  this.unit
-                }`}
+                ${parseFloat(values[l].toFixed(2))} ${this.unit}
               </div>
             </div>
-          </div>
+          </div>`
         );
       }
       labelGroups.push(
-        <div class={`line-${l}-label-container`}>{graphLabels}</div>
+        `<div class="line-${l}-label-container">${graphLabels.join("")}</div>`
       );
     }
 
@@ -179,41 +160,37 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       }
       for (const z in this.data[i].name) {
         labelX.push(
-          <div id={"letter-" + i + "-" + z} class="letter-container">
+          `<div id="letter-${i}-${z}" class="letter-container">
             <div class="letter-wrapper-label fontColorOn">
-              {this.data[i].name[z]}
+              ${this.data[i].name[z]}
             </div>
-          </div>
+          </div>`
         );
       }
       xLabels.push(
-        <div class="label-container" id={"label-" + i}>
-          {labelX}
-        </div>
+        `<div class="label-container" id="label-${i}">
+          ${labelX.join("")}
+        </div>`
       );
     }
 
     // MAIN HTML TREE
-    const lineGraphHTML = (
-      <div class="container-lineGraph">
+    return `<div class="container-lineGraph">
         <div class="viewport-lineGraph">
           <div class="title-container-lineGraph">
-            <div class="title-wrapper-lineGraph">{title}</div>
+            <div class="title-wrapper-lineGraph">${title.join("")}</div>
           </div>
-          {legend}
+          ${legend.join("")}
           <div class="graph-background"></div>
-          <div class="dataStele-container">{dataSteles}</div>
-          <div class="svg-container">{lines}</div>
-          <div class="graph-labels-container">{labelGroups}</div>
-          <div class="x-labels-container-lineGraph">{xLabels}</div>
+          <div class="dataStele-container">${dataSteles.join("")}</div>
+          <div class="svg-container">${lines.join("")}</div>
+          <div class="graph-labels-container">${labelGroups.join("")}</div>
+          <div class="x-labels-container-lineGraph">${xLabels.join("")}</div>
           <div class="x-labels-back-wrapper-lineGraph">
             <div class="block-background"></div>
           </div>
         </div>
-      </div>
-    );
-
-    return lineGraphHTML;
+      </div>`;
   }
 
   // Build CSS rules for incident
@@ -237,7 +214,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
 
     // INTRO CONTROL
     if (this.attrs.timings.intro) {
-      let introGroup = new MotorCortex.Group();
+      let introGroup = new Group();
 
       // Background Intro Animation
       introGroup.addIncident(
@@ -272,9 +249,8 @@ export default class LineGraph extends MotorCortex.HTMLClip {
       // Graph SVG, Labels, & Zoom Intro Animation
       const segmentDur = this.introDur / this.data.length;
       const pointDur = segmentDur * 0.35;
-      const [targetGroup, pathGroup, pointGroup] = [
-        ...this.animConstructor.buildIntroGraph(introGroup),
-      ];
+      const [targetGroup, pathGroup, pointGroup] =
+        this.animConstructor.buildIntroGraph(introGroup);
 
       introGroup = targetGroup;
       introGroup.addIncident(pathGroup, Math.trunc(pointDur));
@@ -285,7 +261,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
 
     // OUTRO CONTROL
     if (this.attrs.timings.outro) {
-      let outroGroup = new MotorCortex.Group();
+      let outroGroup = new Group();
 
       // Background Outro Animation
       outroGroup.addIncident(
@@ -344,34 +320,19 @@ export default class LineGraph extends MotorCortex.HTMLClip {
 
     // Colors control
     this.colorPalette = colorPalette;
-    this.attrs.palette = this.attrs.palette ? this.attrs.palette : {};
-    this.primaryC = this.attrs.palette.primary
-      ? this.attrs.palette.primary
-      : this.colorPalette.gray;
-    this.secondaryC = this.attrs.palette.secondary
-      ? this.attrs.palette.secondary
-      : this.colorPalette.lightGray;
-    this.tertiaryC = this.attrs.palette.tertiary
-      ? this.attrs.palette.tertiary
-      : this.colorPalette.darkGray;
-    this.quaternaryC = this.attrs.palette.quaternary
-      ? this.attrs.palette.quaternary
-      : this.colorPalette.whiteBack;
-    this.quinaryC = this.attrs.palette.quinary
-      ? this.attrs.palette.quinary
-      : this.colorPalette.gray;
-    this.senaryC = this.attrs.palette.senary
-      ? this.attrs.palette.senary
-      : this.colorPalette.accent;
-    this.fontC = this.attrs.palette.font
-      ? this.attrs.palette.font
-      : this.colorPalette.font;
-    this.accentC = this.attrs.palette.accent
-      ? this.attrs.palette.accent
-      : this.colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background
-      ? this.attrs.palette.background
-      : this.colorPalette.background;
+    this.attrs.palette = this.attrs.palette || {};
+    this.primaryC = this.attrs.palette.primary || this.colorPalette.gray;
+    this.secondaryC =
+      this.attrs.palette.secondary || this.colorPalette.lightGray;
+    this.tertiaryC = this.attrs.palette.tertiary || this.colorPalette.darkGray;
+    this.quaternaryC =
+      this.attrs.palette.quaternary || this.colorPalette.whiteBack;
+    this.quinaryC = this.attrs.palette.quinary || this.colorPalette.gray;
+    this.senaryC = this.attrs.palette.senary || this.colorPalette.accent;
+    this.fontC = this.attrs.palette.font || this.colorPalette.font;
+    this.accentC = this.attrs.palette.accent || this.colorPalette.accent;
+    this.backgroundC =
+      this.attrs.palette.background || this.colorPalette.background;
 
     // Data processing
     this.title = this.attrs.data.title;
@@ -388,8 +349,8 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     let colorCount = 2;
     this.dataSets.map((dataSet, l) => {
       if (dataSet.color === "" || !dataSet.color) {
-        (dataSet.color = this.colorPalette.dataColors[colorCount]),
-          colorCount++;
+        dataSet.color = this.colorPalette.dataColors[colorCount];
+        colorCount++;
       }
       if (dataSet.title === "" || !dataSet.title) {
         dataSet.title = `Dataset-${l + 1}`;
@@ -397,8 +358,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
         dataSet.title = dataSet.title.substr(0, 10);
       }
     });
-    this.legend = this.attrs.legend ? this.attrs.legend : false;
-    this.legend = this.dataSetsNum > 1 ? true : this.legend;
+    this.legend = this.dataSetsNum > 1 ? true : this.attrs.legend || false;
     this.maxPoint = 0;
     for (const datum of this.data) {
       if (Math.max(...datum.values) > this.maxPoint) {
@@ -408,18 +368,18 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.maxPoint = this.attrs.data.maxValue
       ? this.attrs.data.maxValue
       : this.maxPoint;
-    this.hover = this.attrs.data.hover ? this.attrs.data.hover : false;
+    this.hover = this.attrs.data.hover || false;
     this.hover = this.dataSetsNum !== 1 ? true : this.hover;
-    this.grid = this.attrs.grid ? this.attrs.grid : "lines";
+    this.grid = this.attrs.grid || "lines";
     this.grid =
       this.grid !== "lines" && this.grid !== "steles" ? "lines" : this.grid;
-    this.gridH = this.attrs.gridH ? this.attrs.gridH : 1;
-    this.attrs.trace = this.attrs.trace ? this.attrs.trace : {};
-    this.trace = this.attrs.trace.toggle ? this.attrs.trace.toggle : false;
-    this.trace = this.dataSetsNum === 1 ? this.trace : false;
-    this.traceScale = this.attrs.trace.scale ? this.attrs.trace.scale : 1.4;
-    this.unit = this.attrs.data.unit ? this.attrs.data.unit : "%";
-    this.interval = this.attrs.data.interval ? this.attrs.data.interval : 5;
+    this.gridH = this.attrs.gridH || 1;
+    this.attrs.trace = this.attrs.trace || {};
+    this.trace =
+      this.dataSetsNum === 1 ? this.attrs.trace.toggle || false : false;
+    this.traceScale = this.attrs.trace.scale || 1.4;
+    this.unit = this.attrs.data.unit || "%";
+    this.interval = this.attrs.data.interval || 5;
     this.steleBlockNum = this.maxPoint / this.interval + 1;
 
     // Sizing and position controls
@@ -442,7 +402,7 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     this.spaceAround =
       (this.linesWidth - this.steleWidth * this.data.length) /
       (this.data.length * 2);
-    this.r = this.attrs.dataPointR ? this.attrs.dataPointR : 0.65;
+    this.r = this.attrs.dataPointR || 0.65;
     // Global access data process functions
     this.findPointX = (datapoint) => {
       return (
@@ -459,31 +419,23 @@ export default class LineGraph extends MotorCortex.HTMLClip {
     };
 
     // Fonts control
-    this.attrs.font = this.attrs.font ? this.attrs.font : {};
-    this.fontFamily = this.attrs.font.fontFamily
-      ? this.attrs.font.fontFamily
-      : "'Staatliches', cursive";
-    this.fontSizeLabel = this.attrs.font.size ? this.attrs.font.size : "1.7rem";
+    this.attrs.font = this.attrs.font || {};
+    this.fontFamily = this.attrs.font.fontFamily || "'Staatliches', cursive";
+    this.fontSizeLabel = this.attrs.font.size || "1.7rem";
     this.fontSizeTitle =
       1.5 * helpers.extractUnitsNums(this.fontSizeLabel).number +
       helpers.extractUnitsNums(this.fontSizeLabel).unit;
     this.fontSizeInner =
       1 * helpers.extractUnitsNums(this.fontSizeLabel).number +
       helpers.extractUnitsNums(this.fontSizeLabel).unit;
-    this.url = this.attrs.font.url
-      ? this.attrs.font.url
-      : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
+    this.url =
+      this.attrs.font.url ||
+      "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
 
     // Timeline control
-    this.attrs.timings = this.attrs.timings ? this.attrs.timings : {};
-    this.introDur = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outroDur = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
-    if (this.attrs.timings.static === 0) {
-      this.staticDur = 0;
-    } else {
-      this.staticDur = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
+    this.attrs.timings = this.attrs.timings || {};
+    this.introDur = this.attrs.timings.intro || 0;
+    this.outroDur = this.attrs.timings.outro || 0;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 }

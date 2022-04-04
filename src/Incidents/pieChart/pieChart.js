@@ -1,8 +1,7 @@
-import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
+import { HTMLClip, CSSEffect } from "@donkeyclip/motorcortex";
 import * as DefaultStyle from "../../shared/colorPalette";
 import buildCSS from "./pieChartStylesheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
-
 
 /**
  * The purpose of extending the HTMLClip is to full, parametric
@@ -15,23 +14,21 @@ import { fadeOutOpacityControl } from "../../shared/opacityControl";
  * The buildTree method allows developers to define Incidents (of any plugin)
  * dynamically and position them on the Clip.
  */
-export default class PieChart extends MotorCortex.HTMLClip {
+export default class PieChart extends HTMLClip {
   get html() {
     this.data = this.attrs.data.data;
 
-    return (
-      <div class="container-pieChart">
-        <h1 class="title">{this.buildTitle()}</h1>
+    return `<div class="container-pieChart">
+        <h1 class="title">${this.buildTitle().join("")}</h1>
         <div class="columns">
           <div class="col-1">
             <div class="piechart"></div>
           </div>
           <div class="col-2">
-            <div class="legend">{this.buildLegend()}</div>
+            <div class="legend">${this.buildLegend().join("")}</div>
           </div>
         </div>
-      </div>
-    );
+      </div>`;
   }
 
   get css() {
@@ -57,15 +54,11 @@ export default class PieChart extends MotorCortex.HTMLClip {
 
   buildTree() {
     fadeOutOpacityControl(this, `.container-pieChart`);
-    if (this.attrs.timings.static === 0) {
-      this.static = 0;
-    } else {
-      this.static = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
-    this.intro = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outro = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
+
+    this.static = this.attrs.timings.static ?? 1000;
+
+    this.intro = this.attrs.timings.intro || 0;
+    this.outro = this.attrs.timings.outro || 0;
 
     if (this.intro) {
       const rotateDuration = Math.round(this.intro * 0.8);
@@ -238,9 +231,8 @@ export default class PieChart extends MotorCortex.HTMLClip {
       }
       turnCount += this.data[datum].value / 100;
     }
-    gradientString = gradientString + "rgba(0,0,0,0) 0 360deg";
 
-    return gradientString;
+    return gradientString + "rgba(0,0,0,0) 0 360deg";
   }
 
   createNullRadiusString() {
@@ -272,9 +264,8 @@ export default class PieChart extends MotorCortex.HTMLClip {
                 `;
       }
     }
-    gradientString = gradientString + "rgba(0,0,0,0) 0 360deg";
 
-    return gradientString;
+    return gradientString + "rgba(0,0,0,0) 0 360deg";
   }
 
   generateColor(index) {
@@ -290,30 +281,25 @@ export default class PieChart extends MotorCortex.HTMLClip {
   }
 
   buildTitle() {
-    return [...this.attrs.data.title].map((char, index) => {
-      return (
-        <div class="char">
-          <div class={"char-" + index + (char === " " ? " space" : "")}>
-            {char}
+    return (this.data.title || []).map(
+      (char, index) =>
+        `<div class="char">
+          <div class="char-${index} ${char === " " ? " space" : ""}">
+            ${char}
           </div>
-        </div>
-      );
-    });
+        </div>`
+    );
   }
 
   buildLegend() {
-    return this.attrs.data.data.map((elem, index) => {
+    return this.data.map((elem, index) => {
       if (elem.name.length > 24) {
-        elem.name = elem.name.substring(0, 21);
-        elem.name += "...";
+        elem.name = elem.name.substring(0, 21) + "...";
       }
-      const legendRow = (
-        <div class="legend-row">
-          <div class={"meter-" + index}></div>
-          <div class="legend-text">{elem.name}</div>
-        </div>
-      );
-      return legendRow;
+      return `<div class="legend-row">
+          <div class="meter-${index}"></div>
+          <div class="legend-text">${elem.name}</div>
+        </div>`;
     });
   }
 }

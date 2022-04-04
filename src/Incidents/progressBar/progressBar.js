@@ -1,10 +1,9 @@
-import MotorCortex,{CSSEffect} from "@donkeyclip/motorcortex";
+import { HTMLClip, CSSEffect, loadPlugin } from "@donkeyclip/motorcortex";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
 import buildCSS from "./progressBarStyleSheet";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
 
-const Counter = MotorCortex.loadPlugin(CounterPlugin);
-
+const Counter = loadPlugin(CounterPlugin);
 
 /**
  * The purpose of extending the HTMLClip is to full, parametric
@@ -17,33 +16,26 @@ const Counter = MotorCortex.loadPlugin(CounterPlugin);
  * The buildTree method allows developers to define Incidents (of any plugin)
  * dynamically and position them on the Clip.
  */
-export default class ProgressBar extends MotorCortex.HTMLClip {
+export default class ProgressBar extends HTMLClip {
   get html() {
     const list = this.attrs.data.map((elem, index) => {
-      return (
-        <div class={"row row-" + index}>
-          <div class="bar-header">{elem.name}</div>
-          <div class={"container-bar container-bar-" + index}>
+      return `<div class="row row-${index}">
+          <div class="bar-header">${elem.name}</div>
+          <div class="container-bar container-bar-${index}">
             <div
-              class={
-                "inner-bar inner-bar-" +
-                index +
-                " " +
-                (elem.value < this.criticalValue
-                  ? "extra-trunced-" + index
-                  : null)
-              }
+              class="inner-bar inner-bar-${index} ${
+        elem.value < this.criticalValue ? "extra-trunced-" + index : ""
+      }"
             ></div>
           </div>
-          <div class={`text indicator-${index}`}>{elem.value}</div>
-          <div class={"text text-unit"}>
-            {!this.attrs.options?.hidePercentage ? "%" : null}
+          <div class="text indicator-${index}">${elem.value}</div>
+          <div class="text text-unit">
+            ${!this.attrs.options?.hidePercentage ? "%" : ""}
           </div>
-        </div>
-      );
+        </div>`;
     });
 
-    return <div class="container-progressBar">{list}</div>;
+    return `<div class="container-progressBar">${list.join("")}</div>`;
   }
 
   get css() {
@@ -62,23 +54,18 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
     return [
       {
         type: "google-font",
-        src: this.attrs.font?.url
-          ? this.attrs.font.url
-          : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap",
+        src:
+          this.attrs.font?.url ||
+          "https://fonts.googleapis.com/css2?family=Staatliches&display=swap",
       },
     ];
   }
 
   buildTree() {
-    if (this.attrs.timings.static === 0) {
-      this.static = 0;
-    } else {
-      this.static = this.attrs.timings.static
-        ? this.attrs.timings.static
-        : 1000;
-    }
-    this.intro = this.attrs.timings.intro ? this.attrs.timings.intro : 0;
-    this.outro = this.attrs.timings.outro ? this.attrs.timings.outro : 0;
+    this.static = this.attrs.timings.static ?? 1000;
+
+    this.intro = this.attrs.timings.intro || 0;
+    this.outro = this.attrs.timings.outro || 0;
     const avg = this.barSum / this.barCount;
     fadeOutOpacityControl(this, `.container-progressBar`);
 
@@ -323,12 +310,13 @@ export default class ProgressBar extends MotorCortex.HTMLClip {
   }
 
   get criticalValue() {
-    if (this.barCount / 10 === 1) {
-      return (this.barCount / 10) * 10;
-    } else if (this.barCount / 10 > 1) {
-      return (this.barCount / 10 - 1) * 10;
+    const barCount = this.barCount / 10;
+    if (barCount === 1) {
+      return barCount * 10;
+    } else if (barCount > 1) {
+      return (barCount - 1) * 10;
     } else {
-      return (this.barCount / 10 + 1) * 10;
+      return (barCount + 1) * 10;
     }
   }
 }
