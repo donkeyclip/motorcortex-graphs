@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.0.0...v2.1.0) (2022-04-07)
+
+
+### Features
+
+* drop explorer 11 support ([b3b7094](https://github.com/donkeyclip/motorcortex-graphs/commit/b3b70945196358fedab7c6f097ed6256e217ab2b))
+* update compatibility with motorcortex ([4358953](https://github.com/donkeyclip/motorcortex-graphs/commit/43589535ffad3c896321d668bb1090da8f00b6c3))
+
 ## [2.0.0](https://github.com/donkeyclip/motorcortex-graphs/compare/v1.7.4...v2.0.0) (2022-04-04)
 
 
