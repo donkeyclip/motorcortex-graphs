@@ -4,10 +4,8 @@
       "@babel/preset-env",
       {
         "targets": "defaults, not ie 11",
-        "useBuiltIns": "usage",
         "corejs": "3.21"
       }
     ]
-  ],
-  "plugins": []
+  ]
 }
