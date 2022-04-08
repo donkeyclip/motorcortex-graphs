@@ -95,7 +95,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var isBrowser = (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" && (typeof document === "undefined" ? "undefined" : _typeof(document)) === 'object' && document.nodeType === 9;
 
-function _defineProperties$1(target, props) {
+function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -105,28 +105,28 @@ function _defineProperties$1(target, props) {
   }
 }
 
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
   return Constructor;
 }
 
-function _setPrototypeOf$1(o, p) {
-  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$1(o, p);
+  return _setPrototypeOf(o, p);
 }
 
 function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
-  _setPrototypeOf$1(subClass, superClass);
+  _setPrototypeOf(subClass, superClass);
 }
 
-function _assertThisInitialized$1(self) {
+function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
   }
@@ -405,7 +405,7 @@ var StyleRule = /*#__PURE__*/function (_BaseStyleRule) {
     if (selector) {
       _this.selectorText = selector;
     } else if (scoped !== false) {
-      _this.id = generateId(_assertThisInitialized$1(_assertThisInitialized$1(_this)), sheet);
+      _this.id = generateId(_assertThisInitialized(_assertThisInitialized(_this)), sheet);
       _this.selectorText = "." + escape(_this.id);
     }
 
@@ -467,7 +467,7 @@ var StyleRule = /*#__PURE__*/function (_BaseStyleRule) {
     return toCss(this.selectorText, this.style, opts);
   };
 
-  _createClass$1(StyleRule, [{
+  _createClass(StyleRule, [{
     key: "selector",
     set: function set(selector) {
       if (selector === this.selectorText) return;
@@ -1589,7 +1589,7 @@ var SheetsRegistry = /*#__PURE__*/function () {
     return css;
   };
 
-  _createClass$1(SheetsRegistry, [{
+  _createClass(SheetsRegistry, [{
     key: "index",
 
     /**
@@ -5346,152 +5346,27 @@ function buildCSS$1(lineGraph) {
   return styleSheet;
 }
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  Object.defineProperty(Constructor, "prototype", {
-    writable: false
-  });
-  return Constructor;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
+class Draw extends MotorCortex__default["default"].Effect {
+  getScratchValue() {
+    this.pathLength = Math.ceil(this.element.getTotalLength());
+    this.element.style.strokeDasharray = this.pathLength + " " + this.pathLength;
+    this.element.style.strokeDashoffset = this.pathLength;
+    return 0;
   }
 
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  onGetContext() {
+    this.pathLength = Math.ceil(this.element.getTotalLength());
   }
 
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
+  onProgress(millisecond) {
+    const cover = (this.targetValue - this.initialValue) * this.getFraction(millisecond) + this.initialValue;
+    this.element.style.strokeDashoffset = Math.ceil(this.pathLength * (1 - cover));
   }
 
-  return _assertThisInitialized(self);
 }
-
-function _createSuper(Derived) {
-  var hasNativeReflectConstruct = _isNativeReflectConstruct();
-
-  return function _createSuperInternal() {
-    var Super = _getPrototypeOf(Derived),
-        result;
-
-    if (hasNativeReflectConstruct) {
-      var NewTarget = _getPrototypeOf(this).constructor;
-
-      result = Reflect.construct(Super, arguments, NewTarget);
-    } else {
-      result = Super.apply(this, arguments);
-    }
-
-    return _possibleConstructorReturn(this, result);
-  };
-}
-
-var Draw = /*#__PURE__*/function (_MotorCortex$Effect) {
-  _inherits(Draw, _MotorCortex$Effect);
-
-  var _super = _createSuper(Draw);
-
-  function Draw() {
-    _classCallCheck(this, Draw);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(Draw, [{
-    key: "getScratchValue",
-    value: function getScratchValue() {
-      this.pathLength = Math.ceil(this.element.getTotalLength());
-      this.element.style.strokeDasharray = this.pathLength + " " + this.pathLength;
-      this.element.style.strokeDashoffset = this.pathLength;
-      return 0;
-    }
-  }, {
-    key: "onGetContext",
-    value: function onGetContext() {
-      this.pathLength = Math.ceil(this.element.getTotalLength());
-    }
-  }, {
-    key: "onProgress",
-    value: function onProgress(millisecond) {
-      var cover = (this.targetValue - this.initialValue) * this.getFraction(millisecond) + this.initialValue;
-      this.element.style.strokeDashoffset = Math.ceil(this.pathLength * (1 - cover));
-    }
-  }]);
-
-  return Draw;
-}(MotorCortex__default["default"].Effect);
 
 var name$2 = "@donkeyclip/motorcortex-svgdraw";
-var version$2 = "1.0.0";
+var version$2 = "1.1.0";
 var index$2 = {
   npm_name: name$2,
   version: version$2,
