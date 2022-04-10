@@ -3118,7 +3118,7 @@ class Counter$2 extends MotorCortex__default["default"].Effect {
 }
 
 var name$4 = "@donkeyclip/motorcortex-counter";
-var version$4 = "2.1.0";
+var version$4 = "2.1.1";
 var index$4 = {
   npm_name: name$4,
   // don't touch this
