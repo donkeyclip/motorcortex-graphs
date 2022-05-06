@@ -60,7 +60,7 @@
     "@donkeyclip/motorcortex-2dcam": "0.3.0",
     "@donkeyclip/motorcortex-counter": "2.1.1",
     "@donkeyclip/motorcortex-player": "2.9.6",
-    "@donkeyclip/motorcortex-svgdraw": "1.1.0",
+    "@donkeyclip/motorcortex-svgdraw": "1.2.0",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "21.1.0",
     "@rollup/plugin-json": "4.1.0",

@@ -5340,10 +5340,10 @@ function buildCSS$1(lineGraph) {
   return styleSheet;
 }
 
-class Draw extends MotorCortex.Effect {
+class Draw extends Effect {
   getScratchValue() {
     this.pathLength = Math.ceil(this.element.getTotalLength());
-    this.element.style.strokeDasharray = this.pathLength + " " + this.pathLength;
+    this.element.style.strokeDasharray = "".concat(this.pathLength, " ").concat(this.pathLength);
     this.element.style.strokeDashoffset = this.pathLength;
     return 0;
   }
@@ -5360,7 +5360,7 @@ class Draw extends MotorCortex.Effect {
 }
 
 var name$2 = "@donkeyclip/motorcortex-svgdraw";
-var version$2 = "1.1.0";
+var version$2 = "1.2.0";
 var index$2 = {
   npm_name: name$2,
   version: version$2,
@@ -5372,7 +5372,7 @@ var index$2 = {
         type: "object",
         props: {
           cover: {
-            type: 'number',
+            type: "number",
             min: 0,
             max: 1
           }
