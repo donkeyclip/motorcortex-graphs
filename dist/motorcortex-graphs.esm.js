@@ -1,4 +1,4 @@
-import MotorCortex, { CSSEffect, HTMLClip, Group, Combo, loadPlugin, Effect, setCSSCore } from '@donkeyclip/motorcortex';
+import MotorCortex, { CSSEffect, HTMLClip, Group, Combo, loadPlugin, ExtendableCSSEffect, Effect, setCSSCore } from '@donkeyclip/motorcortex';
 
 const colorPalette = {
   gray: "#75706E",
@@ -4449,7 +4449,7 @@ anime.path = getPath;
 anime.getPathProgress = getPathProgress;
 var anime_es = anime;
 
-class Anime extends MotorCortex.ExtendableCSSEffect {
+class Anime extends ExtendableCSSEffect {
   onGetContext() {
     const options = {};
 
@@ -4526,7 +4526,7 @@ class MotionPath extends Effect {
 }
 
 var name$3 = "@donkeyclip/motorcortex-anime";
-var version$3 = "3.1.0";
+var version$3 = "3.1.1";
 var index$3 = {
   npm_name: name$3,
   version: version$3,

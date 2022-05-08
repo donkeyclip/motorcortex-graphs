@@ -4455,7 +4455,7 @@ anime.path = getPath;
 anime.getPathProgress = getPathProgress;
 var anime_es = anime;
 
-class Anime extends MotorCortex__default["default"].ExtendableCSSEffect {
+class Anime extends MotorCortex.ExtendableCSSEffect {
   onGetContext() {
     const options = {};
 
@@ -4532,7 +4532,7 @@ class MotionPath extends MotorCortex.Effect {
 }
 
 var name$3 = "@donkeyclip/motorcortex-anime";
-var version$3 = "3.1.0";
+var version$3 = "3.1.1";
 var index$3 = {
   npm_name: name$3,
   version: version$3,
