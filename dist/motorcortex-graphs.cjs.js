@@ -2288,12 +2288,11 @@ var createJss = function createJss(options) {
 
 
 var index$5 = createJss();
-var jss = index$5;
 
 function buildCSS$4(barChart) {
   const createGenerateId = () => rule => rule.key;
 
-  jss.setup({
+  index$5.setup({
     createGenerateId
   });
   const styles = {
@@ -2485,7 +2484,7 @@ function buildCSS$4(barChart) {
       height: "100%"
     };
   });
-  const styleSheet = jss.createStyleSheet(styles).toString();
+  const styleSheet = index$5.createStyleSheet(styles).toString();
   return styleSheet;
 }
 
@@ -3152,7 +3151,7 @@ function buildCSS$3(cssArgs) {
     return rule => rule.key;
   };
 
-  jss.setup({
+  index$5.setup({
     createGenerateId
   });
   const styles = {
@@ -3216,7 +3215,7 @@ function buildCSS$3(cssArgs) {
       width: "".concat(elem.value.toFixed(2), "%")
     };
   });
-  const styleSheet = jss.createStyleSheet(styles).toString();
+  const styleSheet = index$5.createStyleSheet(styles).toString();
   return styleSheet;
 }
 
@@ -4582,7 +4581,7 @@ function buildCSS$2(progressMeter) {
     return rule => rule.key;
   };
 
-  jss.setup({
+  index$5.setup({
     createGenerateId
   });
   const styles = {
@@ -4670,7 +4669,7 @@ function buildCSS$2(progressMeter) {
       offset: "".concat(progressMeter.data.value, "%")
     }
   };
-  return jss.createStyleSheet(styles).toString();
+  return index$5.createStyleSheet(styles).toString();
 }
 
 var config = {
@@ -5069,7 +5068,7 @@ function buildCSS$1(lineGraph) {
     return rule => rule.key;
   };
 
-  jss.setup({
+  index$5.setup({
     createGenerateId
   });
   const styles = {
@@ -5335,7 +5334,7 @@ function buildCSS$1(lineGraph) {
     }
   }
 
-  let styleSheet = jss.createStyleSheet(styles).toString();
+  let styleSheet = index$5.createStyleSheet(styles).toString();
 
   for (let l = 0; l < lineGraph.dataSetsNum; l++) {
     for (let i = 0; i < lineGraph.data.length; i++) {
@@ -6811,7 +6810,7 @@ function buildCSS(cssArgs) {
     return rule => rule.key;
   };
 
-  jss.setup({
+  index$5.setup({
     createGenerateId
   });
   const styles = {
@@ -6900,7 +6899,7 @@ function buildCSS(cssArgs) {
       "margin-bottom": "0.25rem"
     };
   });
-  const styleSheet = jss.createStyleSheet(styles).toString();
+  const styleSheet = index$5.createStyleSheet(styles).toString();
   return styleSheet;
 }
 
