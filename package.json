@@ -28,7 +28,9 @@
   },
   "keywords": [
     "motorcortex",
-    "animation"
+    "animation",
+    "motorcortex-plugin",
+    "graph"
   ],
   "lint-staged": {
     "*.{json,md,yml,yaml,css}": [
@@ -45,9 +47,9 @@
   "peerDependencies": {
     "@donkeyclip/motorcortex": ">= 8 < 10",
     "@donkeyclip/motorcortex-2dcam": ">= 0.1.0 < 1",
+    "@donkeyclip/motorcortex-anime": ">= 3 < 4",
     "@donkeyclip/motorcortex-counter": ">= 2 < 3",
-    "@donkeyclip/motorcortex-svgdraw": ">= 1 < 2",
-    "@donkeyclip/motorcortex-anime": ">= 3 < 4"
+    "@donkeyclip/motorcortex-svgdraw": ">= 1 < 2"
   },
   "devDependencies": {
     "@babel/cli": "7.17.10",
@@ -56,13 +58,14 @@
     "@babel/plugin-syntax-jsx": "7.16.7",
     "@babel/plugin-transform-react-jsx": "7.17.3",
     "@babel/preset-env": "7.17.10",
-    "@donkeyclip/motorcortex": "8.0.4",
+    "@donkeyclip/motorcortex": "^9.1.5",
     "@donkeyclip/motorcortex-2dcam": "0.3.0",
+    "@donkeyclip/motorcortex-anime": "3.1.1",
     "@donkeyclip/motorcortex-counter": "2.1.1",
-    "@donkeyclip/motorcortex-player": "2.9.7",
+    "@donkeyclip/motorcortex-player": "^2.10.0",
     "@donkeyclip/motorcortex-svgdraw": "1.2.0",
     "@rollup/plugin-babel": "5.3.1",
-    "@rollup/plugin-commonjs": "21.1.0",
+    "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-replace": "4.0.0",
@@ -78,14 +81,13 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-promise": "6.0.0",
-    "husky": "7.0.4",
+    "husky": "^8.0.1",
     "prettier": "2.6.2",
     "rimraf": "3.0.2",
     "rollup": "2.72.1",
     "rollup-plugin-terser": "7.0.2",
     "webpack": "5.72.0",
     "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.9.0",
-    "@donkeyclip/motorcortex-anime": "3.1.1"
+    "webpack-dev-server": "4.9.0"
   }
 }
