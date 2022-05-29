@@ -1,6 +1,5 @@
 import BarChartSimple from "./Incidents/barChartSimple/barChartSimple";
 import ProgressBar from "./Incidents/progressBar/progressBar";
-import ProgressMeter from "./Incidents/progressMeter/progressMeter";
 import LineGraph from "./Incidents/lineGraph/lineGraph";
 import PieChart from "./Incidents/pieChart/pieChart";
 import validationRules from "./validation";
@@ -36,11 +35,6 @@ export default {
         width: "1200px",
         height: "900px",
       },
-    },
-    {
-      exportable: ProgressMeter,
-      name: "ProgressMeter",
-      attributesValidationRules: validationRules.ProgressMeter,
     },
   ],
 };
