@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.2.0](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.1.0...v2.2.0) (2022-05-29)
+
+
+### Features
+
+* initial removal of jss ([dcaad39](https://github.com/donkeyclip/motorcortex-graphs/commit/dcaad3974580f0c23e007bc4c583380b5c809705))
+* remove progress meter from incidents ([d1ec153](https://github.com/donkeyclip/motorcortex-graphs/commit/d1ec15398155482655b2b2e6ecbaf07628ba4064))
+
+
+### Bug Fixes
+
+* bar char stylesheet ([7838cc7](https://github.com/donkeyclip/motorcortex-graphs/commit/7838cc7a3b6fc1cb6410856193f0364571f582b3))
+* change styles to css ([f7c3e45](https://github.com/donkeyclip/motorcortex-graphs/commit/f7c3e45ebc39e1571d09beec57f91e1e8b344a62))
+* changes based on comments ([e00a8d1](https://github.com/donkeyclip/motorcortex-graphs/commit/e00a8d1b9666310161f125b15215482b9fff7391))
+* conflicts with master ([3242a9f](https://github.com/donkeyclip/motorcortex-graphs/commit/3242a9ffd3d6b565a1186c401ca9c441688ccfab))
+* convert jss to css function ([6215308](https://github.com/donkeyclip/motorcortex-graphs/commit/62153083ac41a8aa36dc04aee8637db5a540fc5a))
+* line graph style css ([ed73130](https://github.com/donkeyclip/motorcortex-graphs/commit/ed731307966bdd17aaca9a77b885089740de328f))
+* progress styles ([f0d4a18](https://github.com/donkeyclip/motorcortex-graphs/commit/f0d4a1855363a4ecf85f9cccec7af82b24d8ea1c))
+* remove anime from peer deps ([ffa5511](https://github.com/donkeyclip/motorcortex-graphs/commit/ffa5511a40f1cdf650aad6107bdba56dcaff6677))
+* rename key value vars in cssObjectToString func ([e42a43a](https://github.com/donkeyclip/motorcortex-graphs/commit/e42a43ab53665919bee96c7c7c49f3aff6da4d87))
+
 ## [2.1.0](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.0.0...v2.1.0) (2022-04-07)
 
 
