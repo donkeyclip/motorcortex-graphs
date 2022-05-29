@@ -2,13 +2,10 @@ import {
   loadPlugin,
   CSSEffect,
   HTMLClip,
-  setCSSCore,
   Group,
 } from "@donkeyclip/motorcortex";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
-import AnimeDefinition from "@donkeyclip/motorcortex-anime";
 
-setCSSCore(AnimeDefinition.CSSEffect);
 const Counter = loadPlugin(CounterPlugin);
 
 import { colorPalette } from "../../shared/colorPalette";

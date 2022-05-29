@@ -21,6 +21,11 @@ function isNumber(value) {
 
 export function cssObjectToString(style) {
   return Object.entries(style)
-    .map(([k, v]) => `${k}:${v}`)
-    .join(";");
+    .map(
+      ([k, v]) =>
+        `${k}{${Object.entries(v)
+          .map(([k, v]) => `${k}:${v}`)
+          .join(";\n")}}`
+    )
+    .join("\n");
 }
