@@ -24,7 +24,7 @@ export function cssObjectToString(style) {
     .map(
       ([k, v]) =>
         `${k}{${Object.entries(v)
-          .map(([k, v]) => `${k}:${v}`)
+          .map(([key, value]) => `${key}:${value}`)
           .join(";\n")}}`
     )
     .join("\n");
