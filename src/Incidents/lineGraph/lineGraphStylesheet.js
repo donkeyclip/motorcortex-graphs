@@ -3,7 +3,7 @@ import { cssObjectToString } from "../../shared/helpers";
 
 export default function buildCSS(lineGraph) {
   const styles = {
-    "..container-lineGraph": {
+    ".container-lineGraph": {
       width: "100%",
       height: "100%",
       background: lineGraph.backgroundC,
