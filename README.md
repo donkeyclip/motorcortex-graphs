@@ -13,7 +13,6 @@
   - [LineGraph](#linegraph)
   - [PieChart](#piechart)
   - [ProgressBar](#progressbar)
-  - [ProgressMeter](#progressmeter)
 - [Adding Incidents in your clip](#adding-incidents-in-your-clip)
 - [Contributing](#contributing)
 - [License](#license)
@@ -28,11 +27,11 @@
 Using MotorCortex Graphs you can create fully configurable animations of graphs using real data. It allows you to control animation timing, coloring, sizing and font stylizing.
 
 This Plugin exposes five Incidents:
+
 - BarChartSimple
 - LineGraph
 - PieChart
 - ProgressBar
-- ProgressMeter
 
 #### Browser compatibility
 
@@ -98,6 +97,7 @@ const newGraph = new MCGraphs.BarChartSimple(
 ```
 
 ### BarChartSimple Attrs
+
 - `data`
 - `timings`
 - `palette`
@@ -107,7 +107,7 @@ const newGraph = new MCGraphs.BarChartSimple(
 
 An object that contains the parameters with which the data are being displayed in the graph. The dataPoint array is a required entry, but all the rest are optional.
 
-| Name     | Description                                       |        Type      |
+| Name     | Description                                       |       Type       |
 | -------- | :------------------------------------------------ | :--------------: |
 | title    | The title of the graph (left)                     |      string      |
 | subtitle | The subtitle of the graph (right)                 |      string      |
@@ -146,8 +146,8 @@ The data array of the graph contains `datapoint` objects. These Objects contain 
 
 | Key   | Description                                         | Value Type |
 | ----- | :-------------------------------------------------- | :--------: |
-| name  | The name (label) of the bar (up to 3 chars)         |  string  |
-| value | The value (y-axis) of the bar (2 significal digits) |  number  |
+| name  | The name (label) of the bar (up to 3 chars)         |   string   |
+| value | The value (y-axis) of the bar (2 significal digits) |   number   |
 
 #### Timings:
 
@@ -155,9 +155,9 @@ The `timings` object is an _optional_ attribute that contains three (3) paramete
 
 | Name   | Description                                               | Default | Value |
 | ------ | :-------------------------------------------------------- | :------ | ----: |
-| intro  | Duration of the intro animation                           | 0     |    ms |
-| static | Duration of the time that the graph should stay on screen | 1000  |    ms |
-| outro  | Duration of the outro animation                           | 0     |    ms |
+| intro  | Duration of the intro animation                           | 0       |    ms |
+| static | Duration of the time that the graph should stay on screen | 1000    |    ms |
+| outro  | Duration of the outro animation                           | 0       |    ms |
 
 #### Palette:
 
@@ -176,11 +176,11 @@ The `palette` object is an optional parameter used to customize the colors used 
 
 The `font` object is an optional parameter that contains three (3) values used for customizing the font. These parameters are:
 
-| Name       | Description           | Default                                                           |     Value |
-| ---------- | :-------------------- | :---------------------------------------------------------------- | --------: |
-| url        | A url pointing to a google font          | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
-| fontFamily | The font family to be used           | Righteous, cursive                                              |    string |
-| size       | The desired font size | 1.7rem                                                          | px/rem/em |
+| Name       | Description                     | Default                                                         |     Value |
+| ---------- | :------------------------------ | :-------------------------------------------------------------- | --------: |
+| url        | A url pointing to a google font | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
+| fontFamily | The font family to be used      | Righteous, cursive                                              |    string |
+| size       | The desired font size           | 1.7rem                                                          | px/rem/em |
 
 ## LineGraph
 
@@ -216,6 +216,7 @@ const newGraph = new MCGraphs.LineGraph(
 ```
 
 ### LineGraph Attrs
+
 - `data`
 - `timings`
 - `grid`
@@ -232,8 +233,8 @@ const newGraph = new MCGraphs.LineGraph(
 
 An object that contains the parameters with which the data are being displayed in the graph. The dataPoint array is a required entry, but all the rest are optional.
 
-| Name     | Description                                              |        Type        |
-| -------- | :------------------------------------------------------- | :----------------: |
+| Name     | Description                                              |       Type       |
+| -------- | :------------------------------------------------------- | :--------------: |
 | title    | The title of the graph (left)                            |      string      |
 | showGrid | Toggle of grid steles background                         |     boolean      |
 | interval | The number of units between each line on the grid        |     integer      |
@@ -289,8 +290,8 @@ Example data:
 
 The data array of the graph contains `datapoint` objects. These Objects contain two (2) key-value pairs:
 
-| Key   | Description                                             |   Value Type    |
-| ----- | :------------------------------------------------------ | :-------------: |
+| Key   | Description                                             |  Value Type   |
+| ----- | :------------------------------------------------------ | :-----------: |
 | name  | The name (x-axis label) of the point (up to 4 chars)    |    string     |
 | value | The value (y-axis) of the point (2 significal digits)\* | Array[Number] |
 
@@ -315,8 +316,8 @@ The length of the array should be equal to the number of lines in the graph. Eac
 
 The dataSet array of contains `dataSet` objects. These Objects contain two (2) key-value pairs:
 
-| Key   | Description                                  |     Value Type     |
-| ----- | :------------------------------------------- | :----------------: |
+| Key   | Description                                  |    Value Type    |
+| ----- | :------------------------------------------- | :--------------: |
 | title | The title of the dataset                     |      string      |
 | color | The color of the dataset in the graph/legend | hex or css color |
 
@@ -341,8 +342,8 @@ The trace configuration object controls the zoom effect of the introduction. The
 
 | Key    | Description                       | Value Type |
 | ------ | :-------------------------------- | :--------: |
-| toggle | Toggles the zoom effect on or off | boolean  |
-| scale  | The scale of the zoom effect      |  number  |
+| toggle | Toggles the zoom effect on or off |  boolean   |
+| scale  | The scale of the zoom effect      |   number   |
 
 #### Hover:
 
@@ -370,9 +371,9 @@ The `timings` object is an _optional_ attribute that contains three (3) paramete
 
 | Name   | Description                                               | Default | Value |
 | ------ | :-------------------------------------------------------- | :------ | ----: |
-| intro  | Duration of the intro animation                           | 0     |    ms |
-| static | Duration of the time that the graph should stay on screen | 1000  |    ms |
-| outro  | Duration of the outro animation                           | 0     |    ms |
+| intro  | Duration of the intro animation                           | 0       |    ms |
+| static | Duration of the time that the graph should stay on screen | 1000    |    ms |
+| outro  | Duration of the outro animation                           | 0       |    ms |
 
 #### Palette:
 
@@ -394,11 +395,11 @@ The `palette` object is an optional parameter used to customize the colors used 
 
 The `font` object is an optional parameter that contains three (3) values used for customizing the font. These parameters are:
 
-| Name       | Description           | Default                                                           |     Value |
-| ---------- | :-------------------- | :---------------------------------------------------------------- | --------: |
-| url        | A url pointing to a google font           | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
-| fontFamily |The font family to be used           | Righteous, cursive                                              |    string |
-| size       | The desired font size | 1.7rem                                                          | px/rem/em |
+| Name       | Description                     | Default                                                         |     Value |
+| ---------- | :------------------------------ | :-------------------------------------------------------------- | --------: |
+| url        | A url pointing to a google font | https://fonts.googleapis.com/css2?family=Righteous&display=swap |    string |
+| fontFamily | The font family to be used      | Righteous, cursive                                              |    string |
+| size       | The desired font size           | 1.7rem                                                          | px/rem/em |
 
 ## PieChart
 
@@ -455,6 +456,7 @@ const pieChart = new MCGraphs.PieChart(
 ```
 
 ### PieChart Attrs
+
 - `data`
 - `timings`
 - `palette`
@@ -503,7 +505,7 @@ The `font` object is an optional object that contains three (3) values used for 
 | fontFamily | The font family to be used| Righteous, cursive | string|
 | size |The desired font size| 1.6rem | px/rem/em
 
-## ProgressBar 
+## ProgressBar
 
 ```javascript
 const newGraph = new MCGraphs.ProgressBar(
@@ -546,6 +548,7 @@ const newGraph = new MCGraphs.ProgressBar(
 ```
 
 ### ProgressBar Attrs
+
 - `data`
 - `timings`
 - `palette`
@@ -596,124 +599,26 @@ The `options` object is an optional object what contains miscellaneous graph con
 | --- | --- | --- | --- |
 | hidePercentage | Toggles the percentages next to the bars | false | boolean|
 
-## ProgressMeter
-
-To create a progress meter, the necessary attribute parameter is the data object. The remaining parameters implement customization of the meter and are all optional.
-
-```javascript
-const progressMeter = new MCGraphs.ProgressMeter({
-  data: progressMeterData,
-  innerImage: `battery`,
-  timings: {
-    intro: 3000,
-    static: 1000,
-    outro: 3000,
-  },
-  palette: {
-    background: "#D3CDCD"
-    font: "#100300",
-    accent: "#FFD800",
-  },
-  font: {
-    size: '8rem'
-  },
-}, {
-  selector: '#htmlclip',
-  containerParams: {
-    width: '1024px',
-    height: '768px'
-  },
-});
-```
-
-### ProgressMeter Attrs
-- `data`
-- `innerImage`
-- `timings`
-- `palette`
-- `font`
-
-#### Data:
-
-An object that contains the parameters with which the meter is being displayed. The "value" parameter is required, but all the rest are optional.
-
-| Name      | Description                                                   |   Type   |
-| --------- | :------------------------------------------------------------ | :------: |
-| value     | The final progress value of the graph (0-100)                 | number |
-| unit      | The unit (if any) to display the value with (defaults to "%") | string |
-| innerFill | InnerSVG animation parametrization                            | object |
-
-Example data:
-
-```json
-{
-  "value": 60,
-  "unit": "%",
-  "innerFill": {
-    "revert": false,
-    "rotate": false
-  }
-}
-```
-
-#### InnerImage:
-
-The InnerImage parameter is not required. If it is not present, the number value will be placed in the middle of the progress meter. Otherwise it will be placed below, and the middle of the progress meter will be filled with a processed version of the provided SVG. The SVG's animation can be configured by the "innerFill" data parameter in the data attribute of the incident.
-
-There are 5 preset SVG's that you may use. Those are "battery", "backup", "synch", "folder", and "checkMark". You may enter these values in the innerSVG parameter.
-
-If you wish to use your own SVG as the template for the animated innerSVG, you may convert it to a string and enter it as the value of the "innerImage" parameter.
-
-Ideal SVG's for this type of animation can be found in the [Material Design Icon Library](https://material.io/resources/icons/?style=baseline).
-
-#### Timings:
-
-The `timings` object is an optional object that contains three (3) values for setting the duration of the event. These values are:
-| Name | Description | Default | Values |
-| --- | --- | --- | --- |
-| intro | Duration of the intro animation | 0 | ms |
-| static | Duration of the the time that the graph should stay on screen | 1000 | ms |
-| outro | Duration of the outro animation | 0 | ms |
-
-#### Palette:
-
-The `palette` object is an optional object used to customize the colors used in the graph. The colors that can be set are:
-| Name | Description | Default | Values |
-| --- | --- | --- | --- |
-| primary | The bar fill color | #B2B1AE | hex or css color |
-| secondary | The bar background color | #434243 | hex or css color |
-| accent | The bar outline color | #FFD800 | hex or css color |
-| font | The font color | #100300 | hex or css color |
-| background | The background color | transparent | hex or css color |
-
-#### Font:
-
-The `font` object is an optional object that contains three (3) values used for customizing the font. These values are:
-| Name | Description | Default | Values |
-| --- | --- | --- | --- |
-| url |A url pointing to a google font|https://fonts.googleapis.com/css2?family=Righteous&display=swap|string|
-| fontFamily | The font family to be used| Righteous, cursive | string|
-| size |The desired font size| 1.2rem | px/rem/em |
-
 # Adding Incidents in your clip
 
 ```javascript
-clipName.addIncident(incidentName,startTime);
+clipName.addIncident(incidentName, startTime);
 ```
 
-# Contributing 
+# Contributing
 
 In general, we follow the "fork-and-pull" Git workflow, so if you want to submit patches and additions you should follow the next steps:
-1.	**Fork** the repo on GitHub
-2.	**Clone** the project to your own machine
-3.	**Commit** changes to your own branch
-4.	**Push** your work back up to your fork
-5.	Submit a **Pull request** so that we can review your changes
+
+1. **Fork** the repo on GitHub
+2. **Clone** the project to your own machine
+3. **Commit** changes to your own branch
+4. **Push** your work back up to your fork
+5. Submit a **Pull request** so that we can review your changes
 
 # License
 
 [MIT License](https://opensource.org/licenses/MIT)
 
 # Sponsored by
-[<img src="https://presskit.donkeyclip.com/logos/donkey%20clip%20logo.svg" width=250></img>](https://donkeyclip.com)
 
+[<img src="https://presskit.donkeyclip.com/logos/donkey%20clip%20logo.svg" width=250></img>](https://donkeyclip.com)

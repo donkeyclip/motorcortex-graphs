@@ -1,11 +1,8 @@
-import jss from "jss";
+import { cssObjectToString } from "../../shared/helpers";
 
 export default function buildCSS(barChart) {
-  const createGenerateId = () => (rule) => rule.key;
-  jss.setup({ createGenerateId });
-
   const styles = {
-    "y-axis": {
+    ".y-axis": {
       width: "4px",
       height: "70%",
       left: "14%",
@@ -13,7 +10,7 @@ export default function buildCSS(barChart) {
       background: barChart.tertiaryC,
       position: "absolute",
     },
-    "x-axis": {
+    ".x-axis": {
       width: "74%",
       height: "4px",
       top: "85%",
@@ -21,20 +18,20 @@ export default function buildCSS(barChart) {
       background: barChart.tertiaryC,
       position: "absolute",
     },
-    gridlines: {
+    ".gridlines": {
       width: "100%",
       height: "calc(100% + 3px)",
       display: "flex",
       "flex-direction": "column",
       "justify-content": "space-between",
     },
-    gridLine: {
+    ".gridLine": {
       height: "3px",
       width: "100%",
       background: barChart.secondaryC,
       "align-self": "flex-end",
     },
-    graph: {
+    ".graph": {
       top: 0,
       left: 0,
       position: "absolute",
@@ -44,32 +41,32 @@ export default function buildCSS(barChart) {
       "justify-content": "space-around",
       overflow: "hidden",
     },
-    "bar-container": {
+    ".bar-container": {
       "align-self": "flex-end",
       width: `${100 / barChart.data.length}%`,
       margin: `0% ${10 / barChart.data.length + 1}%`,
       height: "100%",
       display: "flex",
     },
-    "bar-fill": {
+    ".bar-fill": {
       width: "100%",
       height: "100%",
       background: barChart.primaryC,
       "align-self": "center",
     },
-    "block-background": {
+    ".block-background": {
       width: "100%",
       height: "100%",
       background: barChart.accentC,
       position: "relative",
     },
-    "title-back-animHelper": {
+    ".title-back-animHelper": {
       width: "100%",
       height: "100%",
       display: "flex",
       "flex-direction": "row-reverse",
     },
-    "title-back-wrapper": {
+    ".title-back-wrapper": {
       width: "100%",
       height: "100%",
       display: "flex",
@@ -77,7 +74,7 @@ export default function buildCSS(barChart) {
       "flex-direction": "row",
       "z-index": "-1",
     },
-    "x-labels-back-wrapper": {
+    ".x-labels-back-wrapper": {
       width: "70%",
       height: "5%",
       top: "87%",
@@ -86,7 +83,7 @@ export default function buildCSS(barChart) {
       display: "flex",
       "flex-direction": "row-reverse",
     },
-    "x-labels-container": {
+    ".x-labels-container": {
       "font-family": barChart.fontFamily,
       background: "transparent",
       width: "70%",
@@ -99,17 +96,17 @@ export default function buildCSS(barChart) {
       "z-index": "1",
       "justify-content": "space-around",
     },
-    "letter-wrapper": {
+    ".letter-wrapper": {
       "font-size": barChart.fontSize,
       display: "flex",
       "flex-direction": "column",
       position: "relative",
     },
-    "letter-container": {
+    ".letter-container": {
       overflow: "hidden",
       position: "relative",
     },
-    "title-container": {
+    ".title-container": {
       "font-family": barChart.fontFamily,
       background: "transparent",
       width: "70%",
@@ -123,7 +120,7 @@ export default function buildCSS(barChart) {
       "z-index": "1",
       "justify-content": "space-around",
     },
-    "title-wrapper": {
+    ".title-wrapper": {
       display: "flex",
       "flex-grow": "2",
       "flex-wrap": "wrap",
@@ -132,13 +129,13 @@ export default function buildCSS(barChart) {
       "padding-left": "6px",
       "z-index": "1",
     },
-    "subtitle-wrapper": {
+    ".subtitle-wrapper": {
       display: "flex",
       "z-index": "1",
       "flex-wrap": "wrap",
       "align-items": "center",
     },
-    "subtitle-position-end": {
+    ".subtitle-position-end": {
       display: "flex",
       "flex-grow": "1",
       "padding-right": "6px",
@@ -147,33 +144,33 @@ export default function buildCSS(barChart) {
       overflow: "hidden",
       "justify-content": "flex-end",
     },
-    "label-container": {
+    ".label-container": {
       position: "relative",
       top: "1px",
       display: "flex",
       "flex-direction": "row",
       overflow: "hidden",
     },
-    "container-barChart": {
+    ".container-barChart": {
       width: "100%",
       height: "100%",
       background: barChart.backgroundC,
       display: "flex",
     },
-    "graph-container": {
+    ".graph-container": {
       left: "16%",
       top: "17%",
       width: "70%",
       height: "63%",
       position: "absolute",
     },
-    fontColorOn: {
+    ".fontColorOn": {
       color: barChart.fontC,
     },
-    "space-char": {
+    ".space-char": {
       visibility: "hidden",
     },
-    "accent-background": {
+    ".accent-background": {
       width: "100%",
       height: "100%",
       background: barChart.accentC,
@@ -182,20 +179,19 @@ export default function buildCSS(barChart) {
   };
 
   barChart.data.map((datum, i) => {
-    styles[`${datum.name}-bar-${i}`] = {
+    styles[`.${datum.name}-bar-${i}`] = {
       "align-self": "flex-end",
       width: `${100 / barChart.data.length}%`,
       margin: `0% ${10 / barChart.data.length + 1}%`,
       height: "100%",
       display: "flex",
     };
-    styles[`${datum.name}-bar-${i}`].height = `
+    styles[`.${datum.name}-bar-${i}`].height = `
             ${(datum.value.toFixed(2) / barChart.maxPoint) * 100}%`;
-    styles[`${datum.name}-bar-fill`] = {
+    styles[`.${datum.name}-bar-fill`] = {
       height: "100%",
     };
   });
-  const styleSheet = jss.createStyleSheet(styles).toString();
 
-  return styleSheet;
+  return cssObjectToString(styles);
 }

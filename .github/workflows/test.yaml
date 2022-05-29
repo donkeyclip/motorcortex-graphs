@@ -9,7 +9,7 @@ on:
   push:
     branches:
       - master
-      - 'renovate/**'
+      - "renovate/**"
 
 jobs:
   build:

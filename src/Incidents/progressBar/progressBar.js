@@ -1,6 +1,7 @@
-import { HTMLClip, CSSEffect, loadPlugin } from "@donkeyclip/motorcortex";
+import { CSSEffect, HTMLClip, loadPlugin } from "@donkeyclip/motorcortex";
 import CounterPlugin from "@donkeyclip/motorcortex-counter";
-import buildCSS from "./progressBarStyleSheet";
+import { colorPalette } from "../../shared/colorPalette";
+import { cssObjectToString } from "../../shared/helpers";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
 
 const Counter = loadPlugin(CounterPlugin);
@@ -47,7 +48,76 @@ export default class ProgressBar extends HTMLClip {
       font: this.attrs.font ? this.attrs.font : {},
       options: this.attrs.options ? this.attrs.options : {},
     };
-    return buildCSS(cssArgs);
+
+    const styles = {
+      ".container-progressBar": {
+        height: "100%",
+        background: cssArgs.palette.background || colorPalette.background,
+        display: "flex",
+        color: cssArgs.palette.font || colorPalette.font,
+        "font-family": cssArgs.font.fontFamily || "'Staatliches', cursive",
+      },
+      ".row": {
+        display: "flex",
+        "flex-direction": "row",
+        position: "absolute",
+        left: "20%",
+        "align-items": "center",
+        height: `${60 / cssArgs.barCount}%`,
+        width: "100%",
+      },
+      ".container-bar": {
+        position: "absolute",
+        height: "100%",
+        background: cssArgs.palette.secondary
+          ? cssArgs.palette.secondary
+          : colorPalette.darkGray,
+        "border-radius": "4rem",
+        width: "60%",
+        "box-shadow": "2px 2px 5px gray",
+        border: `0.2rem solid ${cssArgs.palette.accent || colorPalette.accent}`,
+        "z-index": "1",
+        overflow: "hidden",
+      },
+      ".inner-bar": {
+        position: "relative",
+        background: cssArgs.palette.primary || colorPalette.lightGray,
+        height: "102%",
+        "border-radius": "4rem",
+        bottom: "-1px",
+        "z-index": "2px",
+        top: "-0.5px",
+      },
+      ".text": {
+        position: "relative",
+        "z-index": "0",
+        opacity: "1",
+        left: "62%",
+        "font-size": cssArgs.font.size || "1.2rem",
+      },
+      ".bar-header": {
+        position: "absolute",
+        left: "-21%",
+        "text-align": "right",
+        width: "20%",
+        "font-size": cssArgs.font.size || "1.2rem",
+      },
+    };
+
+    const avg = cssArgs.barSum / cssArgs.barCount;
+    cssArgs.data.forEach((elem, index) => {
+      styles[`.row-${index}`] = {
+        bottom: `${
+          50 +
+          ((avg - index) * 100) / cssArgs.barCount -
+          (60 / cssArgs.barCount) * 2.15
+        }%`,
+      };
+      styles[`.inner-bar-${index}`] = {
+        width: `${elem.value.toFixed(2)}%`,
+      };
+    });
+    return cssObjectToString(styles);
   }
 
   get fonts() {

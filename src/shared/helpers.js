@@ -18,3 +18,14 @@ export default {
 function isNumber(value) {
   return typeof value === "number" && isFinite(value);
 }
+
+export function cssObjectToString(style) {
+  return Object.entries(style)
+    .map(
+      ([k, v]) =>
+        `${k}{${Object.entries(v)
+          .map(([key, value]) => `${key}:${value}`)
+          .join(";")}}`
+    )
+    .join("");
+}
