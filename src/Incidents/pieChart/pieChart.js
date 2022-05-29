@@ -1,6 +1,6 @@
 import { HTMLClip, CSSEffect } from "@donkeyclip/motorcortex";
-import * as DefaultStyle from "../../shared/colorPalette";
-import buildCSS from "./pieChartStylesheet";
+import { colorPalette } from "../../shared/colorPalette";
+import { cssObjectToString } from "../../shared/helpers";
 import { fadeOutOpacityControl } from "../../shared/opacityControl";
 
 /**
@@ -14,6 +14,16 @@ import { fadeOutOpacityControl } from "../../shared/opacityControl";
  * The buildTree method allows developers to define Incidents (of any plugin)
  * dynamically and position them on the Clip.
  */
+
+function generateColor(index) {
+  if (index > colorPalette.dataColors.length - 1) {
+    return colorPalette.dataColors[
+      Math.floor(Math.random() * Math.floor(colorPalette.dataColors.length))
+    ];
+  }
+  return colorPalette.dataColors[index];
+}
+
 export default class PieChart extends HTMLClip {
   get html() {
     this.data = this.attrs.data.data;
@@ -34,20 +44,109 @@ export default class PieChart extends HTMLClip {
   get css() {
     const cssArgs = {
       data: this.attrs.data,
-      palette: this.attrs.palette ? this.attrs.palette : {},
-      font: this.attrs.font ? this.attrs.font : {},
+      palette: this.attrs.palette || {},
+      font: this.attrs.font || {},
       radiusString: this.createRadiusString(),
     };
-    return buildCSS(cssArgs);
+    const styles = {
+      ".container-pieChart": {
+        opacity: 1,
+        "background-color": "transparent",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        "align-items": "center",
+        "flex-direction": "column",
+        "font-family": `${cssArgs.font?.fontFamily || "Staatliches, cursive"}`,
+        "font-size": `${cssArgs.font?.size || "1.6rem"}`,
+        color: cssArgs.palette.font || colorPalette.font,
+      },
+      ".title": {
+        top: "-1rem",
+        position: "relative",
+        display: "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "flex:direction": "row",
+        overflow: "hidden",
+      },
+      ".columns": {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+      },
+      ".col-1": {
+        width: "65%",
+        height: "100%",
+        display: "flex",
+        "justify-content": "center",
+        "align-items": "center",
+      },
+      ".col-2": {
+        width: "35%",
+        height: "100%",
+        display: "flex",
+        "justify-content": "center",
+        "align-items": "center",
+      },
+      ".piechart": {
+        display: "block",
+        width: "95%",
+        height: "95%",
+        "border-radius": "50%",
+        "background-image": `conic-gradient(${cssArgs.radiusString})`,
+        "margin-left": "2rem",
+      },
+      ".legend": {
+        display: "flex",
+        "flex-direction": "column",
+        padding: "1rem",
+        "max-width": "75%",
+        "min-width": "50%",
+        background: cssArgs.palette.primary || "rgba(0,0,0, 0.2)",
+        position: "relative",
+        top: "22.5%",
+        overflow: "hidden",
+      },
+      ".legend-row": {
+        display: "flex",
+        "flex-direction": "row",
+        "align-items": "center",
+        "align-self": "flex-start",
+      },
+      ".legend-text": {
+        " white-space": "nowrap",
+      },
+      ".space": {
+        "min-width": cssArgs.font?.size
+          ? `calc(${cssArgs.font.size} * 0.5)`
+          : "0.8rem",
+      },
+      ".char": {
+        position: "relative",
+      },
+    };
+
+    cssArgs.data.data.forEach((elem, i) => {
+      styles[".meter-" + i] = {
+        background: elem.color || generateColor(i),
+        width: "1rem",
+        height: "1rem",
+        display: "block",
+        "margin-right": "0.5rem",
+        "margin-bottom": "0.25rem",
+      };
+    });
+    return cssObjectToString(styles);
   }
 
   get fonts() {
     return [
       {
         type: "google-font",
-        src: this.attrs.font?.url
-          ? this.attrs.font.url
-          : "https://fonts.googleapis.com/css2?family=Staatliches&display=swap",
+        src:
+          this.attrs.font?.url ||
+          "https://fonts.googleapis.com/css2?family=Staatliches&display=swap",
       },
     ];
   }
@@ -206,26 +305,14 @@ export default class PieChart extends HTMLClip {
     for (const datum in this.data) {
       if (datum === "0") {
         gradientString += `
-                    ${
-                      this.data[datum].color
-                        ? this.data[datum].color
-                        : this.generateColor(datum)
-                    }
+                    ${this.data[datum].color || generateColor(datum)}
                     ${this.data[datum].value / 100}turn,
                 `;
       } else {
         gradientString += `
-                    ${
-                      this.data[datum - 1].color
-                        ? this.data[datum].color
-                        : this.generateColor(datum)
-                    }
+                    ${this.data[datum - 1].color || generateColor(datum)}
                     ${this.data[datum - 1].value / 100}turn,
-                    ${
-                      this.data[datum].color
-                        ? this.data[datum].color
-                        : this.generateColor(datum)
-                    }
+                    ${this.data[datum].color || generateColor(datum)}
                     ${turnCount + this.data[datum].value / 100}turn,
                 `;
       }
@@ -240,44 +327,20 @@ export default class PieChart extends HTMLClip {
     for (const datum in this.data) {
       if (datum === "0") {
         gradientString += `
-                    ${
-                      this.data[datum].color
-                        ? this.data[datum].color
-                        : this.generateColor(datum)
-                    }
+                    ${this.data[datum].color || generateColor(datum)}
                     ${0}turn,
                 `;
       } else {
         gradientString += `
-                    ${
-                      this.data[datum - 1].color
-                        ? this.data[datum].color
-                        : this.generateColor(datum)
-                    }
+                    ${this.data[datum - 1].color || generateColor(datum)}
                     ${0}turn,
-                    ${
-                      this.data[datum].color
-                        ? this.data[datum].color
-                        : this.generateColor(datum)
-                    }
+                    ${this.data[datum].color || generateColor(datum)}
                     ${0}turn,
                 `;
       }
     }
 
     return gradientString + "rgba(0,0,0,0) 0 360deg";
-  }
-
-  generateColor(index) {
-    if (index > DefaultStyle.colorPalette.dataColors.length - 1) {
-      return DefaultStyle.colorPalette.dataColors[
-        Math.floor(
-          Math.random() *
-            Math.floor(DefaultStyle.colorPalette.dataColors.length)
-        )
-      ];
-    }
-    return DefaultStyle.colorPalette.dataColors[index];
   }
 
   buildTitle() {
