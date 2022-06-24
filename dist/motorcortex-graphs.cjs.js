@@ -1820,7 +1820,7 @@ class Adaptor {
  **/
 
 
-class MyEffect extends MotorCortex__default["default"].Effect {
+class MyEffect extends MotorCortex.Effect {
   /**
    * the scratch value of the Incident should return back the triplette
    * x, y, zoom
@@ -1924,7 +1924,7 @@ class FollowPath extends MyEffect {
 }
 
 var name$1 = "@donkeyclip/motorcortex-2dcam";
-var version$1 = "0.3.0";
+var version$1 = "0.3.1";
 var index$1 = {
   npm_name: name$1,
   version: version$1,

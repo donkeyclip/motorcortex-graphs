@@ -55,7 +55,7 @@
     "@babel/plugin-transform-react-jsx": "7.17.12",
     "@babel/preset-env": "7.18.2",
     "@donkeyclip/motorcortex": "9.4.1",
-    "@donkeyclip/motorcortex-2dcam": "0.3.0",
+    "@donkeyclip/motorcortex-2dcam": "0.3.1",
     "@donkeyclip/motorcortex-counter": "2.1.1",
     "@donkeyclip/motorcortex-player": "2.10.5",
     "@donkeyclip/motorcortex-svgdraw": "1.2.0",
