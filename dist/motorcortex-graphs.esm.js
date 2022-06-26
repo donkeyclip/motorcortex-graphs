@@ -1,4 +1,4 @@
-import MotorCortex, { CSSEffect, HTMLClip, Group, Combo, loadPlugin, Effect } from '@donkeyclip/motorcortex';
+import { CSSEffect, HTMLClip, Group, Combo, Effect, loadPlugin } from '@donkeyclip/motorcortex';
 
 const colorPalette = {
   gray: "#75706E",
@@ -867,7 +867,7 @@ class BarChartSimple extends HTMLClip {
  *
  **/
 
-class Counter$1 extends MotorCortex.Effect {
+class Counter$1 extends Effect {
   /**
    * the very first MonoIncident of the specific element and the
    * specific attribute that will ever enter a Clip will be asked
@@ -914,7 +914,7 @@ class Counter$1 extends MotorCortex.Effect {
 }
 
 var name$3 = "@donkeyclip/motorcortex-counter";
-var version$3 = "2.1.1";
+var version$3 = "2.1.2";
 var index$3 = {
   npm_name: name$3,
   // don't touch this
