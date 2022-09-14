@@ -87,10 +87,10 @@ function isNumber(value) {
 function cssObjectToString(style) {
   return Object.entries(style).map(_ref => {
     let [k, v] = _ref;
-    return "".concat(k, "{").concat(Object.entries(v).map(_ref2 => {
+    return `${k}{${Object.entries(v).map(_ref2 => {
       let [key, value] = _ref2;
-      return "".concat(key, ":").concat(value);
-    }).join(";"), "}");
+      return `${key}:${value}`;
+    }).join(";")}}`;
   }).join("");
 }
 
@@ -137,8 +137,8 @@ function buildCSS$1(barChart) {
     },
     ".bar-container": {
       "align-self": "flex-end",
-      width: "".concat(100 / barChart.data.length, "%"),
-      margin: "0% ".concat(10 / barChart.data.length + 1, "%"),
+      width: `${100 / barChart.data.length}%`,
+      margin: `0% ${10 / barChart.data.length + 1}%`,
       height: "100%",
       display: "flex"
     },
@@ -272,15 +272,16 @@ function buildCSS$1(barChart) {
     }
   };
   barChart.data.map((datum, i) => {
-    styles[".".concat(datum.name, "-bar-").concat(i)] = {
+    styles[`.${datum.name}-bar-${i}`] = {
       "align-self": "flex-end",
-      width: "".concat(100 / barChart.data.length, "%"),
-      margin: "0% ".concat(10 / barChart.data.length + 1, "%"),
+      width: `${100 / barChart.data.length}%`,
+      margin: `0% ${10 / barChart.data.length + 1}%`,
       height: "100%",
       display: "flex"
     };
-    styles[".".concat(datum.name, "-bar-").concat(i)].height = "\n            ".concat(datum.value.toFixed(2) / barChart.maxPoint * 100, "%");
-    styles[".".concat(datum.name, "-bar-fill")] = {
+    styles[`.${datum.name}-bar-${i}`].height = `
+            ${datum.value.toFixed(2) / barChart.maxPoint * 100}%`;
+    styles[`.${datum.name}-bar-fill`] = {
       height: "100%"
     };
   });
@@ -299,23 +300,23 @@ class BarChartSimple extends motorcortex.HTMLClip {
     const title = [];
 
     for (const i in this.title) {
-      const letter = this.title[i] === " " ? "<div class=\"space-char letter-wrapper\">-</div>" : "<div class=\"fontColorOn letter-wrapper\">".concat(this.title[i], "</div>");
-      title.push("<div id=\"letter-".concat(i, "\" class=\"letter-container\">").concat(letter, "</div>"));
+      const letter = this.title[i] === " " ? `<div class="space-char letter-wrapper">-</div>` : `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`;
+      title.push(`<div id="letter-${i}" class="letter-container">${letter}</div>`);
     } // Subtitle modal html generation
 
 
     const subtitle = [];
 
     for (const i in this.subtitle) {
-      const letter = this.subtitle[i] === " " ? "<div class=\"space-char letter-wrapper\">-</div>" : "<div className=\"fontColorOn letter-wrapper\">".concat(this.subtitle[i], "</div>");
-      subtitle.push("<div id=\"letter-".concat(i, "\" class=\"letter-container\">").concat(letter, "</div>"));
+      const letter = this.subtitle[i] === " " ? `<div class="space-char letter-wrapper">-</div>` : `<div className="fontColorOn letter-wrapper">${this.subtitle[i]}</div>`;
+      subtitle.push(`<div id="letter-${i}" class="letter-container">${letter}</div>`);
     } // Gridlines conditional html generation
 
 
     const gridLines = [];
 
     for (let i = 0; i < this.gridLinesNum; i++) {
-      gridLines.push("<div class=\"gridLine\" id=\"gridLine".concat(i, "\"></div>"));
+      gridLines.push(`<div class="gridLine" id="gridLine${i}"></div>`);
     } // X-axis labels html generation with data parameter as reference
 
 
@@ -330,18 +331,46 @@ class BarChartSimple extends motorcortex.HTMLClip {
         this.data[i] = datum;
       }
 
-      xLabels.push("<div class=\"label-container\" id=\"label-".concat(i, "\">").concat(this.data[i].name, "</div>")); //  Bars html generation with data parameter as reference
+      xLabels.push(`<div class="label-container" id="label-${i}">${this.data[i].name}</div>`); //  Bars html generation with data parameter as reference
 
       if (this.maxPoint < datum.value) {
         this.maxPoint = datum.value;
       }
 
-      bars.push("<div class=\"".concat(datum.name, "-bar-").concat(i, "\">\n          <div\n            class=\"bar-fill\"\n            style=\"background:").concat(datum.color ? datum.color : this.primaryC, "\"\n            id=\"").concat(datum.name, "-bar-fill\"\n          ></div>\n        </div>"));
+      bars.push(`<div class="${datum.name}-bar-${i}">
+          <div
+            class="bar-fill"
+            style="background:${datum.color ? datum.color : this.primaryC}"
+            id="${datum.name}-bar-fill"
+          ></div>
+        </div>`);
     }
 
     this.maxPoint = this.attrs.data.maxValue ? this.attrs.data.maxValue : this.maxPoint; // MAIN HTML TREE
 
-    return "<div class=\"container-barChart\">\n        <div class=\"title-container\">\n          <div class=\"title-wrapper\">".concat(title.join(""), "</div>\n          <div class=\"subtitle-position-end\">\n            <div class=\"subtitle-wrapper\">").concat(subtitle.join(""), "</div>\n          </div>\n          <div class=\"title-back-wrapper\">\n            <div class=\"title-back-animHelper\">\n              <div class=\"title-background block-background\"></div>\n            </div>\n          </div>\n        </div>\n        <div class=\"graph-container\">\n          <div class=\"graph\">").concat(bars.join(""), "</div>\n          <div class=\"gridlines\">").concat(gridLines.join(""), "</div>\n        </div>\n        <div class=\"y-axis\"></div>\n        <div class=\"x-axis\"></div>\n        <div class=\"x-labels-container\">").concat(xLabels.join(""), "</div>\n        <div class=\"x-labels-back-wrapper\">\n          <div class=\"x-labels-background block-background\"></div>\n        </div>\n      </div>");
+    return `<div class="container-barChart">
+        <div class="title-container">
+          <div class="title-wrapper">${title.join("")}</div>
+          <div class="subtitle-position-end">
+            <div class="subtitle-wrapper">${subtitle.join("")}</div>
+          </div>
+          <div class="title-back-wrapper">
+            <div class="title-back-animHelper">
+              <div class="title-background block-background"></div>
+            </div>
+          </div>
+        </div>
+        <div class="graph-container">
+          <div class="graph">${bars.join("")}</div>
+          <div class="gridlines">${gridLines.join("")}</div>
+        </div>
+        <div class="y-axis"></div>
+        <div class="x-axis"></div>
+        <div class="x-labels-container">${xLabels.join("")}</div>
+        <div class="x-labels-back-wrapper">
+          <div class="x-labels-background block-background"></div>
+        </div>
+      </div>`;
   } // Build CSS rules for incident
 
 
@@ -353,13 +382,13 @@ class BarChartSimple extends motorcortex.HTMLClip {
   get fonts() {
     return [{
       type: "google-font",
-      src: "".concat(this.url)
+      src: `${this.url}`
     }];
   } // MotorCortex Animation generation and
 
 
   buildTree() {
-    opacityControl(this, ".container-barChart"); // INTRO CONTROL
+    opacityControl(this, `.container-barChart`); // INTRO CONTROL
 
     if (this.attrs.timings.intro) {
       const textAnimDur = this.introDur * 0.75;
@@ -450,7 +479,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
             }
           },
           props: {
-            selector: "#letter-".concat(i),
+            selector: `#letter-${i}`,
             duration: Math.trunc(titleLetterDur),
             easing: "easeOutQuart"
           },
@@ -483,7 +512,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
             }
           },
           props: {
-            selector: "#letter-".concat(i),
+            selector: `#letter-${i}`,
             duration: Math.trunc(subLetterDur),
             easing: "easeOutQuart"
           },
@@ -534,7 +563,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
               }
             },
             props: {
-              selector: "#letter-".concat(i, "-").concat(z),
+              selector: `#letter-${i}-${z}`,
               duration: Math.trunc(letterDur),
               easing: "easeOutQuart"
             },
@@ -571,7 +600,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
         }]
       }, {
         selector: ".bar-fill",
-        delay: "@stagger(0, ".concat(Math.trunc(this.introDur * 0.4), ")")
+        delay: `@stagger(0, ${Math.trunc(this.introDur * 0.4)})`
       });
       introGroup.addIncident(barAnimation, Math.trunc(this.introDur * 0.3));
       this.addIncident(introGroup, this.introDur * 0);
@@ -667,7 +696,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
             }
           },
           props: {
-            selector: "#letter-".concat(i),
+            selector: `#letter-${i}`,
             duration: Math.trunc(letterDur),
             easing: "easeOutQuart"
           },
@@ -700,7 +729,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
             }
           },
           props: {
-            selector: "#letter-".concat(i),
+            selector: `#letter-${i}`,
             duration: Math.trunc(subLetterDur),
             easing: "easeOutQuart"
           },
@@ -751,7 +780,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
               }
             },
             props: {
-              selector: "#letter-".concat(i, "-").concat(z),
+              selector: `#letter-${i}-${z}`,
               duration: Math.trunc(letterDur),
               easing: "easeInQuart"
             },
@@ -785,7 +814,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
           props: {
             duration: Math.trunc(this.outroDur * 0.3),
             easing: "easeInOutCubic",
-            selector: "#".concat(this.data[i].name, "-bar-fill")
+            selector: `#${this.data[i].name}-bar-fill`
           },
           position: Math.trunc(subLetterDur * (this.data.length - i - 1) / 2)
         });
@@ -811,8 +840,6 @@ class BarChartSimple extends motorcortex.HTMLClip {
   }
 
   buildVars() {
-    var _this$attrs$timings$s;
-
     this.data = this.attrs.data.data;
     this.title = this.attrs.data.title;
     this.subtitle = this.attrs.data.subtitle;
@@ -832,7 +859,7 @@ class BarChartSimple extends motorcortex.HTMLClip {
     this.attrs.timings = this.attrs.timings || {};
     this.introDur = this.attrs.timings.intro || 0;
     this.outroDur = this.attrs.timings.outro || 0;
-    this.staticDur = (_this$attrs$timings$s = this.attrs.timings.static) !== null && _this$attrs$timings$s !== void 0 ? _this$attrs$timings$s : 1000;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 
 }
@@ -963,9 +990,20 @@ class ProgressBar extends motorcortex.HTMLClip {
     const list = this.attrs.data.map((elem, index) => {
       var _this$attrs$options;
 
-      return "<div class=\"row row-".concat(index, "\">\n          <div class=\"bar-header\">").concat(elem.name, "</div>\n          <div class=\"container-bar container-bar-").concat(index, "\">\n            <div\n              class=\"inner-bar inner-bar-").concat(index, " ").concat(elem.value < this.criticalValue ? "extra-trunced-" + index : "", "\"\n            ></div>\n          </div>\n          <div class=\"text indicator-").concat(index, "\">").concat(elem.value, "</div>\n          <div class=\"text text-unit\">\n            ").concat(!((_this$attrs$options = this.attrs.options) !== null && _this$attrs$options !== void 0 && _this$attrs$options.hidePercentage) ? "%" : "", "\n          </div>\n        </div>");
+      return `<div class="row row-${index}">
+          <div class="bar-header">${elem.name}</div>
+          <div class="container-bar container-bar-${index}">
+            <div
+              class="inner-bar inner-bar-${index} ${elem.value < this.criticalValue ? "extra-trunced-" + index : ""}"
+            ></div>
+          </div>
+          <div class="text indicator-${index}">${elem.value}</div>
+          <div class="text text-unit">
+            ${!((_this$attrs$options = this.attrs.options) !== null && _this$attrs$options !== void 0 && _this$attrs$options.hidePercentage) ? "%" : ""}
+          </div>
+        </div>`;
     });
-    return "<div class=\"container-progressBar\">".concat(list.join(""), "</div>");
+    return `<div class="container-progressBar">${list.join("")}</div>`;
   }
 
   get css() {
@@ -991,7 +1029,7 @@ class ProgressBar extends motorcortex.HTMLClip {
         position: "absolute",
         left: "20%",
         "align-items": "center",
-        height: "".concat(60 / cssArgs.barCount, "%"),
+        height: `${60 / cssArgs.barCount}%`,
         width: "100%"
       },
       ".container-bar": {
@@ -1001,7 +1039,7 @@ class ProgressBar extends motorcortex.HTMLClip {
         "border-radius": "4rem",
         width: "60%",
         "box-shadow": "2px 2px 5px gray",
-        border: "0.2rem solid ".concat(cssArgs.palette.accent || colorPalette.accent),
+        border: `0.2rem solid ${cssArgs.palette.accent || colorPalette.accent}`,
         "z-index": "1",
         overflow: "hidden"
       },
@@ -1031,11 +1069,11 @@ class ProgressBar extends motorcortex.HTMLClip {
     };
     const avg = cssArgs.barSum / cssArgs.barCount;
     cssArgs.data.forEach((elem, index) => {
-      styles[".row-".concat(index)] = {
-        bottom: "".concat(50 + (avg - index) * 100 / cssArgs.barCount - 60 / cssArgs.barCount * 2.15, "%")
+      styles[`.row-${index}`] = {
+        bottom: `${50 + (avg - index) * 100 / cssArgs.barCount - 60 / cssArgs.barCount * 2.15}%`
       };
-      styles[".inner-bar-".concat(index)] = {
-        width: "".concat(elem.value.toFixed(2), "%")
+      styles[`.inner-bar-${index}`] = {
+        width: `${elem.value.toFixed(2)}%`
       };
     });
     return cssObjectToString(styles);
@@ -1051,13 +1089,13 @@ class ProgressBar extends motorcortex.HTMLClip {
   }
 
   buildTree() {
-    var _this$attrs$timings$s, _this$attrs$timings;
+    var _this$attrs$timings;
 
-    this.static = (_this$attrs$timings$s = this.attrs.timings.static) !== null && _this$attrs$timings$s !== void 0 ? _this$attrs$timings$s : 1000;
+    this.static = this.attrs.timings.static ?? 1000;
     this.intro = this.attrs.timings.intro || 0;
     this.outro = this.attrs.timings.outro || 0;
     const avg = this.barSum / this.barCount;
-    fadeOutOpacityControl(this, ".container-progressBar");
+    fadeOutOpacityControl(this, `.container-progressBar`);
 
     if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.intro) {
       const slideInDuration = Math.floor(this.intro * 0.33);
@@ -1067,16 +1105,16 @@ class ProgressBar extends motorcortex.HTMLClip {
       for (let i = 0; i < this.barCount; i++) {
         const slideIn = new motorcortex.CSSEffect({
           animatedAttrs: {
-            bottom: "".concat(50 + (avg - i) * 100 / this.barCount - 60 / this.barCount * 2.15, "%"),
+            bottom: `${50 + (avg - i) * 100 / this.barCount - 60 / this.barCount * 2.15}%`,
             opacity: 1
           },
           initialValues: {
-            bottom: "-".concat(65 / this.barCount, "%"),
+            bottom: `-${65 / this.barCount}%`,
             opacity: 0
           }
         }, {
           duration: slideInDuration,
-          selector: ".row-".concat(i),
+          selector: `.row-${i}`,
           easing: "easeInOutQuad"
         });
         const expand_base = new motorcortex.CSSEffect({
@@ -1088,19 +1126,19 @@ class ProgressBar extends motorcortex.HTMLClip {
           }
         }, {
           duration: expandBaseDuration,
-          selector: ".container-bar-".concat(i),
+          selector: `.container-bar-${i}`,
           easing: "easeInOutQuad"
         });
         const expand_bar = new motorcortex.CSSEffect({
           animatedAttrs: {
-            width: "".concat(this.attrs.data[i].value.toFixed(2), "%")
+            width: `${this.attrs.data[i].value.toFixed(2)}%`
           },
           initialValues: {
             width: "0%"
           }
         }, {
           duration: expandBarDuration,
-          selector: ".inner-bar-".concat(i),
+          selector: `.inner-bar-${i}`,
           easing: "easeInOutQuad"
         });
         const indicatorCounter = new Counter.Counter({
@@ -1112,7 +1150,7 @@ class ProgressBar extends motorcortex.HTMLClip {
           }
         }, {
           easing: "easeInOutQuad",
-          selector: ".indicator-".concat(i),
+          selector: `.indicator-${i}`,
           duration: expandBarDuration
         });
         this.addIncident(slideIn, 0);
@@ -1132,7 +1170,7 @@ class ProgressBar extends motorcortex.HTMLClip {
         }
       }, {
         duration: expandBarDuration,
-        selector: ".text",
+        selector: `.text`,
         easing: "easeInOutQuad"
       });
       this.addIncident(expand_text, slideInDuration);
@@ -1155,16 +1193,16 @@ class ProgressBar extends motorcortex.HTMLClip {
       for (let i = 0; i < this.barCount; i++) {
         const slideIn = new motorcortex.CSSEffect({
           animatedAttrs: {
-            bottom: "-".concat(65 / this.barCount, "%"),
+            bottom: `-${65 / this.barCount}%`,
             opacity: 0
           },
           initialValues: {
-            bottom: "".concat(50 + (avg - i) * 100 / this.barCount - 60 / this.barCount * 2.15, "%"),
+            bottom: `${50 + (avg - i) * 100 / this.barCount - 60 / this.barCount * 2.15}%`,
             opacity: 1
           }
         }, {
           duration: slideInDuration,
-          selector: ".row-".concat(i),
+          selector: `.row-${i}`,
           easing: "easeInOutQuad"
         });
         const expand_base = new motorcortex.CSSEffect({
@@ -1176,7 +1214,7 @@ class ProgressBar extends motorcortex.HTMLClip {
           }
         }, {
           duration: expandBaseDuration,
-          selector: ".container-bar-".concat(i),
+          selector: `.container-bar-${i}`,
           easing: "easeInOutQuad"
         });
         const expand_bar = new motorcortex.CSSEffect({
@@ -1184,11 +1222,11 @@ class ProgressBar extends motorcortex.HTMLClip {
             width: "0%"
           },
           initialValues: {
-            width: "".concat(this.attrs.data[i].value.toFixed(2), "%")
+            width: `${this.attrs.data[i].value.toFixed(2)}%`
           }
         }, {
           duration: expandBarDuration,
-          selector: ".inner-bar-".concat(i),
+          selector: `.inner-bar-${i}`,
           easing: "easeInOutQuad"
         });
         const indicatorCounter = new Counter.Counter({
@@ -1200,7 +1238,7 @@ class ProgressBar extends motorcortex.HTMLClip {
           }
         }, {
           easing: "easeInOutQuad",
-          selector: ".indicator-".concat(i),
+          selector: `.indicator-${i}`,
           duration: expandBarDuration
         });
         this.addIncident(slideIn, bufferTime - slideInDuration);
@@ -1220,7 +1258,7 @@ class ProgressBar extends motorcortex.HTMLClip {
         }
       }, {
         duration: expandBarDuration,
-        selector: ".text",
+        selector: `.text`,
         easing: "easeInOutQuad"
       });
       this.addIncident(expand_text, bufferTime - slideInDuration - expandBaseDuration * 1.1);
@@ -1276,7 +1314,7 @@ function buildCSS(lineGraph) {
     },
     ".viewport-lineGraph": {
       position: "absolute",
-      top: "".concat(lineGraph.legend ? "2%" : "0%"),
+      top: `${lineGraph.legend ? "2%" : "0%"}`,
       "transform-origin": "top left",
       width: "100%",
       height: "100%"
@@ -1308,10 +1346,10 @@ function buildCSS(lineGraph) {
     },
     ".legend-wrapper": {
       position: "absolute",
-      width: "".concat(lineGraph.dataSetsNum === 1 ? 14 : 26, "%"),
-      height: "".concat(lineGraph.legendHeight, "%"),
-      top: "".concat(11 - 3 * (lineGraph.legendHeightFactor + (lineGraph.legendHeightFactor % 1 ? 1 : 0) - 1), "%"),
-      left: "".concat(68 + (lineGraph.dataSetsNum === 1 ? 12 : 0), "%"),
+      width: `${lineGraph.dataSetsNum === 1 ? 14 : 26}%`,
+      height: `${lineGraph.legendHeight}%`,
+      top: `${11 - 3 * (lineGraph.legendHeightFactor + (lineGraph.legendHeightFactor % 1 ? 1 : 0) - 1)}%`,
+      left: `${68 + (lineGraph.dataSetsNum === 1 ? 12 : 0)}%`,
       background: lineGraph.quinaryC,
       "font-size": lineGraph.fontSizeInner,
       display: "flex",
@@ -1322,7 +1360,7 @@ function buildCSS(lineGraph) {
     },
     ".line-wrapper": {
       // width: `${lineGraph.dataSetsNum === 1 ? 100 : 50}%`,
-      height: "".concat(1 / (lineGraph.legendHeightFactor + (lineGraph.legendHeightFactor % 1 ? 1 : 0)) * 100, "%"),
+      height: `${1 / (lineGraph.legendHeightFactor + (lineGraph.legendHeightFactor % 1 ? 1 : 0)) * 100}%`,
       display: "flex",
       overflow: "hidden",
       "flex-grow": 1
@@ -1355,8 +1393,8 @@ function buildCSS(lineGraph) {
       background: lineGraph.secondaryC
     },
     ".svg-container": {
-      width: "76%",
-      height: "58%",
+      width: `76%`,
+      height: `58%`,
       top: "21%",
       left: "12%",
       position: "relative",
@@ -1364,14 +1402,14 @@ function buildCSS(lineGraph) {
       overflow: "visible"
     },
     ".lines-container": {
-      width: "100%",
-      height: "100%",
+      width: `100%`,
+      height: `100%`,
       "min-height": "100%",
       "min-width": "100%",
       overflow: "visible"
     },
     ".dataStele-container": {
-      width: "76%",
+      width: `76%`,
       height: "58%",
       top: "21%",
       left: "12%",
@@ -1397,26 +1435,26 @@ function buildCSS(lineGraph) {
     },
     ".line-grid-block": {
       width: "100%",
-      height: "".concat(Math.trunc(lineGraph.linesHeight * (0.13 * lineGraph.gridH / lineGraph.steleBlockNum)), "px")
+      height: `${Math.trunc(lineGraph.linesHeight * (0.13 * lineGraph.gridH / lineGraph.steleBlockNum))}px`
     },
     ".stele-grid-block": {
       width: "100%",
-      height: "".concat(Math.trunc(lineGraph.linesHeight * (0.26 * lineGraph.gridH / lineGraph.steleBlockNum)), "px")
+      height: `${Math.trunc(lineGraph.linesHeight * (0.26 * lineGraph.gridH / lineGraph.steleBlockNum))}px`
     },
     ".stele-block": {
-      "max-height": "".concat(5 * lineGraph.gridH, "px"),
+      "max-height": `${5 * lineGraph.gridH}px`,
       opacity: "0.8",
       background: lineGraph.primaryC
     },
     ".graph-labels-container": {
-      width: "76%",
+      width: `76%`,
       height: "58%",
       top: "21%",
       left: "12%",
       position: "absolute"
     },
     ".x-labels-back-wrapper-lineGraph": {
-      width: "76%",
+      width: `76%`,
       height: "6%",
       top: "80%",
       left: "12%",
@@ -1432,7 +1470,7 @@ function buildCSS(lineGraph) {
     },
     ".x-labels-container-lineGraph": {
       background: "transparent",
-      width: "76%",
+      width: `76%`,
       height: "6%",
       top: "80%",
       left: "12%",
@@ -1474,18 +1512,18 @@ function buildCSS(lineGraph) {
     ".inner-label-container": {
       "font-size": lineGraph.fontSizeInner,
       opacity: "0.6",
-      width: "".concat(10 / 2 * lineGraph.data.length, "%"),
-      "min-width": "6%",
-      "max-width": "10%",
+      width: `${10 / 2 * lineGraph.data.length}%`,
+      "min-width": `6%`,
+      "max-width": `10%`,
       height: "7%",
       position: "absolute",
-      display: "".concat(lineGraph.hover ? "none" : "block"),
+      display: `${lineGraph.hover ? "none" : "block"}`,
       "z-index": "2"
     },
     ".hoverPoint": {
       position: "absolute",
-      width: "".concat(config.lineGraph.originalDims.width * 0.01, "px"),
-      height: "".concat(config.lineGraph.originalDims.width * 0.01, "px"),
+      width: `${config.lineGraph.originalDims.width * 0.01}px`,
+      height: `${config.lineGraph.originalDims.width * 0.01}px`,
       "border-radius": "50%",
       "z-index": "9999"
     }
@@ -1500,10 +1538,10 @@ function buildCSS(lineGraph) {
       dynamicColor = lineGraph.quaternaryC;
     }
 
-    styles[".color-".concat(l)] = {
+    styles[`.color-${l}`] = {
       background: dynamicColor
     };
-    styles[".line-".concat(l, "-label-container")] = {
+    styles[`.line-${l}-label-container`] = {
       width: "100%",
       height: "100%",
       position: "absolute"
@@ -1514,23 +1552,23 @@ function buildCSS(lineGraph) {
       let fullWidth = 10 / 2 * lineGraph.data.length > 10 ? 10 : 10 / 2 * lineGraph.data.length;
       fullWidth = fullWidth < 6 ? 6 : fullWidth;
       const targetLeft = lineGraph.findPointX(i) - fullWidth * lineGraph.linesWidth / 100 * 0.5;
-      styles[".label-".concat(l, "-").concat(lineGraph.data[i].name)] = {
+      styles[`.label-${l}-${lineGraph.data[i].name}`] = {
         background: dynamicColor,
-        top: "".concat(targetTop, "px"),
-        left: "".concat(targetLeft, "px")
+        top: `${targetTop}px`,
+        left: `${targetLeft}px`
       };
       const pointLeftOffset = fullWidth * lineGraph.linesWidth / 100 * 0.5 - config.lineGraph.originalDims.width * 0.01 / 2;
       const pointTopOffset = 0.07 * lineGraph.linesHeight;
-      styles[".hoverPoint-".concat(l, "-").concat(lineGraph.data[i].name)] = {
-        top: "".concat(targetTop + pointTopOffset, "px"),
-        left: "".concat(targetLeft + pointLeftOffset, "px")
+      styles[`.hoverPoint-${l}-${lineGraph.data[i].name}`] = {
+        top: `${targetTop + pointTopOffset}px`,
+        left: `${targetLeft + pointLeftOffset}px`
       };
     }
   }
 
   for (let l = 0; l < lineGraph.dataSetsNum; l++) {
     for (let i = 0; i < lineGraph.data.length; i++) {
-      styles[".hoverPoint-".concat(l, "-").concat(lineGraph.data[i].name, ":hover + .label-").concat(l, "-").concat(lineGraph.data[i].name)] = {
+      styles[`.hoverPoint-${l}-${lineGraph.data[i].name}:hover + .label-${l}-${lineGraph.data[i].name}`] = {
         display: "block"
       };
     }
@@ -2066,7 +2104,7 @@ class AnimationConstructor {
           }
         },
         props: {
-          selector: "#word-".concat(i),
+          selector: `#word-${i}`,
           duration: Math.trunc(titleDur / this.instance.words.length),
           easing: "easeInOutQuart"
         },
@@ -2099,7 +2137,7 @@ class AnimationConstructor {
           }
         },
         props: {
-          selector: "#word-".concat(i),
+          selector: `#word-${i}`,
           duration: Math.trunc(titleDur / this.instance.words.length),
           easing: "easeInOutQuart"
         },
@@ -2117,12 +2155,12 @@ class AnimationConstructor {
   buildIntroLegend() {
     const colorsDur = this.instance.introDur * 0.25;
     const colorDur = colorsDur / this.instance.dataSetsNum;
-    const delay = this.instance.dataSetsNum === 1 ? null : "@stagger(0, ".concat(colorsDur - colorDur, ")");
+    const delay = this.instance.dataSetsNum === 1 ? null : `@stagger(0, ${colorsDur - colorDur})`;
     const legendIncidents = [{
       incidentClass: motorcortex.CSSEffect,
       attrs: {
         animatedAttrs: {
-          height: "".concat(this.instance.legendHeight, "%")
+          height: `${this.instance.legendHeight}%`
         },
         initialValues: {
           height: "0%"
@@ -2178,7 +2216,7 @@ class AnimationConstructor {
   buildOutroLegend() {
     const colorsDur = this.instance.outroDur * 0.25;
     const colorDur = colorsDur / this.instance.dataSetsNum;
-    const delay = this.instance.dataSetsNum === 1 ? null : "@stagger(0, ".concat(colorsDur - colorDur, ", 0, linear, linear, true)");
+    const delay = this.instance.dataSetsNum === 1 ? null : `@stagger(0, ${colorsDur - colorDur}, 0, linear, linear, true)`;
     const legendIncidents = [{
       incidentClass: motorcortex.CSSEffect,
       attrs: {
@@ -2186,7 +2224,7 @@ class AnimationConstructor {
           height: "0%"
         },
         initialValues: {
-          height: "".concat(this.instance.legendHeight, "%")
+          height: `${this.instance.legendHeight}%`
         }
       },
       props: {
@@ -2271,7 +2309,7 @@ class AnimationConstructor {
             }
           },
           props: {
-            selector: "#letter-".concat(i, "-").concat(z),
+            selector: `#letter-${i}-${z}`,
             duration: Math.trunc(this.instance.introDur * 0.015),
             easing: "easeInOutQuart"
           },
@@ -2327,7 +2365,7 @@ class AnimationConstructor {
             }
           },
           props: {
-            selector: "#letter-".concat(i, "-").concat(z),
+            selector: `#letter-${i}-${z}`,
             duration: Math.trunc(this.instance.outroDur * 0.015),
             easing: "easeInOutQuart"
           },
@@ -2359,7 +2397,7 @@ class AnimationConstructor {
     if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
         const steleGroup = new motorcortex.Group({
-          selector: "#stele-".concat(i)
+          selector: `#stele-${i}`
         });
         const blockCombo = new motorcortex.Combo({
           incidents: [{
@@ -2378,15 +2416,15 @@ class AnimationConstructor {
             position: 0
           }]
         }, {
-          selector: ".stele-block-".concat(i),
-          delay: "@stagger(0, ".concat(Math.trunc(steleDur - blockDur), ", 0, easeOutQuad)")
+          selector: `.stele-block-${i}`,
+          delay: `@stagger(0, ${Math.trunc(steleDur - blockDur)}, 0, easeOutQuad)`
         });
         steleGroup.addIncident(blockCombo, 0);
         stelesIntro.addIncident(steleGroup, Math.trunc(i * steleDelay));
       }
     } else if (this.instance.grid === "lines") {
       const steleGroup = new motorcortex.Group({
-        selector: "#stele-".concat(0)
+        selector: `#stele-${0}`
       });
       const blockCombo = new motorcortex.Combo({
         incidents: [{
@@ -2406,8 +2444,8 @@ class AnimationConstructor {
           position: 0
         }]
       }, {
-        selector: ".stele-block-".concat(0),
-        delay: "@stagger(0, ".concat(Math.trunc(steleDur - blockDur), ", 0)")
+        selector: `.stele-block-${0}`,
+        delay: `@stagger(0, ${Math.trunc(steleDur - blockDur)}, 0)`
       });
       steleGroup.addIncident(blockCombo, 0);
       stelesIntro.addIncident(steleGroup, Math.trunc(steleDelay));
@@ -2428,7 +2466,7 @@ class AnimationConstructor {
     if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
         const steleGroup = new motorcortex.Group({
-          selector: "#stele-".concat(i)
+          selector: `#stele-${i}`
         });
         const blockCombo = new motorcortex.Combo({
           incidents: [{
@@ -2447,15 +2485,15 @@ class AnimationConstructor {
             position: 0
           }]
         }, {
-          selector: ".stele-block-".concat(i),
-          delay: "@stagger(0, ".concat(Math.trunc(steleDur - blockDur), ", 0, easeOutQuad, omni, true)")
+          selector: `.stele-block-${i}`,
+          delay: `@stagger(0, ${Math.trunc(steleDur - blockDur)}, 0, easeOutQuad, omni, true)`
         });
         steleGroup.addIncident(blockCombo, 0);
         stelesOutro.addIncident(steleGroup, (this.instance.data.length - 1 - i) * steleDelay);
       }
     } else if (this.instance.grid === "lines") {
       const steleGroup = new motorcortex.Group({
-        selector: "#stele-".concat(0)
+        selector: `#stele-${0}`
       });
       const blockCombo = new motorcortex.Combo({
         incidents: [{
@@ -2475,8 +2513,8 @@ class AnimationConstructor {
           position: 0
         }]
       }, {
-        selector: ".stele-block-".concat(0),
-        delay: "@stagger(0, ".concat(Math.trunc(steleDur - blockDur), ", 0, linear, omni, true)")
+        selector: `.stele-block-${0}`,
+        delay: `@stagger(0, ${Math.trunc(steleDur - blockDur)}, 0, linear, omni, true)`
       });
       steleGroup.addIncident(blockCombo, 0);
       stelesOutro.addIncident(steleGroup, (this.instance.data.length - 1) * steleDelay);
@@ -2504,7 +2542,7 @@ class AnimationConstructor {
               cover: 0
             }
           }, {
-            selector: "#line-".concat(l, "-").concat(i),
+            selector: `#line-${l}-${i}`,
             duration: Math.trunc(pathDur),
             easing: "easeInOutQuad"
           });
@@ -2515,14 +2553,14 @@ class AnimationConstructor {
         const pointAnimation = new motorcortex.CSSEffect({
           animatedAttrs: {
             opacity: 1,
-            r: "".concat(this.instance.r, "%")
+            r: `${this.instance.r}%`
           },
           initialValues: {
             opacity: 0,
             r: "0"
           }
         }, {
-          selector: "#point-".concat(l, "-").concat(i),
+          selector: `#point-${l}-${i}`,
           duration: Math.trunc(pointDur),
           easing: "easeInQuart"
         });
@@ -2537,24 +2575,24 @@ class AnimationConstructor {
         const gLabelAnimation = new motorcortex.CSSEffect({
           animatedAttrs: {
             opacity: 0.6,
-            width: "".concat(targetWidth, "%"),
-            "min-width": "".concat(targetWidth, "%"),
-            height: "7%",
-            top: "".concat(targetTop, "px"),
-            left: "".concat(targetLeft, "px"),
+            width: `${targetWidth}%`,
+            "min-width": `${targetWidth}%`,
+            height: `7%`,
+            top: `${targetTop}px`,
+            left: `${targetLeft}px`,
             "font-size": this.instance.fontSizeInner
           },
           initialValues: {
             opacity: 0,
             width: "0%",
-            "min-width": "0%",
-            height: "0%",
-            top: "".concat(topOffset, "px"),
-            left: "".concat(leftOffset, "px"),
+            "min-width": `0%`,
+            height: `0%`,
+            top: `${topOffset}px`,
+            left: `${leftOffset}px`,
             "font-size": 0
           }
         }, {
-          selector: ".label-".concat(l, "-").concat(this.instance.data[i].name),
+          selector: `.label-${l}-${this.instance.data[i].name}`,
           duration: Math.trunc(pointDur),
           easeing: "easeInOutCubic"
         });
@@ -2646,7 +2684,7 @@ class AnimationConstructor {
               cover: 1
             }
           }, {
-            selector: "#line-".concat(l, "-").concat(i),
+            selector: `#line-${l}-${i}`,
             duration: Math.trunc(pathDur),
             easing: "easeInOutQuad"
           });
@@ -2661,10 +2699,10 @@ class AnimationConstructor {
           },
           initialValues: {
             opacity: 1,
-            r: "".concat(this.instance.r, "%")
+            r: `${this.instance.r}%`
           }
         }, {
-          selector: "#point-".concat(l, "-").concat(i),
+          selector: `#point-${l}-${i}`,
           duration: Math.trunc(pointDur),
           easeing: "easeOutCubic"
         });
@@ -2680,23 +2718,23 @@ class AnimationConstructor {
           animatedAttrs: {
             opacity: 0,
             width: "0%",
-            "min-width": "0%",
-            height: "0%",
-            top: "".concat(topOffset, "px"),
-            left: "".concat(leftOffset, "px"),
+            "min-width": `0%`,
+            height: `0%`,
+            top: `${topOffset}px`,
+            left: `${leftOffset}px`,
             "font-size": 0
           },
           initialValues: {
             opacity: 0.6,
-            width: "".concat(targetWidth, "%"),
-            "min-width": "".concat(targetWidth, "%"),
-            height: "7%",
-            top: "".concat(targetTop, "px"),
-            left: "".concat(targetLeft, "px"),
+            width: `${targetWidth}%`,
+            "min-width": `${targetWidth}%`,
+            height: `7%`,
+            top: `${targetTop}px`,
+            left: `${targetLeft}px`,
             "font-size": this.instance.fontSizeInner
           }
         }, {
-          selector: ".label-".concat(l, "-").concat(this.instance.data[i].name),
+          selector: `.label-${l}-${this.instance.data[i].name}`,
           duration: Math.trunc(pointDur),
           easeing: "easeInOutCubic"
         });
@@ -2723,7 +2761,7 @@ class LineGraph extends motorcortex.HTMLClip {
     const title = [];
 
     for (let i = 0; i < this.words.length; i++) {
-      title.push("<div id=\"word-".concat(i, "\" class=\"fontColorOn letter-wrapper-title\">").concat(this.words[i], "</div>"));
+      title.push(`<div id="word-${i}" class="fontColorOn letter-wrapper-title">${this.words[i]}</div>`);
 
       if (i !== this.words.length - 1) {
         title.push('<div class="space-char letter-wrapper-title">-</div>');
@@ -2737,10 +2775,12 @@ class LineGraph extends motorcortex.HTMLClip {
       const legendLine = [];
 
       for (let l = 0; l < this.dataSetsNum; l++) {
-        legendLine.push("<div class=\"line-wrapper\"><div class=\"color-wrapper\">\n              <div class=\"line-color color-".concat(l, "\"></div>\n            </div><div class=\"line-title\">").concat(this.dataSets[l].title, "</div></div>"));
+        legendLine.push(`<div class="line-wrapper"><div class="color-wrapper">
+              <div class="line-color color-${l}"></div>
+            </div><div class="line-title">${this.dataSets[l].title}</div></div>`);
       }
 
-      legend.push("<div class=\"legend-wrapper\">".concat(legendLine.join(""), "</div>"));
+      legend.push(`<div class="legend-wrapper">${legendLine.join("")}</div>`);
     } // Data stele html generation
 
 
@@ -2751,10 +2791,12 @@ class LineGraph extends motorcortex.HTMLClip {
         const stele = [];
 
         for (let z = 0; z < this.steleBlockNum; z++) {
-          stele.push("<div\n              class=\"stele-block-".concat(i, " stele-block stele-grid-block\"}\n            ></div>"));
+          stele.push(`<div
+              class="stele-block-${i} stele-block stele-grid-block"}
+            ></div>`);
         }
 
-        dataSteles.push("<div id=\"stele-".concat(i, "\" class=\"data-stele stele-grid\">").concat(stele.join(""), "</div>"));
+        dataSteles.push(`<div id="stele-${i}" class="data-stele stele-grid">${stele.join("")}</div>`);
       }
     } else if (this.grid === "lines") {
       const stele = [];
@@ -2763,7 +2805,7 @@ class LineGraph extends motorcortex.HTMLClip {
         stele.push('<div class="stele-block-0 stele-block line-grid-block"></div>');
       }
 
-      dataSteles.push("<div id=\"stele-0\" class=\"data-stele line-grid\">".concat(stele.join(""), "</div>"));
+      dataSteles.push(`<div id="stele-0" class="data-stele line-grid">${stele.join("")}</div>`);
     } // Graph Lines SVG hmtl generation
 
 
@@ -2781,19 +2823,38 @@ class LineGraph extends motorcortex.HTMLClip {
           const xPoint2 = this.findPointX(i + 1);
           const yPoint2 = this.findPointY(i + 1, l); // Dataline Generation
 
-          lineSegment.push("<path\n              id=\"line-".concat(l, "-").concat(i, "\"\n              class=\"line-").concat(l, "\"\n              d=\"M ").concat(xPoint1, " ").concat(yPoint1, "L ").concat(xPoint2, " ").concat(yPoint2, "\"\n              stroke=\"").concat(this.dataSets[l].color, "\"\n              stroke-width=\"0.65%\"\n              stroke-linecap=\"round\"\n              fill=\"none\"\n            />"));
+          lineSegment.push(`<path
+              id="line-${l}-${i}"
+              class="line-${l}"
+              d="M ${xPoint1} ${yPoint1}L ${xPoint2} ${yPoint2}"
+              stroke="${this.dataSets[l].color}"
+              stroke-width="0.65%"
+              stroke-linecap="round"
+              fill="none"
+            />`);
         } // Datapoint Generation
 
 
-        lineSegment.push("<circle\n            id=\"point-".concat(l, "-").concat(i, "\"\n            class=\"point-").concat(l, " datapoint\"\n            cx=\"").concat(xPoint1, "\"\n            cy=\"").concat(yPoint1, "\"\n            r=\"").concat(this.r, "%\"\n            fill=\"").concat(this.senaryC, "\"\n            stroke=\"").concat(this.senaryC, "\"\n          />"));
-        linePaths.push("<g>".concat(lineSegment.join(""), "</g>"));
+        lineSegment.push(`<circle
+            id="point-${l}-${i}"
+            class="point-${l} datapoint"
+            cx="${xPoint1}"
+            cy="${yPoint1}"
+            r="${this.r}%"
+            fill="${this.senaryC}"
+            stroke="${this.senaryC}"
+          />`);
+        linePaths.push(`<g>${lineSegment.join("")}</g>`);
       }
 
-      lineGroups.push("<g>".concat(linePaths.join(""), "</g>"));
+      lineGroups.push(`<g>${linePaths.join("")}</g>`);
     }
 
     const lines = [];
-    lines.push("<svg\n        class=\"lines-container\"\n        viewbox=\"0 0 ".concat(this.linesWidth, " ").concat(this.linesHeight, "\"\n      >").concat(lineGroups.join(""), "</svg>")); // Graph labels html generation with data parameters as reference
+    lines.push(`<svg
+        class="lines-container"
+        viewbox="0 0 ${this.linesWidth} ${this.linesHeight}"
+      >${lineGroups.join("")}</svg>`); // Graph labels html generation with data parameters as reference
 
     const labelGroups = [];
 
@@ -2805,10 +2866,22 @@ class LineGraph extends motorcortex.HTMLClip {
           name,
           values
         } = this.data[i];
-        graphLabels.push("<div>\n            <div\n              class=\"hoverPoint-".concat(l, "-").concat(name, " hoverPoint\"\n            ></div>\n            <div\n              class=\"label-").concat(l, "-").concat(name, " inner-label-container\"\n              id=\"label-").concat(l, "-").concat(name, "\"\n            >\n              <div class=\"inner-label\">\n                ").concat(parseFloat(values[l].toFixed(2)), " ").concat(this.unit, "\n              </div>\n            </div>\n          </div>"));
+        graphLabels.push(`<div>
+            <div
+              class="hoverPoint-${l}-${name} hoverPoint"
+            ></div>
+            <div
+              class="label-${l}-${name} inner-label-container"
+              id="label-${l}-${name}"
+            >
+              <div class="inner-label">
+                ${parseFloat(values[l].toFixed(2))} ${this.unit}
+              </div>
+            </div>
+          </div>`);
       }
 
-      labelGroups.push("<div class=\"line-".concat(l, "-label-container\">").concat(graphLabels.join(""), "</div>"));
+      labelGroups.push(`<div class="line-${l}-label-container">${graphLabels.join("")}</div>`);
     } // X-axis labels html generation with data parameter as reference
 
 
@@ -2822,14 +2895,35 @@ class LineGraph extends motorcortex.HTMLClip {
       }
 
       for (const z in this.data[i].name) {
-        labelX.push("<div id=\"letter-".concat(i, "-").concat(z, "\" class=\"letter-container\">\n            <div class=\"letter-wrapper-label fontColorOn\">\n              ").concat(this.data[i].name[z], "\n            </div>\n          </div>"));
+        labelX.push(`<div id="letter-${i}-${z}" class="letter-container">
+            <div class="letter-wrapper-label fontColorOn">
+              ${this.data[i].name[z]}
+            </div>
+          </div>`);
       }
 
-      xLabels.push("<div class=\"label-container\" id=\"label-".concat(i, "\">\n          ").concat(labelX.join(""), "\n        </div>"));
+      xLabels.push(`<div class="label-container" id="label-${i}">
+          ${labelX.join("")}
+        </div>`);
     } // MAIN HTML TREE
 
 
-    return "<div class=\"container-lineGraph\">\n        <div class=\"viewport-lineGraph\">\n          <div class=\"title-container-lineGraph\">\n            <div class=\"title-wrapper-lineGraph\">".concat(title.join(""), "</div>\n          </div>\n          ").concat(legend.join(""), "\n          <div class=\"graph-background\"></div>\n          <div class=\"dataStele-container\">").concat(dataSteles.join(""), "</div>\n          <div class=\"svg-container\">").concat(lines.join(""), "</div>\n          <div class=\"graph-labels-container\">").concat(labelGroups.join(""), "</div>\n          <div class=\"x-labels-container-lineGraph\">").concat(xLabels.join(""), "</div>\n          <div class=\"x-labels-back-wrapper-lineGraph\">\n            <div class=\"block-background\"></div>\n          </div>\n        </div>\n      </div>");
+    return `<div class="container-lineGraph">
+        <div class="viewport-lineGraph">
+          <div class="title-container-lineGraph">
+            <div class="title-wrapper-lineGraph">${title.join("")}</div>
+          </div>
+          ${legend.join("")}
+          <div class="graph-background"></div>
+          <div class="dataStele-container">${dataSteles.join("")}</div>
+          <div class="svg-container">${lines.join("")}</div>
+          <div class="graph-labels-container">${labelGroups.join("")}</div>
+          <div class="x-labels-container-lineGraph">${xLabels.join("")}</div>
+          <div class="x-labels-back-wrapper-lineGraph">
+            <div class="block-background"></div>
+          </div>
+        </div>
+      </div>`;
   } // Build CSS rules for incident
 
 
@@ -2841,13 +2935,13 @@ class LineGraph extends motorcortex.HTMLClip {
   get fonts() {
     return [{
       type: "google-font",
-      src: "".concat(this.url)
+      src: `${this.url}`
     }];
   } // MotorCortex Animation generation and
 
 
   buildTree() {
-    opacityControl(this, ".container-lineGraph"); // INTRO CONTROL
+    opacityControl(this, `.container-lineGraph`); // INTRO CONTROL
 
     if (this.attrs.timings.intro) {
       let introGroup = new motorcortex.Group(); // Background Intro Animation
@@ -2899,8 +2993,6 @@ class LineGraph extends motorcortex.HTMLClip {
   }
 
   buildVars() {
-    var _this$attrs$timings$s;
-
     // AnimConstructor Init
     this.animConstructor = new AnimationConstructor(this); // Data init
 
@@ -2933,7 +3025,7 @@ class LineGraph extends motorcortex.HTMLClip {
       }
 
       if (dataSet.title === "" || !dataSet.title) {
-        dataSet.title = "Dataset-".concat(l + 1);
+        dataSet.title = `Dataset-${l + 1}`;
       } else if (dataSet.title.length > 10) {
         dataSet.title = dataSet.title.substr(0, 10);
       }
@@ -2992,7 +3084,7 @@ class LineGraph extends motorcortex.HTMLClip {
     this.attrs.timings = this.attrs.timings || {};
     this.introDur = this.attrs.timings.intro || 0;
     this.outroDur = this.attrs.timings.outro || 0;
-    this.staticDur = (_this$attrs$timings$s = this.attrs.timings.static) !== null && _this$attrs$timings$s !== void 0 ? _this$attrs$timings$s : 1000;
+    this.staticDur = this.attrs.timings.static ?? 1000;
   }
 
 }
@@ -3020,7 +3112,17 @@ function generateColor(index) {
 class PieChart extends motorcortex.HTMLClip {
   get html() {
     this.data = this.attrs.data.data;
-    return "<div class=\"container-pieChart\">\n        <h1 class=\"title\">".concat(this.buildTitle().join(""), "</h1>\n        <div class=\"columns\">\n          <div class=\"col-1\">\n            <div class=\"piechart\"></div>\n          </div>\n          <div class=\"col-2\">\n            <div class=\"legend\">").concat(this.buildLegend().join(""), "</div>\n          </div>\n        </div>\n      </div>");
+    return `<div class="container-pieChart">
+        <h1 class="title">${this.buildTitle().join("")}</h1>
+        <div class="columns">
+          <div class="col-1">
+            <div class="piechart"></div>
+          </div>
+          <div class="col-2">
+            <div class="legend">${this.buildLegend().join("")}</div>
+          </div>
+        </div>
+      </div>`;
   }
 
   get css() {
@@ -3041,8 +3143,8 @@ class PieChart extends motorcortex.HTMLClip {
         display: "flex",
         "align-items": "center",
         "flex-direction": "column",
-        "font-family": "".concat(((_cssArgs$font = cssArgs.font) === null || _cssArgs$font === void 0 ? void 0 : _cssArgs$font.fontFamily) || "Staatliches, cursive"),
-        "font-size": "".concat(((_cssArgs$font2 = cssArgs.font) === null || _cssArgs$font2 === void 0 ? void 0 : _cssArgs$font2.size) || "1.6rem"),
+        "font-family": `${((_cssArgs$font = cssArgs.font) === null || _cssArgs$font === void 0 ? void 0 : _cssArgs$font.fontFamily) || "Staatliches, cursive"}`,
+        "font-size": `${((_cssArgs$font2 = cssArgs.font) === null || _cssArgs$font2 === void 0 ? void 0 : _cssArgs$font2.size) || "1.6rem"}`,
         color: cssArgs.palette.font || colorPalette.font
       },
       ".title": {
@@ -3078,7 +3180,7 @@ class PieChart extends motorcortex.HTMLClip {
         width: "95%",
         height: "95%",
         "border-radius": "50%",
-        "background-image": "conic-gradient(".concat(cssArgs.radiusString, ")"),
+        "background-image": `conic-gradient(${cssArgs.radiusString})`,
         "margin-left": "2rem"
       },
       ".legend": {
@@ -3102,7 +3204,7 @@ class PieChart extends motorcortex.HTMLClip {
         " white-space": "nowrap"
       },
       ".space": {
-        "min-width": (_cssArgs$font3 = cssArgs.font) !== null && _cssArgs$font3 !== void 0 && _cssArgs$font3.size ? "calc(".concat(cssArgs.font.size, " * 0.5)") : "0.8rem"
+        "min-width": (_cssArgs$font3 = cssArgs.font) !== null && _cssArgs$font3 !== void 0 && _cssArgs$font3.size ? `calc(${cssArgs.font.size} * 0.5)` : "0.8rem"
       },
       ".char": {
         position: "relative"
@@ -3131,10 +3233,10 @@ class PieChart extends motorcortex.HTMLClip {
   }
 
   buildTree() {
-    var _this$attrs$timings$s, _this$attrs$timings;
+    var _this$attrs$timings;
 
-    fadeOutOpacityControl(this, ".container-pieChart");
-    this.static = (_this$attrs$timings$s = this.attrs.timings.static) !== null && _this$attrs$timings$s !== void 0 ? _this$attrs$timings$s : 1000;
+    fadeOutOpacityControl(this, `.container-pieChart`);
+    this.static = this.attrs.timings.static ?? 1000;
     this.intro = this.attrs.timings.intro || 0;
     this.outro = this.attrs.timings.outro || 0;
 
@@ -3156,7 +3258,7 @@ class PieChart extends motorcortex.HTMLClip {
             }
           }, {
             duration: Math.round(titleInDuration / this.attrs.data.title.length),
-            selector: ".char-".concat(index),
+            selector: `.char-${index}`,
             easing: "easeOutCubic"
           });
           this.addIncident(titleIn, Math.round(titleInDuration / this.attrs.data.title.length) * index);
@@ -3165,14 +3267,14 @@ class PieChart extends motorcortex.HTMLClip {
 
       const rotateIn = new motorcortex.CSSEffect({
         animatedAttrs: {
-          "background-image": "conic-gradient(".concat(this.createRadiusString(), ")")
+          "background-image": `conic-gradient(${this.createRadiusString()})`
         },
         initialValues: {
-          "background-image": "conic-gradient(".concat(this.createNullRadiusString(), ")")
+          "background-image": `conic-gradient(${this.createNullRadiusString()})`
         }
       }, {
         duration: rotateDuration,
-        selector: ".piechart",
+        selector: `.piechart`,
         easing: "easeInOutCubic"
       });
       this.addIncident(rotateIn, titleInDuration - this.intro * 0.2);
@@ -3234,14 +3336,14 @@ class PieChart extends motorcortex.HTMLClip {
       this.addIncident(legendOut, this.intro + this.static);
       const pieOut = new motorcortex.CSSEffect({
         animatedAttrs: {
-          "background-image": "conic-gradient(".concat(this.createNullRadiusString(), ")")
+          "background-image": `conic-gradient(${this.createNullRadiusString()})`
         },
         initialValues: {
-          "background-image": "conic-gradient(".concat(this.createRadiusString(), ")")
+          "background-image": `conic-gradient(${this.createRadiusString()})`
         }
       }, {
         duration: outroDuration,
-        selector: ".piechart",
+        selector: `.piechart`,
         easing: "easeInOutCubic"
       });
       this.addIncident(pieOut, this.intro + this.static);
@@ -3254,9 +3356,17 @@ class PieChart extends motorcortex.HTMLClip {
 
     for (const datum in this.data) {
       if (datum === "0") {
-        gradientString += "\n                    ".concat(this.data[datum].color || generateColor(datum), "\n                    ").concat(this.data[datum].value / 100, "turn,\n                ");
+        gradientString += `
+                    ${this.data[datum].color || generateColor(datum)}
+                    ${this.data[datum].value / 100}turn,
+                `;
       } else {
-        gradientString += "\n                    ".concat(this.data[datum - 1].color || generateColor(datum), "\n                    ").concat(this.data[datum - 1].value / 100, "turn,\n                    ").concat(this.data[datum].color || generateColor(datum), "\n                    ").concat(turnCount + this.data[datum].value / 100, "turn,\n                ");
+        gradientString += `
+                    ${this.data[datum - 1].color || generateColor(datum)}
+                    ${this.data[datum - 1].value / 100}turn,
+                    ${this.data[datum].color || generateColor(datum)}
+                    ${turnCount + this.data[datum].value / 100}turn,
+                `;
       }
 
       turnCount += this.data[datum].value / 100;
@@ -3270,9 +3380,17 @@ class PieChart extends motorcortex.HTMLClip {
 
     for (const datum in this.data) {
       if (datum === "0") {
-        gradientString += "\n                    ".concat(this.data[datum].color || generateColor(datum), "\n                    ", 0, "turn,\n                ");
+        gradientString += `
+                    ${this.data[datum].color || generateColor(datum)}
+                    ${0}turn,
+                `;
       } else {
-        gradientString += "\n                    ".concat(this.data[datum - 1].color || generateColor(datum), "\n                    ", 0, "turn,\n                    ").concat(this.data[datum].color || generateColor(datum), "\n                    ", 0, "turn,\n                ");
+        gradientString += `
+                    ${this.data[datum - 1].color || generateColor(datum)}
+                    ${0}turn,
+                    ${this.data[datum].color || generateColor(datum)}
+                    ${0}turn,
+                `;
       }
     }
 
@@ -3280,7 +3398,11 @@ class PieChart extends motorcortex.HTMLClip {
   }
 
   buildTitle() {
-    return (this.data.title || []).map((char, index) => "<div class=\"char\">\n          <div class=\"char-".concat(index, " ").concat(char === " " ? " space" : "", "\">\n            ").concat(char, "\n          </div>\n        </div>"));
+    return (this.data.title || []).map((char, index) => `<div class="char">
+          <div class="char-${index} ${char === " " ? " space" : ""}">
+            ${char}
+          </div>
+        </div>`);
   }
 
   buildLegend() {
@@ -3289,7 +3411,10 @@ class PieChart extends motorcortex.HTMLClip {
         elem.name = elem.name.substring(0, 21) + "...";
       }
 
-      return "<div class=\"legend-row\">\n          <div class=\"meter-".concat(index, "\"></div>\n          <div class=\"legend-text\">").concat(elem.name, "</div>\n        </div>");
+      return `<div class="legend-row">
+          <div class="meter-${index}"></div>
+          <div class="legend-text">${elem.name}</div>
+        </div>`;
     });
   }
 
