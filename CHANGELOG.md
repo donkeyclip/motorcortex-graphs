@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.2](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.2.1...v2.2.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* fix pieChart ([93a9411](https://github.com/donkeyclip/motorcortex-graphs/commit/93a94115da76995d5cde372dcebcaacbad2789cc))
+
 ## [2.2.1](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.2.0...v2.2.1) (2022-06-26)
 
 
