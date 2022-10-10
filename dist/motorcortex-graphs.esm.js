@@ -3160,11 +3160,11 @@ class PieChart extends HTMLClip {
         display: "flex"
       },
       ".col-1": {
-        width: "65%",
-        height: "100%",
+        height: "97%",
         display: "flex",
         "justify-content": "center",
-        "align-items": "center"
+        "align-items": "center",
+        "aspect-ratio": "1/1"
       },
       ".col-2": {
         width: "35%",
