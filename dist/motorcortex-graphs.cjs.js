@@ -13,9 +13,9 @@ const colorPalette = {
   dataColors: ["rgb(117,112,110)", "rgb(255,216,0)", "rgb(87,86,87)", "rgb(163, 255, 200)", "rgb(255,255,255)", "rgb(206, 36, 132)", "rgb(68, 214, 37)", "rgb(228, 31, 31)", "rgb(68, 36, 157)", "rgb(45, 109, 121)"]
 };
 
+// Static control
 // Making the contents of this animation invisible before timestamp:0
 // and after timestamp: {totalDuration}
-
 function opacityControl(clip, selector) {
   clip.addIncident(new motorcortex.CSSEffect({
     animatedAttrs: {
@@ -36,10 +36,11 @@ function opacityControl(clip, selector) {
     selector: selector,
     duration: 1
   }), clip.introDur + clip.staticDur + clip.outroDur - 1);
-} // Static control: used for fadeout outro components
+}
+
+// Static control: used for fadeout outro components
 // Making the contents of this animation invisible before timestamp:0
 // and after timestamp: {totalDuration}
-
 function fadeOutOpacityControl(clip, selector) {
   clip.addIncident(new motorcortex.CSSEffect({
     animatedAttrs: {
@@ -52,7 +53,6 @@ function fadeOutOpacityControl(clip, selector) {
     selector: selector,
     duration: 1
   }), 0);
-
   if (!clip.attrs.timings.outro) {
     clip.addIncident(new motorcortex.CSSEffect({
       animatedAttrs: {
@@ -70,7 +70,6 @@ var helpers = {
   extractUnitsNums: givenString => {
     const widthNumberPart = givenString.match(numberPartRegexp)[0];
     const widthUnitPart = givenString.substring(widthNumberPart.length);
-
     if (isNumber(Number(widthNumberPart)) && (widthUnitPart !== "%" || widthUnitPart !== "px")) {
       return {
         number: Number(widthNumberPart),
@@ -79,11 +78,9 @@ var helpers = {
     }
   }
 };
-
 function isNumber(value) {
   return typeof value === "number" && isFinite(value);
 }
-
 function cssObjectToString(style) {
   return Object.entries(style).map(_ref => {
     let [k, v] = _ref;
@@ -291,52 +288,45 @@ function buildCSS$1(barChart) {
 /**
  * BAR CHART SIMPLE GRAPH: MotorCortex Implementation
  */
-
 class BarChartSimple extends motorcortex.HTMLClip {
   // Building HTML tree for incident
   get html() {
-    this.buildVars(); // Title modal html generation
+    this.buildVars();
 
+    // Title modal html generation
     const title = [];
-
     for (const i in this.title) {
       const letter = this.title[i] === " " ? `<div class="space-char letter-wrapper">-</div>` : `<div class="fontColorOn letter-wrapper">${this.title[i]}</div>`;
       title.push(`<div id="letter-${i}" class="letter-container">${letter}</div>`);
-    } // Subtitle modal html generation
+    }
 
-
+    // Subtitle modal html generation
     const subtitle = [];
-
     for (const i in this.subtitle) {
       const letter = this.subtitle[i] === " " ? `<div class="space-char letter-wrapper">-</div>` : `<div className="fontColorOn letter-wrapper">${this.subtitle[i]}</div>`;
       subtitle.push(`<div id="letter-${i}" class="letter-container">${letter}</div>`);
-    } // Gridlines conditional html generation
+    }
 
-
+    // Gridlines conditional html generation
     const gridLines = [];
-
     for (let i = 0; i < this.gridLinesNum; i++) {
       gridLines.push(`<div class="gridLine" id="gridLine${i}"></div>`);
-    } // X-axis labels html generation with data parameter as reference
+    }
 
-
+    // X-axis labels html generation with data parameter as reference
     const xLabels = [];
     const bars = [];
-
     for (const i in this.data) {
       const datum = this.data[i];
-
       if (datum.name.length > 4) {
         datum.name = datum.name.slice(0, 4);
         this.data[i] = datum;
       }
-
-      xLabels.push(`<div class="label-container" id="label-${i}">${this.data[i].name}</div>`); //  Bars html generation with data parameter as reference
-
+      xLabels.push(`<div class="label-container" id="label-${i}">${this.data[i].name}</div>`);
+      //  Bars html generation with data parameter as reference
       if (this.maxPoint < datum.value) {
         this.maxPoint = datum.value;
       }
-
       bars.push(`<div class="${datum.name}-bar-${i}">
           <div
             class="bar-fill"
@@ -345,9 +335,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
           ></div>
         </div>`);
     }
+    this.maxPoint = this.attrs.data.maxValue ? this.attrs.data.maxValue : this.maxPoint;
 
-    this.maxPoint = this.attrs.data.maxValue ? this.attrs.data.maxValue : this.maxPoint; // MAIN HTML TREE
-
+    // MAIN HTML TREE
     return `<div class="container-barChart">
         <div class="title-container">
           <div class="title-wrapper">${title.join("")}</div>
@@ -371,29 +361,31 @@ class BarChartSimple extends motorcortex.HTMLClip {
           <div class="x-labels-background block-background"></div>
         </div>
       </div>`;
-  } // Build CSS rules for incident
+  }
 
-
+  // Build CSS rules for incident
   get css() {
     return buildCSS$1(this);
-  } // Font API call (only google fonts API supported)
+  }
 
-
+  // Font API call (only google fonts API supported)
   get fonts() {
     return [{
       type: "google-font",
       src: `${this.url}`
     }];
-  } // MotorCortex Animation generation and
+  }
 
-
+  // MotorCortex Animation generation and
   buildTree() {
-    opacityControl(this, `.container-barChart`); // INTRO CONTROL
+    opacityControl(this, `.container-barChart`);
 
+    // INTRO CONTROL
     if (this.attrs.timings.intro) {
       const textAnimDur = this.introDur * 0.75;
-      const introGroup = new motorcortex.Group(); // Axis Intro Control
+      const introGroup = new motorcortex.Group();
 
+      // Axis Intro Control
       const axisCombo = new motorcortex.Combo({
         incidents: [{
           incidentClass: motorcortex.CSSEffect,
@@ -431,8 +423,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
       }, {
         selector: ".container-barChart"
       });
-      introGroup.addIncident(axisCombo, this.introDur * 0); // GridLines Intro Control
+      introGroup.addIncident(axisCombo, this.introDur * 0);
 
+      // GridLines Intro Control
       const gridLinesAnim = new motorcortex.CSSEffect({
         animatedAttrs: {
           width: "100%"
@@ -445,8 +438,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
         duration: Math.trunc(this.introDur * 0.5),
         easing: "easeOutQuad"
       });
-      introGroup.addIncident(gridLinesAnim, Math.trunc(this.introDur * 0.2)); // Title Bar Intro Control
+      introGroup.addIncident(gridLinesAnim, Math.trunc(this.introDur * 0.2));
 
+      // Title Bar Intro Control
       const titlesAnim = new motorcortex.Group();
       titlesAnim.addIncident(new motorcortex.CSSEffect({
         animatedAttrs: {
@@ -459,12 +453,12 @@ class BarChartSimple extends motorcortex.HTMLClip {
         selector: ".title-background",
         duration: Math.trunc(this.introDur * 0.25),
         easing: "easeInOutQuad"
-      }), 0); // Main Title Intro: letter animation control
+      }), 0);
 
+      // Main Title Intro: letter animation control
       const titleDur = this.introDur * 0.7;
       const titleLetterDur = titleDur * 2 / (this.title.length + 1);
       const titleIncidents = [];
-
       for (const i in this.title) {
         titleIncidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -486,18 +480,17 @@ class BarChartSimple extends motorcortex.HTMLClip {
           position: Math.trunc(titleLetterDur * i / 2)
         });
       }
-
       const titleCombo = new motorcortex.Combo({
         incidents: titleIncidents
       }, {
         selector: ".title-wrapper"
       });
-      titlesAnim.addIncident(titleCombo, Math.trunc(this.introDur * 0.25)); // Subtitle Intro: letter animation control
+      titlesAnim.addIncident(titleCombo, Math.trunc(this.introDur * 0.25));
 
+      // Subtitle Intro: letter animation control
       const subtitleDur = this.introDur * 0.8;
       const subLetterDur = subtitleDur * 2 / (this.subtitle.length + 1);
       const subIncidents = [];
-
       for (const i in this.subtitle) {
         subIncidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -519,15 +512,15 @@ class BarChartSimple extends motorcortex.HTMLClip {
           position: Math.trunc(subLetterDur * i / 2)
         });
       }
-
       const subtitleCombo = new motorcortex.Combo({
         incidents: subIncidents
       }, {
         selector: ".subtitle-wrapper"
       });
       titlesAnim.addIncident(subtitleCombo, Math.trunc(this.introDur * 0.1));
-      introGroup.addIncident(titlesAnim, Math.trunc(this.introDur * 0.05)); // Labels (xAxis) Intro Control
+      introGroup.addIncident(titlesAnim, Math.trunc(this.introDur * 0.05));
 
+      // Labels (xAxis) Intro Control
       const xLabelsAnim = new motorcortex.Group();
       xLabelsAnim.addIncident(new motorcortex.CSSEffect({
         animatedAttrs: {
@@ -540,15 +533,14 @@ class BarChartSimple extends motorcortex.HTMLClip {
         selector: ".x-labels-back-wrapper",
         duration: Math.trunc(this.introDur * 0.25),
         easing: "easeInOutCubic"
-      }), 0); // Labels (xAxis) Intro: letter animation control
+      }), 0);
 
+      // Labels (xAxis) Intro: letter animation control
       const labelDur = textAnimDur * 2 / (this.data.length + 1);
-
       for (const i in this.data) {
         const labelLength = this.data[i].name.length;
         const letterDur = labelDur * 2 / (labelLength + 1);
         const incidents = [];
-
         for (const z in this.data[i].name) {
           incidents.push({
             incidentClass: motorcortex.CSSEffect,
@@ -570,7 +562,6 @@ class BarChartSimple extends motorcortex.HTMLClip {
             position: Math.trunc(letterDur * z / 2)
           });
         }
-
         const datumCombo = new motorcortex.Combo({
           incidents: incidents
         }, {
@@ -578,9 +569,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
         });
         xLabelsAnim.addIncident(datumCombo, Math.trunc(textAnimDur / (this.data.length + 1) * i));
       }
+      introGroup.addIncident(xLabelsAnim, Math.trunc(this.introDur * 0.05));
 
-      introGroup.addIncident(xLabelsAnim, Math.trunc(this.introDur * 0.05)); // Bar Intro Control
-
+      // Bar Intro Control
       const barAnimation = new motorcortex.Combo({
         incidents: [{
           incidentClass: motorcortex.CSSEffect,
@@ -604,13 +595,14 @@ class BarChartSimple extends motorcortex.HTMLClip {
       });
       introGroup.addIncident(barAnimation, Math.trunc(this.introDur * 0.3));
       this.addIncident(introGroup, this.introDur * 0);
-    } // OUTRO CONTROL
+    }
 
-
+    // OUTRO CONTROL
     if (this.attrs.timings.outro) {
       const textAnimDur = this.outroDur * 0.75;
-      const outroGroup = new motorcortex.Group(); // Axis Outro Control
+      const outroGroup = new motorcortex.Group();
 
+      // Axis Outro Control
       const axisCombooutro = new motorcortex.Combo({
         incidents: [{
           incidentClass: motorcortex.CSSEffect,
@@ -648,8 +640,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
       }, {
         selector: ".container-barChart"
       });
-      outroGroup.addIncident(axisCombooutro, Math.trunc(this.outroDur * 0.5)); // GridLines Outro Control
+      outroGroup.addIncident(axisCombooutro, Math.trunc(this.outroDur * 0.5));
 
+      // GridLines Outro Control
       const gridLinesoutro = new motorcortex.CSSEffect({
         animatedAttrs: {
           width: "0%"
@@ -662,8 +655,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
         easing: "easeInOutQuad",
         duration: Math.trunc(this.outroDur * 0.5)
       });
-      outroGroup.addIncident(gridLinesoutro, Math.trunc(this.outroDur * 0.2)); // Title Bar Outro Control
+      outroGroup.addIncident(gridLinesoutro, Math.trunc(this.outroDur * 0.2));
 
+      // Title Bar Outro Control
       const titlesoutro = new motorcortex.Group();
       titlesoutro.addIncident(new motorcortex.CSSEffect({
         animatedAttrs: {
@@ -676,12 +670,12 @@ class BarChartSimple extends motorcortex.HTMLClip {
         selector: ".title-back-animHelper",
         duration: Math.trunc(this.outroDur * 0.45),
         easing: "easeInOutQuad"
-      }), Math.trunc(this.outroDur * 0.3)); // Main Title Outro: letter animation control
+      }), Math.trunc(this.outroDur * 0.3));
 
+      // Main Title Outro: letter animation control
       const titleDur = this.outroDur * 0.8;
       const letterDur = titleDur * 2 / (this.title.length + 1);
       const titleIncidents = [];
-
       for (const i in this.title) {
         titleIncidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -703,18 +697,17 @@ class BarChartSimple extends motorcortex.HTMLClip {
           position: Math.trunc(letterDur * (this.title.length - i - 1) / 2)
         });
       }
-
       const titleCombo = new motorcortex.Combo({
         incidents: titleIncidents
       }, {
         selector: ".title-wrapper"
       });
-      titlesoutro.addIncident(titleCombo, Math.trunc(this.outroDur * 0.1)); // Subtitle Outro: letter animation control
+      titlesoutro.addIncident(titleCombo, Math.trunc(this.outroDur * 0.1));
 
+      // Subtitle Outro: letter animation control
       const subtitleDur = this.outroDur * 0.4;
       const subLetterDur = subtitleDur * 2 / (this.subtitle.length + 1);
       const subIncidents = [];
-
       for (const i in this.subtitle) {
         subIncidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -736,15 +729,15 @@ class BarChartSimple extends motorcortex.HTMLClip {
           position: Math.trunc(subLetterDur * (this.subtitle.length - i - 1) / 2)
         });
       }
-
       const subtitleCombo = new motorcortex.Combo({
         incidents: subIncidents
       }, {
         selector: ".subtitle-wrapper"
       });
       titlesoutro.addIncident(subtitleCombo, Math.trunc(this.outroDur * 0));
-      outroGroup.addIncident(titlesoutro, Math.trunc(this.outroDur * 0.05)); // Labels (xAxis) Outro Control
+      outroGroup.addIncident(titlesoutro, Math.trunc(this.outroDur * 0.05));
 
+      // Labels (xAxis) Outro Control
       const xLabelsoutro = new motorcortex.Group();
       xLabelsoutro.addIncident(new motorcortex.CSSEffect({
         animatedAttrs: {
@@ -757,15 +750,14 @@ class BarChartSimple extends motorcortex.HTMLClip {
         selector: ".x-labels-background",
         duration: Math.trunc(this.outroDur * 0.45),
         easing: "easeInOutCubic"
-      }), this.outroDur * 0.3); // Labels (xAxis) Outro: letter animation control
+      }), this.outroDur * 0.3);
 
+      // Labels (xAxis) Outro: letter animation control
       const labelDur = textAnimDur * 2 / (this.data.length + 1);
-
       for (const i in this.data) {
         const labelLength = this.data[i].name.length;
         const letterDur = labelDur * 2 / (labelLength + 1);
         const incidents = [];
-
         for (const z in this.data[i].name) {
           incidents.push({
             incidentClass: motorcortex.CSSEffect,
@@ -787,7 +779,6 @@ class BarChartSimple extends motorcortex.HTMLClip {
             position: Math.trunc(letterDur * z / 2)
           });
         }
-
         const datumCombo = new motorcortex.Combo({
           incidents: incidents
         }, {
@@ -795,11 +786,10 @@ class BarChartSimple extends motorcortex.HTMLClip {
         });
         xLabelsoutro.addIncident(datumCombo, Math.trunc(textAnimDur / (this.data.length + 1) * i));
       }
+      outroGroup.addIncident(xLabelsoutro, Math.trunc(this.outroDur * 0.05));
 
-      outroGroup.addIncident(xLabelsoutro, Math.trunc(this.outroDur * 0.05)); // Bar outro Control
-
+      // Bar outro Control
       const barIncidents = [];
-
       for (const i in this.data) {
         barIncidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -819,7 +809,6 @@ class BarChartSimple extends motorcortex.HTMLClip {
           position: Math.trunc(subLetterDur * (this.data.length - i - 1) / 2)
         });
       }
-
       const barAnimationoutro = new motorcortex.Combo({
         incidents: barIncidents
       }, {
@@ -827,9 +816,9 @@ class BarChartSimple extends motorcortex.HTMLClip {
       });
       outroGroup.addIncident(barAnimationoutro, this.outroDur * 0);
       this.addIncident(outroGroup, 0 + this.introDur + this.staticDur);
-    } // STATIC DURATION CONTROL
+    }
 
-
+    // STATIC DURATION CONTROL
     const staticIncident = new motorcortex.CSSEffect({
       animatedAttrs: {}
     }, {
@@ -838,7 +827,6 @@ class BarChartSimple extends motorcortex.HTMLClip {
     });
     this.addIncident(staticIncident, this.introDur);
   }
-
   buildVars() {
     this.data = this.attrs.data.data;
     this.title = this.attrs.data.title;
@@ -861,7 +849,6 @@ class BarChartSimple extends motorcortex.HTMLClip {
     this.outroDur = this.attrs.timings.outro || 0;
     this.staticDur = this.attrs.timings.static ?? 1000;
   }
-
 }
 
 /**
@@ -913,7 +900,6 @@ class Counter$1 extends motorcortex.Effect {
    * in order to use it on the onProgress method
    **/
 
-
   onGetContext() {
     this.element.innerHTML = this.initialValue;
   }
@@ -927,21 +913,16 @@ class Counter$1 extends motorcortex.Effect {
    * arguments have already been re-calculated based on the easing.
    **/
 
-
   onProgress(millisecond) {
     let currentVal = this.initialValue + (this.targetValue - this.initialValue) * this.getFraction(millisecond);
-
     if (this.attrs.decimals) {
       currentVal = currentVal.toFixed(this.attrs.decimals);
     } else {
       currentVal = Math.trunc(currentVal);
     }
-
     this.element.innerHTML = currentVal;
   }
-
 }
-
 var name$3 = "@donkeyclip/motorcortex-counter";
 var version$3 = "2.1.2";
 var index$3 = {
@@ -973,6 +954,7 @@ var index$3 = {
 };
 
 const Counter = motorcortex.loadPlugin(index$3);
+
 /**
  * The purpose of extending the HTMLClip is to full, parametric
  * HTMLClips with both context and Incidents.
@@ -984,12 +966,10 @@ const Counter = motorcortex.loadPlugin(index$3);
  * The buildTree method allows developers to define Incidents (of any plugin)
  * dynamically and position them on the Clip.
  */
-
 class ProgressBar extends motorcortex.HTMLClip {
   get html() {
     const list = this.attrs.data.map((elem, index) => {
       var _this$attrs$options;
-
       return `<div class="row row-${index}">
           <div class="bar-header">${elem.name}</div>
           <div class="container-bar container-bar-${index}">
@@ -1005,7 +985,6 @@ class ProgressBar extends motorcortex.HTMLClip {
     });
     return `<div class="container-progressBar">${list.join("")}</div>`;
   }
-
   get css() {
     const cssArgs = {
       barSum: this.barSum,
@@ -1078,30 +1057,24 @@ class ProgressBar extends motorcortex.HTMLClip {
     });
     return cssObjectToString(styles);
   }
-
   get fonts() {
     var _this$attrs$font;
-
     return [{
       type: "google-font",
       src: ((_this$attrs$font = this.attrs.font) === null || _this$attrs$font === void 0 ? void 0 : _this$attrs$font.url) || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
     }];
   }
-
   buildTree() {
     var _this$attrs$timings;
-
     this.static = this.attrs.timings.static ?? 1000;
     this.intro = this.attrs.timings.intro || 0;
     this.outro = this.attrs.timings.outro || 0;
     const avg = this.barSum / this.barCount;
     fadeOutOpacityControl(this, `.container-progressBar`);
-
     if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.intro) {
       const slideInDuration = Math.floor(this.intro * 0.33);
       const expandBaseDuration = Math.floor(this.intro * 0.25);
       const expandBarDuration = Math.floor(this.intro * 0.33);
-
       for (let i = 0; i < this.barCount; i++) {
         const slideIn = new motorcortex.CSSEffect({
           animatedAttrs: {
@@ -1158,7 +1131,6 @@ class ProgressBar extends motorcortex.HTMLClip {
         this.addIncident(expand_bar, slideInDuration + expandBaseDuration);
         this.addIncident(indicatorCounter, slideInDuration + expandBaseDuration);
       }
-
       const expand_text = new motorcortex.CSSEffect({
         animatedAttrs: {
           left: "62%",
@@ -1175,7 +1147,6 @@ class ProgressBar extends motorcortex.HTMLClip {
       });
       this.addIncident(expand_text, slideInDuration);
     }
-
     const staticGraph = new motorcortex.CSSEffect({
       animatedAttrs: {}
     }, {
@@ -1183,13 +1154,11 @@ class ProgressBar extends motorcortex.HTMLClip {
       selector: ".container-progressBar"
     });
     this.addIncident(staticGraph, this.intro);
-
     if (this.outro) {
       const bufferTime = this.intro + this.static + this.outro;
       const slideInDuration = Math.floor(this.outro * 0.33);
       const expandBaseDuration = Math.floor(this.outro * 0.25);
       const expandBarDuration = Math.floor(this.outro * 0.33);
-
       for (let i = 0; i < this.barCount; i++) {
         const slideIn = new motorcortex.CSSEffect({
           animatedAttrs: {
@@ -1246,7 +1215,6 @@ class ProgressBar extends motorcortex.HTMLClip {
         this.addIncident(expand_bar, bufferTime - slideInDuration - expandBaseDuration - expandBarDuration);
         this.addIncident(indicatorCounter, bufferTime - slideInDuration - expandBaseDuration - expandBarDuration);
       }
-
       const expand_text = new motorcortex.CSSEffect({
         animatedAttrs: {
           left: "0%",
@@ -1264,24 +1232,18 @@ class ProgressBar extends motorcortex.HTMLClip {
       this.addIncident(expand_text, bufferTime - slideInDuration - expandBaseDuration * 1.1);
     }
   }
-
   get barSum() {
     let sum = 0;
-
     for (let i = 1; i <= this.barCount; i++) {
       sum += i;
     }
-
     return sum;
   }
-
   get barCount() {
     return this.attrs.data.length;
   }
-
   get criticalValue() {
     const barCount = this.barCount / 10;
-
     if (barCount === 1) {
       return barCount * 10;
     } else if (barCount > 1) {
@@ -1290,7 +1252,6 @@ class ProgressBar extends motorcortex.HTMLClip {
       return (barCount + 1) * 10;
     }
   }
-
 }
 
 var config = {
@@ -1528,16 +1489,13 @@ function buildCSS(lineGraph) {
       "z-index": "9999"
     }
   };
-
   for (let l = 0; l < lineGraph.dataSetsNum; l++) {
     let dynamicColor;
-
     if (lineGraph.dataSetsNum > 1) {
       dynamicColor = lineGraph.dataSets[l].color;
     } else {
       dynamicColor = lineGraph.quaternaryC;
     }
-
     styles[`.color-${l}`] = {
       background: dynamicColor
     };
@@ -1546,7 +1504,6 @@ function buildCSS(lineGraph) {
       height: "100%",
       position: "absolute"
     };
-
     for (let i = 0; i < lineGraph.data.length; i++) {
       const targetTop = lineGraph.findPointY(i, l) - lineGraph.linesHeight * 0.083;
       let fullWidth = 10 / 2 * lineGraph.data.length > 10 ? 10 : 10 / 2 * lineGraph.data.length;
@@ -1565,7 +1522,6 @@ function buildCSS(lineGraph) {
       };
     }
   }
-
   for (let l = 0; l < lineGraph.dataSetsNum; l++) {
     for (let i = 0; i < lineGraph.data.length; i++) {
       styles[`.hoverPoint-${l}-${lineGraph.data[i].name}:hover + .label-${l}-${lineGraph.data[i].name}`] = {
@@ -1573,7 +1529,6 @@ function buildCSS(lineGraph) {
       };
     }
   }
-
   return cssObjectToString(styles);
 }
 
@@ -1584,18 +1539,14 @@ class Draw extends motorcortex.Effect {
     this.element.style.strokeDashoffset = this.pathLength;
     return 0;
   }
-
   onGetContext() {
     this.pathLength = Math.ceil(this.element.getTotalLength());
   }
-
   onProgress(millisecond) {
     const cover = (this.targetValue - this.initialValue) * this.getFraction(millisecond) + this.initialValue;
     this.element.style.strokeDashoffset = Math.ceil(this.pathLength * (1 - cover));
   }
-
 }
-
 var name$2 = "@donkeyclip/motorcortex-svgdraw";
 var version$2 = "1.2.0";
 var index$2 = {
@@ -1622,7 +1573,6 @@ var index$2 = {
 function getMatrix2D(element) {
   const win = window;
   const transform = win.getComputedStyle(element).transform;
-
   if (transform === "" || transform === "none") {
     return {
       rotate: "0deg",
@@ -1634,17 +1584,15 @@ function getMatrix2D(element) {
       translateY: "0px"
     };
   }
-
   const values = transform.split("(")[1].split(")")[0].split(",");
-
   const qrDecompone = function qrDecompone(a) {
     const angle = Math.atan2(a[1], a[0]),
-          denom = Math.pow(a[0], 2) + Math.pow(a[1], 2),
-          denom2 = Math.pow(a[2], 2) + Math.pow(a[3], 2),
-          scaleX = Math.sqrt(denom),
-          scaleY = (a[0] * a[3] - a[2] * a[1]) / scaleX,
-          skewX = Math.atan2(a[0] * a[2] + a[1] * a[3], denom),
-          skewY = Math.atan2(a[1] * a[3] + a[0] * a[2], denom2);
+      denom = Math.pow(a[0], 2) + Math.pow(a[1], 2),
+      denom2 = Math.pow(a[2], 2) + Math.pow(a[3], 2),
+      scaleX = Math.sqrt(denom),
+      scaleY = (a[0] * a[3] - a[2] * a[1]) / scaleX,
+      skewX = Math.atan2(a[0] * a[2] + a[1] * a[3], denom),
+      skewY = Math.atan2(a[1] * a[3] + a[0] * a[2], denom2);
     return {
       rotate: angle / (Math.PI / 180) + "deg",
       // this is rotation angle in degrees
@@ -1659,13 +1607,11 @@ function getMatrix2D(element) {
       translateX: a[4] + "px",
       // translation point  x
       translateY: a[5] + "px" // translation point  y
-
     };
   };
 
   return qrDecompone(values);
 }
-
 class Adaptor {
   constructor(el) {
     this.el = el;
@@ -1673,11 +1619,9 @@ class Adaptor {
     this.viewportCenter = this.getViewPortCenter();
     this.idlePosition = this.getIdlePosition();
   }
-
   getMatrix(el) {
     return getMatrix2D(el);
   }
-
   getViewPortCenter() {
     const el = this.el;
     const parentNode = el.parentNode;
@@ -1696,7 +1640,6 @@ class Adaptor {
    * idle position of the element on its parent.
    */
 
-
   getIdlePosition() {
     const el = this.el; // bounding rect: {top, right, bottom, left}
 
@@ -1714,7 +1657,6 @@ class Adaptor {
    * @returns {object} x, y, zoom, initialTransofrm{x,y}
    */
 
-
   calcXYZoom() {
     const matrix = this.matrix;
     const position = this.idlePosition;
@@ -1728,7 +1670,8 @@ class Adaptor {
       x: currentOneToOneCenter.x / matrix.scaleX,
       y: currentOneToOneCenter.y / matrix.scaleY
     };
-    return { ...currentCenter,
+    return {
+      ...currentCenter,
       zoom: matrix.scaleX
     };
   }
@@ -1736,19 +1679,16 @@ class Adaptor {
    * @param {object} params - {start{x,y,zoom}, target{x,y.zoom}}
    */
 
-
   createProgressFunction(params) {
     const start = this._xyzoomToTranslate(params.start);
-
     const target = this._xyzoomToTranslate(params.target); // first we need to calculate the angle and the distance that we are going to use for our calculations
-
 
     const theta = Math.atan(Math.abs(target.y - start.y) / Math.abs(target.x - start.x));
     const lineLength = Math.sqrt(Math.pow(target.y - start.y, 2) + Math.pow(target.x - start.x, 2)); // secondly we need to identify the multipliers that we are going to use to calculate for our x and y
     // depending on the relative position of our target compared to our start
 
     let _x = 1,
-        _y = 1;
+      _y = 1;
     if (target.x < start.x) _x = -1;
     if (target.y < start.y) _y = -1;
     return function progress(fraction) {
@@ -1760,7 +1700,6 @@ class Adaptor {
       };
     };
   }
-
   _xyzoomToTranslate(vals) {
     // the target point from the top-left corner of the element, having applied the target zoom
     const targetCenter = {
@@ -1792,10 +1731,8 @@ class Adaptor {
         }
      */
 
-
   createPathProgressFunction(data, initialValue) {
     let transitionProgress = progress => {};
-
     if (data.transitionDuration > 0) {
       transitionProgress = this.createProgressFunction({
         start: initialValue,
@@ -1806,7 +1743,6 @@ class Adaptor {
         }
       });
     }
-
     const transitionFraction = data.transitionDuration / (data.transitionDuration + data.alongPathDuration);
     const alongPathFraction = data.alongPathDuration / (data.transitionDuration + data.alongPathDuration); // the actual length of the path to move on having taken out the startFrom and endTo parts
 
@@ -1815,7 +1751,6 @@ class Adaptor {
       if (data.transitionDuration > 0 && progress < transitionFraction) {
         return transitionProgress(progress / transitionFraction);
       } // the fraction from 0 to 1 of the second part calculated strictly out of the durations
-
 
       const secondPartProgress = (progress - transitionFraction) / alongPathFraction; // calculate the scale of the point
 
@@ -1829,7 +1764,6 @@ class Adaptor {
         y: point.y,
         zoom: scale
       });
-
       return {
         translateX: res.x,
         translateY: res.y,
@@ -1837,8 +1771,8 @@ class Adaptor {
       };
     };
   }
-
 }
+
 /**
  * Thus, here you'll find:
  * the following properties:
@@ -1853,7 +1787,6 @@ class Adaptor {
  *
  **/
 
-
 class MyEffect extends motorcortex.Effect {
   /**
    * the scratch value of the Incident should return back the triplette
@@ -1867,7 +1800,6 @@ class MyEffect extends motorcortex.Effect {
     this.adaptor = new Adaptor(this.element);
     return this.adaptor.calcXYZoom();
   }
-
   onGetContext() {
     this.adaptor = new Adaptor(this.element);
     this.progressMethod = this.adaptor.createProgressFunction({
@@ -1875,14 +1807,11 @@ class MyEffect extends motorcortex.Effect {
       target: this.targetValue
     });
   }
-
   onProgress(m) {
     const vals = this.progressMethod(this.getFraction(m));
     this.element.style.transform = "translateX(".concat(vals.translateX, "px) translateY(").concat(vals.translateY, "px) scaleX(").concat(vals.scale, ") scaleY(").concat(vals.scale, ")");
   }
-
 }
-
 const xmlns = "http://www.w3.org/2000/svg";
 /**
  * The attrs that this Incident expect are almost identical with its "brother's"
@@ -1935,11 +1864,9 @@ class FollowPath extends MyEffect {
       startFrom: !this.attrs.from ? 0 : this.attrs.from,
       endTo: !this.attrs.to ? 1 : this.attrs.to,
       transitionDuration: !this.attrs.transition ? 0 : this.attrs.transition,
-
       get alongPathDuration() {
         return duration - this.transitionDuration;
       }
-
     };
     this.data.finalPoint = path.getPointAtLength(this.data.endTo * this.data.pathLength);
     this.data.startPoint = path.getPointAtLength(this.data.startFrom * this.data.pathLength); // then set the final values of the Incident in terms of x, y, zoom so the
@@ -1948,15 +1875,12 @@ class FollowPath extends MyEffect {
     this.targetValue.x = this.data.finalPoint.x;
     this.targetValue.y = this.data.finalPoint.y;
   }
-
   onGetContext() {
     this.adaptor = new Adaptor(this.element);
     this.data.zoom = this.targetValue.zoom;
     this.progressMethod = this.adaptor.createPathProgressFunction(this.data, this.initialValue);
   }
-
 }
-
 var name$1 = "@donkeyclip/motorcortex-2dcam";
 var version$1 = "0.3.1";
 var index$1 = {
@@ -2046,7 +1970,6 @@ class AnimationConstructor {
   constructor(instance) {
     this.instance = instance;
   }
-
   buildStaticControl() {
     return new motorcortex.CSSEffect({
       animatedAttrs: {}
@@ -2055,7 +1978,6 @@ class AnimationConstructor {
       duration: this.instance.staticDur
     });
   }
-
   buildBackgroundIntro() {
     return new motorcortex.CSSEffect({
       animatedAttrs: {
@@ -2070,7 +1992,6 @@ class AnimationConstructor {
       easing: "easeInOutQuart"
     });
   }
-
   buildBackgroundOutro() {
     return new motorcortex.CSSEffect({
       animatedAttrs: {
@@ -2085,11 +2006,9 @@ class AnimationConstructor {
       easing: "easeInOutQuart"
     });
   }
-
   buildTitleIntroCombo() {
     const titleDur = this.instance.introDur * 0.13;
     const titleIncidents = [];
-
     for (const i in this.instance.words) {
       titleIncidents.push({
         incidentClass: motorcortex.CSSEffect,
@@ -2111,18 +2030,15 @@ class AnimationConstructor {
         position: Math.trunc(titleDur / this.instance.words.length * i)
       });
     }
-
     return new motorcortex.Combo({
       incidents: titleIncidents
     }, {
       selector: ".title-wrapper-lineGraph"
     });
   }
-
   buildTitleOutroCombo() {
     const titleDur = this.instance.outroDur * 0.13;
     const titleIncidents = [];
-
     for (const i in this.instance.words) {
       titleIncidents.push({
         incidentClass: motorcortex.CSSEffect,
@@ -2144,14 +2060,12 @@ class AnimationConstructor {
         position: Math.trunc(titleDur / this.instance.words.length * (this.instance.words.length - 1 - i))
       });
     }
-
     return new motorcortex.Combo({
       incidents: titleIncidents
     }, {
       selector: ".title-wrapper-lineGraph"
     });
   }
-
   buildIntroLegend() {
     const colorsDur = this.instance.introDur * 0.25;
     const colorDur = colorsDur / this.instance.dataSetsNum;
@@ -2212,7 +2126,6 @@ class AnimationConstructor {
       selector: ".legend-wrapper"
     });
   }
-
   buildOutroLegend() {
     const colorsDur = this.instance.outroDur * 0.25;
     const colorDur = colorsDur / this.instance.dataSetsNum;
@@ -2273,10 +2186,10 @@ class AnimationConstructor {
       selector: ".legend-wrapper"
     });
   }
-
   buildIntroLabels() {
-    const xLabelsAnim = new motorcortex.Group(); // Label Background intro animation
+    const xLabelsAnim = new motorcortex.Group();
 
+    // Label Background intro animation
     xLabelsAnim.addIncident(new motorcortex.CSSEffect({
       animatedAttrs: {
         width: "100%"
@@ -2288,15 +2201,14 @@ class AnimationConstructor {
       selector: ".block-background",
       duration: Math.trunc(this.instance.introDur * 0.25),
       easing: "easeInOutQuart"
-    }), 0); // Labels Intro Animation
+    }), 0);
 
+    // Labels Intro Animation
     const textAnimDur = this.instance.introDur * 0.2;
     const labelDur = textAnimDur * 3 / (this.instance.data.length + 2);
-
     for (const i in this.instance.data) {
       let remainingDur = labelDur / 2;
       const incidents = [];
-
       for (const z in this.instance.data[i].name) {
         incidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -2317,7 +2229,6 @@ class AnimationConstructor {
         });
         remainingDur = remainingDur / 2;
       }
-
       const datumCombo = new motorcortex.Combo({
         incidents: incidents
       }, {
@@ -2325,14 +2236,13 @@ class AnimationConstructor {
       });
       xLabelsAnim.addIncident(datumCombo, Math.trunc(this.instance.introDur * 0.14 + textAnimDur / (this.instance.data.length + 1) * (this.instance.data.length - i - 1)));
     }
-
     return xLabelsAnim;
   }
-
   buildOutroLabels() {
     const xLabelsAnim = new motorcortex.Group();
-    const labelsDur = this.instance.outroDur * 0.55; // Label Background outro animation
+    const labelsDur = this.instance.outroDur * 0.55;
 
+    // Label Background outro animation
     xLabelsAnim.addIncident(new motorcortex.CSSEffect({
       animatedAttrs: {
         width: "0%"
@@ -2344,15 +2254,14 @@ class AnimationConstructor {
       selector: ".block-background",
       duration: Math.trunc(labelsDur * 0.55),
       easing: "easeInOutQuart"
-    }), labelsDur * 0); // Labels Outro Animation
+    }), labelsDur * 0);
 
+    // Labels Outro Animation
     const textAnimDur = this.instance.outroDur * 0.2;
     const labelDur = textAnimDur * 3 / (this.instance.data.length + 2);
-
     for (const i in this.instance.data) {
       let remainingDur = labelDur / 2;
       const incidents = [];
-
       for (const z in this.instance.data[i].name) {
         incidents.push({
           incidentClass: motorcortex.CSSEffect,
@@ -2373,7 +2282,6 @@ class AnimationConstructor {
         });
         remainingDur = remainingDur / 2;
       }
-
       const datumCombo = new motorcortex.Combo({
         incidents: incidents
       }, {
@@ -2381,10 +2289,8 @@ class AnimationConstructor {
       });
       xLabelsAnim.addIncident(datumCombo, Math.trunc(textAnimDur * i / (this.instance.data.length + 1)));
     }
-
     return xLabelsAnim;
   }
-
   buildIntroStele() {
     const stelesIntro = new motorcortex.Group();
     const stelesFullDur = this.instance.introDur * 0.3;
@@ -2393,7 +2299,6 @@ class AnimationConstructor {
     const steleDur = stelesFullDur * steleOverlapIndex / (this.instance.data.length + 1);
     const steleDelay = steleDur / steleOverlapIndex;
     const blockDur = steleDur * blockOverlapIndex / (this.instance.steleBlockNum + 1);
-
     if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
         const steleGroup = new motorcortex.Group({
@@ -2450,10 +2355,8 @@ class AnimationConstructor {
       steleGroup.addIncident(blockCombo, 0);
       stelesIntro.addIncident(steleGroup, Math.trunc(steleDelay));
     }
-
     return stelesIntro;
   }
-
   buildOutroStele() {
     const stelesOutro = new motorcortex.Group();
     const stelesFullDur = this.instance.outroDur * 0.3;
@@ -2462,7 +2365,6 @@ class AnimationConstructor {
     const steleDur = stelesFullDur * steleOverlapIndex / (this.instance.data.length + 1);
     const steleDelay = steleDur / steleOverlapIndex;
     const blockDur = steleDur * blockOverlapIndex / (this.instance.steleBlockNum + 1);
-
     if (this.instance.grid === "steles") {
       for (const i in this.instance.data) {
         const steleGroup = new motorcortex.Group({
@@ -2519,17 +2421,14 @@ class AnimationConstructor {
       steleGroup.addIncident(blockCombo, 0);
       stelesOutro.addIncident(steleGroup, (this.instance.data.length - 1) * steleDelay);
     }
-
     return stelesOutro;
   }
-
   buildIntroGraph(targetGroup) {
     const segmentDur = this.instance.introDur / this.instance.data.length;
     const pointDur = segmentDur * 0.35;
     const pathDur = segmentDur * 0.8;
     const pathAnimGroup = new motorcortex.Group();
     const pointAnimGroup = new motorcortex.Group();
-
     for (let l = 0; l < this.instance.dataSetsNum; l++) {
       for (let i = 0; i < this.instance.data.length; i++) {
         // Path Intro Animation
@@ -2547,9 +2446,9 @@ class AnimationConstructor {
             easing: "easeInOutQuad"
           });
           pathAnimGroup.addIncident(pathAnimation, Math.trunc(segmentDur * i + segmentDur * 0.2));
-        } // Points Intro Animation
+        }
 
-
+        // Points Intro Animation
         const pointAnimation = new motorcortex.CSSEffect({
           animatedAttrs: {
             opacity: 1,
@@ -2564,8 +2463,9 @@ class AnimationConstructor {
           duration: Math.trunc(pointDur),
           easing: "easeInQuart"
         });
-        pointAnimGroup.addIncident(pointAnimation, Math.trunc(segmentDur * i)); // Graph Label Intro Animation
+        pointAnimGroup.addIncident(pointAnimation, Math.trunc(segmentDur * i));
 
+        // Graph Label Intro Animation
         const targetTop = this.instance.findPointY(i, l) - this.instance.linesHeight * 0.083;
         const topOffset = targetTop + this.instance.linesHeight * 0.07 / 2;
         let targetWidth = this.instance.data.length > 2 ? 10 : 5 * this.instance.data.length;
@@ -2597,7 +2497,6 @@ class AnimationConstructor {
           easeing: "easeInOutCubic"
         });
         targetGroup.addIncident(gLabelAnimation, Math.trunc(segmentDur * i + pointDur * 0.2));
-
         if (this.instance.trace) {
           const [entry, duration, xInit, yInit, zoomInit, xTarget, yTarget, zoomTarget] = [...this.buildSvgIntroParams(i, pointDur, segmentDur)];
           const zoomIncident = new TDCAM.ZoomTo({
@@ -2624,10 +2523,8 @@ class AnimationConstructor {
         }
       }
     }
-
     return [targetGroup, pathAnimGroup, pointAnimGroup];
   }
-
   buildSvgIntroParams(index, pointDur, segmentDur) {
     let entry = 0;
     let duration = 0;
@@ -2635,7 +2532,6 @@ class AnimationConstructor {
     let yTarget = this.instance.findPointY(index, 0) + (1 - this.instance.graphScale.height) / 2 * config.lineGraph.originalDims.height;
     let zoomTarget = this.instance.traceScale;
     let xInit, yInit, zoomInit;
-
     if (index === 0) {
       xInit = config.lineGraph.originalDims.width * 0.5;
       yInit = config.lineGraph.originalDims.height * 0.5;
@@ -2658,10 +2554,8 @@ class AnimationConstructor {
       duration = segmentDur;
       entry = segmentDur * (index - 1) + pointDur;
     }
-
     return [entry, duration, xInit, yInit, zoomInit, xTarget, yTarget, zoomTarget];
   }
-
   buildOutroGraph(targetGroup) {
     const segmentDur = this.instance.outroDur / (this.instance.data.length + 1);
     const pointDur = segmentDur * 0.25;
@@ -2669,10 +2563,8 @@ class AnimationConstructor {
     const zoomOffset = this.instance.trace ? 1 : 0;
     const pathAnimGroup = new motorcortex.Group();
     const pointAnimGroup = new motorcortex.Group();
-
     for (let l = 0; l < this.instance.dataSetsNum; l++) {
       const gLabelGroup = new motorcortex.Group();
-
       for (let i = 0; i < this.instance.data.length; i++) {
         // Path outro Animation
         if (i !== this.instance.data.length - 1) {
@@ -2689,9 +2581,9 @@ class AnimationConstructor {
             easing: "easeInOutQuad"
           });
           pathAnimGroup.addIncident(pathAnimation, Math.trunc(segmentDur * (this.instance.data.length + zoomOffset - i - 2) + segmentDur * 0.2));
-        } // Points outro Animation
+        }
 
-
+        // Points outro Animation
         const pointAnimation = new motorcortex.CSSEffect({
           animatedAttrs: {
             opacity: 0,
@@ -2706,8 +2598,9 @@ class AnimationConstructor {
           duration: Math.trunc(pointDur),
           easeing: "easeOutCubic"
         });
-        pointAnimGroup.addIncident(pointAnimation, Math.trunc(segmentDur * (this.instance.data.length + zoomOffset - i - 1))); // Graph Label Outro Animation
+        pointAnimGroup.addIncident(pointAnimation, Math.trunc(segmentDur * (this.instance.data.length + zoomOffset - i - 1)));
 
+        // Graph Label Outro Animation
         const targetTop = this.instance.findPointY(i, l) - this.instance.linesHeight * 0.083;
         const topOffset = targetTop + this.instance.linesHeight * 0.07 / 2;
         let targetWidth = 10 / 2 * this.instance.data.length > 10 ? 10 : 10 / 2 * this.instance.data.length;
@@ -2740,89 +2633,74 @@ class AnimationConstructor {
         });
         gLabelGroup.addIncident(gLabelAnimation, Math.trunc(segmentDur * (this.instance.data.length + zoomOffset - i - 1) + pointDur * 0.2));
       }
-
       targetGroup.addIncident(gLabelGroup, 0);
     }
-
     return [targetGroup, pathAnimGroup, pointAnimGroup];
   }
-
 }
 
 /**
  * LINE GRAPH: MotorCortex Implementation
  */
-
 class LineGraph extends motorcortex.HTMLClip {
   // Building HTML tree for incident
   get html() {
-    this.buildVars(); // Title modal html generation
+    this.buildVars();
 
+    // Title modal html generation
     const title = [];
-
     for (let i = 0; i < this.words.length; i++) {
       title.push(`<div id="word-${i}" class="fontColorOn letter-wrapper-title">${this.words[i]}</div>`);
-
       if (i !== this.words.length - 1) {
         title.push('<div class="space-char letter-wrapper-title">-</div>');
       }
-    } // Legend html generation
+    }
 
-
+    // Legend html generation
     const legend = [];
-
     if (this.legend) {
       const legendLine = [];
-
       for (let l = 0; l < this.dataSetsNum; l++) {
         legendLine.push(`<div class="line-wrapper"><div class="color-wrapper">
               <div class="line-color color-${l}"></div>
             </div><div class="line-title">${this.dataSets[l].title}</div></div>`);
       }
-
       legend.push(`<div class="legend-wrapper">${legendLine.join("")}</div>`);
-    } // Data stele html generation
+    }
 
-
+    // Data stele html generation
     const dataSteles = [];
-
     if (this.grid === "steles") {
       for (const i in this.data) {
         const stele = [];
-
         for (let z = 0; z < this.steleBlockNum; z++) {
           stele.push(`<div
               class="stele-block-${i} stele-block stele-grid-block"}
             ></div>`);
         }
-
         dataSteles.push(`<div id="stele-${i}" class="data-stele stele-grid">${stele.join("")}</div>`);
       }
     } else if (this.grid === "lines") {
       const stele = [];
-
       for (let z = 0; z < this.steleBlockNum; z++) {
         stele.push('<div class="stele-block-0 stele-block line-grid-block"></div>');
       }
-
       dataSteles.push(`<div id="stele-0" class="data-stele line-grid">${stele.join("")}</div>`);
-    } // Graph Lines SVG hmtl generation
+    }
 
-
+    // Graph Lines SVG hmtl generation
     const lineGroups = [];
-
     for (let l = 0; l < this.dataSetsNum; l++) {
       const linePaths = [];
-
       for (let i = 0; i < this.data.length; i++) {
         const lineSegment = [];
         const xPoint1 = this.findPointX(i);
         const yPoint1 = this.findPointY(i, l);
-
         if (i !== this.data.length - 1) {
           const xPoint2 = this.findPointX(i + 1);
-          const yPoint2 = this.findPointY(i + 1, l); // Dataline Generation
+          const yPoint2 = this.findPointY(i + 1, l);
 
+          // Dataline Generation
           lineSegment.push(`<path
               id="line-${l}-${i}"
               class="line-${l}"
@@ -2832,9 +2710,9 @@ class LineGraph extends motorcortex.HTMLClip {
               stroke-linecap="round"
               fill="none"
             />`);
-        } // Datapoint Generation
+        }
 
-
+        // Datapoint Generation
         lineSegment.push(`<circle
             id="point-${l}-${i}"
             class="point-${l} datapoint"
@@ -2846,21 +2724,18 @@ class LineGraph extends motorcortex.HTMLClip {
           />`);
         linePaths.push(`<g>${lineSegment.join("")}</g>`);
       }
-
       lineGroups.push(`<g>${linePaths.join("")}</g>`);
     }
-
     const lines = [];
     lines.push(`<svg
         class="lines-container"
         viewbox="0 0 ${this.linesWidth} ${this.linesHeight}"
-      >${lineGroups.join("")}</svg>`); // Graph labels html generation with data parameters as reference
+      >${lineGroups.join("")}</svg>`);
 
+    // Graph labels html generation with data parameters as reference
     const labelGroups = [];
-
     for (let l = 0; l < this.dataSetsNum; l++) {
       const graphLabels = [];
-
       for (let i = 0; i < this.data.length; i++) {
         const {
           name,
@@ -2880,20 +2755,16 @@ class LineGraph extends motorcortex.HTMLClip {
             </div>
           </div>`);
       }
-
       labelGroups.push(`<div class="line-${l}-label-container">${graphLabels.join("")}</div>`);
-    } // X-axis labels html generation with data parameter as reference
+    }
 
-
+    // X-axis labels html generation with data parameter as reference
     const xLabels = [];
-
     for (const i in this.data) {
       const labelX = [];
-
       if (this.data[i].name.length > 4) {
         this.data[i].name = this.data[i].name.slice(0, 4);
       }
-
       for (const z in this.data[i].name) {
         labelX.push(`<div id="letter-${i}-${z}" class="letter-container">
             <div class="letter-wrapper-label fontColorOn">
@@ -2901,13 +2772,12 @@ class LineGraph extends motorcortex.HTMLClip {
             </div>
           </div>`);
       }
-
       xLabels.push(`<div class="label-container" id="label-${i}">
           ${labelX.join("")}
         </div>`);
-    } // MAIN HTML TREE
+    }
 
-
+    // MAIN HTML TREE
     return `<div class="container-lineGraph">
         <div class="viewport-lineGraph">
           <div class="title-container-lineGraph">
@@ -2924,38 +2794,45 @@ class LineGraph extends motorcortex.HTMLClip {
           </div>
         </div>
       </div>`;
-  } // Build CSS rules for incident
+  }
 
-
+  // Build CSS rules for incident
   get css() {
     return buildCSS(this);
-  } // Font API call (only google fonts API supported)
+  }
 
-
+  // Font API call (only google fonts API supported)
   get fonts() {
     return [{
       type: "google-font",
       src: `${this.url}`
     }];
-  } // MotorCortex Animation generation and
+  }
 
-
+  // MotorCortex Animation generation and
   buildTree() {
-    opacityControl(this, `.container-lineGraph`); // INTRO CONTROL
+    opacityControl(this, `.container-lineGraph`);
 
+    // INTRO CONTROL
     if (this.attrs.timings.intro) {
-      let introGroup = new motorcortex.Group(); // Background Intro Animation
+      let introGroup = new motorcortex.Group();
 
-      introGroup.addIncident(this.animConstructor.buildBackgroundIntro(), this.introDur * 0); // Main Title Intro Animation
+      // Background Intro Animation
+      introGroup.addIncident(this.animConstructor.buildBackgroundIntro(), this.introDur * 0);
 
-      introGroup.addIncident(this.animConstructor.buildTitleIntroCombo(), Math.trunc(this.introDur * 0.14)); // Legend Intro Animation
+      // Main Title Intro Animation
+      introGroup.addIncident(this.animConstructor.buildTitleIntroCombo(), Math.trunc(this.introDur * 0.14));
 
-      introGroup.addIncident(this.animConstructor.buildIntroLegend(), Math.trunc(this.introDur * 0.1)); // Label Intro Animation
+      // Legend Intro Animation
+      introGroup.addIncident(this.animConstructor.buildIntroLegend(), Math.trunc(this.introDur * 0.1));
 
-      introGroup.addIncident(this.animConstructor.buildIntroLabels(), Math.trunc(this.introDur * 0.18)); // Data Stele intro animation
+      // Label Intro Animation
+      introGroup.addIncident(this.animConstructor.buildIntroLabels(), Math.trunc(this.introDur * 0.18));
 
-      introGroup.addIncident(this.animConstructor.buildIntroStele(), Math.trunc(this.introDur * 0.45)); // Graph SVG, Labels, & Zoom Intro Animation
+      // Data Stele intro animation
+      introGroup.addIncident(this.animConstructor.buildIntroStele(), Math.trunc(this.introDur * 0.45));
 
+      // Graph SVG, Labels, & Zoom Intro Animation
       const segmentDur = this.introDur / this.data.length;
       const pointDur = segmentDur * 0.35;
       const [targetGroup, pathGroup, pointGroup] = this.animConstructor.buildIntroGraph(introGroup);
@@ -2963,22 +2840,28 @@ class LineGraph extends motorcortex.HTMLClip {
       introGroup.addIncident(pathGroup, Math.trunc(pointDur));
       introGroup.addIncident(pointGroup, 0);
       this.addIncident(introGroup, 0);
-    } // OUTRO CONTROL
+    }
 
-
+    // OUTRO CONTROL
     if (this.attrs.timings.outro) {
-      let outroGroup = new motorcortex.Group(); // Background Outro Animation
+      let outroGroup = new motorcortex.Group();
 
-      outroGroup.addIncident(this.animConstructor.buildBackgroundOutro(), Math.trunc(this.outroDur * 0.8)); // Main Title Outro Animation
+      // Background Outro Animation
+      outroGroup.addIncident(this.animConstructor.buildBackgroundOutro(), Math.trunc(this.outroDur * 0.8));
 
-      outroGroup.addIncident(this.animConstructor.buildTitleOutroCombo(), Math.trunc(this.outroDur * 0.76)); // Legend Outro Animation
+      // Main Title Outro Animation
+      outroGroup.addIncident(this.animConstructor.buildTitleOutroCombo(), Math.trunc(this.outroDur * 0.76));
 
-      outroGroup.addIncident(this.animConstructor.buildOutroLegend(), Math.trunc(this.outroDur * 0.1)); // Label Outro Animation
+      // Legend Outro Animation
+      outroGroup.addIncident(this.animConstructor.buildOutroLegend(), Math.trunc(this.outroDur * 0.1));
 
-      outroGroup.addIncident(this.animConstructor.buildOutroLabels(), this.outroDur - this.outroDur * 0.55); // Data Stele Outro Animation
+      // Label Outro Animation
+      outroGroup.addIncident(this.animConstructor.buildOutroLabels(), this.outroDur - this.outroDur * 0.55);
 
-      outroGroup.addIncident(this.animConstructor.buildOutroStele(), this.outroDur * 0.25); // Graph SVG & Labels Outro Animation
+      // Data Stele Outro Animation
+      outroGroup.addIncident(this.animConstructor.buildOutroStele(), this.outroDur * 0.25);
 
+      // Graph SVG & Labels Outro Animation
       const segmentDur = this.outroDur / (this.data.length + 1);
       const pointDur = segmentDur * 0.25;
       const [targetGroup, pathGroup, pointGroup] = [...this.animConstructor.buildOutroGraph(outroGroup)];
@@ -2986,18 +2869,19 @@ class LineGraph extends motorcortex.HTMLClip {
       outroGroup.addIncident(pathGroup, Math.trunc(pointDur));
       outroGroup.addIncident(pointGroup, 0);
       this.addIncident(outroGroup, 0 + this.introDur + this.staticDur);
-    } // STATIC DURATION CONTROL
+    }
 
-
+    // STATIC DURATION CONTROL
     this.addIncident(this.animConstructor.buildStaticControl(), this.introDur);
   }
-
   buildVars() {
     // AnimConstructor Init
-    this.animConstructor = new AnimationConstructor(this); // Data init
+    this.animConstructor = new AnimationConstructor(this);
 
-    this.data = this.attrs.data.data; // Colors control
+    // Data init
+    this.data = this.attrs.data.data;
 
+    // Colors control
     this.colorPalette = colorPalette;
     this.attrs.palette = this.attrs.palette || {};
     this.primaryC = this.attrs.palette.primary || this.colorPalette.gray;
@@ -3008,8 +2892,9 @@ class LineGraph extends motorcortex.HTMLClip {
     this.senaryC = this.attrs.palette.senary || this.colorPalette.accent;
     this.fontC = this.attrs.palette.font || this.colorPalette.font;
     this.accentC = this.attrs.palette.accent || this.colorPalette.accent;
-    this.backgroundC = this.attrs.palette.background || this.colorPalette.background; // Data processing
+    this.backgroundC = this.attrs.palette.background || this.colorPalette.background;
 
+    // Data processing
     this.title = this.attrs.data.title;
     this.words = this.title.split(" ");
     this.dataSets = this.attrs.data.dataSets ? this.attrs.data.dataSets : [{
@@ -3023,7 +2908,6 @@ class LineGraph extends motorcortex.HTMLClip {
         dataSet.color = this.colorPalette.dataColors[colorCount];
         colorCount++;
       }
-
       if (dataSet.title === "" || !dataSet.title) {
         dataSet.title = `Dataset-${l + 1}`;
       } else if (dataSet.title.length > 10) {
@@ -3032,13 +2916,11 @@ class LineGraph extends motorcortex.HTMLClip {
     });
     this.legend = this.dataSetsNum > 1 ? true : this.attrs.legend || false;
     this.maxPoint = 0;
-
     for (const datum of this.data) {
       if (Math.max(...datum.values) > this.maxPoint) {
         this.maxPoint = Math.max(...datum.values);
       }
     }
-
     this.maxPoint = this.attrs.data.maxValue ? this.attrs.data.maxValue : this.maxPoint;
     this.hover = this.attrs.data.hover || false;
     this.hover = this.dataSetsNum !== 1 ? true : this.hover;
@@ -3050,8 +2932,9 @@ class LineGraph extends motorcortex.HTMLClip {
     this.traceScale = this.attrs.trace.scale || 1.4;
     this.unit = this.attrs.data.unit || "%";
     this.interval = this.attrs.data.interval || 5;
-    this.steleBlockNum = this.maxPoint / this.interval + 1; // Sizing and position controls
+    this.steleBlockNum = this.maxPoint / this.interval + 1;
 
+    // Sizing and position controls
     this.config = config;
     this.graphScale = {
       width: 0.76,
@@ -3063,30 +2946,29 @@ class LineGraph extends motorcortex.HTMLClip {
     this.linesHeight = helpers.extractUnitsNums(this.props.containerParams.height).number * this.graphScale.height;
     this.steleWidth = this.linesWidth * 0.01;
     this.spaceAround = (this.linesWidth - this.steleWidth * this.data.length) / (this.data.length * 2);
-    this.r = this.attrs.dataPointR || 0.65; // Global access data process functions
-
+    this.r = this.attrs.dataPointR || 0.65;
+    // Global access data process functions
     this.findPointX = datapoint => {
       return this.steleWidth / 2 + this.spaceAround + datapoint * (2 * this.spaceAround + this.steleWidth);
     };
-
     this.findPointY = (datapoint, line) => {
       return this.linesHeight - this.data[datapoint].values[line] * this.linesHeight / this.maxPoint;
-    }; // Fonts control
+    };
 
-
+    // Fonts control
     this.attrs.font = this.attrs.font || {};
     this.fontFamily = this.attrs.font.fontFamily || "'Staatliches', cursive";
     this.fontSizeLabel = this.attrs.font.size || "1.7rem";
     this.fontSizeTitle = 1.5 * helpers.extractUnitsNums(this.fontSizeLabel).number + helpers.extractUnitsNums(this.fontSizeLabel).unit;
     this.fontSizeInner = 1 * helpers.extractUnitsNums(this.fontSizeLabel).number + helpers.extractUnitsNums(this.fontSizeLabel).unit;
-    this.url = this.attrs.font.url || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"; // Timeline control
+    this.url = this.attrs.font.url || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap";
 
+    // Timeline control
     this.attrs.timings = this.attrs.timings || {};
     this.introDur = this.attrs.timings.intro || 0;
     this.outroDur = this.attrs.timings.outro || 0;
     this.staticDur = this.attrs.timings.static ?? 1000;
   }
-
 }
 
 /**
@@ -3105,10 +2987,8 @@ function generateColor(index) {
   if (index > colorPalette.dataColors.length - 1) {
     return colorPalette.dataColors[Math.floor(Math.random() * Math.floor(colorPalette.dataColors.length))];
   }
-
   return colorPalette.dataColors[index];
 }
-
 class PieChart extends motorcortex.HTMLClip {
   get html() {
     this.data = this.attrs.data.data;
@@ -3124,10 +3004,8 @@ class PieChart extends motorcortex.HTMLClip {
         </div>
       </div>`;
   }
-
   get css() {
     var _cssArgs$font, _cssArgs$font2, _cssArgs$font3;
-
     const cssArgs = {
       data: this.attrs.data,
       palette: this.attrs.palette || {},
@@ -3222,28 +3100,22 @@ class PieChart extends motorcortex.HTMLClip {
     });
     return cssObjectToString(styles);
   }
-
   get fonts() {
     var _this$attrs$font;
-
     return [{
       type: "google-font",
       src: ((_this$attrs$font = this.attrs.font) === null || _this$attrs$font === void 0 ? void 0 : _this$attrs$font.url) || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
     }];
   }
-
   buildTree() {
     var _this$attrs$timings;
-
     fadeOutOpacityControl(this, `.container-pieChart`);
     this.static = this.attrs.timings.static ?? 1000;
     this.intro = this.attrs.timings.intro || 0;
     this.outro = this.attrs.timings.outro || 0;
-
     if (this.intro) {
       const rotateDuration = Math.round(this.intro * 0.8);
       const titleInDuration = Math.round(this.intro * 0.4);
-
       if (this.attrs.data.title) {
         [...this.attrs.data.title].forEach((char, index) => {
           const titleIn = new motorcortex.CSSEffect({
@@ -3264,7 +3136,6 @@ class PieChart extends motorcortex.HTMLClip {
           this.addIncident(titleIn, Math.round(titleInDuration / this.attrs.data.title.length) * index);
         });
       }
-
       const rotateIn = new motorcortex.CSSEffect({
         animatedAttrs: {
           "background-image": `conic-gradient(${this.createRadiusString()})`
@@ -3296,7 +3167,6 @@ class PieChart extends motorcortex.HTMLClip {
       });
       this.addIncident(legendIn, titleInDuration - this.intro * 0.2);
     }
-
     const staticPie = new motorcortex.CSSEffect({
       animatedAttrs: {}
     }, {
@@ -3304,10 +3174,8 @@ class PieChart extends motorcortex.HTMLClip {
       selector: ".container-pieChart"
     });
     this.addIncident(staticPie, this.intro);
-
     if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.outro) {
       var _this$attrs$timings2;
-
       const outroDuration = Math.round((_this$attrs$timings2 = this.attrs.timings) === null || _this$attrs$timings2 === void 0 ? void 0 : _this$attrs$timings2.outro);
       const titleOut = new motorcortex.CSSEffect({
         animatedAttrs: {
@@ -3349,11 +3217,9 @@ class PieChart extends motorcortex.HTMLClip {
       this.addIncident(pieOut, this.intro + this.static);
     }
   }
-
   createRadiusString() {
     let gradientString = "";
     let turnCount = 0;
-
     for (const datum in this.data) {
       if (datum === "0") {
         gradientString += `
@@ -3368,16 +3234,12 @@ class PieChart extends motorcortex.HTMLClip {
                     ${turnCount + this.data[datum].value / 100}turn,
                 `;
       }
-
       turnCount += this.data[datum].value / 100;
     }
-
     return gradientString + "rgba(0,0,0,0) 0 360deg";
   }
-
   createNullRadiusString() {
     let gradientString = "";
-
     for (const datum in this.data) {
       if (datum === "0") {
         gradientString += `
@@ -3393,10 +3255,8 @@ class PieChart extends motorcortex.HTMLClip {
                 `;
       }
     }
-
     return gradientString + "rgba(0,0,0,0) 0 360deg";
   }
-
   buildTitle() {
     return (this.data.title || []).map((char, index) => `<div class="char">
           <div class="char-${index} ${char === " " ? " space" : ""}">
@@ -3404,20 +3264,17 @@ class PieChart extends motorcortex.HTMLClip {
           </div>
         </div>`);
   }
-
   buildLegend() {
     return this.data.map((elem, index) => {
       if (elem.name.length > 24) {
         elem.name = elem.name.substring(0, 21) + "...";
       }
-
       return `<div class="legend-row">
           <div class="meter-${index}"></div>
           <div class="legend-text">${elem.name}</div>
         </div>`;
     });
   }
-
 }
 
 var validationRules = {
