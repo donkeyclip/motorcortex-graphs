@@ -967,7 +967,6 @@ const Counter = loadPlugin(index$3);
 class ProgressBar extends HTMLClip {
   get html() {
     const list = this.attrs.data.map((elem, index) => {
-      var _this$attrs$options;
       return `<div class="row row-${index}">
           <div class="bar-header">${elem.name}</div>
           <div class="container-bar container-bar-${index}">
@@ -977,7 +976,7 @@ class ProgressBar extends HTMLClip {
           </div>
           <div class="text indicator-${index}">${elem.value}</div>
           <div class="text text-unit">
-            ${!((_this$attrs$options = this.attrs.options) !== null && _this$attrs$options !== void 0 && _this$attrs$options.hidePercentage) ? "%" : ""}
+            ${!this.attrs.options?.hidePercentage ? "%" : ""}
           </div>
         </div>`;
     });
@@ -1056,20 +1055,18 @@ class ProgressBar extends HTMLClip {
     return cssObjectToString(styles);
   }
   get fonts() {
-    var _this$attrs$font;
     return [{
       type: "google-font",
-      src: ((_this$attrs$font = this.attrs.font) === null || _this$attrs$font === void 0 ? void 0 : _this$attrs$font.url) || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
+      src: this.attrs.font?.url || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
     }];
   }
   buildTree() {
-    var _this$attrs$timings;
     this.static = this.attrs.timings.static ?? 1000;
     this.intro = this.attrs.timings.intro || 0;
     this.outro = this.attrs.timings.outro || 0;
     const avg = this.barSum / this.barCount;
     fadeOutOpacityControl(this, `.container-progressBar`);
-    if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.intro) {
+    if (this.attrs.timings?.intro) {
       const slideInDuration = Math.floor(this.intro * 0.33);
       const expandBaseDuration = Math.floor(this.intro * 0.25);
       const expandBarDuration = Math.floor(this.intro * 0.33);
@@ -3003,7 +3000,6 @@ class PieChart extends HTMLClip {
       </div>`;
   }
   get css() {
-    var _cssArgs$font, _cssArgs$font2, _cssArgs$font3;
     const cssArgs = {
       data: this.attrs.data,
       palette: this.attrs.palette || {},
@@ -3019,8 +3015,8 @@ class PieChart extends HTMLClip {
         display: "flex",
         "align-items": "center",
         "flex-direction": "column",
-        "font-family": `${((_cssArgs$font = cssArgs.font) === null || _cssArgs$font === void 0 ? void 0 : _cssArgs$font.fontFamily) || "Staatliches, cursive"}`,
-        "font-size": `${((_cssArgs$font2 = cssArgs.font) === null || _cssArgs$font2 === void 0 ? void 0 : _cssArgs$font2.size) || "1.6rem"}`,
+        "font-family": `${cssArgs.font?.fontFamily || "Staatliches, cursive"}`,
+        "font-size": `${cssArgs.font?.size || "1.6rem"}`,
         color: cssArgs.palette.font || colorPalette.font
       },
       ".title": {
@@ -3080,7 +3076,7 @@ class PieChart extends HTMLClip {
         " white-space": "nowrap"
       },
       ".space": {
-        "min-width": (_cssArgs$font3 = cssArgs.font) !== null && _cssArgs$font3 !== void 0 && _cssArgs$font3.size ? `calc(${cssArgs.font.size} * 0.5)` : "0.8rem"
+        "min-width": cssArgs.font?.size ? `calc(${cssArgs.font.size} * 0.5)` : "0.8rem"
       },
       ".char": {
         position: "relative"
@@ -3099,14 +3095,12 @@ class PieChart extends HTMLClip {
     return cssObjectToString(styles);
   }
   get fonts() {
-    var _this$attrs$font;
     return [{
       type: "google-font",
-      src: ((_this$attrs$font = this.attrs.font) === null || _this$attrs$font === void 0 ? void 0 : _this$attrs$font.url) || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
+      src: this.attrs.font?.url || "https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
     }];
   }
   buildTree() {
-    var _this$attrs$timings;
     fadeOutOpacityControl(this, `.container-pieChart`);
     this.static = this.attrs.timings.static ?? 1000;
     this.intro = this.attrs.timings.intro || 0;
@@ -3172,9 +3166,8 @@ class PieChart extends HTMLClip {
       selector: ".container-pieChart"
     });
     this.addIncident(staticPie, this.intro);
-    if ((_this$attrs$timings = this.attrs.timings) !== null && _this$attrs$timings !== void 0 && _this$attrs$timings.outro) {
-      var _this$attrs$timings2;
-      const outroDuration = Math.round((_this$attrs$timings2 = this.attrs.timings) === null || _this$attrs$timings2 === void 0 ? void 0 : _this$attrs$timings2.outro);
+    if (this.attrs.timings?.outro) {
+      const outroDuration = Math.round(this.attrs.timings?.outro);
       const titleOut = new CSSEffect({
         animatedAttrs: {
           top: "-10%"
