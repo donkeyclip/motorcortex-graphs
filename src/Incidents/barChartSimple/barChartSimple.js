@@ -64,7 +64,7 @@ export default class BarChartSimple extends HTMLClip {
           <div
             class="bar-fill"
             style="background:${datum.color ? datum.color : this.primaryC}"
-            id="${datum.name}-bar-fill"
+            id="bar-fill-${datum.name?.replace(/\s/g, "")}"
           ></div>
         </div>`
       );
@@ -625,7 +625,7 @@ export default class BarChartSimple extends HTMLClip {
           props: {
             duration: Math.trunc(this.outroDur * 0.3),
             easing: "easeInOutCubic",
-            selector: `#${this.data[i].name}-bar-fill`,
+            selector: `#bar-fill${this.data[i].name?.replace(/\s/g, "")}`, //TODO SANITIZE NAME OF ELEMENT HERE
           },
           position: Math.trunc((subLetterDur * (this.data.length - i - 1)) / 2),
         });
