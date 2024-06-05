@@ -63,7 +63,7 @@
     "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "13.3.0",
-    "@rollup/plugin-replace": "4.0.0",
+    "@rollup/plugin-replace": "5.0.7",
     "babel-loader": "8.3.0",
     "concurrently": "7.6.0",
     "core-js": "3.33.0",
