@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.3](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.2.2...v2.2.3) (2023-10-07)
+
+
+### Bug Fixes
+
+* element name now cant start with number and whitespace is trimmed ([00d2a09](https://github.com/donkeyclip/motorcortex-graphs/commit/00d2a09dc6c233573495f3cf438c9566146c1ad4))
+
 ## [2.2.2](https://github.com/donkeyclip/motorcortex-graphs/compare/v2.2.1...v2.2.2) (2022-10-10)
 
 
